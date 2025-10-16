@@ -1,0 +1,16 @@
+{
+  "name": "bjj-project",
+  "private": true,
+  "workspaces": [
+    "bjj-london-map"
+  ],
+  "scripts": {
+    "dev": "pnpm --dir bjj-london-map dev",
+    "build": "pnpm --dir bjj-london-map build",
+    "start": "pnpm --dir bjj-london-map start",
+    "lint": "pnpm --dir bjj-london-map lint",
+    "typecheck": "pnpm --dir bjj-london-map typecheck",
+    "sync:gyms": "pnpm --dir bjj-london-map sync:gyms"
+  },
+  "packageManager": "pnpm@8.15.4"
+}

@@ -419,18 +419,19 @@ async function main() {
     ...gym,
   }));
 
-  const client = new Client({ connectionString });
-  await client.connect();
+  let stagingClient: Client | null = null;
 
   try {
-    await ensureTables(client);
+    stagingClient = new Client({ connectionString });
+    await stagingClient.connect();
+    await ensureTables(stagingClient);
 
-    await client.query('BEGIN');
-    await client.query('TRUNCATE TABLE gyms_raw;');
+    await stagingClient.query('BEGIN');
+    await stagingClient.query('TRUNCATE TABLE gyms_raw;');
 
     for (const [index, gym] of stagedGymsData.entries()) {
       const [primaryWebsite, ...extraWebsites] = gym.websites;
-      await client.query(
+      await stagingClient.query(
         `
           INSERT INTO gyms_raw (name, nearest_transport, borough, website, extra_websites)
           VALUES ($1, $2, $3, $4, $5);
@@ -448,53 +449,62 @@ async function main() {
       }
     }
 
-    await client.query('COMMIT');
+    await stagingClient.query('COMMIT');
     console.log(`Staged ${parsedGyms.length} gyms into gyms_raw.`);
+  } catch (error) {
+    if (stagingClient) {
+      await stagingClient.query('ROLLBACK').catch(() => null);
+    }
+    throw error;
+  } finally {
+    await stagingClient?.end().catch(() => null);
+  }
 
-    await client.end();
+  const { gyms, unmatched } = await buildDbGyms(stagedGymsData);
+  console.log(`Geocoded ${gyms.length} gyms.`);
 
-    const { gyms, unmatched } = await buildDbGyms(stagedGymsData);
-    console.log(`Geocoded ${gyms.length} gyms.`);
+  if (unmatched.length > 0) {
+    console.warn(
+      `Warning: ${unmatched.length} staged gyms could not be geocoded. Example: ${unmatched[0]?.name}`,
+    );
+    console.warn(
+      `Unmatched gyms: ${unmatched
+        .slice(0, 10)
+        .map((gym) => gym.name)
+        .join(', ')}${unmatched.length > 10 ? '…' : ''}`,
+    );
+  }
 
-    if (unmatched.length > 0) {
-      console.warn(
-        `Warning: ${unmatched.length} staged gyms could not be geocoded. Example: ${unmatched[0]?.name}`,
-      );
-      console.warn(
-        `Unmatched gyms: ${unmatched
-          .slice(0, 10)
-          .map((gym) => gym.name)
-          .join(', ')}${unmatched.length > 10 ? '…' : ''}`,
-      );
+  const nameCounts = new Map<string, number>();
+  gyms.forEach((gym) => {
+    const count = nameCounts.get(gym.name) ?? 0;
+    nameCounts.set(gym.name, count + 1);
+  });
+
+  const disambiguatedGyms = gyms.map((gym, index) => {
+    const count = nameCounts.get(gym.name) ?? 0;
+    if (count <= 1) {
+      return gym;
     }
 
-    const nameCounts = new Map<string, number>();
-    gyms.forEach((gym) => {
-      const count = nameCounts.get(gym.name) ?? 0;
-      nameCounts.set(gym.name, count + 1);
-    });
+    const qualifier = gym.borough ?? gym.nearestTransport ?? `location-${index + 1}`;
+    return {
+      ...gym,
+      name: `${gym.name} (${qualifier})`,
+    };
+  });
 
-    const disambiguatedGyms = gyms.map((gym, index) => {
-      const count = nameCounts.get(gym.name) ?? 0;
-      if (count <= 1) {
-        return gym;
-      }
+  let writeClient: Client | null = null;
 
-      const qualifier = gym.borough ?? gym.nearestTransport ?? `location-${index + 1}`;
-      return {
-        ...gym,
-        name: `${gym.name} (${qualifier})`,
-      };
-    });
+  try {
+    writeClient = new Client({ connectionString });
+    await writeClient.connect();
 
-    const client2 = new Client({ connectionString });
-    await client2.connect();
-
-    await client2.query('BEGIN');
-    await client2.query('TRUNCATE TABLE gyms;');
+    await writeClient.query('BEGIN');
+    await writeClient.query('TRUNCATE TABLE gyms;');
 
     for (const [index, gym] of disambiguatedGyms.entries()) {
-      await client2.query(
+      await writeClient.query(
         `
           INSERT INTO gyms (
             id,
@@ -541,14 +551,16 @@ async function main() {
       }
     }
 
-    await client2.query('TRUNCATE TABLE gyms_raw;');
-    await client2.query('COMMIT');
-    await client2.end();
-
+    await writeClient.query('TRUNCATE TABLE gyms_raw;');
+    await writeClient.query('COMMIT');
     console.log(`Finished syncing ${gyms.length} gyms. Staging table cleared.`);
   } catch (error) {
-    await client.query('ROLLBACK').catch(() => null);
+    if (writeClient) {
+      await writeClient.query('ROLLBACK').catch(() => null);
+    }
     throw error;
+  } finally {
+    await writeClient?.end().catch(() => null);
   }
 }
 

@@ -15,7 +15,9 @@ Interactive map of Brazilian Jiu-Jitsu gyms across Greater London. A curated dat
 ## Getting started
 
 ```bash
+# from the repository root
 pnpm install
+pnpm sync:gyms   # optional during local dev, required before deploying
 pnpm dev
 ```
 
@@ -38,6 +40,12 @@ Then open http://localhost:3000/ (or the port printed in the terminal).
 3. The client fetches once on load and renders the map from that response. No Overpass calls or client-side caching are required.
 
 > **Note:** Nominatim is also rate-limited. The sync script respects the service by spacing requests ~1.2s apart; avoid hammering it repeatedly.
+
+### Deploying to Vercel
+
+- Add the `DATABASE_URL` secret in the Vercel dashboard (Project → Settings → Environment Variables) **before** deploying. The backend only attempts to open the Postgres pool when the API runs, so builds succeed even if the variable is absent locally, but runtime requests will fail without it.
+- Trigger a fresh deployment after the variable is in place. If you deploy without it, Vercel will serve a 404/500 because the server bundle cannot connect to the database.
+- Run `pnpm sync:gyms` (or an equivalent automation) to populate the Neon database before or immediately after deploying to production.
 
 ## UI features
 
@@ -66,3 +74,4 @@ bjj-london-map/
 - If the sync script reports a few gyms that could not be geocoded, inspect those rows manually—refining the `nearest transport` or borough fields usually helps.
 - Tailwind classes keep the control panel simple and lightweight; customise them in `app/globals.css` or the respective component files if desired.
 - Coverage polygons are memoised per gym + radius to reduce repeated Turf computations.
+# training-map

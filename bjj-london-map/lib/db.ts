@@ -1,30 +1,55 @@
-import { Pool, type QueryResult, type QueryResultRow } from 'pg';
+import { Pool, type PoolConfig, type QueryResult, type QueryResultRow } from 'pg';
 
 declare global {
   // eslint-disable-next-line no-var
   var __dbPool: Pool | undefined;
 }
 
-const connectionString = process.env.DATABASE_URL;
+let pool: Pool | undefined = global.__dbPool;
 
-if (!connectionString) {
-  throw new Error('DATABASE_URL is not set. Please define it in your environment.');
-}
+function createPool(): Pool {
+  const connectionString = process.env.DATABASE_URL;
+  if (!connectionString) {
+    throw new Error(
+      'DATABASE_URL is not configured. Please add it to your environment (e.g. .env.local or the Vercel dashboard).',
+    );
+  }
 
-const pool =
-  global.__dbPool ||
-  new Pool({
+  const config: PoolConfig = {
     connectionString,
     max: 10,
-  });
+  };
 
-if (process.env.NODE_ENV !== 'production') {
-  global.__dbPool = pool;
+  const instance = new Pool(config);
+
+  if (process.env.NODE_ENV !== 'production') {
+    global.__dbPool = instance;
+  }
+
+  return instance;
+}
+
+function getPool(): Pool {
+  if (!pool) {
+    pool = createPool();
+  }
+  return pool;
 }
 
 export const db = {
-  query: async <T extends QueryResultRow>(text: string, params?: unknown[]): Promise<QueryResult<T>> => {
-    return pool.query<T>(text, params);
+  query: async <T extends QueryResultRow>(
+    text: string,
+    params?: unknown[],
+  ): Promise<QueryResult<T>> => {
+    return getPool().query<T>(text, params);
   },
-  end: async () => pool.end(),
+  end: async () => {
+    if (pool) {
+      await pool.end();
+      pool = undefined;
+      if (process.env.NODE_ENV !== 'production') {
+        global.__dbPool = undefined;
+      }
+    }
+  },
 };
