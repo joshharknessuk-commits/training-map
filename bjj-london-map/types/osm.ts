@@ -48,4 +48,7 @@ export interface Gym {
   tags: OsmTags;
   osmUrl: string;
   website?: string;
+  extraWebsites?: string[];
+  nearestTransport?: string;
+  borough?: string;
 }
