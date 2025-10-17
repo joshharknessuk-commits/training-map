@@ -1,6 +1,6 @@
 {
   "framework": "nextjs",
   "installCommand": "corepack prepare pnpm@10.12.2 --activate && corepack pnpm --dir bjj-london-map install --frozen-lockfile",
-  "buildCommand": "pnpm run build",
-  "outputDirectory": ".next"
+  "buildCommand": "corepack pnpm --dir bjj-london-map build",
+  "outputDirectory": "bjj-london-map/.next"
 }
