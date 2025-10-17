@@ -13,7 +13,7 @@
     "sync:gyms": "pnpm --dir bjj-london-map sync:gyms"
   },
   "engines": {
-    "node": ">=18.18 <22"
+    "node": ">=20 <21"
   },
-  "packageManager": "pnpm@8.15.4"
+  "packageManager": "pnpm@10.12.2"
 }
