@@ -12,5 +12,8 @@
     "typecheck": "pnpm --dir bjj-london-map typecheck",
     "sync:gyms": "pnpm --dir bjj-london-map sync:gyms"
   },
+  "engines": {
+    "node": ">=18.18 <22"
+  },
   "packageManager": "pnpm@8.15.4"
 }
