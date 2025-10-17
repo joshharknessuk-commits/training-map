@@ -1,4 +1,6 @@
 import { NextResponse } from 'next/server';
+import { promises as fs } from 'fs';
+import path from 'path';
 import { db } from '@/lib/db';
 
 interface GymRow {
@@ -13,6 +15,43 @@ interface GymRow {
   osm_url: string;
   tags: Record<string, string> | null;
   updated_at: string | null;
+}
+
+async function loadStaticGyms() {
+  try {
+    const filePath = path.join(process.cwd(), 'public', 'gyms.json');
+    const content = await fs.readFile(filePath, 'utf8');
+    const data = JSON.parse(content) as Array<{
+      id: string;
+      name: string;
+      lat: number;
+      lon: number;
+      tags?: Record<string, unknown>;
+      osmUrl?: string;
+      website?: string | null;
+      extraWebsites?: string[] | null;
+      nearestTransport?: string | null;
+      borough?: string | null;
+      updatedAt?: string | null;
+    }>;
+
+    return data.map((row) => ({
+      id: row.id,
+      name: row.name,
+      lat: Number(row.lat),
+      lon: Number(row.lon),
+      tags: row.tags ?? {},
+      osmUrl: row.osmUrl ?? '',
+      website: row.website ?? undefined,
+      extraWebsites: row.extraWebsites ?? undefined,
+      nearestTransport: row.nearestTransport ?? undefined,
+      borough: row.borough ?? undefined,
+      updatedAt: row.updatedAt ?? undefined,
+    }));
+  } catch (error) {
+    console.error('[api/gyms] Failed to load static gyms fallback', error);
+    return [];
+  }
 }
 
 export async function GET() {
@@ -50,9 +89,17 @@ export async function GET() {
       updatedAt: row.updated_at ?? undefined,
     }));
 
-    return NextResponse.json({ gyms });
+    if (gyms.length > 0) {
+      return NextResponse.json({ gyms });
+    }
   } catch (error) {
     console.error('[api/gyms] Failed to load gyms', error);
-    return NextResponse.json({ error: 'Failed to load gyms from database.' }, { status: 500 });
   }
+
+  const fallbackGyms = await loadStaticGyms();
+  if (fallbackGyms.length > 0) {
+    return NextResponse.json({ gyms: fallbackGyms });
+  }
+
+  return NextResponse.json({ error: 'Failed to load gyms from database.' }, { status: 500 });
 }

@@ -1,1 +1,2497 @@
-[]
+[
+  {
+    "id": "raw-1",
+    "name": "10th Planet London",
+    "lat": 51.5083952,
+    "lon": 0.0458839,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Royal Albert, Dockside Road, Silvertown, London Borough of Newham, London, Greater London, England, E16 2QU, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/6143889605",
+    "website": "https://10thplanetjjlondon.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Royal Albert",
+    "borough": "Newham",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-2",
+    "name": "10th Planet London - Woolwich",
+    "lat": 51.4911396,
+    "lon": 0.071047,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Woolwich Station, Plumstead Road, Callis Yard, Royal Borough of Greenwich, London, Greater London, England, SE18 6FN, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469786085",
+    "website": "https://10thplanetjjlondon.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Woolwich",
+    "borough": "Greenwich",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-3",
+    "name": "33 Jiu Jitsu",
+    "lat": 51.586391,
+    "lon": -0.1121953,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Hornsey Station, Tottenham Lane, Ferme Park, Hornsey, London Borough of Haringey, London, Greater London, England, N8 7EP, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761396",
+    "website": "https://www.instagram.com/33jiujitsu",
+    "extraWebsites": [],
+    "nearestTransport": "Hornsey",
+    "borough": "Haringey",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-10",
+    "name": "ARMA BJJ",
+    "lat": 51.4615284,
+    "lon": -0.1384969,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Clapham Common Station, Clapham Common South Side, Clapham Park, Clapham, London Borough of Lambeth, London, Greater London, England, SW4 7AJ, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469781075",
+    "website": "https://www.armabjj.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Clapham common",
+    "borough": "Wandsworth",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-4",
+    "name": "Aeon BJJ",
+    "lat": 51.4186859,
+    "lon": -0.1343445,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Streatham Common Station, Greyhound Lane, Manor Park, Streatham, London Borough of Lambeth, London, Greater London, England, SW16 5RP, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469762885",
+    "website": "https://aeonbjj.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Streatham Common",
+    "borough": "Lambeth",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-5",
+    "name": "Alexandra Park BJJ",
+    "lat": 51.6080596,
+    "lon": -0.1235628,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Bounds Green Station, Brownlow Road, London Borough of Haringey, London, Greater London, England, N11 2DE, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469760011",
+    "website": "https://www.alexandraparkbjj.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Bounds Green",
+    "borough": "Haringey",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-6",
+    "name": "Alliance London",
+    "lat": 51.4745087,
+    "lon": -0.1832205,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Imperial Wharf Station, Townmead Road, Sands End, London Borough of Hammersmith and Fulham, London, Greater London, England, SW6 2BF, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/5659380118",
+    "website": "https://alliancejjlondon.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Imperial Wharf",
+    "borough": "Hammersmith & Fulham",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-7",
+    "name": "Apex Jiu Jitsu",
+    "lat": 51.5648095,
+    "lon": -0.1063911,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Finsbury Park Station, Station Place, Finsbury Park, London Borough of Islington, London, Greater London, England, N4 2DH, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/44288552",
+    "website": "https://www.apexbjj.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Finsbury Park",
+    "borough": "Islington",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-8",
+    "name": "Apollo BJJ",
+    "lat": 51.4751358,
+    "lon": -0.2018604,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Parsons Green Station, Beaconsfield Alleyway, Parson's Green, Fulham, London Borough of Hammersmith and Fulham, London, Greater London, England, SW6 4HF, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/6865148139",
+    "website": "https://www.apollobjj.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Parsons Green",
+    "borough": "Hammersmith & Fulham",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-9",
+    "name": "Arlans Siqueira BJJ - North London",
+    "lat": 51.63006,
+    "lon": -0.1767584,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Totteridge & Whetstone Station, Totteridge Lane, Whetstone, London Borough of Barnet, London, Greater London, England, N20 9QH, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469760248",
+    "extraWebsites": [],
+    "nearestTransport": "Totteridge & whetstone",
+    "borough": "Barnet",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-11",
+    "name": "Aurum Jiu Jitsu",
+    "lat": 51.4618653,
+    "lon": 0.027896,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Kidbrooke Station, Plowden Road, Kidbrooke Village, Kidbrooke, Royal Borough of Greenwich, London, Greater London, England, SE3 9JH, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/948472436",
+    "website": "https://www.aurumbjjlondon.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Kidbrooke",
+    "borough": "Greenwich",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-18",
+    "name": "BJJ Art UK",
+    "lat": 51.4882204,
+    "lon": -0.1054988,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Kennington Station, Braganza Street, Elephant and Castle, London Borough of Southwark, London, Greater London, England, SE11 4JS, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/79414085",
+    "website": "https://www.bjj-art.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Kennington",
+    "borough": "Lambeth",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-19",
+    "name": "BJJ House Academy",
+    "lat": 51.5405138,
+    "lon": -0.2103359,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Brondesbury Park, Brondesbury, London Borough of Brent, London, Greater London, England, NW6 7YE, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/7147511743",
+    "website": "https://bjjhouse.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Brondesbury Park",
+    "borough": "Brent",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-12",
+    "name": "Backstreet Dojo BJJ",
+    "lat": 51.4478832,
+    "lon": -0.4106007,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Feltham Station, New Road, Feltham, London Borough of Hounslow, London, Greater London, England, TW14 9AL, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/454549580",
+    "website": "https://www.backstreetdojo.co.uk/home",
+    "extraWebsites": [],
+    "nearestTransport": "Feltham",
+    "borough": "Hounslow",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-13",
+    "name": "Balance BJJ",
+    "lat": 51.5072919,
+    "lon": -0.1437229,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Green Park Station, Stratton Street, St. James's, Mayfair, London, Greater London, England, W1J 8LF, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469760190",
+    "website": "https://www.balancebjj.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Green Park",
+    "borough": "City of Westminster",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-14",
+    "name": "Barnet Combat Academy",
+    "lat": 51.6488962,
+    "lon": -0.1733385,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "New Barnet Station, Station Approach, Barnet Vale, New Barnet, London Borough of Barnet, London, Greater London, England, EN5 1LW, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469762282",
+    "website": "https://www.barnetcombat.com/",
+    "extraWebsites": [],
+    "nearestTransport": "New Barnet",
+    "borough": "Barnet",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-16",
+    "name": "Battersea BJJ - Stars Gym",
+    "lat": 51.4769797,
+    "lon": -0.1469692,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Battersea Park Station, Battersea Park Road, London Borough of Wandsworth, London, Greater London, England, SW8 4LS, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761145",
+    "extraWebsites": [],
+    "nearestTransport": "Battersea Park",
+    "borough": "Wandsworth",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-15",
+    "name": "Battlezone BJJ and MMA",
+    "lat": 51.5897111,
+    "lon": -0.1024927,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Turnpike Lane Station, Green Lanes, Duckett's Green, Harringay, London Borough of Haringey, London, Greater London, England, N15 3EA, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469789266",
+    "extraWebsites": [],
+    "nearestTransport": "Turnpike Lane",
+    "borough": "Haringey",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-17",
+    "name": "Beast Fight Team",
+    "lat": 51.5061996,
+    "lon": -0.3787154,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Southall Station, South Road, Southall Green, London Borough of Ealing, London, Greater London, England, UB1 1BE, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469762401",
+    "website": "https://beastfightteam.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Southall",
+    "borough": "Ealing",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-20",
+    "name": "Bloodline Gym",
+    "lat": 51.5410518,
+    "lon": -0.0577737,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "London Fields, Martello Terrace, Hackney, London Borough of Hackney, London, Greater London, England, E8 3PH, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/7147535476",
+    "website": "https://www.bloodlinegym.com/",
+    "extraWebsites": [],
+    "nearestTransport": "London Fields",
+    "borough": "Hackney",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-21",
+    "name": "Canary Wharf BJJ",
+    "lat": 51.5054774,
+    "lon": -0.0206736,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Canary Wharf Station, Frobisher Passage, Canary Wharf, London Borough of Tower Hamlets, London, Greater London, England, E14 4EU, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469760049",
+    "website": "https://canarywharfbjj.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Canary Wharf",
+    "borough": "Tower Hamlets",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-22",
+    "name": "Cantagalo BJJ",
+    "lat": 51.4902,
+    "lon": -0.215087,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Barons Court Station, Margravine Gardens, West Kensington, London Borough of Hammersmith and Fulham, London, Greater London, England, W6 8RL, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/6914066285",
+    "website": "https://cantagalobjj.com/home",
+    "extraWebsites": [],
+    "nearestTransport": "Barons Court",
+    "borough": "Hammersmith & Fulham",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-23",
+    "name": "Carlson Gracie Clapham",
+    "lat": 51.4709435,
+    "lon": -0.1375629,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Wandsworth Road Station, Wandsworth Road, Clapham, London Borough of Lambeth, London, Greater London, England, SW8 4PA, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/4842285153",
+    "website": "https://www.bjjsouthlondon.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Wandsworth Road",
+    "borough": "Wandsworth",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-25",
+    "name": "Carlson Gracie HQ",
+    "lat": 51.5017564,
+    "lon": -0.2265662,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Goldhawk Road, Shepherd's Bush, London Borough of Hammersmith and Fulham, London, Greater London, England, W12 8EG, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/6410165090",
+    "website": "https://www.bjjlondon.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Goldhawk Road",
+    "borough": "Hammersmith & Fulham",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-24",
+    "name": "Carlson Gracie Hackney",
+    "lat": 51.5324874,
+    "lon": -0.1060356,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Angel, Islington High Street, Angel, Islington, London Borough of Islington, London, Greater London, England, N1 9LQ, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/1670707904",
+    "website": "https://bjjcarlsongracie.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Angel",
+    "borough": "Hackney",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-26",
+    "name": "Carlson Gracie Sheen",
+    "lat": 51.4652159,
+    "lon": -0.2667169,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Mortlake Station, Sheen Lane, East Sheen, London Borough of Richmond upon Thames, London, Greater London, England, SW14 8AE, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469780266",
+    "website": "https://www.bjjsheen.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Mortlake",
+    "borough": "Richmond upon Thames",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-27",
+    "name": "Carlson Gracie Sutton and Carshalton",
+    "lat": 51.368598,
+    "lon": -0.1652093,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Carshalton Station, North Street, The Wrythe, London Borough of Sutton, London, Greater London, England, SM5 2JD, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761220",
+    "website": "https://www.bjjcarshalton.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Carshalton",
+    "borough": "Sutton",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-28",
+    "name": "Carlson Gracie Warriors",
+    "lat": 51.5408036,
+    "lon": -0.3000963,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Alperton, Ealing Road, Alperton, London Borough of Brent, London, Greater London, England, HA0 4LL, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/6399598539",
+    "website": "https://carlsongraciewarriors.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Alperton",
+    "borough": "Brent",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-29",
+    "name": "Carpe Diem BJJ London",
+    "lat": 51.5011444,
+    "lon": -0.0932926,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Borough, Borough High Street, Borough Market, The Borough, London Borough of Southwark, London, Greater London, England, SE1 1AA, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/6797794418",
+    "website": "https://www.carpediembjj.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Borough",
+    "borough": "Southwark",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-30",
+    "name": "Checkmat Essex",
+    "lat": 51.5171766,
+    "lon": 0.1923414,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Rainham Station, Wennington Road, Rainham, London Borough of Havering, London, Greater London, England, RM13 9TH, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469762360",
+    "website": "https://www.originmmaacademy.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Rainham",
+    "borough": "Havering",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-31",
+    "name": "Checkmat Sidcup",
+    "lat": 51.4324258,
+    "lon": 0.1026967,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Sidcup Station, Station Road, Halfway Street, Longlands, London Borough of Bexley, London, Greater London, England, DA15 7DT, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469786974",
+    "extraWebsites": [],
+    "nearestTransport": "Sidcup",
+    "borough": "Bexley",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-32",
+    "name": "Complete Jiu Jitsu",
+    "lat": 51.5647278,
+    "lon": 0.1104129,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Goodmayes Station, Goodmayes Road, Goodmayes, Seven Kings, London Borough of Redbridge, London, Greater London, England, IG3 9UT, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761321",
+    "extraWebsites": [],
+    "nearestTransport": "Goodmayes",
+    "borough": "Redbridge",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-33",
+    "name": "Consistency BJJ",
+    "lat": 51.4801017,
+    "lon": -0.1937597,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Fulham Broadway Station, Fulham Road, Walham Green, Fulham, London Borough of Hammersmith and Fulham, London, Greater London, England, SW6 1AF, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469760150",
+    "website": "https://www.consistencybjj.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Fulham Broadway",
+    "borough": "Hammersmith & Fulham",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-37",
+    "name": "EN2 BJJ",
+    "lat": 51.6536683,
+    "lon": -0.0890852,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Enfield Chase Station, Windmill Hill, London Borough of Enfield, London, Greater London, England, EN2 6SE, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761280",
+    "website": "https://www.en2bjj.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Enfield Chase",
+    "borough": "Enfield",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-34",
+    "name": "Eddie Kone Academy of Jiu Jitsu",
+    "lat": 51.5865668,
+    "lon": -0.0404128,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Blackhorse Road Station, Blackhorse Road, London Borough of Waltham Forest, London, Greater London, England, E17 6JT, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469759975",
+    "website": "https://ekbjj.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Blackhorse Road",
+    "borough": "Waltham Forest",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-53",
+    "name": "Elephant and Castle",
+    "lat": 51.5032295,
+    "lon": -0.1044786,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Southwark Station, Blackfriars Road, Bankside, Southwark, London Borough of Southwark, London, Greater London, England, SE1 0PY, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469788372",
+    "extraWebsites": [],
+    "nearestTransport": "Southwark",
+    "borough": "https://www.grandunionbjj.com/",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-35",
+    "name": "Elevate BJJ",
+    "lat": 51.4635557,
+    "lon": -0.3018576,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Richmond Station, Kew Road, North Sheen, London Borough of Richmond upon Thames, London, Greater London, England, TW9 2ND, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/3323541699",
+    "website": "https://elevatemartialarts.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Richmond",
+    "borough": "Richmond upon Thames",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-36",
+    "name": "Elite Submission Grappling",
+    "lat": 51.4479058,
+    "lon": 0.1809656,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Crayford Station, Station Road, Wansunt, Crayford, London Borough of Bexley, London, Greater London, England, DA1 3QR, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761946",
+    "extraWebsites": [],
+    "nearestTransport": "Crayford",
+    "borough": "Bexley",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-38",
+    "name": "Equilibrium BJJ",
+    "lat": 51.5977031,
+    "lon": -0.1102286,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Wood Green Station, High Road, Hornsey Park, Hornsey, London Borough of Haringey, London, Greater London, England, N22 8HQ, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761052",
+    "website": "https://www.equilibriumbjj.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Wood Green",
+    "borough": "Haringey",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-39",
+    "name": "Ethos BJJ",
+    "lat": 51.6488962,
+    "lon": -0.1733385,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "New Barnet Station, Station Approach, Barnet Vale, New Barnet, London Borough of Barnet, London, Greater London, England, EN5 1LW, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469762282",
+    "website": "https://ethosbarnet.com/",
+    "extraWebsites": [],
+    "nearestTransport": "New Barnet",
+    "borough": "Barnet",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-40",
+    "name": "Fight City - Balham",
+    "lat": 51.4430399,
+    "lon": -0.1515974,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Balham Station, Balham Station Road, Balham, London Borough of Wandsworth, London, Greater London, England, SW12 9SG, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469759932",
+    "extraWebsites": [],
+    "nearestTransport": "Balham",
+    "borough": "Wandsworth",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-41",
+    "name": "Fight City - Elephant Park",
+    "lat": 51.495007,
+    "lon": -0.1003315,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Elephant and Castle, London Borough of Southwark, London, Greater London, England, SE1 6BN, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/26546003",
+    "extraWebsites": [],
+    "nearestTransport": "Elephant and Castle",
+    "borough": "Southwark",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-42",
+    "name": "Fight City - Moorgate",
+    "lat": 51.5256284,
+    "lon": -0.0876094,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Old Street, Saint Luke's, Finsbury, London Borough of Islington, London, Greater London, England, EC1Y 8AF, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/70804547",
+    "extraWebsites": [],
+    "nearestTransport": "Old Street",
+    "borough": "Islington",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-43",
+    "name": "Fighting Arts Academy",
+    "lat": 51.6084767,
+    "lon": 0.0003285,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Highams Park Station, The Avenue, Highams Park, London Borough of Waltham Forest, London, Greater London, England, E4 9LB, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761391",
+    "extraWebsites": [],
+    "nearestTransport": "Highams Park",
+    "borough": "Waltham Forest",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-44",
+    "name": "Fightzone London",
+    "lat": 51.5331911,
+    "lon": -0.0571513,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Cambridge Heath Station, Cambridge Heath Road, Globe Town, Bethnal Green, London Borough of Tower Hamlets, London, Greater London, England, E2 9BU, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761205",
+    "website": "https://fightzonelondon.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Cambridge Heath",
+    "borough": "Tower Hamlets",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-45",
+    "name": "Forrer Martial Arts Academy",
+    "lat": 51.4645986,
+    "lon": -0.0137428,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Lewisham Station, Loampit Vale, Mercator Estate, Ladywell, London Borough of Lewisham, London, Greater London, England, SE13 7NX, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469762236",
+    "website": "https://forrermartialartsacademy.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Lewisham",
+    "borough": "Lewisham",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-46",
+    "name": "Gorilla BJJ",
+    "lat": 51.6487014,
+    "lon": -0.0525297,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Southbury Station, Southbury Road, Southbury, London Borough of Enfield, London, Greater London, England, EN3 4FB, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/454525374",
+    "website": "https://www.gorillabrazilianjiujitsu.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Southbury",
+    "borough": "Enfield",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-47",
+    "name": "Gracie Barra Bromley",
+    "lat": 51.5246287,
+    "lon": -0.0123189,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Bromley-by-Bow, Blackwall Tunnel Northern Approach, Bromley-by-Bow, Bow, London Borough of Tower Hamlets, London, Greater London, England, E3 3JJ, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/6402176065",
+    "website": "https://www.graciebarrabromley.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Bromley",
+    "borough": "Bromley",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-48",
+    "name": "Gracie Barra Haringey",
+    "lat": 51.5771747,
+    "lon": -0.0988112,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Harringay Green Lanes Station, Green Lanes, Harringay Warehouse District, Harringay, London Borough of Haringey, London, Greater London, England, N4 1ES, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761370",
+    "website": "https://www.gbharingey.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Harringay Green Lanes",
+    "borough": "Haringey",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-49",
+    "name": "Gracie Barra Oval",
+    "lat": 51.4882204,
+    "lon": -0.1054988,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Kennington Station, Braganza Street, Elephant and Castle, London Borough of Southwark, London, Greater London, England, SE11 4JS, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/79414085",
+    "website": "https://www.graciebarraoval.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Kennington",
+    "borough": "Lambeth",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-50",
+    "name": "Gracie Barra Tooting",
+    "lat": 51.4273915,
+    "lon": -0.1687921,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Tooting Broadway Station, Tooting High Street, Tooting Graveney, Furzedown, London Borough of Wandsworth, London, Greater London, England, SW17 0SU, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469789310",
+    "website": "https://gbtooting.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Tooting Broadway",
+    "borough": "Wandsworth",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-51",
+    "name": "Gracie Barra Twickenham",
+    "lat": 51.4496872,
+    "lon": -0.3303416,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Twickenham Station, London Road, St Margarets, London Borough of Richmond upon Thames, London, Greater London, England, TW1 3SP, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/7152250540",
+    "website": "https://www.gbtwickenham.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Twickenham",
+    "borough": "Richmond upon Thames",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-54",
+    "name": "Grand Union Jiu Jitsu - Farringdon",
+    "lat": 51.5202107,
+    "lon": -0.1057568,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Farringdon Station, Farringdon Road, Clerkenwell Green, Clerkenwell, London Borough of Islington, London, Greater London, England, EC1M 3JF, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469760125",
+    "website": "https://www.grandunionbjj.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Farringdon",
+    "borough": "Camden",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-55",
+    "name": "Grange Jiu Jitsu",
+    "lat": 51.5011042,
+    "lon": -0.3065984,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "South Ealing Station, South Ealing Road, London Borough of Ealing, London, Greater London, England, W5 4QB, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469760614",
+    "website": "http://ealingbjj.com/",
+    "extraWebsites": [],
+    "nearestTransport": "South Ealing",
+    "borough": "Ealing",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-56",
+    "name": "Grapple Collective",
+    "lat": 51.5112823,
+    "lon": -0.0569157,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Shadwell Station, Cable Street, St. George in the East, Shadwell, London Borough of Tower Hamlets, London, Greater London, England, E1 2QF, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/192355129",
+    "website": "https://www.grapplecollective.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Shadwell",
+    "borough": "Tower Hamlets",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-57",
+    "name": "Grapplelabs",
+    "lat": 51.3731117,
+    "lon": 0.0895642,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Orpington Station, Subway, Crofton, London Borough of Bromley, London, Greater London, England, BR6 0SX, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469762321",
+    "website": "https://www.grapplelabs.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Orpington",
+    "borough": "Bromley",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-58",
+    "name": "Grapplers Den",
+    "lat": 51.4430399,
+    "lon": -0.1515974,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Balham Station, Balham Station Road, Balham, London Borough of Wandsworth, London, Greater London, England, SW12 9SG, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469759932",
+    "website": "https://grapplersden.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Balham",
+    "borough": "Lambeth",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-59",
+    "name": "Grapplers Den - Croydon",
+    "lat": 51.3985808,
+    "lon": -0.1000928,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Thornton Heath Station, Brigstock Road, Thornton Heath, London Borough of Croydon, London, Greater London, England, CR7 8RX, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/184442305",
+    "website": "https://grapplersdencroydon.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Thornton Heath",
+    "borough": "Croydon",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-60",
+    "name": "Grapplezone",
+    "lat": 51.4981063,
+    "lon": -0.1122692,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Lambeth North Station, Kennington Road, Waterloo, London Borough of Lambeth, London, Greater London, England, SE1 7BL, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469760964",
+    "website": "https://www.grapplezone.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Lambeth North",
+    "borough": "Lambeth",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-61",
+    "name": "Great Britain Top Team",
+    "lat": 51.400872,
+    "lon": -0.1781763,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Belgrave Walk, Mitcham, London Borough of Merton, London, Greater London, England, CR4 3QD, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/1763991367",
+    "website": "https://www.gbtt.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Belgrave Walk",
+    "borough": "Merton",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-62",
+    "name": "Guild BJJ",
+    "lat": 51.4610994,
+    "lon": -0.1875294,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Wandsworth Town Station, Old York Road, Wandsworth, London Borough of Wandsworth, London, Greater London, England, SW18 1AJ, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761539",
+    "website": "https://www.guildbjj.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Wandsworth Town",
+    "borough": "Wandsworth",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-63",
+    "name": "Hampstead BJJ",
+    "lat": 51.5467206,
+    "lon": -0.1910332,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "West Hampstead Station, West End Lane, West Hampstead, London Borough of Camden, London, Greater London, England, NW6 2LX, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761007",
+    "website": "https://www.hampsteadbjj.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "West Hampstead",
+    "borough": "Camden",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-64",
+    "name": "Havering Jiu Jitsu",
+    "lat": 51.581535,
+    "lon": 0.2059616,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Gidea Park Station, Station Road, Gidea Park, London Borough of Havering, London, Greater London, England, RM2 6DA, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761317",
+    "website": "https://bjjhavering.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Gidea Park",
+    "borough": "Havering",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-65",
+    "name": "Hillingdon BJJ",
+    "lat": 51.5031403,
+    "lon": -0.4207197,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Hayes & Harlington Station, Station Road, Hayes, London Borough of Hillingdon, London, Greater London, England, UB3 1AD, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761376",
+    "website": "https://hillingdonbjj.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Hayes & Harlington",
+    "borough": "Hillingdon",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-66",
+    "name": "Hitio Gym - Orpington",
+    "lat": 51.395767,
+    "lon": 0.1071841,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "St Mary Cray Station, Chipperfield Road, St Mary Cray, London Borough of Bromley, London, Greater London, England, BR5 2LP, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469762424",
+    "extraWebsites": [],
+    "nearestTransport": "St Mary Cray",
+    "borough": "Bromley",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-67",
+    "name": "Hounslow BJJ",
+    "lat": 51.4810146,
+    "lon": -0.3519792,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Osterley Station, Great West Road, Osterley, Hounslow, London, Greater London, England, TW7 4PX, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/619202149",
+    "extraWebsites": [],
+    "nearestTransport": "Osterley",
+    "borough": "Hounslow",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-68",
+    "name": "Inglorious Grapplers",
+    "lat": 51.5179685,
+    "lon": -0.0822015,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Liverpool Street Station, Liverpool Street, Bishopsgate, City of London, Greater London, England, EC2M 7PY, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/377488596",
+    "website": "https://ingloriousgrapplers.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Liverpool Street",
+    "borough": "Hackney",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-71",
+    "name": "Joe's Fight Gym",
+    "lat": 51.538266,
+    "lon": 0.099626,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Upney, Upney Lane, Thames View, Barking, London, Greater London, England, IG11 9LS, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/6466252813",
+    "extraWebsites": [],
+    "nearestTransport": "Upney",
+    "borough": "Barking & Dagenham",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-76",
+    "name": "KO Combat Academy",
+    "lat": 51.5281546,
+    "lon": -0.0554378,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Bethnal Green Station, Cambridge Heath Road, Globe Town, Bethnal Green, London Borough of Tower Hamlets, London, Greater London, England, E2 9LH, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469759964",
+    "website": "https://www.kocombatacademy.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Bethnal Green",
+    "borough": "Tower Hamlets",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-72",
+    "name": "Khalid Ismail Academy",
+    "lat": 51.575863,
+    "lon": 0.0458398,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Redbridge Station, Eastern Avenue, Redbridge, London Borough of Redbridge, London, Greater London, England, IG4 5DQ, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469787059",
+    "website": "https://khalidismail.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Redbridge",
+    "borough": "Redbridge",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-73",
+    "name": "Kinetic BJJ",
+    "lat": 51.5256284,
+    "lon": -0.0876094,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Old Street, Saint Luke's, Finsbury, London Borough of Islington, London, Greater London, England, EC1Y 8AF, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/70804547",
+    "website": "https://kineticbjj.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Old Street",
+    "borough": "Islington",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-74",
+    "name": "Kingston BJJ",
+    "lat": 51.4125645,
+    "lon": -0.3027535,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Kingston Station, Wood Street, Norbiton, Royal Borough of Kingston upon Thames, London, Greater London, England, KT1 1SA, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761432",
+    "website": "https://kingstonbjj.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Kingston",
+    "borough": "Kingston upon Thames",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-75",
+    "name": "Kingston Jiu Jitsu",
+    "lat": 51.4125645,
+    "lon": -0.3027535,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Kingston Station, Wood Street, Norbiton, Royal Borough of Kingston upon Thames, London, Greater London, England, KT1 1SA, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761432",
+    "website": "https://www.kingstonjiujitsu.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Kingston",
+    "borough": "Kingston upon Thames",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-130",
+    "name": "Ladbroke Grove",
+    "lat": 51.4939971,
+    "lon": -0.1742004,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "South Kensington, South Kensington Station Arcade, The Boltons, Brompton, Royal Borough of Kensington and Chelsea, London, Greater London, England, SW7 2NB, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/1169725686",
+    "extraWebsites": [],
+    "nearestTransport": "Kensington and Chelsea",
+    "borough": "https://submissiongrapplingclub.co.uk/",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-77",
+    "name": "Legacy Martial Arts",
+    "lat": 51.5300267,
+    "lon": -0.074467,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Hoxton Station, Hackney Road, Whitechapel, London Borough of Tower Hamlets, London, Greater London, England, E2 8GY, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469767610",
+    "extraWebsites": [],
+    "nearestTransport": "Hoxton",
+    "borough": "Hackney",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-78",
+    "name": "Legion Grappling",
+    "lat": 51.566705,
+    "lon": -0.034536,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Lea Bridge Station, Lea Bridge Road, Leyton, London Borough of Waltham Forest, London, Greater London, England, E10 7FU, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/5877098840",
+    "website": "https://legiongrappling.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Lea Bridge",
+    "borough": "Waltham Forest",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-79",
+    "name": "London Fight Factory",
+    "lat": 51.5256284,
+    "lon": -0.0876094,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Old Street, Saint Luke's, Finsbury, London Borough of Islington, London, Greater London, England, EC1Y 8AF, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/70804547",
+    "website": "https://londonfightfactory.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Old Street",
+    "borough": "Hackney",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-80",
+    "name": "London Grapple",
+    "lat": 51.4789824,
+    "lon": -0.0266353,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Deptford, Deptford High Street, Albury Court, Deptford, London Borough of Lewisham, London, Greater London, England, SE8 3NU, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/5575342411",
+    "website": "https://londongrapple.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Deptford",
+    "borough": "Lewisham",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-81",
+    "name": "London Olympic Grappling Academy",
+    "lat": 51.5553661,
+    "lon": -0.2863565,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Wembley Stadium Station, Wembley Hill Road, London Borough of Brent, London, Greater London, England, HA9 0JU, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761563",
+    "extraWebsites": [],
+    "nearestTransport": "Wembley Stadium",
+    "borough": "Brent",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-82",
+    "name": "London Shootfighters",
+    "lat": 51.5408036,
+    "lon": -0.3000963,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Alperton, Ealing Road, Alperton, London Borough of Brent, London, Greater London, England, HA0 4LL, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/6399598539",
+    "website": "https://londonshootfighters.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Alperton",
+    "borough": "Brent",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-83",
+    "name": "London Shootfighters East",
+    "lat": 51.5083005,
+    "lon": -0.0069622,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Blackwall Station, Ditchburn Street, Blackwall, London Borough of Tower Hamlets, London, Greater London, England, E14 0RJ, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469762427",
+    "website": "https://londonshootfighterseast.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Blackwall",
+    "borough": "Tower Hamlets",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-84",
+    "name": "Luciano Cristovam BJJ",
+    "lat": 51.5503801,
+    "lon": -0.1404477,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Kentish Town Station, Kentish Town Road, Kentish Town, London Borough of Camden, London, Greater London, England, NW5 2EN, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/188037931",
+    "website": "https://www.lucianocristovam.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Kentish town",
+    "borough": "Camden",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-89",
+    "name": "MCEC Jiu Jitsu",
+    "lat": 51.6185827,
+    "lon": -0.1114994,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Palmers Green Station, Alderman's Hill, Bowes Park, Palmers Green, London Borough of Enfield, London, Greater London, England, N13 4HU, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469762326",
+    "website": "https://www.instagram.com/mcecjiujitsu",
+    "extraWebsites": [],
+    "nearestTransport": "Palmers Green",
+    "borough": "Enfield",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-90",
+    "name": "MCMA",
+    "lat": 51.5648147,
+    "lon": -0.3524182,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "South Harrow Station, South Harrow Market, South Harrow, Rayners Lane, London Borough of Harrow, London, Greater London, England, HA2 0EU, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/229823057",
+    "website": "https://fightingcombatfitness.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "South Harrow",
+    "borough": "Hillingdon",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-92",
+    "name": "MMA LDN",
+    "lat": 51.5155556,
+    "lon": -0.0712299,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Aldgate East Station, Whitechapel High Street, Spitalfields, Whitechapel, London Borough of Tower Hamlets, London, Greater London, England, E1 7RA, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469759900",
+    "website": "https://mmaldn.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Aldgate East",
+    "borough": "Tower Hamlets",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-85",
+    "name": "Mandala Jiu Jitsu",
+    "lat": 51.425509,
+    "lon": -0.0320708,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Lower Sydenham Station, Worsley Bridge Road, New Beckenham, London Borough of Lewisham, London, Greater London, England, SE26 5BN, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469762249",
+    "website": "https://www.mandalajiujitsu.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Lower Sydenham",
+    "borough": "Lewisham",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-86",
+    "name": "Martial Arts & Yoga - Earlsfield",
+    "lat": 51.4412756,
+    "lon": -0.187282,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Earlsfield Station, Garratt Lane, Earlsfield, London Borough of Wandsworth, London, Greater London, England, SW18 4HP, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469768116",
+    "extraWebsites": [],
+    "nearestTransport": "Earlsfield",
+    "borough": "Wandsworth",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-91",
+    "name": "Mill Hill BJJ",
+    "lat": 51.5834983,
+    "lon": -0.2279871,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Hendon Central Station, Watford Way, Hendon Central, London Borough of Barnet, London, Greater London, England, NW4 3JH, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469760778",
+    "website": "https://millhillbjj.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Hendon Central",
+    "borough": "Barnet",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-93",
+    "name": "Morton Martial Arts",
+    "lat": 51.4244662,
+    "lon": -0.3325731,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Teddington, Station Road, Hampton Wick, London Borough of Richmond upon Thames, London, Greater London, England, TW11 0BA, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/6023649381",
+    "website": "https://www.mortonmartialarts.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Teddington",
+    "borough": "Richmond upon Thames",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-94",
+    "name": "Myriad Jiu Jitsu",
+    "lat": 51.4633813,
+    "lon": -0.0358641,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Brockley Station, Brockley Road, Brockley, London Borough of Lewisham, London, Greater London, England, SE4 2RU, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469764925",
+    "website": "https://myriadjiujitsu.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Brockley",
+    "borough": "Lewisham",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-95",
+    "name": "New Element MMA",
+    "lat": 51.6171748,
+    "lon": 0.0438665,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Roding Valley Station, Station Approach, Woodford Bridge, London Borough of Redbridge, London, Greater London, England, IG9 6EY, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/573910900",
+    "website": "https://newelementmma.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Roding Valley",
+    "borough": "Redbridge",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-96",
+    "name": "New School BJJ (Battersea)",
+    "lat": 51.4636536,
+    "lon": -0.1690294,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Pret A Manger, Saint John's Hill, Falcon Estate, Clapham Junction, London Borough of Wandsworth, London, Greater London, England, SW11 1RU, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/11028084979",
+    "website": "https://newschoolbjj.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Clapham Junction",
+    "borough": "Wandsworth",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-97",
+    "name": "New School BJJ (Brixton)",
+    "lat": 51.4630998,
+    "lon": -0.1144089,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Brixton Station, Atlantic Road, Brixton, London Borough of Lambeth, London, Greater London, England, SW9 8HY, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469760032",
+    "website": "https://www.newschoolbjjbrixton.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Brixton",
+    "borough": "Lambeth",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-98",
+    "name": "New School BJJ (Cheam)",
+    "lat": 51.356331,
+    "lon": -0.2160576,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Cheam Station, Station Way, London Borough of Sutton, London, Greater London, England, SM3 8SD, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469765749",
+    "website": "https://newschoolbjj.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Cheam",
+    "borough": "Sutton",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-99",
+    "name": "New Wave Academy - Bromley",
+    "lat": 51.4006268,
+    "lon": 0.0170661,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Bromley South Station, High Street, Widmore, London Borough of Bromley, London, Greater London, England, BR1 1LF, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761180",
+    "extraWebsites": [],
+    "nearestTransport": "Bromley South",
+    "borough": "Bromley",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-100",
+    "name": "New Wave Academy - Croydon",
+    "lat": 51.5871384,
+    "lon": -0.0421283,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Blackhorse Road Station / Blackhorse Lane, Forest Road, London Borough of Waltham Forest, London, Greater London, England, E17 6DU, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469759979",
+    "website": "https://www.croydon.new-wave-academy.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Blackhorse Lane",
+    "borough": "Croydon",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-101",
+    "name": "New Wave Academy - Penge",
+    "lat": 51.3919855,
+    "lon": -0.0879436,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Selhurst Station, Selhurst Road, Selhurst, London Borough of Croydon, London, Greater London, England, SE25 6AW, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/223211556",
+    "website": "https://www.penge.new-wave-academy.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Selhurst",
+    "borough": "Croydon",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-102",
+    "name": "North 12 Martial Arts",
+    "lat": 51.6094637,
+    "lon": -0.1884316,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "West Finchley Station, Nether Street, West Finchley, London Borough of Barnet, London, Greater London, England, N3 1NT, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/448736461",
+    "website": "https://nth12.com/",
+    "extraWebsites": [],
+    "nearestTransport": "West Finchley",
+    "borough": "Barnet",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-103",
+    "name": "North London BJJ",
+    "lat": 51.6321476,
+    "lon": -0.1279123,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Southgate Station, Station Parade, Southgate, London Borough of Enfield, London, Greater London, England, N14 5BJ, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469760621",
+    "website": "https://northlondonbjj.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Southgate",
+    "borough": "Enfield",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-88",
+    "name": "Northolt",
+    "lat": 51.5149803,
+    "lon": -0.3004067,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Ealing Broadway, The Broadway, London Borough of Ealing, London, Greater London, England, W5 2NU, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/5585821560",
+    "extraWebsites": [],
+    "nearestTransport": "Ealing",
+    "borough": "https://www.westlondonjiujitsu.co.uk/",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-104",
+    "name": "Origin BJJ London",
+    "lat": 51.5897111,
+    "lon": -0.1024927,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Turnpike Lane Station, Green Lanes, Duckett's Green, Harringay, London Borough of Haringey, London, Greater London, England, N15 3EA, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469789266",
+    "website": "https://londonbjj.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Turnpike Lane",
+    "borough": "Haringey",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-105",
+    "name": "Patello BJJ",
+    "lat": 51.3561869,
+    "lon": -0.3080478,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Chessington South Station, Garrison Lane, Chessington, Royal Borough of Kingston upon Thames, London, Greater London, England, KT9 2JT, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761850",
+    "website": "https://www.instagram.com/patello_bjj/",
+    "extraWebsites": [],
+    "nearestTransport": "Chessington South",
+    "borough": "Kingston upon Thames",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-106",
+    "name": "Premier BJJ - Central Harrow",
+    "lat": 51.5792928,
+    "lon": -0.3366641,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Harrow-on-the-Hill Station, Station Approach, Greenhill, London Borough of Harrow, London, Greater London, England, HA1 1BB, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/29333696",
+    "website": "https://premierjiujitsu.com/bjj-harrow",
+    "extraWebsites": [],
+    "nearestTransport": "Harrow on the Hill",
+    "borough": "Harrow",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-107",
+    "name": "Premier BJJ - Ruislip Manor",
+    "lat": 51.5744535,
+    "lon": -0.4139786,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Ruislip Manor Station, Windmill Hill, London Borough of Hillingdon, London, Greater London, England, HA4 8HR, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469760582",
+    "website": "https://premierjiujitsu.com/bjj-ruislip-manor",
+    "extraWebsites": [],
+    "nearestTransport": "Ruislip Manor",
+    "borough": "Hillingdon",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-108",
+    "name": "Premier BJJ - South Harrow",
+    "lat": 51.5648147,
+    "lon": -0.3524182,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "South Harrow Station, South Harrow Market, South Harrow, Rayners Lane, London Borough of Harrow, London, Greater London, England, HA2 0EU, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/229823057",
+    "website": "https://premierjiujitsu.com/bjj-harrow",
+    "extraWebsites": [],
+    "nearestTransport": "South Harrow",
+    "borough": "Harrow",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-109",
+    "name": "Premier BJJ - South Ruislip",
+    "lat": 51.5484582,
+    "lon": -0.3695247,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Northolt, Mandeville Road, Northolt, London, Greater London, England, UB5 4AA, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/6343726718",
+    "website": "https://premierjiujitsu.com/bjj-ruislip",
+    "extraWebsites": [],
+    "nearestTransport": "Northolt",
+    "borough": "Hillingdon",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-110",
+    "name": "Pure Jiu Jitsu",
+    "lat": 51.5235769,
+    "lon": -0.2597818,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "North Acton, Victoria Road, Park Royal, London Borough of Ealing, London, Greater London, England, W3 6UP, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/6150502124",
+    "website": "https://www.purejiujitsu.com/",
+    "extraWebsites": [],
+    "nearestTransport": "North Acton",
+    "borough": "Ealing",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-111",
+    "name": "Putney BJJ",
+    "lat": 51.4605789,
+    "lon": -0.2158087,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Putney Station, Upper Richmond Road, Putney, London Borough of Wandsworth, London, Greater London, England, SW15 2TL, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469762351",
+    "website": "https://www.putneybjj.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Putney",
+    "borough": "Wandsworth",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-70",
+    "name": "Queens Park",
+    "lat": 51.5768177,
+    "lon": -0.2139731,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Brent Cross, Brent Court, Brent Cross, London Borough of Barnet, London, Greater London, England, NW11 9TU, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/1693158540",
+    "extraWebsites": [],
+    "nearestTransport": "Brent",
+    "borough": "https://www.jissoacademy.com/",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-112",
+    "name": "Ray Stevens Academy",
+    "lat": 51.4094579,
+    "lon": -0.2300735,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Raynes Park Station, Coombe Lane, Cottenham Park, Raynes Park, London Borough of Merton, London, Greater London, England, SW20 8NE, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469762364",
+    "website": "https://www.raystevensacademy.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Raynes Park",
+    "borough": "Merton",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-113",
+    "name": "Revival MMA",
+    "lat": 51.6087125,
+    "lon": -0.3700564,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Hatch End Station, Uxbridge Road, Hatch End, London Borough of Harrow, London, Greater London, England, HA5 4EB, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761372",
+    "website": "https://revivalmma.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Hatch End",
+    "borough": "Harrow",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-114",
+    "name": "Roger Gracie Barnet",
+    "lat": 51.6094637,
+    "lon": -0.1884316,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "West Finchley Station, Nether Street, West Finchley, London Borough of Barnet, London, Greater London, England, N3 1NT, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/448736461",
+    "website": "https://www.instagram.com/rga_barnet/",
+    "extraWebsites": [],
+    "nearestTransport": "West Finchley",
+    "borough": "Barnet",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-115",
+    "name": "Roger Gracie HQ",
+    "lat": 51.494109,
+    "lon": -0.2250607,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Hammersmith, Beadon Road, Hammersmith, London Borough of Hammersmith and Fulham, London, Greater London, England, W6 7AA, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/5474926328",
+    "website": "https://rogergracie.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Hammersmith",
+    "borough": "Hammersmith & Fulham",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-116",
+    "name": "Roger Gracie Moorgate",
+    "lat": 51.5182516,
+    "lon": -0.0890625,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Moorgate, Moorfields, Moorgate, City of London, Greater London, England, EC2Y 9AG, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/5702714876",
+    "website": "https://rogergraciemoorgate.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Moorgate",
+    "borough": "Islington",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-117",
+    "name": "Rolling Calf Jiu Jitsu",
+    "lat": 51.4194578,
+    "lon": -0.0527653,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Penge East Station, Lennard Road, Penge, London Borough of Bromley, London, Greater London, England, SE20 7LR, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469762331",
+    "website": "https://www.rollingcalfbjj.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Penge East",
+    "borough": "Bromley",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-118",
+    "name": "Royal Resistance",
+    "lat": 51.4618653,
+    "lon": 0.027896,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Kidbrooke Station, Plowden Road, Kidbrooke Village, Kidbrooke, Royal Borough of Greenwich, London, Greater London, England, SE3 9JH, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/948472436",
+    "website": "https://www.royalresistance.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Kidbrooke",
+    "borough": "Greenwich",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-119",
+    "name": "Royce Gracie Jiu-Jitsu Essex",
+    "lat": 51.5587702,
+    "lon": 0.2515255,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Upminster station, Station Approach, Upminster, London Borough of Havering, London, Greater London, England, RM14 2TH, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/119760009",
+    "website": "https://gracie-jiu-jitsu-essex.mymawebsite.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Upminster",
+    "borough": "Havering",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-120",
+    "name": "Ruislip BJJ",
+    "lat": 51.5565752,
+    "lon": -0.3986189,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "South Ruislip Station, Long Drive, London Borough of Hillingdon, London, Greater London, England, HA4 6TS, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/586106986",
+    "website": "https://ruislipbjj.com/",
+    "extraWebsites": [],
+    "nearestTransport": "South Ruislip",
+    "borough": "Hillingdon",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-122",
+    "name": "SCK Fitness Team",
+    "lat": 51.5568183,
+    "lon": -0.0051322,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Leyton, High Road Leyton, Temple Mills, Leytonstone, London Borough of Waltham Forest, London, Greater London, England, E10 5PS, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/6367227349",
+    "website": "https://sckfitnessteam.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Leyton",
+    "borough": "Waltham Forest",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-123",
+    "name": "SOAS BJJ",
+    "lat": 51.5234289,
+    "lon": -0.124118,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Russell Square Station, Marchmont Street, St Pancras, London Borough of Camden, London, Greater London, England, WC1N 1AN, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/843559999",
+    "website": "https://soasunion.org/organisation/7999/",
+    "extraWebsites": [],
+    "nearestTransport": "Russell Square",
+    "borough": "Camden",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-121",
+    "name": "School of Jiu Jitsu",
+    "lat": 51.5347786,
+    "lon": -0.1935916,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Kilburn Park Station, Cambridge Avenue, Queen's Park, London Borough of Brent, London, Greater London, England, NW6 5AD, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469760934",
+    "website": "https://theschoolofjiujitsu.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Kilburn Park",
+    "borough": "Camden",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-124",
+    "name": "Southside Kings Fight Academy",
+    "lat": 51.3770038,
+    "lon": -0.1178974,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Waddon Marsh, Drury Crescent, Broad Green, London Borough of Croydon, London, Greater London, England, CR0 4XT, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/1763990028",
+    "website": "https://www.sskfightacademy.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Waddon Marsh",
+    "borough": "Croydon",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-125",
+    "name": "Stance Jiu Jitsu Academy",
+    "lat": 51.4911396,
+    "lon": 0.071047,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Woolwich Station, Plumstead Road, Callis Yard, Royal Borough of Greenwich, London, Greater London, England, SE18 6FN, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469786085",
+    "website": "https://stancejiujitsu.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Woolwich",
+    "borough": "Greenwich",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-126",
+    "name": "Stone Fight Academy",
+    "lat": 51.4644449,
+    "lon": 0.1001455,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Welling Station, Central Avenue, Belle Grove, Welling, London Borough of Bexley, London, Greater London, England, DA16 3AY, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761548",
+    "website": "https://stonefightacademy.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Welling",
+    "borough": "Bexley",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-127",
+    "name": "Stronger Fitness and Martial Arts",
+    "lat": 51.4155856,
+    "lon": -0.1914323,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "South Wimbledon Station, Merton High Street, South Wimbledon, Merton, London Borough of Merton, London, Greater London, England, SW19 1DE, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469760646",
+    "website": "https://www.strongerfitnessandmartialarts.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "South Wimbledon",
+    "borough": "Merton",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-128",
+    "name": "Studio NW2",
+    "lat": 51.5590423,
+    "lon": -0.2120596,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Cricklewood Station, Claremont Road, Golders Green, London Borough of Barnet, London, Greater London, England, NW2 1EP, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761958",
+    "website": "https://www.studionw2.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Cricklewood",
+    "borough": "Brent",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-131",
+    "name": "Submission School",
+    "lat": 51.548871,
+    "lon": 0.0249384,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Forest Gate Station, Woodgrange Road, Forest Gate, London Borough of Newham, London, Greater London, England, E7 0NE, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761307",
+    "extraWebsites": [],
+    "nearestTransport": "Forest Gate",
+    "borough": "Newham",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-132",
+    "name": "Target Team",
+    "lat": 51.5195582,
+    "lon": 0.1160126,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Barking Riverside, Renwick Road, Barking Riverside, London Borough of Barking and Dagenham, London, Greater London, England, IG11 0BF, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/9280240600",
+    "extraWebsites": [],
+    "nearestTransport": "Riverside Barking",
+    "borough": "Barking & Dagenham",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-133",
+    "name": "The Armoury",
+    "lat": 51.3662803,
+    "lon": -0.2043807,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "West Sutton Station, St James Avenue, Benhilton, London Borough of Sutton, London, Greater London, England, SM1 2TQ, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/473070050",
+    "website": "https://the-armoury.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "West Sutton",
+    "borough": "Sutton",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-134",
+    "name": "The BJJ Place - Enfield",
+    "lat": 51.6536683,
+    "lon": -0.0890852,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Enfield Chase Station, Windmill Hill, London Borough of Enfield, London, Greater London, England, EN2 6SE, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761280",
+    "extraWebsites": [],
+    "nearestTransport": "Enfield Chase",
+    "borough": "Enfield",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-135",
+    "name": "The BJJ Place - Stoke Newington",
+    "lat": 51.5481908,
+    "lon": -0.0760535,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Dalston Kingsland, Kingsland High Street, Dalston, London Borough of Hackney, London, Greater London, England, E8 2JS, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/6991113897",
+    "extraWebsites": [],
+    "nearestTransport": "Dalston Kingsland",
+    "borough": "Hackney",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-136",
+    "name": "The BJJ Place - West Hampstead",
+    "lat": 51.5467206,
+    "lon": -0.1910332,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "West Hampstead Station, West End Lane, West Hampstead, London Borough of Camden, London, Greater London, England, NW6 2LX, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761007",
+    "extraWebsites": [],
+    "nearestTransport": "West Hampstead",
+    "borough": "Camden",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-137",
+    "name": "The Budokwai",
+    "lat": 51.4919274,
+    "lon": -0.1924361,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Earls Court Station, Earl's Court Road, The Boltons, Earl's Court, Royal Borough of Kensington and Chelsea, London, Greater London, England, SW5 9RF, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469760058",
+    "website": "https://budokwai.co.uk/brazilian-jiu-jitsu",
+    "extraWebsites": [],
+    "nearestTransport": "Earls Court",
+    "borough": "Kensington and Chelsea",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-138",
+    "name": "The Gauntlet Fight Academy",
+    "lat": 51.5151841,
+    "lon": -0.3022135,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Ealing Broadway Station, Haven Green, London Borough of Ealing, London, Greater London, England, W5 2NT, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469781106",
+    "extraWebsites": [],
+    "nearestTransport": "Ealing Broadway",
+    "borough": "Ealing",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-139",
+    "name": "The Institute of Grappling (IOG)",
+    "lat": 51.5834983,
+    "lon": -0.2279871,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Hendon Central Station, Watford Way, Hendon Central, London Borough of Barnet, London, Greater London, England, NW4 3JH, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469760778",
+    "website": "https://instituteofgrappling.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Hendon Central",
+    "borough": "Barnet",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-140",
+    "name": "The Kodokan",
+    "lat": 51.4913197,
+    "lon": 0.0530414,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Woolwich Dockyard Station, Frances Street, Woolwich Dockyard, Charlton Riverside, Royal Borough of Greenwich, London, Greater London, England, SE18 5EU, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761700",
+    "website": "https://www.thekodokan.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Woolwich Dockyard",
+    "borough": "Greenwich",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-141",
+    "name": "The London Jiu Jitsu Centre",
+    "lat": 51.5249495,
+    "lon": -0.1393963,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Warren Street Station, Regent's Place Plaza, Fitzrovia, London Borough of Camden, London, Greater London, England, NW1 3DU, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/4543005955",
+    "website": "https://www.londonjiujitsucentre.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Warren Street",
+    "borough": "Camden",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-142",
+    "name": "The MMA Clinic - Angel",
+    "lat": 51.5324874,
+    "lon": -0.1060356,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Angel, Islington High Street, Angel, Islington, London Borough of Islington, London, Greater London, England, N1 9LQ, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/1670707904",
+    "website": "https://www.odysseybjj.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Angel",
+    "borough": "Islington",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-143",
+    "name": "The MMA Clinic - Romford",
+    "lat": 51.5744009,
+    "lon": 0.1839019,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Romford Station, South Street, Rush Green, London Borough of Havering, London, Greater London, England, RM1 1PL, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469762370",
+    "website": "https://www.odysseybjj.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "Romford",
+    "borough": "Havering",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-144",
+    "name": "The Resistance",
+    "lat": 51.6512607,
+    "lon": -0.1959506,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "High Barnet Station, Meadway, High Barnet, London Borough of Barnet, London, Greater London, England, EN5 5JX, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469760782",
+    "website": "https://www.the-resistance.co.uk/",
+    "extraWebsites": [],
+    "nearestTransport": "High Barnet",
+    "borough": "Barnet",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-145",
+    "name": "The Warehouse",
+    "lat": 51.5792713,
+    "lon": -0.2389047,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Hendon Station, Station Road, The Hyde, West Hendon, London Borough of Barnet, London, Greater London, England, NW4 4PT, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761382",
+    "extraWebsites": [],
+    "nearestTransport": "Hendon",
+    "borough": "Barnet",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-146",
+    "name": "Third Space - Moorgate",
+    "lat": 51.5182516,
+    "lon": -0.0890625,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Moorgate, Moorfields, Moorgate, City of London, Greater London, England, EC2Y 9AG, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/5702714876",
+    "extraWebsites": [],
+    "nearestTransport": "Moorgate",
+    "borough": "Islington",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-147",
+    "name": "Third Space - Soho",
+    "lat": 51.5112598,
+    "lon": -0.1357352,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "The Third Space, Brewer Street, Soho, City of Westminster, Greater London, England, W1F 9TL, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/2659475642",
+    "extraWebsites": [],
+    "nearestTransport": "Picadilly circus",
+    "borough": "City of Westminster",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-148",
+    "name": "Tokei Martial Arts",
+    "lat": 51.5048764,
+    "lon": -0.0851473,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "London Bridge, Stainer Street, Borough Market, The Borough, London Borough of Southwark, London, Greater London, England, SE1 9SP, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/4290857012",
+    "website": "https://www.tokeicentre.org/",
+    "extraWebsites": [],
+    "nearestTransport": "London Bridge",
+    "borough": "Southwark",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-149",
+    "name": "Triccs Academy BJJ - Beckenham",
+    "lat": 51.4108125,
+    "lon": -0.0255987,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Beckenham Junction Station / Rectory Road, Rectory Road, Beckenham, London Borough of Bromley, London, Greater London, England, BR3 1JB, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761152",
+    "website": "https://www.dulwichbjj.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Beckenham Road",
+    "borough": "Bromley",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-152",
+    "name": "Triccs Academy BJJ - Peckham",
+    "lat": 51.4734386,
+    "lon": -0.0584337,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Queen's Road Peckham Station, Queen's Road, Cossall Estate, Peckham, London Borough of Southwark, London, Greater London, England, SE15 2NB, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469762355",
+    "website": "https://www.dulwichbjj.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Queen's Rd Peckham",
+    "borough": "Southwark",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-153",
+    "name": "True Virtues BJJ",
+    "lat": 51.4202156,
+    "lon": -0.2065393,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Wimbledon Station, Hartfield Road, Merton Park, London Borough of Merton, London, Greater London, England, SW19 3RU, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469789261",
+    "website": "https://www.truevirtuesjiujitsu.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Wimbledon",
+    "borough": "Merton",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-154",
+    "name": "UFC Gym London",
+    "lat": 51.5256284,
+    "lon": -0.0876094,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Old Street, Saint Luke's, Finsbury, London Borough of Islington, London, Greater London, England, EC1Y 8AF, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/70804547",
+    "website": "https://www.ufcgym.london/",
+    "extraWebsites": [],
+    "nearestTransport": "Old Street",
+    "borough": "Hackney",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-155",
+    "name": "Uncommon Jiu Jitsu",
+    "lat": 51.5011444,
+    "lon": -0.0932926,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Borough, Borough High Street, Borough Market, The Borough, London Borough of Southwark, London, Greater London, England, SE1 1AA, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/6797794418",
+    "website": "https://www.uncommonjiujitsu.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Borough",
+    "borough": "Southwark",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-156",
+    "name": "Urban Warriors / Team Kevlar Fitness",
+    "lat": 51.485663,
+    "lon": -0.1248249,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Vauxhall Station, A202, Vauxhall, London Borough of Lambeth, London, Greater London, England, SW8 2FF, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/286733049",
+    "extraWebsites": [],
+    "nearestTransport": "Vauxhall",
+    "borough": "Lambeth",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-157",
+    "name": "Vai BJJ",
+    "lat": 51.4496872,
+    "lon": -0.3303416,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Twickenham Station, London Road, St Margarets, London Borough of Richmond upon Thames, London, Greater London, England, TW1 3SP, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/7152250540",
+    "website": "https://www.vaibjj.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Twickenham",
+    "borough": "Richmond upon Thames",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-158",
+    "name": "Valour Jiu Jitsu",
+    "lat": 51.4687259,
+    "lon": -0.2102924,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Putney Bridge Station, Fulham High Street, Hurlingham, Fulham, London Borough of Hammersmith and Fulham, London, Greater London, England, SW6 3JY, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/6903984689",
+    "extraWebsites": [],
+    "nearestTransport": "Putney Bridge",
+    "borough": "Hammersmith & Fulham",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-159",
+    "name": "Vasi Fusle Academy",
+    "lat": 51.4877982,
+    "lon": -0.0096006,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Island Gardens Station, Manchester Road, Manchester Estate, Isle of Dogs, London Borough of Tower Hamlets, London, Greater London, England, E14 3NF, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469762471",
+    "website": "https://vasifusleacademy.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Island Gardens",
+    "borough": "Tower Hamlets",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-160",
+    "name": "Wandsworth BJJ",
+    "lat": 51.4610994,
+    "lon": -0.1875294,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Wandsworth Town Station, Old York Road, Wandsworth, London Borough of Wandsworth, London, Greater London, England, SW18 1AJ, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469761539",
+    "website": "https://www.wandsworthbjj.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Wandsworth Town",
+    "borough": "Wandsworth",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-161",
+    "name": "Wave BJJ",
+    "lat": 51.4943872,
+    "lon": -0.2448256,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Stamford Brook Station, Goldhawk Road, London Borough of Hammersmith and Fulham, London, Greater London, England, W6 0SA, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469760650",
+    "website": "https://bjjwestlondon.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Stamford Brook",
+    "borough": "Hounslow",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-151",
+    "name": "West Dulwich",
+    "lat": 51.5032295,
+    "lon": -0.1044786,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Southwark Station, Blackfriars Road, Bankside, Southwark, London Borough of Southwark, London, Greater London, England, SE1 0PY, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469788372",
+    "extraWebsites": [],
+    "nearestTransport": "Southwark",
+    "borough": "https://www.dulwichbjj.com/",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-162",
+    "name": "Will BJJ",
+    "lat": 51.4532909,
+    "lon": -0.1009509,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "Herne Hill Station, Half Moon Lane, Dulwich Village, London Borough of Southwark, London, Greater London, England, SE24 9LR, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/way/1189759380",
+    "website": "https://willbjjteam.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Herne Hill",
+    "borough": "Lambeth",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  },
+  {
+    "id": "raw-163",
+    "name": "Wimbledon BJJ",
+    "lat": 51.4025904,
+    "lon": -0.193352,
+    "tags": {
+      "source": "nominatim",
+      "display_name": "London Road / Morden Station, London Road, Morden, London Borough of Merton, London, Greater London, England, SM4 5BT, United Kingdom"
+    },
+    "osmUrl": "https://www.openstreetmap.org/node/469787360",
+    "website": "https://wimbledonbjj.com/",
+    "extraWebsites": [],
+    "nearestTransport": "Morden Road",
+    "borough": "Merton",
+    "updatedAt": "2025-10-16T19:46:18.663Z"
+  }
+]

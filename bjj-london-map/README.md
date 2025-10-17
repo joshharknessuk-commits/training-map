@@ -28,6 +28,7 @@ Then open http://localhost:3000/ (or the port printed in the terminal).
 - `pnpm build` – type-check and produce an optimized production build.
 - `pnpm start` – run the production build locally.
 - `pnpm sync:gyms` – load/refresh the database from `data/map-data.csv`.
+- `pnpm export:gyms` – snapshot the current Postgres `gyms` table into `public/gyms.json` (used as a fallback dataset).
 - `pnpm typecheck` – run TypeScript in `--noEmit` mode.
 - `pnpm lint` – run ESLint (errors only, no warnings allowed).
 - `pnpm format` – check formatting with Prettier.
@@ -36,8 +37,8 @@ Then open http://localhost:3000/ (or the port printed in the terminal).
 ## Data flow & caching
 
 1. Run `pnpm sync:gyms` to load the curated CSV. The script pushes the raw rows into the `gyms_raw` staging table, geocodes each entry via Nominatim (using borough/nearest transport hints), inserts/updates the `gyms` table, and finally clears the staging table.
-2. The Next.js API (`/api/gyms`) reads directly from the `gyms` table and returns JSON to the client.
-3. The client fetches once on load and renders the map from that response. No Overpass calls or client-side caching are required.
+2. The Next.js API (`/api/gyms`) reads directly from the `gyms` table and returns JSON to the client. If the database is unreachable it falls back to the last exported `public/gyms.json`.
+3. The client fetches once on load and renders the map from that response (automatically using the static snapshot if the API response is empty/unavailable). No Overpass calls or client-side caching are required.
 
 > **Note:** Nominatim is also rate-limited. The sync script respects the service by spacing requests ~1.2s apart; avoid hammering it repeatedly.
 
@@ -49,7 +50,7 @@ Then open http://localhost:3000/ (or the port printed in the terminal).
 
 ## UI features
 
-- Collapsible control panel with quick access to ring radius (0.5–3 mi), opacity (0.05–0.5), and ring visibility.
+- Collapsible sidebar with search, borough filters, and coverage controls (radius, opacity, ring toggle).
 - Brazilian flag-inspired theme (blue/green/yellow map accents) with glowing coverage rings and markers.
 - Legend explaining the 1 mile coverage rings.
 - Inline loading & error states to highlight the fetch status.

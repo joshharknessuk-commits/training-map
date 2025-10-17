@@ -1,10 +1,10 @@
 'use client';
 
-import { useMemo } from 'react';
-import { CircleMarker, GeoJSON, MapContainer, Popup, TileLayer } from 'react-leaflet';
+import { useEffect, useMemo } from 'react';
+import { CircleMarker, GeoJSON, MapContainer, Popup, TileLayer, useMap } from 'react-leaflet';
 import type { Feature, Polygon } from '@turf/turf';
-import { getCircle } from '@/lib/turf';
 import type { Gym } from '@/types/osm';
+import { getCircle } from '@/lib/turf';
 
 const LONDON_COORDS: [number, number] = [51.5074, -0.1278];
 const RING_OUTLINE = '#009c3b';
@@ -17,11 +17,16 @@ interface MapViewProps {
   radiusMiles: number;
   showRings: boolean;
   fillOpacity: number;
+  mapStyle: {
+    id: string;
+    url: string;
+    attribution: string;
+  };
 }
 
-export function MapView({ gyms, radiusMiles, showRings, fillOpacity }: MapViewProps) {
+export function MapView({ gyms, radiusMiles, showRings, fillOpacity, mapStyle }: MapViewProps) {
   const rings = useMemo(() => {
-    if (!showRings) {
+    if (!showRings || radiusMiles <= 0) {
       return [];
     }
 
@@ -41,15 +46,15 @@ export function MapView({ gyms, radiusMiles, showRings, fillOpacity }: MapViewPr
       className="h-full w-full rounded-[32px] border border-white/10 shadow-2xl drop-shadow-xl"
       preferCanvas
     >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-      />
+      <MapPanesInitializer />
+      <TileLayer key={mapStyle.id} attribution={mapStyle.attribution} url={mapStyle.url} />
 
       {rings.map(({ id, feature }) => (
         <GeoJSON
-          key={`ring-${id}`}
+          key={`ring-${id}-${radiusMiles.toFixed(2)}`}
           data={feature as Feature<Polygon>}
+          pane="rings"
+          interactive={false}
           style={{
             color: RING_OUTLINE,
             weight: 1.5,
@@ -64,6 +69,7 @@ export function MapView({ gyms, radiusMiles, showRings, fillOpacity }: MapViewPr
         <CircleMarker
           key={gym.id}
           center={[gym.lat, gym.lon]}
+          pane="markers"
           radius={8}
           color={MARKER_BORDER}
           weight={2}
@@ -123,4 +129,23 @@ export function MapView({ gyms, radiusMiles, showRings, fillOpacity }: MapViewPr
       ))}
     </MapContainer>
   );
+}
+
+function MapPanesInitializer(): null {
+  const map = useMap();
+
+  useEffect(() => {
+    const ensurePane = (name: string, zIndex: string, pointerEvents?: string) => {
+      const pane = map.getPane(name) ?? map.createPane(name);
+      pane.style.zIndex = zIndex;
+      if (pointerEvents) {
+        pane.style.pointerEvents = pointerEvents;
+      }
+    };
+
+    ensurePane('rings', '350', 'none');
+    ensurePane('markers', '400');
+  }, [map]);
+
+  return null;
 }
