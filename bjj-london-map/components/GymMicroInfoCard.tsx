@@ -20,6 +20,10 @@ interface QuickStat {
 const MEMBER_NUMBER_FORMATTER = new Intl.NumberFormat('en-GB', {
   maximumFractionDigits: 0,
 });
+const DISTANCE_FORMATTER = new Intl.NumberFormat('en-GB', {
+  maximumFractionDigits: 1,
+  minimumFractionDigits: 1,
+});
 
 const CARD_BASE_CLASSES =
   'transform rounded-3xl border border-white/10 bg-slate-950/95 p-5 text-slate-100 shadow-[0_18px_42px_-18px_rgba(15,23,42,0.95)] backdrop-blur transition-all duration-300 ease-out';
@@ -77,6 +81,18 @@ function buildDirectionsUrl(gym: Gym) {
   return `https://www.google.com/maps/dir/?${params.toString()}`;
 }
 
+function formatDistance(distanceKm?: number | null): string | null {
+  if (typeof distanceKm !== 'number' || !Number.isFinite(distanceKm)) {
+    return null;
+  }
+
+  if (distanceKm < 0.05) {
+    return '< 0.1 km away';
+  }
+
+  return `${DISTANCE_FORMATTER.format(distanceKm)} km away`;
+}
+
 export function GymMicroInfoCard({ gym, visible, distanceKm, onClose }: GymMicroInfoCardProps) {
   const quickStats = useMemo<QuickStat[]>(() => {
     if (!gym) {
@@ -88,6 +104,7 @@ export function GymMicroInfoCard({ gym, visible, distanceKm, onClose }: GymMicro
     const members =
       formatMemberCount(extractTagValue(gym, QUICK_STAT_MEMBERS_KEYS)) || 'Members not listed';
     const borough = gym.borough ?? 'Borough not listed';
+    const distance = formatDistance(distanceKm);
 
     const stats: QuickStat[] = [
       { icon: '🥋', label: 'Style', value: style },
@@ -96,8 +113,8 @@ export function GymMicroInfoCard({ gym, visible, distanceKm, onClose }: GymMicro
       { icon: '👥', label: 'Members', value: members },
     ];
 
-    if (typeof distanceKm === 'number' && Number.isFinite(distanceKm)) {
-      stats.unshift({ icon: '📏', label: 'Distance', value: `${distanceKm.toFixed(1)} km away` });
+    if (distance) {
+      stats.unshift({ icon: '📏', label: 'Distance', value: distance });
     }
 
     return stats;
