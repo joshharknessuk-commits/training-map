@@ -57,17 +57,17 @@ const SAMPLE_GYMS: Gym[] = [
   },
 ];
 
-const CARD_VARIANTS: Array<{ id: string; label: string; gym: Gym | null }> = [
-  { id: 'shoreditch', label: 'Full data', gym: SAMPLE_GYMS[0] },
-  { id: 'westminster', label: 'Partial data', gym: SAMPLE_GYMS[1] },
-  { id: 'croydon', label: 'Missing members', gym: SAMPLE_GYMS[2] },
-  { id: 'empty', label: 'No gym selected', gym: null },
+const CARD_VARIANTS: Array<{ id: string; label: string; gym: Gym | null; distanceKm?: number | null }> = [
+  { id: 'shoreditch', label: 'Full data', gym: SAMPLE_GYMS[0], distanceKm: 2.4 },
+  { id: 'westminster', label: 'Partial data', gym: SAMPLE_GYMS[1], distanceKm: 6.1 },
+  { id: 'croydon', label: 'Missing members', gym: SAMPLE_GYMS[2], distanceKm: null },
+  { id: 'empty', label: 'No gym selected', gym: null, distanceKm: null },
 ];
 
 export default function GymMicroCardPlaygroundPage() {
   const [selectedVariantId, setSelectedVariantId] = useState(CARD_VARIANTS[0].id);
 
-  const { gym } = useMemo(() => {
+  const { gym, distanceKm } = useMemo(() => {
     return (
       CARD_VARIANTS.find((variant) => variant.id === selectedVariantId) ?? CARD_VARIANTS[0]
     );
@@ -108,7 +108,12 @@ export default function GymMicroCardPlaygroundPage() {
         <div className="relative mx-auto w-full max-w-xl">
           <div className="absolute inset-x-0 bottom-0 top-20 rounded-[36px] bg-gradient-to-b from-white/5 via-white/2 to-transparent blur-3xl" />
           <div className="relative">
-            <GymMicroInfoCard gym={gym} visible={Boolean(gym)} onClose={() => setSelectedVariantId('empty')} />
+            <GymMicroInfoCard
+              gym={gym}
+              visible={Boolean(gym)}
+              distanceKm={distanceKm ?? null}
+              onClose={() => setSelectedVariantId('empty')}
+            />
           </div>
         </div>
 

@@ -7,6 +7,7 @@ import type { Gym } from '@/types/osm';
 interface GymMicroInfoCardProps {
   gym: Gym | null;
   visible: boolean;
+  distanceKm?: number | null;
   onClose?: () => void;
 }
 
@@ -76,7 +77,7 @@ function buildDirectionsUrl(gym: Gym) {
   return `https://www.google.com/maps/dir/?${params.toString()}`;
 }
 
-export function GymMicroInfoCard({ gym, visible, onClose }: GymMicroInfoCardProps) {
+export function GymMicroInfoCard({ gym, visible, distanceKm, onClose }: GymMicroInfoCardProps) {
   const quickStats = useMemo<QuickStat[]>(() => {
     if (!gym) {
       return [];
@@ -88,13 +89,19 @@ export function GymMicroInfoCard({ gym, visible, onClose }: GymMicroInfoCardProp
       formatMemberCount(extractTagValue(gym, QUICK_STAT_MEMBERS_KEYS)) || 'Members not listed';
     const borough = gym.borough ?? 'Borough not listed';
 
-    return [
+    const stats: QuickStat[] = [
       { icon: '🥋', label: 'Style', value: style },
       { icon: '🏙️', label: 'Borough', value: borough },
       { icon: '🧑‍🏫', label: 'Head coach', value: coach },
       { icon: '👥', label: 'Members', value: members },
     ];
-  }, [gym]);
+
+    if (typeof distanceKm === 'number' && Number.isFinite(distanceKm)) {
+      stats.unshift({ icon: '📏', label: 'Distance', value: `${distanceKm.toFixed(1)} km away` });
+    }
+
+    return stats;
+  }, [gym, distanceKm]);
 
   if (!gym) {
     return null;

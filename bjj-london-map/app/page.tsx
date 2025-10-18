@@ -82,6 +82,17 @@ export default function HomePage() {
     };
   }, [previewGym]);
 
+  const previewDistanceKm = useMemo(() => {
+    if (!cardGym || !userLocation) {
+      return null;
+    }
+
+    return haversineKm(
+      { lat: cardGym.lat, lon: cardGym.lon },
+      { lat: userLocation.lat, lng: userLocation.lng },
+    );
+  }, [cardGym, userLocation]);
+
   const highlightedGymIds = useMemo(() => {
     if (!userLocation || !nearMeActive) {
       return [];
@@ -172,7 +183,12 @@ export default function HomePage() {
       </div>
 
       <div className="pointer-events-none absolute bottom-28 left-1/2 z-[920] w-full max-w-md -translate-x-1/2 px-4">
-        <GymMicroInfoCard gym={cardGym} visible={Boolean(previewGym)} onClose={handleClosePreview} />
+        <GymMicroInfoCard
+          gym={cardGym}
+          visible={Boolean(previewGym)}
+          distanceKm={previewDistanceKm}
+          onClose={handleClosePreview}
+        />
       </div>
 
       {loading ? (
