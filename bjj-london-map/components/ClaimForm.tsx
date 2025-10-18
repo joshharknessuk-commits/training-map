@@ -193,7 +193,7 @@ export function ClaimForm({ gymId, gymName, onClose, onSuccess }: ClaimFormProps
         <button
           type="button"
           onClick={closeAndReset}
-          className="absolute right-4 top-4 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600 transition hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-[#009c3b]"
+          className="absolute right-4 top-4 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600 transition hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-[#009739]"
           aria-label="Close claim form"
         >
           Close
@@ -223,7 +223,7 @@ export function ClaimForm({ gymId, gymName, onClose, onSuccess }: ClaimFormProps
               type="text"
               value={name}
               onChange={(event) => setName(event.target.value)}
-              className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#009c3b] focus:outline-none focus:ring-2 focus:ring-[#009c3b]/40"
+              className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#009739] focus:outline-none focus:ring-2 focus:ring-[#009739]/40"
               maxLength={120}
               required
             />
@@ -236,7 +236,7 @@ export function ClaimForm({ gymId, gymName, onClose, onSuccess }: ClaimFormProps
               type="email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#009c3b] focus:outline-none focus:ring-2 focus:ring-[#009c3b]/40"
+              className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#009739] focus:outline-none focus:ring-2 focus:ring-[#009739]/40"
               required
             />
             {errors.email ? (
@@ -250,7 +250,7 @@ export function ClaimForm({ gymId, gymName, onClose, onSuccess }: ClaimFormProps
               type="url"
               value={proof}
               onChange={(event) => setProof(event.target.value)}
-              className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#009c3b] focus:outline-none focus:ring-2 focus:ring-[#009c3b]/40"
+              className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#009739] focus:outline-none focus:ring-2 focus:ring-[#009739]/40"
               placeholder="https://"
             />
             {errors.proof ? (
@@ -263,7 +263,7 @@ export function ClaimForm({ gymId, gymName, onClose, onSuccess }: ClaimFormProps
             <textarea
               value={message}
               onChange={(event) => setMessage(event.target.value)}
-              className="mt-1 h-28 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#009c3b] focus:outline-none focus:ring-2 focus:ring-[#009c3b]/40"
+              className="mt-1 h-28 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#009739] focus:outline-none focus:ring-2 focus:ring-[#009739]/40"
               maxLength={1000}
             />
             <span className="mt-1 block text-xs text-slate-400">
@@ -282,7 +282,7 @@ export function ClaimForm({ gymId, gymName, onClose, onSuccess }: ClaimFormProps
 
           <button
             type="submit"
-            className="flex w-full items-center justify-center rounded-xl bg-[#009c3b] px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white shadow-lg shadow-[#009c3b]/40 transition hover:bg-[#00b84d] focus:outline-none focus:ring-2 focus:ring-[#002776]"
+            className="flex w-full items-center justify-center rounded-xl bg-[#009739] px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white shadow-lg shadow-[#009739]/40 transition hover:bg-[#00b058] focus:outline-none focus:ring-2 focus:ring-[#002776]"
             disabled={submitting}
           >
             {submitting ? 'Submitting…' : 'Submit claim'}

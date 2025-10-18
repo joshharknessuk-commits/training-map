@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState, type ChangeEvent } from 'react';
+import { useMemo, type ChangeEvent } from 'react';
 
 interface BoroughOption {
   name: string;
@@ -23,6 +23,8 @@ interface ControlsProps {
   selectedBoroughs: string[];
   toggleBorough: (name: string) => void;
   clearFilters: () => void;
+  open: boolean;
+  onOpenChange: (value: boolean) => void;
 }
 
 export function Controls({
@@ -41,9 +43,9 @@ export function Controls({
   selectedBoroughs,
   toggleBorough,
   clearFilters,
+  open,
+  onOpenChange,
 }: ControlsProps) {
-  const [open, setOpen] = useState(true);
-
   const filtersActive = useMemo(
     () => searchTerm.trim().length > 0 || selectedBoroughs.length > 0,
     [searchTerm, selectedBoroughs],
@@ -69,7 +71,7 @@ export function Controls({
         }`}
       >
         <div className="flex h-full w-full flex-col border-r border-white/10">
-          <div className="relative border-b border-white/10 bg-gradient-to-r from-[#002776] via-[#009c3b] to-[#ffdf00] px-5 pb-4 pt-6 text-white shadow-lg shadow-black/40">
+          <div className="relative border-b border-white/10 bg-gradient-to-r from-[#002776] via-[#009739] to-[#FFCC29] px-5 pb-4 pt-6 text-white shadow-lg shadow-black/40">
             <div className="flex items-center justify-between gap-4">
               <div>
                 <h2 className="text-lg font-semibold leading-tight">London BJJ Gyms</h2>
@@ -80,7 +82,7 @@ export function Controls({
               <button
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/80"
                 type="button"
-                onClick={() => setOpen(false)}
+                onClick={() => onOpenChange(false)}
                 aria-label="Collapse filters"
               >
                 X
@@ -88,13 +90,13 @@ export function Controls({
             </div>
 
             <div className="mt-4 flex items-center gap-3 rounded-2xl bg-white/15 px-4 py-2 text-sm">
-              <span className="font-semibold text-[#ffdf00]">{shownCount}</span>
+              <span className="font-semibold text-[#FFCC29]">{shownCount}</span>
               <span className="text-white/70">shown</span>
               <span className="text-white/40">/</span>
               <span className="text-white/70">{totalCount}</span>
               {loading ? (
                 <span
-                  className="ml-auto h-2 w-2 animate-pulse rounded-full bg-[#ffdf00]"
+                  className="ml-auto h-2 w-2 animate-pulse rounded-full bg-[#FFCC29]"
                   aria-hidden="true"
                 />
               ) : null}
@@ -104,7 +106,7 @@ export function Controls({
           <div className="flex-1 overflow-y-auto px-5 py-6">
             <div className="flex flex-col gap-5">
               <section className="rounded-3xl border border-white/10 bg-white/10 px-4 py-4 shadow-sm shadow-black/20">
-                <header className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[#ffdf00]">
+                <header className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[#FFCC29]">
                   <span aria-hidden="true" className="text-base leading-none">
                     🔍
                   </span>
@@ -112,7 +114,7 @@ export function Controls({
                 </header>
                 <div className="mt-3">
                   <input
-                    className="w-full rounded-xl border border-white/10 bg-slate-950/80 px-3 py-2 text-sm text-white placeholder:text-white/40 focus:border-[#ffdf00] focus:outline-none focus:ring-2 focus:ring-[#ffdf00]/30"
+                    className="w-full rounded-xl border border-white/10 bg-slate-950/80 px-3 py-2 text-sm text-white placeholder:text-white/40 focus:border-[#FFCC29] focus:outline-none focus:ring-2 focus:ring-[#FFCC29]/30"
                     type="search"
                     placeholder="Name, station, borough..."
                     value={searchTerm}
@@ -123,7 +125,7 @@ export function Controls({
 
               <section className="rounded-3xl border border-white/10 bg-slate-900/70 px-4 py-4 shadow-sm shadow-black/20">
                 <header className="flex items-center justify-between gap-4">
-                  <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[#ffdf00]">
+                  <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[#FFCC29]">
                     <span aria-hidden="true" className="text-base leading-none">
                       🏷️
                     </span>
@@ -150,14 +152,14 @@ export function Controls({
                           key={option.name}
                           className={`flex cursor-pointer items-center justify-between rounded-xl border px-3 py-2 transition ${
                             checked
-                              ? 'border-[#009c3b]/60 bg-[#009c3b]/20 text-white shadow-sm shadow-[#009c3b]/30'
+                              ? 'border-[#009739]/60 bg-[#009739]/20 text-white shadow-sm shadow-[#009739]/30'
                               : 'border-transparent bg-white/5 text-white/80 hover:border-white/20'
                           }`}
                         >
                           <span className="flex-1 truncate">{option.name}</span>
                           <span className="ml-2 text-xs text-white/50">{option.count}</span>
                           <input
-                            className="ml-3 h-4 w-4 accent-[#ffdf00]"
+                            className="ml-3 h-4 w-4 accent-[#FFCC29]"
                             type="checkbox"
                             checked={checked}
                             onChange={() => toggleBorough(option.name)}
@@ -170,7 +172,7 @@ export function Controls({
               </section>
 
               <section className="rounded-3xl border border-white/10 bg-slate-900/70 px-4 py-4 text-sm shadow-sm shadow-black/20">
-                <header className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[#ffdf00]">
+                <header className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[#FFCC29]">
                   <span aria-hidden="true" className="text-base leading-none">
                     📍
                   </span>
@@ -183,7 +185,7 @@ export function Controls({
                       Radius ({radius.toFixed(1)} mi)
                     </span>
                     <input
-                      className="mt-2 w-full accent-[#ffdf00]"
+                      className="mt-2 w-full accent-[#FFCC29]"
                       type="range"
                       min={0}
                       max={3}
@@ -198,7 +200,7 @@ export function Controls({
                       Ring opacity ({opacity.toFixed(2)})
                     </span>
                     <input
-                      className="mt-2 w-full accent-[#ffdf00]"
+                      className="mt-2 w-full accent-[#FFCC29]"
                       type="range"
                       min={0.05}
                       max={0.5}
@@ -211,7 +213,7 @@ export function Controls({
                   <label className="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-[13px] font-medium text-white/90">
                     <span>Show coverage rings</span>
                     <input
-                      className="h-4 w-4 accent-[#ffdf00]"
+                      className="h-4 w-4 accent-[#FFCC29]"
                       type="checkbox"
                       checked={showRings}
                       onChange={handleShowRingsChange}
@@ -224,7 +226,7 @@ export function Controls({
 
           <div className="border-t border-white/10 px-5 py-5">
             <section className="rounded-3xl border border-white/10 bg-slate-900/70 px-4 py-3 text-xs text-white/60 shadow-sm shadow-black/20">
-              <header className="mb-2 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wide text-[#ffdf00]">
+              <header className="mb-2 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wide text-[#FFCC29]">
                 <span aria-hidden="true" className="text-base leading-none">
                   🧭
                 </span>
@@ -237,29 +239,6 @@ export function Controls({
           </div>
         </div>
       </aside>
-
-      {!open ? (
-        <button
-          className="fixed left-4 top-4 z-[960] flex items-center gap-2 rounded-full bg-[#009c3b] px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-black/30 transition hover:bg-[#00b84d] focus:outline-none focus:ring-2 focus:ring-[#ffdf00]/60"
-          type="button"
-          onClick={() => setOpen(true)}
-        >
-          <span aria-hidden="true">☰</span>
-          Filters
-          {filtersActive ? (
-            <span className="ml-1 inline-flex h-2 w-2 rounded-full bg-[#ffdf00]" aria-hidden="true" />
-          ) : null}
-        </button>
-      ) : (
-        <button
-          className="fixed left-[calc(min(320px,90vw))] top-6 z-[960] hidden h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full bg-slate-900/80 text-sm font-semibold uppercase tracking-wide text-white shadow-lg shadow-black/40 transition hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-[#ffdf00]/60 lg:flex"
-          type="button"
-          onClick={() => setOpen(false)}
-          aria-label="Collapse sidebar"
-        >
-          X
-        </button>
-      )}
     </>
   );
 }
