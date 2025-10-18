@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { NearMeButton } from '@/components/NearMeButton';
 import { haversineKm } from '@/lib/distance';
 import type { Gym } from '@/types/osm';
 
@@ -49,6 +48,8 @@ export function GymList({
     }
 
     setStoredLocation(userLocation);
+    setIsOpen(true);
+    onActiveChange?.(true);
   }, [userLocation, onActiveChange]);
 
   const listItems = useMemo(() => {
@@ -71,13 +72,6 @@ export function GymList({
       .slice(0, MAX_RESULTS);
   }, [gyms, storedLocation]);
 
-  const handleLocate = (coords: { lat: number; lng: number }) => {
-    setStoredLocation(coords);
-    setIsOpen(true);
-    onUserLocation?.(coords);
-    onActiveChange?.(true);
-  };
-
   const handleClose = () => {
     setStoredLocation(null);
     setIsOpen(false);
@@ -95,21 +89,12 @@ export function GymList({
   const showList = isOpen && Boolean(storedLocation);
 
   return (
-    <div className="pointer-events-auto flex w-full max-w-sm flex-col items-stretch gap-3">
-      <div className="flex justify-end">
-        <NearMeButton
-          onLocate={handleLocate}
-          className="px-4 py-2 text-sm uppercase tracking-wide shadow-lg shadow-blue-900/40"
-        >
-          Near me
-        </NearMeButton>
-      </div>
-
+    <div className="pointer-events-auto flex w-full max-w-sm flex-col items-stretch">
       {showList ? (
         <aside className="max-h-[calc(100vh-144px)] overflow-y-auto rounded-3xl border border-white/10 bg-slate-950/90 p-4 text-slate-100 shadow-2xl backdrop-blur">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-[#ffdf00]">
+              <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-[#FFCC29]">
                 <span aria-hidden="true" className="text-base">
                   🚶‍♀️
                 </span>
@@ -183,7 +168,7 @@ export function GymList({
                         <span className="text-white/40">No website listed</span>
                       )}
                       <a
-                        className="inline-flex items-center gap-1 rounded-full bg-[#ffdf00]/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-900 transition hover:bg-[#ffdf00]"
+                        className="inline-flex items-center gap-1 rounded-full bg-[#FFCC29]/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-[#002776] transition hover:bg-[#f6bb12]"
                         href={buildDirectionsUrl(gym, storedLocation)}
                         target="_blank"
                         rel="noopener noreferrer"

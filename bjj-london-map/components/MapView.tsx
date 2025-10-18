@@ -23,10 +23,10 @@ import { haversineKm } from '@/lib/distance';
 
 const LONDON_COORDS: [number, number] = [51.5074, -0.1278];
 const CLUSTER_ZOOM_THRESHOLD = 11;
-const RING_OUTLINE = '#009c3b';
-const RING_FILL = '#ffdf00';
+const RING_OUTLINE = '#009739';
+const RING_FILL = '#FFCC29';
 const MARKER_BORDER = '#002776';
-const MARKER_FILL = '#009c3b';
+const MARKER_FILL = '#009739';
 
 const buildDirectionsUrl = (gym: Gym, origin?: { lat: number; lng: number } | null) => {
   const params = new URLSearchParams({
@@ -254,7 +254,7 @@ export function MapView({
       <div className="min-w-[260px] max-w-[280px] rounded-3xl bg-slate-950/95 p-4 text-slate-100 shadow-[0_12px_32px_-12px_rgba(15,23,42,0.95)] backdrop-blur">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-[#ffdf00]">
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-[#FFCC29]">
               Gym details
             </p>
             <h3 className="mt-1 text-base font-semibold leading-tight text-white">{gym.name}</h3>
@@ -294,7 +294,7 @@ export function MapView({
         <div className="mt-4 space-y-2 text-sm">
           {gym.website ? (
             <a
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white/10 px-4 py-2 font-semibold text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-[#ffdf00]/60"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white/10 px-4 py-2 font-semibold text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-[#FFCC29]/60"
               href={gym.website}
               target="_blank"
               rel="noopener noreferrer"
@@ -306,7 +306,7 @@ export function MapView({
           {gym.extraWebsites?.map((url) => (
             <a
               key={url}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white/5 px-4 py-2 text-sm font-medium text-white/80 transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-[#ffdf00]/40"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white/5 px-4 py-2 text-sm font-medium text-white/80 transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-[#FFCC29]/40"
               href={url}
               target="_blank"
               rel="noopener noreferrer"
@@ -316,7 +316,7 @@ export function MapView({
             </a>
           ))}
           <a
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#ffdf00]/90 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-slate-900 transition hover:bg-[#ffdf00]"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#FFCC29]/90 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-[#002776] transition hover:bg-[#f6bb12]"
             href={buildDirectionsUrl(gym, userLocation)}
             target="_blank"
             rel="noopener noreferrer"
@@ -381,7 +381,7 @@ export function MapView({
       maxZoom={17}
       scrollWheelZoom
       zoomControl={false}
-      className="h-full w-full rounded-[32px] border border-white/10 shadow-2xl drop-shadow-xl"
+      className="h-full w-full"
       preferCanvas
     >
       <MapPanesInitializer />
