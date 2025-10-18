@@ -238,7 +238,7 @@ export function MapView({
 
   const renderGymPopupContent = (gym: Gym, distanceKm: number | null) => {
     return (
-      <div className="min-w-[260px] max-w-[280px] rounded-3xl border border-white/10 bg-slate-950/95 p-4 text-slate-100 shadow-[0_12px_32px_-12px_rgba(15,23,42,0.95)] backdrop-blur">
+      <div className="min-w-[260px] max-w-[280px] rounded-3xl bg-slate-950/95 p-4 text-slate-100 shadow-[0_12px_32px_-12px_rgba(15,23,42,0.95)] backdrop-blur">
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-wide text-[#ffdf00]">
