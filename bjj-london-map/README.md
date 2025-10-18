@@ -23,6 +23,18 @@ pnpm dev
 
 Then open http://localhost:3000/ (or the port printed in the terminal).
 
+### Micro info card playground
+
+Need a quick localhost link to preview the hover/click pop-up? Run:
+
+```bash
+pnpm playground:micro-card
+```
+
+This pins the dev server to `http://localhost:3100/`, so you can immediately visit
+[`http://localhost:3100/playground/micro-card`](http://localhost:3100/playground/micro-card)
+to inspect the micro info card without touching the main map UI.
+
 ### Additional scripts
 
 - `pnpm build` – type-check and produce an optimized production build.
@@ -140,6 +152,10 @@ Local QA: run `pnpm dev`, load the map in Chrome/Edge/Safari (desktop or mobile)
 1. the list switches to “Sorted by distance from you” with km distances,
 2. the map flies to your blue location dot and highlights the two closest gyms, and
 3. each Directions link opens Google Maps in a new tab. The flow falls back gracefully if permission is denied.
+
+### Visualising the gym micro info card
+
+Need to review the new hover/click pop-up in isolation? Start the dev server (`pnpm dev`) and open [`http://localhost:3000/playground/micro-card`](http://localhost:3000/playground/micro-card). The playground renders the same `GymMicroInfoCard` component with a handful of mock gyms so designers, PMs, and QA can quickly check styling across complete and partial datasets without navigating the full map.
 
 ## Project structure
 

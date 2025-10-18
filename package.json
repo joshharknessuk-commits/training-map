@@ -10,7 +10,8 @@
     "start": "pnpm --dir bjj-london-map start",
     "lint": "pnpm --dir bjj-london-map lint",
     "typecheck": "pnpm --dir bjj-london-map typecheck",
-    "sync:gyms": "pnpm --dir bjj-london-map sync:gyms"
+    "sync:gyms": "pnpm --dir bjj-london-map sync:gyms",
+    "playground:micro-card": "pnpm --dir bjj-london-map dev:micro-card"
   },
   "engines": {
     "node": ">=20 <21"

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Controls } from '@/components/Controls';
 import { GymList } from '@/components/GymList';
@@ -8,6 +8,7 @@ import { useGyms } from '@/state/useGyms';
 import { DEFAULT_MAP_STYLE_INDEX, MAP_STYLES } from '@/app/config/mapStyles';
 import { haversineKm } from '@/lib/distance';
 import type { Gym } from '@/types/osm';
+import { GymMicroInfoCard } from '@/components/GymMicroInfoCard';
 
 const MapView = dynamic(() => import('@/components/MapView').then((mod) => mod.MapView), {
   ssr: false,
@@ -17,6 +18,8 @@ export default function HomePage() {
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [nearMeActive, setNearMeActive] = useState(false);
   const [selectedGym, setSelectedGym] = useState<Gym | null>(null);
+  const [hoveredGym, setHoveredGym] = useState<Gym | null>(null);
+  const [cardGym, setCardGym] = useState<Gym | null>(null);
   const {
     filteredGyms,
     radius,
@@ -45,11 +48,39 @@ export default function HomePage() {
     return filteredGyms.find((gym) => gym.id === selectedGym.id) ?? null;
   }, [filteredGyms, selectedGym]);
 
+  const previewGym = safeSelectedGym ?? hoveredGym;
+
   useEffect(() => {
     if (selectedGym && !safeSelectedGym) {
       setSelectedGym(null);
     }
   }, [safeSelectedGym, selectedGym]);
+
+  useEffect(() => {
+    if (!hoveredGym) {
+      return;
+    }
+
+    const stillExists = filteredGyms.some((gym) => gym.id === hoveredGym.id);
+    if (!stillExists) {
+      setHoveredGym(null);
+    }
+  }, [filteredGyms, hoveredGym]);
+
+  useEffect(() => {
+    if (previewGym) {
+      setCardGym(previewGym);
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      setCardGym(null);
+    }, 220);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [previewGym]);
 
   const highlightedGymIds = useMemo(() => {
     if (!userLocation || !nearMeActive) {
@@ -71,6 +102,29 @@ export default function HomePage() {
 
   const mapUserLocation = nearMeActive && userLocation ? userLocation : null;
 
+  const handleSelectGym = useCallback((gym: Gym | null) => {
+    setSelectedGym(gym);
+    if (!gym) {
+      setHoveredGym(null);
+    }
+  }, []);
+
+  const handleGymPreviewChange = useCallback((gym: Gym | null, source: 'hover' | 'click') => {
+    if (source === 'hover') {
+      setHoveredGym(gym);
+      return;
+    }
+
+    if (source === 'click' && gym) {
+      setHoveredGym(null);
+    }
+  }, []);
+
+  const handleClosePreview = useCallback(() => {
+    setHoveredGym(null);
+    setSelectedGym(null);
+  }, []);
+
   return (
     <div className="relative h-screen w-full overflow-hidden bg-slate-950 text-slate-100">
       <div className="absolute inset-0">
@@ -83,7 +137,8 @@ export default function HomePage() {
           userLocation={mapUserLocation}
           highlightedGymIds={highlightedGymIds}
           selectedGym={safeSelectedGym}
-          onGymFocus={setSelectedGym}
+          onGymFocus={handleSelectGym}
+          onGymPreviewChange={handleGymPreviewChange}
         />
       </div>
 
@@ -112,8 +167,12 @@ export default function HomePage() {
           onUserLocation={setUserLocation}
           onActiveChange={setNearMeActive}
           selectedGymId={safeSelectedGym?.id ?? null}
-          onSelectGym={setSelectedGym}
+          onSelectGym={handleSelectGym}
         />
+      </div>
+
+      <div className="pointer-events-none absolute bottom-28 left-1/2 z-[920] w-full max-w-md -translate-x-1/2 px-4">
+        <GymMicroInfoCard gym={cardGym} visible={Boolean(previewGym)} onClose={handleClosePreview} />
       </div>
 
       {loading ? (
