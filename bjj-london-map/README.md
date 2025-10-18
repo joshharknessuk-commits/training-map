@@ -108,16 +108,45 @@ Expect a `{"success":true}` JSON response (422 on validation errors, 429 when ra
 
 - Collapsible sidebar with search, borough filters, and coverage controls (radius, opacity, ring toggle).
 - Brazilian flag-inspired theme (blue/green/yellow map accents) with glowing coverage rings and markers.
-- Legend explaining the 1 mile coverage rings.
+- Coverage rings toggle lives in the sidebar (off by default until enabled).
 - Inline loading & error states to highlight the fetch status.
 - “Claim this gym” flow: popup button launches a modal to submit owner verification, posting directly to Neon.
+- “📍 Near me” flow that locates the user, sorts gyms by distance, highlights pins, and links straight to Google Maps directions.
+
+### Near Me + Distance Sort
+
+- `lib/distance.ts` exports `haversineKm(a, b)` (with `{ lat, lon|lng }`) for distance queries. It is pure client-side code and safe to use anywhere in the app.
+- `components/NearMeButton.tsx` is a small Tailwind-styled client component that wraps `navigator.geolocation.getCurrentPosition`, showing a loading state and surfacing friendly permission errors.
+- `components/GymList.tsx` accepts the gym array from `useGyms()`, stores the located coordinates with `useState`, and renders the top 2 gyms sorted by distance (1 decimal km + one-tap Directions links). When a location is available it emits the coordinates via `onUserLocation` so the map can fly and highlight the nearest markers.
+
+Typical wiring inside `app/page.tsx`:
+
+```tsx
+const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
+
+<MapView gyms={filteredGyms} userLocation={userLocation} highlightedGymIds={highlightedGymIds} />
+<GymList gyms={filteredGyms} userLocation={userLocation} onUserLocation={setUserLocation} />
+```
+
+To add the button near an existing toolbar or header:
+
+```tsx
+import { NearMeButton } from '@/components/NearMeButton';
+
+<NearMeButton onLocate={(coords) => setUserLocation(coords)} />
+```
+
+Local QA: run `pnpm dev`, load the map in Chrome/Edge/Safari (desktop or mobile), tap “📍 Near me”, grant permission, and verify that
+1. the list switches to “Sorted by distance from you” with km distances,
+2. the map flies to your blue location dot and highlights the two closest gyms, and
+3. each Directions link opens Google Maps in a new tab. The flow falls back gracefully if permission is denied.
 
 ## Project structure
 
 ```
 bjj-london-map/
 ├─ app/                    # Next.js App Router entrypoints (layout, page, API)
-├─ components/             # MapView, Controls, Legend (client components)
+├─ components/             # MapView, Controls, NearMeButton, etc. (client components)
 ├─ data/map-data.csv       # curated master list of gyms
 ├─ lib/                    # Postgres pool, turf helpers, etc.
 ├─ public/                 # static assets

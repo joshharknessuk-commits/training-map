@@ -1,18 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Controls } from '@/components/Controls';
-import { Legend } from '@/components/Legend';
+import { GymList } from '@/components/GymList';
 import { useGyms } from '@/state/useGyms';
 import { DEFAULT_MAP_STYLE_INDEX, MAP_STYLES } from '@/app/config/mapStyles';
+import { haversineKm } from '@/lib/distance';
 
 const MapView = dynamic(() => import('@/components/MapView').then((mod) => mod.MapView), {
   ssr: false,
 });
 
 export default function HomePage() {
-  const [mapStyleIndex, setMapStyleIndex] = useState(DEFAULT_MAP_STYLE_INDEX);
+  const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
+  const [nearMeActive, setNearMeActive] = useState(false);
   const {
     filteredGyms,
     radius,
@@ -32,22 +34,39 @@ export default function HomePage() {
     toggleBorough,
     clearFilters,
   } = useGyms();
-  const mapStyle = MAP_STYLES[mapStyleIndex];
-  const nextMapStyle = MAP_STYLES[(mapStyleIndex + 1) % MAP_STYLES.length];
+  const mapStyle = MAP_STYLES[DEFAULT_MAP_STYLE_INDEX];
 
-  const handleMapStyleChange = () => {
-    setMapStyleIndex((previous) => (previous + 1) % MAP_STYLES.length);
-  };
+  const highlightedGymIds = useMemo(() => {
+    if (!userLocation || !nearMeActive) {
+      return [];
+    }
+
+    return filteredGyms
+      .map((gym) => ({
+        id: gym.id,
+        distance: haversineKm(
+          { lat: gym.lat, lon: gym.lon },
+          { lat: userLocation.lat, lng: userLocation.lng },
+        ),
+      }))
+      .sort((a, b) => a.distance - b.distance)
+      .slice(0, 2)
+      .map((entry) => entry.id);
+  }, [filteredGyms, userLocation, nearMeActive]);
+
+  const mapUserLocation = nearMeActive && userLocation ? userLocation : null;
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-slate-950 text-slate-100">
       <div className="absolute inset-0">
-        <MapView
-          gyms={filteredGyms}
-          radiusMiles={radius}
-          showRings={showRings}
-          fillOpacity={opacity}
+      <MapView
+        gyms={filteredGyms}
+        radiusMiles={radius}
+        showRings={showRings}
+        fillOpacity={opacity}
           mapStyle={mapStyle}
+          userLocation={mapUserLocation}
+          highlightedGymIds={highlightedGymIds}
         />
       </div>
 
@@ -69,16 +88,14 @@ export default function HomePage() {
         clearFilters={clearFilters}
       />
 
-      <Legend />
-
-      <button
-        className="fixed top-6 right-6 z-[920] rounded-full bg-slate-900/85 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-lg shadow-black/40 transition hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-[#ffdf00]/60"
-        type="button"
-        onClick={handleMapStyleChange}
-      >
-        Map style: {mapStyle.label}
-        <span className="ml-2 text-[10px] text-white/60">→ {nextMapStyle.label}</span>
-      </button>
+      <div className="absolute bottom-6 right-6 z-[930] flex max-w-full justify-end">
+        <GymList
+          gyms={filteredGyms}
+          userLocation={userLocation}
+          onUserLocation={setUserLocation}
+          onActiveChange={setNearMeActive}
+        />
+      </div>
 
       {loading ? (
         <div className="pointer-events-none fixed top-20 right-6 z-[900] rounded-xl bg-slate-900/85 px-3 py-2 text-sm font-semibold text-[#ffdf00] shadow-lg shadow-black/40 backdrop-blur">
