@@ -28,6 +28,19 @@ const RING_FILL = '#FFCC29';
 const MARKER_BORDER = '#002776';
 const MARKER_FILL = '#009739';
 
+const buildDirectionsUrl = (gym: Gym, origin?: { lat: number; lng: number } | null) => {
+  const params = new URLSearchParams({
+    api: '1',
+    destination: `${gym.lat},${gym.lon}`,
+  });
+
+  if (origin) {
+    params.set('origin', `${origin.lat},${origin.lng}`);
+  }
+
+  return `https://www.google.com/maps/dir/?${params.toString()}`;
+};
+
 interface MapViewProps {
   gyms: Gym[];
   radiusMiles: number;
@@ -304,7 +317,7 @@ export function MapView({
           ))}
           <a
             className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#FFCC29]/90 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-[#002776] transition hover:bg-[#f6bb12]"
-            href={`https://www.google.com/maps/dir/?api=1&destination=${gym.lat},${gym.lon}`}
+            href={buildDirectionsUrl(gym, userLocation)}
             target="_blank"
             rel="noopener noreferrer"
           >
