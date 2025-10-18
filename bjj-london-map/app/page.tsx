@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Controls } from '@/components/Controls';
 import { GymList } from '@/components/GymList';
-import { SelectedGymCard } from '@/components/SelectedGymCard';
 import { useGyms } from '@/state/useGyms';
 import { DEFAULT_MAP_STYLE_INDEX, MAP_STYLES } from '@/app/config/mapStyles';
 import { haversineKm } from '@/lib/distance';
@@ -105,16 +104,6 @@ export default function HomePage() {
         toggleBorough={toggleBorough}
         clearFilters={clearFilters}
       />
-
-      {safeSelectedGym ? (
-        <div className="absolute top-28 right-6 z-[940] flex justify-end">
-          <SelectedGymCard
-            gym={safeSelectedGym}
-            onClose={() => setSelectedGym(null)}
-            userLocation={userLocation}
-          />
-        </div>
-      ) : null}
 
       <div className="absolute bottom-6 right-6 z-[930] flex max-w-full justify-end">
         <GymList

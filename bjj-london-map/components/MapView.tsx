@@ -13,12 +13,13 @@ import {
   useMapEvents,
 } from 'react-leaflet';
 import type { Feature, Polygon } from '@turf/turf';
-import type { LatLngBounds, Map as LeafletMap } from 'leaflet';
+import type { CircleMarker as LeafletCircleMarker, LatLngBounds, Map as LeafletMap } from 'leaflet';
 import Supercluster from 'supercluster';
 import type { ClusterFeature, PointFeature } from 'supercluster';
 import type { Gym } from '@/types/osm';
 import { getCircle } from '@/lib/turf';
 import { ClaimButton } from '@/components/ClaimButton';
+import { haversineKm } from '@/lib/distance';
 
 const LONDON_COORDS: [number, number] = [51.5074, -0.1278];
 const CLUSTER_ZOOM_THRESHOLD = 11;
@@ -79,6 +80,7 @@ export function MapView({
   const [mapInstance, setMapInstance] = useState<LeafletMap | null>(null);
   const [hoveredClusterId, setHoveredClusterId] = useState<number | null>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const markerRefs = useRef<Map<string, LeafletCircleMarker>>(new Map());
   const shouldCluster = viewport.zoom <= CLUSTER_ZOOM_THRESHOLD;
   const highlightedIds = useMemo(
     () => new Set(highlightedGymIds ?? []),
@@ -127,6 +129,32 @@ export function MapView({
     const targetZoom = Math.max(mapInstance.getZoom(), 13);
     mapInstance.flyTo([selectedGym.lat, selectedGym.lon], targetZoom, { duration: 0.6 });
   }, [mapInstance, selectedGym]);
+
+  useEffect(() => {
+    if (!selectedGymId) {
+      markerRefs.current.forEach((marker) => {
+        marker.closePopup();
+      });
+      return;
+    }
+
+    const marker = markerRefs.current.get(selectedGymId);
+    if (marker) {
+      marker.openPopup();
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      const nextMarker = markerRefs.current.get(selectedGymId);
+      if (nextMarker) {
+        nextMarker.openPopup();
+      }
+    }, 180);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [selectedGymId, shouldCluster]);
 
   const gymIndex = useMemo(() => new Map(gyms.map((gym) => [gym.id, gym])), [gyms]);
 
@@ -196,6 +224,141 @@ export function MapView({
     },
     [clusterIndex, mapInstance],
   );
+
+  const registerMarker = useCallback(
+    (id: string) => (marker: LeafletCircleMarker | null) => {
+      if (marker) {
+        markerRefs.current.set(id, marker);
+      } else {
+        markerRefs.current.delete(id);
+      }
+    },
+    [],
+  );
+
+  const renderGymPopupContent = (gym: Gym, distanceKm: number | null) => {
+    return (
+      <div className="min-w-[260px] max-w-[280px] rounded-3xl border border-white/10 bg-slate-950/95 p-4 text-slate-100 shadow-[0_12px_32px_-12px_rgba(15,23,42,0.95)] backdrop-blur">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-[#ffdf00]">
+              Gym details
+            </p>
+            <h3 className="mt-1 text-base font-semibold leading-tight text-white">{gym.name}</h3>
+          </div>
+        </div>
+
+        <dl className="mt-3 space-y-2 text-sm">
+          {distanceKm !== null ? (
+            <div className="flex items-center justify-between rounded-2xl border border-blue-500/40 bg-blue-500/10 px-3 py-2 text-blue-100">
+              <dt className="flex items-center gap-2 font-semibold">
+                <span aria-hidden="true">📏</span>
+                Distance
+              </dt>
+              <dd>{distanceKm.toFixed(1)} km away</dd>
+            </div>
+          ) : null}
+          {gym.nearestTransport ? (
+            <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-3 py-2">
+              <dt className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-white/70">
+                <span aria-hidden="true">🚇</span>
+                Nearest
+              </dt>
+              <dd className="text-sm text-white/80">{gym.nearestTransport}</dd>
+            </div>
+          ) : null}
+          {gym.borough ? (
+            <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-3 py-2">
+              <dt className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-white/70">
+                <span aria-hidden="true">🏷️</span>
+                Borough
+              </dt>
+              <dd className="text-sm text-white/80">{gym.borough}</dd>
+            </div>
+          ) : null}
+        </dl>
+
+        <div className="mt-4 space-y-2 text-sm">
+          {gym.website ? (
+            <a
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white/10 px-4 py-2 font-semibold text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-[#ffdf00]/60"
+              href={gym.website}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span aria-hidden="true">🌐</span>
+              Visit website
+            </a>
+          ) : null}
+          {gym.extraWebsites?.map((url) => (
+            <a
+              key={url}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white/5 px-4 py-2 text-sm font-medium text-white/80 transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-[#ffdf00]/40"
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span aria-hidden="true">🔗</span>
+              Additional link
+            </a>
+          ))}
+          <a
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#ffdf00]/90 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-slate-900 transition hover:bg-[#ffdf00]"
+            href={`https://www.google.com/maps/dir/?api=1&destination=${gym.lat},${gym.lon}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span aria-hidden="true">🧭</span>
+            Directions
+          </a>
+          <ClaimButton gymId={gym.id} gymName={gym.name} />
+          <a
+            className="block text-center text-xs text-white/50 underline underline-offset-2 transition hover:text-white/80"
+            href={gym.osmUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open in OpenStreetMap
+          </a>
+        </div>
+      </div>
+    );
+  };
+
+  const renderGymMarker = (gym: Gym) => {
+    const isHighlighted = highlightedIds.has(gym.id);
+    const isSelected = selectedGymId === gym.id;
+    const distanceKm =
+      userLocation != null
+        ? haversineKm(
+            { lat: gym.lat, lon: gym.lon },
+            { lat: userLocation.lat, lng: userLocation.lng },
+          )
+        : null;
+
+    return (
+      <CircleMarker
+        key={gym.id}
+        ref={registerMarker(gym.id)}
+        center={[gym.lat, gym.lon]}
+        pane="markers"
+        radius={isSelected ? 11 : isHighlighted ? 9.5 : 8}
+        color={isSelected ? '#f97316' : isHighlighted ? '#1d4ed8' : MARKER_BORDER}
+        weight={isSelected ? 3 : isHighlighted ? 2.5 : 2}
+        fillColor={isSelected ? '#fb923c' : isHighlighted ? '#38bdf8' : MARKER_FILL}
+        fillOpacity={isSelected ? 1 : isHighlighted ? 1 : 0.95}
+        eventHandlers={
+          onGymFocus
+            ? {
+                click: () => onGymFocus(gym),
+              }
+            : undefined
+        }
+      >
+        <Popup className="!p-0">{renderGymPopupContent(gym, distanceKm)}</Popup>
+      </CircleMarker>
+    );
+  };
 
   return (
     <MapContainer
@@ -319,155 +482,10 @@ export function MapView({
               return null;
             }
 
-            const isHighlighted = gym ? highlightedIds.has(gym.id) : false;
-            const isSelected = selectedGymId === gym.id;
-
-            return (
-              <CircleMarker
-                key={gym.id}
-                center={[gym.lat, gym.lon]}
-                pane="markers"
-                radius={isSelected ? 11 : isHighlighted ? 9.5 : 8}
-                color={isSelected ? '#f97316' : isHighlighted ? '#1d4ed8' : MARKER_BORDER}
-                weight={isSelected ? 3 : isHighlighted ? 2.5 : 2}
-                fillColor={isSelected ? '#fb923c' : isHighlighted ? '#38bdf8' : MARKER_FILL}
-                fillOpacity={isSelected ? 1 : isHighlighted ? 1 : 0.95}
-                eventHandlers={
-                  onGymFocus
-                    ? {
-                        click: () => onGymFocus(gym),
-                      }
-                    : undefined
-                }
-              >
-                <Popup>
-                  <div className="space-y-2 text-sm">
-                    <div className="font-semibold text-[#002776]">{gym.name}</div>
-                    {(gym.nearestTransport || gym.borough) && (
-                      <div className="space-y-1 text-xs text-slate-600">
-                        {gym.nearestTransport ? (
-                          <div>
-                            <span className="font-medium text-[#009c3b]">Nearest:</span>{' '}
-                            {gym.nearestTransport}
-                          </div>
-                        ) : null}
-                        {gym.borough ? (
-                          <div>
-                            <span className="font-medium text-[#009c3b]">Borough:</span> {gym.borough}
-                          </div>
-                        ) : null}
-                      </div>
-                    )}
-                    {gym.website ? (
-                      <a
-                        className="block text-[#002776] underline"
-                        href={gym.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Website
-                      </a>
-                    ) : null}
-                    {gym.extraWebsites?.map((extra) => (
-                      <a
-                        key={extra}
-                        className="block text-[#002776]/80 underline"
-                        href={extra}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Additional link
-                      </a>
-                    ))}
-                    <ClaimButton gymId={gym.id} gymName={gym.name} />
-                    <a
-                      className="block text-xs text-slate-500 underline"
-                      href={gym.osmUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Open in OpenStreetMap
-                    </a>
-                  </div>
-                </Popup>
-              </CircleMarker>
-            );
+            return renderGymMarker(gym);
           })
         : gyms.map((gym) => {
-            const isHighlighted = highlightedIds.has(gym.id);
-            const isSelected = selectedGymId === gym.id;
-
-            return (
-              <CircleMarker
-                key={gym.id}
-                center={[gym.lat, gym.lon]}
-                pane="markers"
-                radius={isSelected ? 11 : isHighlighted ? 9.5 : 8}
-                color={isSelected ? '#f97316' : isHighlighted ? '#1d4ed8' : MARKER_BORDER}
-                weight={isSelected ? 3 : isHighlighted ? 2.5 : 2}
-                fillColor={isSelected ? '#fb923c' : isHighlighted ? '#38bdf8' : MARKER_FILL}
-                fillOpacity={isSelected ? 1 : isHighlighted ? 1 : 0.95}
-                eventHandlers={
-                  onGymFocus
-                    ? {
-                        click: () => onGymFocus(gym),
-                      }
-                    : undefined
-                }
-              >
-                <Popup>
-                  <div className="space-y-2 text-sm">
-                    <div className="font-semibold text-[#002776]">{gym.name}</div>
-                    {(gym.nearestTransport || gym.borough) && (
-                      <div className="space-y-1 text-xs text-slate-600">
-                        {gym.nearestTransport ? (
-                          <div>
-                            <span className="font-medium text-[#009c3b]">Nearest:</span>{' '}
-                            {gym.nearestTransport}
-                          </div>
-                        ) : null}
-                        {gym.borough ? (
-                          <div>
-                            <span className="font-medium text-[#009c3b]">Borough:</span>{' '}
-                            {gym.borough}
-                          </div>
-                        ) : null}
-                      </div>
-                    )}
-                    {gym.website ? (
-                      <a
-                        className="block text-[#002776] underline"
-                        href={gym.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Website
-                      </a>
-                    ) : null}
-                    {gym.extraWebsites?.map((extra) => (
-                      <a
-                        key={extra}
-                        className="block text-[#002776]/80 underline"
-                        href={extra}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Additional link
-                      </a>
-                    ))}
-                    <ClaimButton gymId={gym.id} gymName={gym.name} />
-                    <a
-                      className="block text-xs text-slate-500 underline"
-                      href={gym.osmUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Open in OpenStreetMap
-                    </a>
-                  </div>
-                </Popup>
-              </CircleMarker>
-            );
+            return renderGymMarker(gym);
           })}
     </MapContainer>
   );
