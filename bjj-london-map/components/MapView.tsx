@@ -8,6 +8,7 @@ import {
   Popup,
   TileLayer,
   Tooltip,
+  ZoomControl,
   useMap,
   useMapEvents,
 } from 'react-leaflet';
@@ -36,6 +37,8 @@ interface MapViewProps {
     url: string;
     attribution: string;
   };
+  userLocation?: { lat: number; lng: number } | null;
+  highlightedGymIds?: string[];
 }
 
 interface ViewportState {
@@ -58,13 +61,25 @@ const INITIAL_VIEWPORT: ViewportState = {
   bounds: null,
 };
 
-export function MapView({ gyms, radiusMiles, showRings, fillOpacity, mapStyle }: MapViewProps) {
+export function MapView({
+  gyms,
+  radiusMiles,
+  showRings,
+  fillOpacity,
+  mapStyle,
+  userLocation,
+  highlightedGymIds,
+}: MapViewProps) {
   const [viewport, setViewport] = useState<ViewportState>(INITIAL_VIEWPORT);
   const [debouncedZoom, setDebouncedZoom] = useState(INITIAL_VIEWPORT.zoom);
   const [mapInstance, setMapInstance] = useState<LeafletMap | null>(null);
   const [hoveredClusterId, setHoveredClusterId] = useState<number | null>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const shouldCluster = viewport.zoom <= CLUSTER_ZOOM_THRESHOLD;
+  const highlightedIds = useMemo(
+    () => new Set(highlightedGymIds ?? []),
+    [highlightedGymIds],
+  );
 
   useEffect(() => {
     if (debounceRef.current) {
@@ -89,6 +104,15 @@ export function MapView({ gyms, radiusMiles, showRings, fillOpacity, mapStyle }:
   const handleMapReady = useCallback((map: LeafletMap) => {
     setMapInstance(map);
   }, []);
+
+  useEffect(() => {
+    if (!mapInstance || !userLocation) {
+      return;
+    }
+
+    const targetZoom = Math.max(mapInstance.getZoom(), 12);
+    mapInstance.flyTo([userLocation.lat, userLocation.lng], targetZoom, { duration: 0.6 });
+  }, [mapInstance, userLocation]);
 
   const gymIndex = useMemo(() => new Map(gyms.map((gym) => [gym.id, gym])), [gyms]);
 
@@ -166,12 +190,36 @@ export function MapView({ gyms, radiusMiles, showRings, fillOpacity, mapStyle }:
       minZoom={8}
       maxZoom={17}
       scrollWheelZoom
+      zoomControl={false}
       className="h-full w-full rounded-[32px] border border-white/10 shadow-2xl drop-shadow-xl"
       preferCanvas
     >
       <MapPanesInitializer />
       <MapViewportWatcher onViewportChange={handleViewportChange} onReady={handleMapReady} />
       <TileLayer key={mapStyle.id} attribution={mapStyle.attribution} url={mapStyle.url} />
+      <ZoomControl position="topright" />
+
+      {userLocation ? (
+        <CircleMarker
+          center={[userLocation.lat, userLocation.lng]}
+          pane="user-location"
+          radius={10}
+          color="#2563eb"
+          weight={2}
+          fillColor="#2563eb"
+          fillOpacity={0.25}
+          interactive={false}
+        >
+          <Tooltip
+            permanent
+            direction="top"
+            offset={[0, -10]}
+            className="!bg-blue-600 !text-white !border-none !rounded-full !px-3 !py-1 !text-xs !font-semibold !shadow-lg"
+          >
+            You are here
+          </Tooltip>
+        </CircleMarker>
+      ) : null}
 
       {rings.map(({ id, feature }) => (
         <GeoJSON
@@ -257,16 +305,18 @@ export function MapView({ gyms, radiusMiles, showRings, fillOpacity, mapStyle }:
               return null;
             }
 
+            const isHighlighted = gym ? highlightedIds.has(gym.id) : false;
+
             return (
               <CircleMarker
                 key={gym.id}
                 center={[gym.lat, gym.lon]}
                 pane="markers"
-                radius={8}
-                color={MARKER_BORDER}
-                weight={2}
-                fillColor={MARKER_FILL}
-                fillOpacity={0.95}
+                radius={isHighlighted ? 9.5 : 8}
+                color={isHighlighted ? '#1d4ed8' : MARKER_BORDER}
+                weight={isHighlighted ? 2.5 : 2}
+                fillColor={isHighlighted ? '#38bdf8' : MARKER_FILL}
+                fillOpacity={isHighlighted ? 1 : 0.95}
               >
                 <Popup>
                   <div className="space-y-2 text-sm">
@@ -321,69 +371,74 @@ export function MapView({ gyms, radiusMiles, showRings, fillOpacity, mapStyle }:
               </CircleMarker>
             );
           })
-        : gyms.map((gym) => (
-            <CircleMarker
-              key={gym.id}
-              center={[gym.lat, gym.lon]}
-              pane="markers"
-              radius={8}
-              color={MARKER_BORDER}
-              weight={2}
-              fillColor={MARKER_FILL}
-              fillOpacity={0.95}
-            >
-              <Popup>
-                <div className="space-y-2 text-sm">
-                  <div className="font-semibold text-[#002776]">{gym.name}</div>
-                  {(gym.nearestTransport || gym.borough) && (
-                    <div className="space-y-1 text-xs text-slate-600">
-                      {gym.nearestTransport ? (
-                        <div>
-                          <span className="font-medium text-[#009c3b]">Nearest:</span>{' '}
-                          {gym.nearestTransport}
-                        </div>
-                      ) : null}
-                      {gym.borough ? (
-                        <div>
-                          <span className="font-medium text-[#009c3b]">Borough:</span> {gym.borough}
-                        </div>
-                      ) : null}
-                    </div>
-                  )}
-                  {gym.website ? (
+        : gyms.map((gym) => {
+            const isHighlighted = highlightedIds.has(gym.id);
+
+            return (
+              <CircleMarker
+                key={gym.id}
+                center={[gym.lat, gym.lon]}
+                pane="markers"
+                radius={isHighlighted ? 9.5 : 8}
+                color={isHighlighted ? '#1d4ed8' : MARKER_BORDER}
+                weight={isHighlighted ? 2.5 : 2}
+                fillColor={isHighlighted ? '#38bdf8' : MARKER_FILL}
+                fillOpacity={isHighlighted ? 1 : 0.95}
+              >
+                <Popup>
+                  <div className="space-y-2 text-sm">
+                    <div className="font-semibold text-[#002776]">{gym.name}</div>
+                    {(gym.nearestTransport || gym.borough) && (
+                      <div className="space-y-1 text-xs text-slate-600">
+                        {gym.nearestTransport ? (
+                          <div>
+                            <span className="font-medium text-[#009c3b]">Nearest:</span>{' '}
+                            {gym.nearestTransport}
+                          </div>
+                        ) : null}
+                        {gym.borough ? (
+                          <div>
+                            <span className="font-medium text-[#009c3b]">Borough:</span>{' '}
+                            {gym.borough}
+                          </div>
+                        ) : null}
+                      </div>
+                    )}
+                    {gym.website ? (
+                      <a
+                        className="block text-[#002776] underline"
+                        href={gym.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Website
+                      </a>
+                    ) : null}
+                    {gym.extraWebsites?.map((extra) => (
+                      <a
+                        key={extra}
+                        className="block text-[#002776]/80 underline"
+                        href={extra}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Additional link
+                      </a>
+                    ))}
+                    <ClaimButton gymId={gym.id} gymName={gym.name} />
                     <a
-                      className="block text-[#002776] underline"
-                      href={gym.website}
+                      className="block text-xs text-slate-500 underline"
+                      href={gym.osmUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Website
+                      Open in OpenStreetMap
                     </a>
-                  ) : null}
-                  {gym.extraWebsites?.map((extra) => (
-                    <a
-                      key={extra}
-                      className="block text-[#002776]/80 underline"
-                      href={extra}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Additional link
-                    </a>
-                  ))}
-                  <ClaimButton gymId={gym.id} gymName={gym.name} />
-                  <a
-                    className="block text-xs text-slate-500 underline"
-                    href={gym.osmUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Open in OpenStreetMap
-                  </a>
-                </div>
-              </Popup>
-            </CircleMarker>
-          ))}
+                  </div>
+                </Popup>
+              </CircleMarker>
+            );
+          })}
     </MapContainer>
   );
 }
@@ -402,6 +457,7 @@ function MapPanesInitializer(): null {
 
     ensurePane('rings', '350', 'none');
     ensurePane('markers', '400');
+    ensurePane('user-location', '425', 'none');
   }, [map]);
 
   return null;

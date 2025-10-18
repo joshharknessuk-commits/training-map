@@ -29,7 +29,7 @@ export function useGyms(): UseGymsState {
   const [gyms, setGyms] = useState<Gym[]>([]);
   const [radius, setRadius] = useState(DEFAULT_RADIUS);
   const [opacity, setOpacity] = useState(DEFAULT_OPACITY);
-  const [showRings, setShowRings] = useState(true);
+  const [showRings, setShowRings] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
