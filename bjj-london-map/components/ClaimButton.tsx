@@ -53,12 +53,10 @@ export function ClaimButton({ gymId, gymName }: ClaimButtonProps) {
     <>
       <button
         type="button"
-        className="mt-2 text-xs font-semibold text-[#002776] underline transition hover:text-[#009c3b] focus:outline-none focus:ring-2 focus:ring-[#009c3b]"
+        className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#ffdf00] px-4 py-2 text-xs font-semibold uppercase tracking-wide text-[#002776] shadow-lg shadow-[#ffdf00]/30 transition hover:bg-[#ffe34d] focus:outline-none focus:ring-2 focus:ring-[#009c3b]/70 focus:ring-offset-2 focus:ring-offset-white"
         onClick={() => setOpen(true)}
       >
-        <span aria-hidden="true" className="mr-1">
-          🏛
-        </span>
+        <span aria-hidden="true">🏛️</span>
         Claim this gym
       </button>
 

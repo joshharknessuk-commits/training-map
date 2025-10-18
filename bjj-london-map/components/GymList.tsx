@@ -12,6 +12,8 @@ interface GymListProps {
   userLocation?: { lat: number; lng: number } | null;
   onUserLocation?: (coords: { lat: number; lng: number } | null) => void;
   onActiveChange?: (active: boolean) => void;
+  selectedGymId?: string | null;
+  onSelectGym?: (gym: Gym | null) => void;
 }
 
 export function GymList({
@@ -19,6 +21,8 @@ export function GymList({
   userLocation,
   onUserLocation,
   onActiveChange,
+  selectedGymId,
+  onSelectGym,
 }: GymListProps) {
   const [storedLocation, setStoredLocation] = useState<typeof userLocation>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -66,66 +70,116 @@ export function GymList({
     setIsOpen(false);
     onUserLocation?.(null);
     onActiveChange?.(false);
+    onSelectGym?.(null);
+  };
+
+  const handleSelectGym = (gym: Gym) => {
+    setIsOpen(true);
+    setStoredLocation((prev) => prev ?? userLocation ?? null);
+    onSelectGym?.(gym);
   };
 
   const showList = isOpen && Boolean(storedLocation);
 
   return (
-    <div className="pointer-events-auto flex flex-col items-end gap-2.5">
-      <NearMeButton onLocate={handleLocate} className="px-2.5 py-1 text-[11px]">
-        Near me
-      </NearMeButton>
+    <div className="pointer-events-auto flex w-full max-w-sm flex-col items-stretch gap-3">
+      <div className="flex justify-end">
+        <NearMeButton
+          onLocate={handleLocate}
+          className="px-4 py-2 text-sm uppercase tracking-wide shadow-lg shadow-blue-900/40"
+        >
+          Near me
+        </NearMeButton>
+      </div>
 
       {showList ? (
-        <aside className="w-full max-w-sm rounded-3xl border border-white/10 bg-slate-950/90 p-4 text-slate-100 shadow-2xl backdrop-blur">
-          <div className="flex items-start justify-between gap-3">
+        <aside className="max-h-[calc(100vh-144px)] overflow-y-auto rounded-3xl border border-white/10 bg-slate-950/90 p-4 text-slate-100 shadow-2xl backdrop-blur">
+          <div className="flex items-start justify-between gap-4">
             <div>
-              <h3 className="text-base font-semibold">Nearby gyms</h3>
-              <p className="text-[11px] text-slate-400">Sorted by distance from you</p>
+              <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-[#ffdf00]">
+                <span aria-hidden="true" className="text-base">
+                  🚶‍♀️
+                </span>
+                Nearby gyms
+              </div>
+              <p className="mt-1 text-xs text-slate-400">Sorted by distance from you</p>
             </div>
             <button
               type="button"
               onClick={handleClose}
-              className="rounded-full bg-white/10 px-2 py-1 text-[11px] font-semibold text-white/80 transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/60"
+              className="rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-white/80 transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/60"
             >
               Close
             </button>
           </div>
 
-          <ul className="mt-4 divide-y divide-white/5 text-sm">
+          <ul className="mt-4 flex flex-col gap-3 text-sm">
             {listItems.length === 0 ? (
-              <li className="py-4 text-xs text-slate-400">
+              <li className="rounded-2xl border border-white/10 bg-white/5 px-3 py-4 text-xs text-slate-400">
                 No gyms match the current filters.
               </li>
             ) : (
               listItems.map(({ gym, distanceKm }, index) => (
-                <li
-                  key={gym.id}
-                  className="flex items-center justify-between gap-4 py-3"
-                >
-                  <div>
-                    <div className="font-medium leading-tight">
+                <li key={gym.id}>
+                  <article
+                    className={`rounded-2xl border px-4 py-3 shadow-sm transition ${
+                      selectedGymId === gym.id
+                        ? 'border-[#38bdf8]/70 bg-[#0f172a]/90 text-white shadow-[#38bdf8]/40'
+                        : 'border-white/10 bg-white/5 text-white/90 hover:border-white/30 hover:bg-white/10'
+                    }`}
+                  >
+                    <div className="flex items-start gap-3">
                       {index < 2 ? (
-                        <span className="mr-1.5 inline-flex items-center justify-center rounded-full bg-blue-600 px-1.5 py-0.5 text-[10px] font-semibold text-white">
+                        <span className="inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-[11px] font-semibold text-white shadow shadow-blue-900/40">
                           {index + 1}
                         </span>
-                      ) : null}
-                      {gym.name}
+                      ) : (
+                        <span className="inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-slate-900/80 text-[11px] font-semibold text-white/70">
+                          {index + 1}
+                        </span>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => handleSelectGym(gym)}
+                        className="flex flex-1 flex-col items-start text-left"
+                        aria-pressed={selectedGymId === gym.id}
+                      >
+                        <span className="text-sm font-semibold leading-tight text-white">
+                          {gym.name}
+                        </span>
+                        <span className="mt-1 inline-flex items-center gap-1 text-xs text-white/70">
+                          <span aria-hidden="true">📏</span>
+                          {distanceKm !== null
+                            ? `${distanceKm.toFixed(1)} km away`
+                            : gym.borough ?? 'London'}
+                        </span>
+                      </button>
                     </div>
-                    <div className="mt-0.5 text-xs text-slate-400">
-                      {distanceKm !== null
-                        ? `${distanceKm.toFixed(1)} km away`
-                        : gym.borough ?? 'London'}
+
+                    <div className="mt-3 flex items-center justify-between text-xs font-semibold">
+                      {gym.website ? (
+                        <a
+                          className="rounded-full bg-white/10 px-3 py-1 text-white/80 underline underline-offset-2 transition hover:bg-white/20"
+                          href={gym.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Website
+                        </a>
+                      ) : (
+                        <span className="text-white/40">No website listed</span>
+                      )}
+                      <a
+                        className="inline-flex items-center gap-1 rounded-full bg-[#ffdf00]/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-900 transition hover:bg-[#ffdf00]"
+                        href={`https://www.google.com/maps/dir/?api=1&destination=${gym.lat},${gym.lon}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span aria-hidden="true">🧭</span>
+                        Directions
+                      </a>
                     </div>
-                  </div>
-                  <a
-                    className="text-xs font-semibold text-blue-400 underline underline-offset-2"
-                    href={`https://www.google.com/maps/dir/?api=1&destination=${gym.lat},${gym.lon}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Directions
-                  </a>
+                  </article>
                 </li>
               ))
             )}
