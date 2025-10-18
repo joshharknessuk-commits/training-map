@@ -1,13 +1,26 @@
 'use client';
 
-import { useEffect, useMemo } from 'react';
-import { CircleMarker, GeoJSON, MapContainer, Popup, TileLayer, useMap } from 'react-leaflet';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  CircleMarker,
+  GeoJSON,
+  MapContainer,
+  Popup,
+  TileLayer,
+  Tooltip,
+  useMap,
+  useMapEvents,
+} from 'react-leaflet';
 import type { Feature, Polygon } from '@turf/turf';
+import type { LatLngBounds, Map as LeafletMap } from 'leaflet';
+import Supercluster from 'supercluster';
+import type { ClusterFeature, PointFeature } from 'supercluster';
 import type { Gym } from '@/types/osm';
 import { getCircle } from '@/lib/turf';
 import { ClaimButton } from '@/components/ClaimButton';
 
 const LONDON_COORDS: [number, number] = [51.5074, -0.1278];
+const CLUSTER_ZOOM_THRESHOLD = 11;
 const RING_OUTLINE = '#009c3b';
 const RING_FILL = '#ffdf00';
 const MARKER_BORDER = '#002776';
@@ -25,9 +38,105 @@ interface MapViewProps {
   };
 }
 
+interface ViewportState {
+  zoom: number;
+  bounds: LatLngBounds | null;
+}
+
+interface GymPointProperties {
+  cluster: false;
+  gymId: string;
+  name: string;
+}
+
+type ClusterPoint =
+  | PointFeature<GymPointProperties>
+  | ClusterFeature<Supercluster.AnyProps>;
+
+const INITIAL_VIEWPORT: ViewportState = {
+  zoom: 10,
+  bounds: null,
+};
+
 export function MapView({ gyms, radiusMiles, showRings, fillOpacity, mapStyle }: MapViewProps) {
+  const [viewport, setViewport] = useState<ViewportState>(INITIAL_VIEWPORT);
+  const [debouncedZoom, setDebouncedZoom] = useState(INITIAL_VIEWPORT.zoom);
+  const [mapInstance, setMapInstance] = useState<LeafletMap | null>(null);
+  const [hoveredClusterId, setHoveredClusterId] = useState<number | null>(null);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const shouldCluster = viewport.zoom <= CLUSTER_ZOOM_THRESHOLD;
+
+  useEffect(() => {
+    if (debounceRef.current) {
+      clearTimeout(debounceRef.current);
+    }
+
+    debounceRef.current = setTimeout(() => {
+      setDebouncedZoom(viewport.zoom);
+    }, 120);
+
+    return () => {
+      if (debounceRef.current) {
+        clearTimeout(debounceRef.current);
+      }
+    };
+  }, [viewport.zoom]);
+
+  const handleViewportChange = useCallback((next: ViewportState) => {
+    setViewport(next);
+  }, []);
+
+  const handleMapReady = useCallback((map: LeafletMap) => {
+    setMapInstance(map);
+  }, []);
+
+  const gymIndex = useMemo(() => new Map(gyms.map((gym) => [gym.id, gym])), [gyms]);
+
+  const geoPoints = useMemo<PointFeature<GymPointProperties>[]>(() => {
+    return gyms.map((gym) => ({
+      type: 'Feature',
+      properties: {
+        cluster: false,
+        gymId: gym.id,
+        name: gym.name,
+      },
+      geometry: {
+        type: 'Point',
+        coordinates: [gym.lon, gym.lat],
+      },
+    }));
+  }, [gyms]);
+
+  const clusterIndex = useMemo(() => {
+    if (geoPoints.length === 0) {
+      return null;
+    }
+
+    const index = new Supercluster<GymPointProperties, Supercluster.AnyProps>({
+      radius: 60,
+      maxZoom: 17,
+      minPoints: 3,
+    });
+
+    index.load(geoPoints);
+    return index;
+  }, [geoPoints]);
+
+  const clusterFeatures = useMemo<ClusterPoint[]>(() => {
+    if (!clusterIndex) {
+      return [];
+    }
+
+    const bounds = viewport.bounds;
+    const bbox: [number, number, number, number] = bounds
+      ? [bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()]
+      : [-180, -85, 180, 85];
+
+    return clusterIndex.getClusters(bbox, Math.round(debouncedZoom)) as ClusterPoint[];
+  }, [clusterIndex, viewport.bounds, debouncedZoom]);
+
   const rings = useMemo(() => {
-    if (!showRings || radiusMiles <= 0) {
+    if (!showRings || radiusMiles <= 0 || shouldCluster) {
       return [];
     }
 
@@ -35,12 +144,25 @@ export function MapView({ gyms, radiusMiles, showRings, fillOpacity, mapStyle }:
       id: gym.id,
       feature: getCircle(gym.lon, gym.lat, radiusMiles),
     }));
-  }, [gyms, radiusMiles, showRings]);
+  }, [gyms, radiusMiles, showRings, shouldCluster]);
+
+  const handleClusterClick = useCallback(
+    (clusterId: number, coordinates: [number, number]) => {
+      if (!mapInstance || !clusterIndex) {
+        return;
+      }
+
+      const targetZoom = clusterIndex.getClusterExpansionZoom(clusterId);
+      const [lon, lat] = coordinates;
+      mapInstance.flyTo([lat, lon], Math.min(targetZoom, 16), { duration: 0.6 });
+    },
+    [clusterIndex, mapInstance],
+  );
 
   return (
     <MapContainer
       center={LONDON_COORDS}
-      zoom={10}
+      zoom={INITIAL_VIEWPORT.zoom}
       minZoom={8}
       maxZoom={17}
       scrollWheelZoom
@@ -48,6 +170,7 @@ export function MapView({ gyms, radiusMiles, showRings, fillOpacity, mapStyle }:
       preferCanvas
     >
       <MapPanesInitializer />
+      <MapViewportWatcher onViewportChange={handleViewportChange} onReady={handleMapReady} />
       <TileLayer key={mapStyle.id} attribution={mapStyle.attribution} url={mapStyle.url} />
 
       {rings.map(({ id, feature }) => (
@@ -66,69 +189,201 @@ export function MapView({ gyms, radiusMiles, showRings, fillOpacity, mapStyle }:
         />
       ))}
 
-      {gyms.map((gym) => (
-        <CircleMarker
-          key={gym.id}
-          center={[gym.lat, gym.lon]}
-          pane="markers"
-          radius={8}
-          color={MARKER_BORDER}
-          weight={2}
-          fillColor={MARKER_FILL}
-          fillOpacity={0.95}
-        >
-          <Popup>
-            <div className="space-y-2 text-sm">
-              <div className="font-semibold text-[#002776]">{gym.name}</div>
-              {(gym.nearestTransport || gym.borough) && (
-                <div className="space-y-1 text-xs text-slate-600">
-                  {gym.nearestTransport ? (
-                    <div>
-                      <span className="font-medium text-[#009c3b]">Nearest:</span>{' '}
-                      {gym.nearestTransport}
-                    </div>
-                  ) : null}
-                  {gym.borough ? (
-                    <div>
-                      <span className="font-medium text-[#009c3b]">Borough:</span> {gym.borough}
-                    </div>
-                  ) : null}
-                </div>
-              )}
-              {gym.website ? (
-                <a
-                  className="block text-[#002776] underline"
-                  href={gym.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
+      {shouldCluster && clusterIndex
+        ? clusterFeatures.map((feature) => {
+            const [lon, lat] = feature.geometry.coordinates as [number, number];
+            const properties = feature.properties as Record<string, unknown>;
+
+            if (properties.cluster && typeof feature.id === 'number') {
+              const clusterId = feature.id;
+              const pointCount = (properties.point_count as number) ?? 0;
+              const abbreviated = (properties.point_count_abbreviated as string) ?? `${pointCount}`;
+              const baseRadius = Math.max(18, Math.min(40, 12 + Math.sqrt(pointCount) * 4));
+              const radius = hoveredClusterId === clusterId ? baseRadius * 1.12 : baseRadius;
+
+              const previewLeaves = clusterIndex.getLeaves(clusterId, 6, 0) as PointFeature<GymPointProperties>[];
+              const previewGyms = previewLeaves
+                .map((leaf) => gymIndex.get(leaf.properties.gymId))
+                .filter((gym): gym is Gym => Boolean(gym));
+              const remaining = Math.max(0, pointCount - previewGyms.length);
+
+              return (
+                <CircleMarker
+                  key={`cluster-${clusterId}`}
+                  center={[lat, lon]}
+                  pane="markers"
+                  radius={radius}
+                  color={MARKER_BORDER}
+                  weight={2}
+                  fillColor={MARKER_FILL}
+                  fillOpacity={0.9}
+                  eventHandlers={{
+                    click: () => handleClusterClick(clusterId, [lon, lat]),
+                    mouseover: () => setHoveredClusterId(clusterId),
+                    mouseout: () => setHoveredClusterId(null),
+                  }}
                 >
-                  Website
-                </a>
-              ) : null}
-              {gym.extraWebsites?.map((extra) => (
-                <a
-                  key={extra}
-                  className="block text-[#002776]/80 underline"
-                  href={extra}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Additional link
-                </a>
-              ))}
-              <ClaimButton gymId={gym.id} gymName={gym.name} />
-              <a
-                className="block text-xs text-slate-500 underline"
-                href={gym.osmUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                  <Tooltip
+                    permanent
+                    direction="center"
+                    className="!bg-[#002776] !text-white !border-none !shadow-lg !rounded-full !px-3 !py-1 !font-semibold !tracking-wide !text-xs"
+                  >
+                    {abbreviated}
+                  </Tooltip>
+                  <Popup>
+                    <div className="space-y-2 text-sm">
+                      <div className="font-semibold text-[#002776]">Gyms in this area</div>
+                      <div className="text-xs text-slate-600">{pointCount} gyms grouped here</div>
+                      <ul className="max-h-40 space-y-1 overflow-y-auto pr-1 text-xs text-slate-600">
+                        {previewGyms.map((gym) => (
+                          <li key={gym.id} className="truncate">
+                            {gym.name}
+                          </li>
+                        ))}
+                        {remaining > 0 ? (
+                          <li className="truncate text-slate-500">+ {remaining} more…</li>
+                        ) : null}
+                      </ul>
+                      <p className="text-xs text-slate-500">Zoom in to view individual gym details.</p>
+                    </div>
+                  </Popup>
+                </CircleMarker>
+              );
+            }
+
+            const gymIdValue = typeof properties.gymId === 'string' ? properties.gymId : null;
+            const gym = gymIdValue ? gymIndex.get(gymIdValue) : undefined;
+            if (!gym) {
+              return null;
+            }
+
+            return (
+              <CircleMarker
+                key={gym.id}
+                center={[gym.lat, gym.lon]}
+                pane="markers"
+                radius={8}
+                color={MARKER_BORDER}
+                weight={2}
+                fillColor={MARKER_FILL}
+                fillOpacity={0.95}
               >
-                Open in OpenStreetMap
-              </a>
-            </div>
-          </Popup>
-        </CircleMarker>
-      ))}
+                <Popup>
+                  <div className="space-y-2 text-sm">
+                    <div className="font-semibold text-[#002776]">{gym.name}</div>
+                    {(gym.nearestTransport || gym.borough) && (
+                      <div className="space-y-1 text-xs text-slate-600">
+                        {gym.nearestTransport ? (
+                          <div>
+                            <span className="font-medium text-[#009c3b]">Nearest:</span>{' '}
+                            {gym.nearestTransport}
+                          </div>
+                        ) : null}
+                        {gym.borough ? (
+                          <div>
+                            <span className="font-medium text-[#009c3b]">Borough:</span> {gym.borough}
+                          </div>
+                        ) : null}
+                      </div>
+                    )}
+                    {gym.website ? (
+                      <a
+                        className="block text-[#002776] underline"
+                        href={gym.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Website
+                      </a>
+                    ) : null}
+                    {gym.extraWebsites?.map((extra) => (
+                      <a
+                        key={extra}
+                        className="block text-[#002776]/80 underline"
+                        href={extra}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Additional link
+                      </a>
+                    ))}
+                    <ClaimButton gymId={gym.id} gymName={gym.name} />
+                    <a
+                      className="block text-xs text-slate-500 underline"
+                      href={gym.osmUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Open in OpenStreetMap
+                    </a>
+                  </div>
+                </Popup>
+              </CircleMarker>
+            );
+          })
+        : gyms.map((gym) => (
+            <CircleMarker
+              key={gym.id}
+              center={[gym.lat, gym.lon]}
+              pane="markers"
+              radius={8}
+              color={MARKER_BORDER}
+              weight={2}
+              fillColor={MARKER_FILL}
+              fillOpacity={0.95}
+            >
+              <Popup>
+                <div className="space-y-2 text-sm">
+                  <div className="font-semibold text-[#002776]">{gym.name}</div>
+                  {(gym.nearestTransport || gym.borough) && (
+                    <div className="space-y-1 text-xs text-slate-600">
+                      {gym.nearestTransport ? (
+                        <div>
+                          <span className="font-medium text-[#009c3b]">Nearest:</span>{' '}
+                          {gym.nearestTransport}
+                        </div>
+                      ) : null}
+                      {gym.borough ? (
+                        <div>
+                          <span className="font-medium text-[#009c3b]">Borough:</span> {gym.borough}
+                        </div>
+                      ) : null}
+                    </div>
+                  )}
+                  {gym.website ? (
+                    <a
+                      className="block text-[#002776] underline"
+                      href={gym.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Website
+                    </a>
+                  ) : null}
+                  {gym.extraWebsites?.map((extra) => (
+                    <a
+                      key={extra}
+                      className="block text-[#002776]/80 underline"
+                      href={extra}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Additional link
+                    </a>
+                  ))}
+                  <ClaimButton gymId={gym.id} gymName={gym.name} />
+                  <a
+                    className="block text-xs text-slate-500 underline"
+                    href={gym.osmUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Open in OpenStreetMap
+                  </a>
+                </div>
+              </Popup>
+            </CircleMarker>
+          ))}
     </MapContainer>
   );
 }
@@ -148,6 +403,30 @@ function MapPanesInitializer(): null {
     ensurePane('rings', '350', 'none');
     ensurePane('markers', '400');
   }, [map]);
+
+  return null;
+}
+
+function MapViewportWatcher({
+  onViewportChange,
+  onReady,
+}: {
+  onViewportChange: (state: ViewportState) => void;
+  onReady: (map: LeafletMap) => void;
+}): null {
+  const map = useMapEvents({
+    moveend: () => {
+      onViewportChange({ zoom: map.getZoom(), bounds: map.getBounds() });
+    },
+    zoomend: () => {
+      onViewportChange({ zoom: map.getZoom(), bounds: map.getBounds() });
+    },
+  });
+
+  useEffect(() => {
+    onReady(map);
+    onViewportChange({ zoom: map.getZoom(), bounds: map.getBounds() });
+  }, [map, onReady, onViewportChange]);
 
   return null;
 }
