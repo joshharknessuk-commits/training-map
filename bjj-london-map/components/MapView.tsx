@@ -39,6 +39,8 @@ interface MapViewProps {
   };
   userLocation?: { lat: number; lng: number } | null;
   highlightedGymIds?: string[];
+  selectedGym?: Gym | null;
+  onGymFocus?: (gym: Gym) => void;
 }
 
 interface ViewportState {
@@ -69,6 +71,8 @@ export function MapView({
   mapStyle,
   userLocation,
   highlightedGymIds,
+  selectedGym,
+  onGymFocus,
 }: MapViewProps) {
   const [viewport, setViewport] = useState<ViewportState>(INITIAL_VIEWPORT);
   const [debouncedZoom, setDebouncedZoom] = useState(INITIAL_VIEWPORT.zoom);
@@ -80,6 +84,7 @@ export function MapView({
     () => new Set(highlightedGymIds ?? []),
     [highlightedGymIds],
   );
+  const selectedGymId = selectedGym?.id ?? null;
 
   useEffect(() => {
     if (debounceRef.current) {
@@ -113,6 +118,15 @@ export function MapView({
     const targetZoom = Math.max(mapInstance.getZoom(), 12);
     mapInstance.flyTo([userLocation.lat, userLocation.lng], targetZoom, { duration: 0.6 });
   }, [mapInstance, userLocation]);
+
+  useEffect(() => {
+    if (!mapInstance || !selectedGym) {
+      return;
+    }
+
+    const targetZoom = Math.max(mapInstance.getZoom(), 13);
+    mapInstance.flyTo([selectedGym.lat, selectedGym.lon], targetZoom, { duration: 0.6 });
+  }, [mapInstance, selectedGym]);
 
   const gymIndex = useMemo(() => new Map(gyms.map((gym) => [gym.id, gym])), [gyms]);
 
@@ -306,17 +320,25 @@ export function MapView({
             }
 
             const isHighlighted = gym ? highlightedIds.has(gym.id) : false;
+            const isSelected = selectedGymId === gym.id;
 
             return (
               <CircleMarker
                 key={gym.id}
                 center={[gym.lat, gym.lon]}
                 pane="markers"
-                radius={isHighlighted ? 9.5 : 8}
-                color={isHighlighted ? '#1d4ed8' : MARKER_BORDER}
-                weight={isHighlighted ? 2.5 : 2}
-                fillColor={isHighlighted ? '#38bdf8' : MARKER_FILL}
-                fillOpacity={isHighlighted ? 1 : 0.95}
+                radius={isSelected ? 11 : isHighlighted ? 9.5 : 8}
+                color={isSelected ? '#f97316' : isHighlighted ? '#1d4ed8' : MARKER_BORDER}
+                weight={isSelected ? 3 : isHighlighted ? 2.5 : 2}
+                fillColor={isSelected ? '#fb923c' : isHighlighted ? '#38bdf8' : MARKER_FILL}
+                fillOpacity={isSelected ? 1 : isHighlighted ? 1 : 0.95}
+                eventHandlers={
+                  onGymFocus
+                    ? {
+                        click: () => onGymFocus(gym),
+                      }
+                    : undefined
+                }
               >
                 <Popup>
                   <div className="space-y-2 text-sm">
@@ -373,17 +395,25 @@ export function MapView({
           })
         : gyms.map((gym) => {
             const isHighlighted = highlightedIds.has(gym.id);
+            const isSelected = selectedGymId === gym.id;
 
             return (
               <CircleMarker
                 key={gym.id}
                 center={[gym.lat, gym.lon]}
                 pane="markers"
-                radius={isHighlighted ? 9.5 : 8}
-                color={isHighlighted ? '#1d4ed8' : MARKER_BORDER}
-                weight={isHighlighted ? 2.5 : 2}
-                fillColor={isHighlighted ? '#38bdf8' : MARKER_FILL}
-                fillOpacity={isHighlighted ? 1 : 0.95}
+                radius={isSelected ? 11 : isHighlighted ? 9.5 : 8}
+                color={isSelected ? '#f97316' : isHighlighted ? '#1d4ed8' : MARKER_BORDER}
+                weight={isSelected ? 3 : isHighlighted ? 2.5 : 2}
+                fillColor={isSelected ? '#fb923c' : isHighlighted ? '#38bdf8' : MARKER_FILL}
+                fillOpacity={isSelected ? 1 : isHighlighted ? 1 : 0.95}
+                eventHandlers={
+                  onGymFocus
+                    ? {
+                        click: () => onGymFocus(gym),
+                      }
+                    : undefined
+                }
               >
                 <Popup>
                   <div className="space-y-2 text-sm">

@@ -102,23 +102,33 @@ export function Controls({
           </div>
 
           <div className="flex-1 overflow-y-auto px-5 py-6">
-            <div className="space-y-6">
-              <div>
-                <label className="block text-xs font-semibold uppercase tracking-wide text-[#ffdf00]">
-                  Search
-                </label>
-                <input
-                  className="mt-2 w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/40 focus:border-[#ffdf00] focus:outline-none focus:ring-2 focus:ring-[#ffdf00]/40"
-                  type="search"
-                  placeholder="Name, station, borough..."
-                  value={searchTerm}
-                  onChange={(event) => setSearchTerm(event.target.value)}
-                />
-              </div>
+            <div className="flex flex-col gap-5">
+              <section className="rounded-3xl border border-white/10 bg-white/10 px-4 py-4 shadow-sm shadow-black/20">
+                <header className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[#ffdf00]">
+                  <span aria-hidden="true" className="text-base leading-none">
+                    🔍
+                  </span>
+                  <span>Search</span>
+                </header>
+                <div className="mt-3">
+                  <input
+                    className="w-full rounded-xl border border-white/10 bg-slate-950/80 px-3 py-2 text-sm text-white placeholder:text-white/40 focus:border-[#ffdf00] focus:outline-none focus:ring-2 focus:ring-[#ffdf00]/30"
+                    type="search"
+                    placeholder="Name, station, borough..."
+                    value={searchTerm}
+                    onChange={(event) => setSearchTerm(event.target.value)}
+                  />
+                </div>
+              </section>
 
-              <div>
-                <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-[#ffdf00]">
-                  <span>Boroughs</span>
+              <section className="rounded-3xl border border-white/10 bg-slate-900/70 px-4 py-4 shadow-sm shadow-black/20">
+                <header className="flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[#ffdf00]">
+                    <span aria-hidden="true" className="text-base leading-none">
+                      🏷️
+                    </span>
+                    <span>Boroughs</span>
+                  </div>
                   <button
                     className="text-[11px] font-semibold uppercase tracking-wide text-white/70 transition hover:text-white disabled:cursor-not-allowed disabled:text-white/30"
                     type="button"
@@ -127,9 +137,9 @@ export function Controls({
                   >
                     Clear
                   </button>
-                </div>
+                </header>
 
-                <div className="mt-3 max-h-48 space-y-2 overflow-y-auto pr-2 text-sm">
+                <div className="mt-4 max-h-52 space-y-2 overflow-y-auto pr-2 text-sm">
                   {boroughOptions.length === 0 ? (
                     <p className="text-xs text-white/50">No borough metadata available.</p>
                   ) : (
@@ -138,8 +148,10 @@ export function Controls({
                       return (
                         <label
                           key={option.name}
-                          className={`flex cursor-pointer items-center justify-between rounded-xl border border-transparent px-3 py-2 transition hover:border-white/20 ${
-                            checked ? 'bg-[#009c3b]/20 text-white' : 'bg-white/5 text-white/80'
+                          className={`flex cursor-pointer items-center justify-between rounded-xl border px-3 py-2 transition ${
+                            checked
+                              ? 'border-[#009c3b]/60 bg-[#009c3b]/20 text-white shadow-sm shadow-[#009c3b]/30'
+                              : 'border-transparent bg-white/5 text-white/80 hover:border-white/20'
                           }`}
                         >
                           <span className="flex-1 truncate">{option.name}</span>
@@ -155,58 +167,73 @@ export function Controls({
                     })
                   )}
                 </div>
-              </div>
+              </section>
 
-              <section className="space-y-5 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm">
-                <header className="text-xs font-semibold uppercase tracking-wide text-[#ffdf00]">
-                  Coverage rings
+              <section className="rounded-3xl border border-white/10 bg-slate-900/70 px-4 py-4 text-sm shadow-sm shadow-black/20">
+                <header className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[#ffdf00]">
+                  <span aria-hidden="true" className="text-base leading-none">
+                    📍
+                  </span>
+                  <span>Map actions</span>
                 </header>
 
-                <label className="block">
-                  <span className="text-[11px] font-semibold uppercase tracking-wide text-white/70">
-                    Radius ({radius.toFixed(1)} mi)
-                  </span>
-                  <input
-                    className="mt-2 w-full accent-[#ffdf00]"
-                    type="range"
-                    min={0}
-                    max={3}
-                    step={0.1}
-                    value={radius}
-                    onChange={handleRadiusChange}
-                  />
-                </label>
+                <div className="mt-4 space-y-6">
+                  <label className="block">
+                    <span className="text-[11px] font-semibold uppercase tracking-wide text-white/70">
+                      Radius ({radius.toFixed(1)} mi)
+                    </span>
+                    <input
+                      className="mt-2 w-full accent-[#ffdf00]"
+                      type="range"
+                      min={0}
+                      max={3}
+                      step={0.1}
+                      value={radius}
+                      onChange={handleRadiusChange}
+                    />
+                  </label>
 
-                <label className="block">
-                  <span className="text-[11px] font-semibold uppercase tracking-wide text-white/70">
-                    Ring opacity ({opacity.toFixed(2)})
-                  </span>
-                  <input
-                    className="mt-2 w-full accent-[#ffdf00]"
-                    type="range"
-                    min={0.05}
-                    max={0.5}
-                    step={0.01}
-                    value={opacity}
-                    onChange={handleOpacityChange}
-                  />
-                </label>
+                  <label className="block">
+                    <span className="text-[11px] font-semibold uppercase tracking-wide text-white/70">
+                      Ring opacity ({opacity.toFixed(2)})
+                    </span>
+                    <input
+                      className="mt-2 w-full accent-[#ffdf00]"
+                      type="range"
+                      min={0.05}
+                      max={0.5}
+                      step={0.01}
+                      value={opacity}
+                      onChange={handleOpacityChange}
+                    />
+                  </label>
 
-                <label className="flex items-center justify-between gap-3 text-[13px] font-medium text-white/90">
-                  <span>Show coverage rings</span>
-                  <input
-                    className="h-4 w-4 accent-[#ffdf00]"
-                    type="checkbox"
-                    checked={showRings}
-                    onChange={handleShowRingsChange}
-                  />
-                </label>
+                  <label className="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-[13px] font-medium text-white/90">
+                    <span>Show coverage rings</span>
+                    <input
+                      className="h-4 w-4 accent-[#ffdf00]"
+                      type="checkbox"
+                      checked={showRings}
+                      onChange={handleShowRingsChange}
+                    />
+                  </label>
+                </div>
               </section>
             </div>
           </div>
 
-          <div className="border-t border-white/10 px-5 py-4 text-xs text-white/60">
-            Data sourced from curated CSV + OpenStreetMap geocoding; last sync via Postgres backend.
+          <div className="border-t border-white/10 px-5 py-5">
+            <section className="rounded-3xl border border-white/10 bg-slate-900/70 px-4 py-3 text-xs text-white/60 shadow-sm shadow-black/20">
+              <header className="mb-2 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wide text-[#ffdf00]">
+                <span aria-hidden="true" className="text-base leading-none">
+                  🧭
+                </span>
+                <span>Map info</span>
+              </header>
+              <p>
+                Data sourced from curated CSV + OpenStreetMap geocoding; last sync via Postgres backend.
+              </p>
+            </section>
           </div>
         </div>
       </aside>

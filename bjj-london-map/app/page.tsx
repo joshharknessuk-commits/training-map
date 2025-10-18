@@ -1,12 +1,14 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Controls } from '@/components/Controls';
 import { GymList } from '@/components/GymList';
+import { SelectedGymCard } from '@/components/SelectedGymCard';
 import { useGyms } from '@/state/useGyms';
 import { DEFAULT_MAP_STYLE_INDEX, MAP_STYLES } from '@/app/config/mapStyles';
 import { haversineKm } from '@/lib/distance';
+import type { Gym } from '@/types/osm';
 
 const MapView = dynamic(() => import('@/components/MapView').then((mod) => mod.MapView), {
   ssr: false,
@@ -15,6 +17,7 @@ const MapView = dynamic(() => import('@/components/MapView').then((mod) => mod.M
 export default function HomePage() {
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [nearMeActive, setNearMeActive] = useState(false);
+  const [selectedGym, setSelectedGym] = useState<Gym | null>(null);
   const {
     filteredGyms,
     radius,
@@ -35,6 +38,19 @@ export default function HomePage() {
     clearFilters,
   } = useGyms();
   const mapStyle = MAP_STYLES[DEFAULT_MAP_STYLE_INDEX];
+
+  const safeSelectedGym = useMemo(() => {
+    if (!selectedGym) {
+      return null;
+    }
+    return filteredGyms.find((gym) => gym.id === selectedGym.id) ?? null;
+  }, [filteredGyms, selectedGym]);
+
+  useEffect(() => {
+    if (selectedGym && !safeSelectedGym) {
+      setSelectedGym(null);
+    }
+  }, [safeSelectedGym, selectedGym]);
 
   const highlightedGymIds = useMemo(() => {
     if (!userLocation || !nearMeActive) {
@@ -57,16 +73,18 @@ export default function HomePage() {
   const mapUserLocation = nearMeActive && userLocation ? userLocation : null;
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-slate-950 text-slate-100">
+    <div className="relative h-screen w-full overflow-hidden bg-slate-950 text-slate-100">
       <div className="absolute inset-0">
-      <MapView
-        gyms={filteredGyms}
-        radiusMiles={radius}
-        showRings={showRings}
-        fillOpacity={opacity}
+        <MapView
+          gyms={filteredGyms}
+          radiusMiles={radius}
+          showRings={showRings}
+          fillOpacity={opacity}
           mapStyle={mapStyle}
           userLocation={mapUserLocation}
           highlightedGymIds={highlightedGymIds}
+          selectedGym={safeSelectedGym}
+          onGymFocus={setSelectedGym}
         />
       </div>
 
@@ -88,12 +106,24 @@ export default function HomePage() {
         clearFilters={clearFilters}
       />
 
+      {safeSelectedGym ? (
+        <div className="absolute top-28 right-6 z-[940] flex justify-end">
+          <SelectedGymCard
+            gym={safeSelectedGym}
+            onClose={() => setSelectedGym(null)}
+            userLocation={userLocation}
+          />
+        </div>
+      ) : null}
+
       <div className="absolute bottom-6 right-6 z-[930] flex max-w-full justify-end">
         <GymList
           gyms={filteredGyms}
           userLocation={userLocation}
           onUserLocation={setUserLocation}
           onActiveChange={setNearMeActive}
+          selectedGymId={safeSelectedGym?.id ?? null}
+          onSelectGym={setSelectedGym}
         />
       </div>
 
