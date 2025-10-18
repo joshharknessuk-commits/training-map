@@ -5,6 +5,7 @@ import { CircleMarker, GeoJSON, MapContainer, Popup, TileLayer, useMap } from 'r
 import type { Feature, Polygon } from '@turf/turf';
 import type { Gym } from '@/types/osm';
 import { getCircle } from '@/lib/turf';
+import { ClaimButton } from '@/components/ClaimButton';
 
 const LONDON_COORDS: [number, number] = [51.5074, -0.1278];
 const RING_OUTLINE = '#009c3b';
@@ -115,6 +116,7 @@ export function MapView({ gyms, radiusMiles, showRings, fillOpacity, mapStyle }:
                   Additional link
                 </a>
               ))}
+              <ClaimButton gymId={gym.id} gymName={gym.name} />
               <a
                 className="block text-xs text-slate-500 underline"
                 href={gym.osmUrl}

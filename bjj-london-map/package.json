@@ -15,6 +15,7 @@
     "export:gyms": "node scripts/exportGyms.mjs"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
     "@turf/turf": "^6.5.0",
     "dotenv": "^17.2.3",
     "ky": "^1.2.2",

@@ -2,41 +2,17 @@
 
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
-import { Controls } from '../components/Controls';
-import { Legend } from '../components/Legend';
-import { useGyms } from '../state/useGyms';
+import { Controls } from '@/components/Controls';
+import { Legend } from '@/components/Legend';
+import { useGyms } from '@/state/useGyms';
+import { DEFAULT_MAP_STYLE_INDEX, MAP_STYLES } from '@/app/config/mapStyles';
 
-const MAP_STYLES = [
-  {
-    id: 'carto-light',
-    label: 'Carto Light',
-    url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-    attribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-  },
-  {
-    id: 'carto-dark',
-    label: 'Carto Dark',
-    url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-    attribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-  },
-  {
-    id: 'osm-standard',
-    label: 'OSM Standard',
-    url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    attribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  },
-] as const;
-
-const MapView = dynamic(
-  () => import('../components/MapView').then((mod) => mod.MapView),
-  { ssr: false },
-);
+const MapView = dynamic(() => import('@/components/MapView').then((mod) => mod.MapView), {
+  ssr: false,
+});
 
 export default function HomePage() {
-  const [mapStyleIndex, setMapStyleIndex] = useState(0);
+  const [mapStyleIndex, setMapStyleIndex] = useState(DEFAULT_MAP_STYLE_INDEX);
   const {
     filteredGyms,
     radius,

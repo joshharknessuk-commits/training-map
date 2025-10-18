@@ -1,6 +1,6 @@
-import { NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
+import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 
 interface GymRow {
@@ -17,7 +17,37 @@ interface GymRow {
   updated_at: string | null;
 }
 
-async function loadStaticGyms() {
+type NormalizedGym = {
+  id: string;
+  name: string;
+  lat: number;
+  lon: number;
+  tags: Record<string, unknown>;
+  osmUrl: string;
+  website?: string;
+  extraWebsites?: string[];
+  nearestTransport?: string;
+  borough?: string;
+  updatedAt?: string;
+};
+
+function mapRowToGym(row: GymRow): NormalizedGym {
+  return {
+    id: row.id,
+    name: row.name,
+    lat: row.lat,
+    lon: row.lon,
+    tags: row.tags ?? {},
+    osmUrl: row.osm_url,
+    website: row.website ?? undefined,
+    extraWebsites: row.extra_websites ?? undefined,
+    nearestTransport: row.nearest_transport ?? undefined,
+    borough: row.borough ?? undefined,
+    updatedAt: row.updated_at ?? undefined,
+  };
+}
+
+async function loadStaticGyms(): Promise<NormalizedGym[]> {
   try {
     const filePath = path.join(process.cwd(), 'public', 'gyms.json');
     const content = await fs.readFile(filePath, 'utf8');
@@ -75,19 +105,7 @@ export async function GET() {
       `,
     );
 
-    const gyms = result.rows.map((row: GymRow) => ({
-      id: row.id,
-      name: row.name,
-      lat: row.lat,
-      lon: row.lon,
-      tags: row.tags ?? {},
-      osmUrl: row.osm_url,
-      website: row.website ?? undefined,
-      extraWebsites: row.extra_websites ?? undefined,
-      nearestTransport: row.nearest_transport ?? undefined,
-      borough: row.borough ?? undefined,
-      updatedAt: row.updated_at ?? undefined,
-    }));
+    const gyms = result.rows.map(mapRowToGym);
 
     if (gyms.length > 0) {
       return NextResponse.json({ gyms });
