@@ -16,10 +16,13 @@ Interactive map of Brazilian Jiu-Jitsu gyms across Greater London. A curated dat
 
 ```bash
 pnpm install
-pnpm dev
+# Start the development server for the map workspace
+pnpm --filter bjj-london-map dev
 ```
 
-Then open http://localhost:3000/ (or the port printed in the terminal).
+Once the server prints `ready` in the terminal, open http://localhost:3000/ in your browser (or whichever port the CLI reports).
+The page will live-reload whenever you edit files under `bjj-london-map/`, so you can immediately test the updated location
+behaviour.
 
 ### Additional scripts
 

@@ -7,6 +7,19 @@ import type { Gym } from '@/types/osm';
 
 const MAX_RESULTS = 2;
 
+const buildDirectionsUrl = (gym: Gym, origin?: { lat: number; lng: number } | null) => {
+  const params = new URLSearchParams({
+    api: '1',
+    destination: `${gym.lat},${gym.lon}`,
+  });
+
+  if (origin) {
+    params.set('origin', `${origin.lat},${origin.lng}`);
+  }
+
+  return `https://www.google.com/maps/dir/?${params.toString()}`;
+};
+
 interface GymListProps {
   gyms: Gym[];
   userLocation?: { lat: number; lng: number } | null;
@@ -171,7 +184,7 @@ export function GymList({
                       )}
                       <a
                         className="inline-flex items-center gap-1 rounded-full bg-[#ffdf00]/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-900 transition hover:bg-[#ffdf00]"
-                        href={`https://www.google.com/maps/dir/?api=1&destination=${gym.lat},${gym.lon}`}
+                        href={buildDirectionsUrl(gym, storedLocation)}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
