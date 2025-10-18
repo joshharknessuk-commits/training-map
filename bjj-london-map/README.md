@@ -34,6 +34,62 @@ Then open http://localhost:3000/ (or the port printed in the terminal).
 - `pnpm format` – check formatting with Prettier.
 - `pnpm format:write` – apply Prettier formatting.
 
+### Database migrations & verification
+
+The `gym_claims` table powers the “Claim this gym” submissions. Run the following once per environment (assumes the `pgcrypto` extension is available; Neon enables it by default):
+
+```sql
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
+CREATE TABLE IF NOT EXISTS gym_claims (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  gym_id UUID REFERENCES gyms(id),
+  claimant_name TEXT NOT NULL,
+  claimant_email TEXT NOT NULL,
+  proof_url TEXT,
+  message TEXT,
+  status TEXT DEFAULT 'pending' CHECK (status IN ('pending', 'approved', 'rejected')),
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+```
+
+To apply locally:
+
+```bash
+# from the repository root
+psql "$DATABASE_URL" <<'SQL'
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+CREATE TABLE IF NOT EXISTS gym_claims (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  gym_id UUID REFERENCES gyms(id),
+  claimant_name TEXT NOT NULL,
+  claimant_email TEXT NOT NULL,
+  proof_url TEXT,
+  message TEXT,
+  status TEXT DEFAULT 'pending' CHECK (status IN ('pending', 'approved', 'rejected')),
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+SQL
+```
+
+### Local testing
+
+Start the dev server (`pnpm dev`), then from another terminal run:
+
+```bash
+curl -X POST http://localhost:3000/api/claim \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "gymId": "00000000-0000-0000-0000-000000000000",
+    "name": "Ada Lovelace",
+    "email": "ada@example.com",
+    "proof": "https://example.com/proof",
+    "message": "We are the official team."
+  }'
+```
+
+Expect a `{"success":true}` JSON response (422 on validation errors, 429 when rate limited). Claims appear in the `gym_claims` table.
+
 ## Data flow & caching
 
 1. Run `pnpm sync:gyms` to load the curated CSV. The script pushes the raw rows into the `gyms_raw` staging table, geocodes each entry via Nominatim (using borough/nearest transport hints), inserts/updates the `gyms` table, and finally clears the staging table.
@@ -54,6 +110,7 @@ Then open http://localhost:3000/ (or the port printed in the terminal).
 - Brazilian flag-inspired theme (blue/green/yellow map accents) with glowing coverage rings and markers.
 - Legend explaining the 1 mile coverage rings.
 - Inline loading & error states to highlight the fetch status.
+- “Claim this gym” flow: popup button launches a modal to submit owner verification, posting directly to Neon.
 
 ## Project structure
 

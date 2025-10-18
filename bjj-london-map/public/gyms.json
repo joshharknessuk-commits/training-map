@@ -1,6 +1,6 @@
 [
   {
-    "id": "raw-1",
+    "id": "ee688544-48f0-4dd2-80eb-6505c7ba5798",
     "name": "10th Planet London",
     "lat": 51.5083952,
     "lon": 0.0458839,
@@ -16,7 +16,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-2",
+    "id": "41a48da4-6e42-4b84-8df6-6791bde6a07a",
     "name": "10th Planet London - Woolwich",
     "lat": 51.4911396,
     "lon": 0.071047,
@@ -32,7 +32,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-3",
+    "id": "53973c28-9ac9-4e16-96ae-b614df1bd0b2",
     "name": "33 Jiu Jitsu",
     "lat": 51.586391,
     "lon": -0.1121953,
@@ -48,7 +48,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-10",
+    "id": "f2d3d9b4-f1cd-4972-800d-29787ce437dd",
     "name": "ARMA BJJ",
     "lat": 51.4615284,
     "lon": -0.1384969,
@@ -64,7 +64,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-4",
+    "id": "eb7758d4-814a-4d94-8b28-e2c7f1b45356",
     "name": "Aeon BJJ",
     "lat": 51.4186859,
     "lon": -0.1343445,
@@ -80,7 +80,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-5",
+    "id": "a8c9b9ec-2fd8-4c24-9c9e-ad4e3b8c7c67",
     "name": "Alexandra Park BJJ",
     "lat": 51.6080596,
     "lon": -0.1235628,
@@ -96,7 +96,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-6",
+    "id": "64b4fd80-281d-4277-8ce5-8aaf0dec5cce",
     "name": "Alliance London",
     "lat": 51.4745087,
     "lon": -0.1832205,
@@ -112,7 +112,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-7",
+    "id": "68b5be04-c16a-412c-9052-69ee9fb9b7c9",
     "name": "Apex Jiu Jitsu",
     "lat": 51.5648095,
     "lon": -0.1063911,
@@ -128,7 +128,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-8",
+    "id": "7012d902-8fe3-48bd-9a6d-aa1a8254a545",
     "name": "Apollo BJJ",
     "lat": 51.4751358,
     "lon": -0.2018604,
@@ -144,7 +144,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-9",
+    "id": "09032bb0-58d6-4274-96a8-467c1cd402c0",
     "name": "Arlans Siqueira BJJ - North London",
     "lat": 51.63006,
     "lon": -0.1767584,
@@ -159,7 +159,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-11",
+    "id": "dd8507d5-53ba-4537-a6bc-32727677b23e",
     "name": "Aurum Jiu Jitsu",
     "lat": 51.4618653,
     "lon": 0.027896,
@@ -175,7 +175,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-18",
+    "id": "9b21c000-4633-49a1-8e1c-aef1946c7ddb",
     "name": "BJJ Art UK",
     "lat": 51.4882204,
     "lon": -0.1054988,
@@ -191,7 +191,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-19",
+    "id": "37f1c1f6-11ad-4a49-88d9-6c51169421bb",
     "name": "BJJ House Academy",
     "lat": 51.5405138,
     "lon": -0.2103359,
@@ -207,7 +207,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-12",
+    "id": "e93008de-34c1-415a-970b-1e957ac9d4c5",
     "name": "Backstreet Dojo BJJ",
     "lat": 51.4478832,
     "lon": -0.4106007,
@@ -223,7 +223,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-13",
+    "id": "1b0c308c-042b-411b-a6c6-93c04816a86c",
     "name": "Balance BJJ",
     "lat": 51.5072919,
     "lon": -0.1437229,
@@ -239,7 +239,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-14",
+    "id": "18a7ac9b-c56d-4083-ae2b-4b949eccf2cc",
     "name": "Barnet Combat Academy",
     "lat": 51.6488962,
     "lon": -0.1733385,
@@ -255,7 +255,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-16",
+    "id": "06af14d3-c2c0-4637-9754-d4b9d8e0d2aa",
     "name": "Battersea BJJ - Stars Gym",
     "lat": 51.4769797,
     "lon": -0.1469692,
@@ -270,7 +270,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-15",
+    "id": "e9d87af5-b40c-4ae8-b01d-fdf689e65a49",
     "name": "Battlezone BJJ and MMA",
     "lat": 51.5897111,
     "lon": -0.1024927,
@@ -285,7 +285,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-17",
+    "id": "52ea31b5-c62a-43a7-80d6-aa3180454234",
     "name": "Beast Fight Team",
     "lat": 51.5061996,
     "lon": -0.3787154,
@@ -301,7 +301,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-20",
+    "id": "40af5dad-b7d8-4023-8299-53805d096c08",
     "name": "Bloodline Gym",
     "lat": 51.5410518,
     "lon": -0.0577737,
@@ -317,7 +317,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-21",
+    "id": "708b7dcd-7c74-448a-86c0-c5b9be42ee63",
     "name": "Canary Wharf BJJ",
     "lat": 51.5054774,
     "lon": -0.0206736,
@@ -333,7 +333,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-22",
+    "id": "bb628c95-b24c-47bd-b3b5-486b10fae427",
     "name": "Cantagalo BJJ",
     "lat": 51.4902,
     "lon": -0.215087,
@@ -349,7 +349,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-23",
+    "id": "9fc2e957-764e-437e-9793-a053218ff989",
     "name": "Carlson Gracie Clapham",
     "lat": 51.4709435,
     "lon": -0.1375629,
@@ -365,7 +365,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-25",
+    "id": "a3c789d3-c95e-41f9-890a-3be4fed99689",
     "name": "Carlson Gracie HQ",
     "lat": 51.5017564,
     "lon": -0.2265662,
@@ -381,7 +381,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-24",
+    "id": "e899bfd8-fa84-48e0-a7ef-842297e82c0b",
     "name": "Carlson Gracie Hackney",
     "lat": 51.5324874,
     "lon": -0.1060356,
@@ -397,7 +397,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-26",
+    "id": "3254dd41-8939-4af2-8fa9-58aab3b102eb",
     "name": "Carlson Gracie Sheen",
     "lat": 51.4652159,
     "lon": -0.2667169,
@@ -413,7 +413,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-27",
+    "id": "f5ee5e74-d166-4fdb-95ae-abc1a1ce163e",
     "name": "Carlson Gracie Sutton and Carshalton",
     "lat": 51.368598,
     "lon": -0.1652093,
@@ -429,7 +429,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-28",
+    "id": "95b69cfb-01b7-4a1e-ac53-050dc8f2198e",
     "name": "Carlson Gracie Warriors",
     "lat": 51.5408036,
     "lon": -0.3000963,
@@ -445,7 +445,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-29",
+    "id": "87ade14f-18fa-4cc9-8c56-3770625fa520",
     "name": "Carpe Diem BJJ London",
     "lat": 51.5011444,
     "lon": -0.0932926,
@@ -461,7 +461,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-30",
+    "id": "b46fc435-59c8-4a23-8144-094fd0e9e1ef",
     "name": "Checkmat Essex",
     "lat": 51.5171766,
     "lon": 0.1923414,
@@ -477,7 +477,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-31",
+    "id": "49c3c9bc-5ce3-41fd-a78f-e55d2cc0d474",
     "name": "Checkmat Sidcup",
     "lat": 51.4324258,
     "lon": 0.1026967,
@@ -492,7 +492,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-32",
+    "id": "108e3703-39cb-4ff3-9f1e-48511397bfef",
     "name": "Complete Jiu Jitsu",
     "lat": 51.5647278,
     "lon": 0.1104129,
@@ -507,7 +507,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-33",
+    "id": "fb8658a5-f8a4-452b-89ee-c49cfe9ada99",
     "name": "Consistency BJJ",
     "lat": 51.4801017,
     "lon": -0.1937597,
@@ -523,7 +523,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-37",
+    "id": "bdd0daa2-f6db-4d45-9168-fbf2713bbb93",
     "name": "EN2 BJJ",
     "lat": 51.6536683,
     "lon": -0.0890852,
@@ -539,7 +539,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-34",
+    "id": "29b0fdcf-2581-4574-9ffb-b2e5406bca42",
     "name": "Eddie Kone Academy of Jiu Jitsu",
     "lat": 51.5865668,
     "lon": -0.0404128,
@@ -555,7 +555,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-53",
+    "id": "8f0493b5-1769-4be4-af60-ad841b1c82c7",
     "name": "Elephant and Castle",
     "lat": 51.5032295,
     "lon": -0.1044786,
@@ -570,7 +570,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-35",
+    "id": "1e33928f-d137-4c33-85b3-841b56b5fc1b",
     "name": "Elevate BJJ",
     "lat": 51.4635557,
     "lon": -0.3018576,
@@ -586,7 +586,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-36",
+    "id": "7c38ac44-1be6-4979-be9c-968ea75dc47b",
     "name": "Elite Submission Grappling",
     "lat": 51.4479058,
     "lon": 0.1809656,
@@ -601,7 +601,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-38",
+    "id": "cd36d654-0cde-4da5-9640-000e6d4b7c63",
     "name": "Equilibrium BJJ",
     "lat": 51.5977031,
     "lon": -0.1102286,
@@ -617,7 +617,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-39",
+    "id": "1f8fc2b1-ff1c-47fd-88f6-6045aaa6ebe9",
     "name": "Ethos BJJ",
     "lat": 51.6488962,
     "lon": -0.1733385,
@@ -633,7 +633,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-40",
+    "id": "c5cd9d3f-d59c-4c69-b804-67858c09f660",
     "name": "Fight City - Balham",
     "lat": 51.4430399,
     "lon": -0.1515974,
@@ -648,7 +648,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-41",
+    "id": "703b821e-8da0-4181-8abd-7c8330a62cc0",
     "name": "Fight City - Elephant Park",
     "lat": 51.495007,
     "lon": -0.1003315,
@@ -663,7 +663,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-42",
+    "id": "26537ba6-0782-408f-a936-cdc70ffd58b6",
     "name": "Fight City - Moorgate",
     "lat": 51.5256284,
     "lon": -0.0876094,
@@ -678,7 +678,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-43",
+    "id": "4e05fb5e-b48d-4ee2-a022-ad5bd76d1150",
     "name": "Fighting Arts Academy",
     "lat": 51.6084767,
     "lon": 0.0003285,
@@ -693,7 +693,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-44",
+    "id": "3547e8b0-500e-4f5a-a116-b51d4cab7f14",
     "name": "Fightzone London",
     "lat": 51.5331911,
     "lon": -0.0571513,
@@ -709,7 +709,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-45",
+    "id": "711e4e6e-758c-4148-9915-5b760e7c88b0",
     "name": "Forrer Martial Arts Academy",
     "lat": 51.4645986,
     "lon": -0.0137428,
@@ -725,7 +725,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-46",
+    "id": "ec527b75-79a3-4ebc-bb6d-8676df84475a",
     "name": "Gorilla BJJ",
     "lat": 51.6487014,
     "lon": -0.0525297,
@@ -741,7 +741,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-47",
+    "id": "876cbcb3-ad33-4400-b8da-224612ed6034",
     "name": "Gracie Barra Bromley",
     "lat": 51.5246287,
     "lon": -0.0123189,
@@ -757,7 +757,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-48",
+    "id": "c5842900-9100-4f3c-a752-7b6ee40cba3a",
     "name": "Gracie Barra Haringey",
     "lat": 51.5771747,
     "lon": -0.0988112,
@@ -773,7 +773,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-49",
+    "id": "fe85b50b-8456-460a-a72f-3f770eb6ca50",
     "name": "Gracie Barra Oval",
     "lat": 51.4882204,
     "lon": -0.1054988,
@@ -789,7 +789,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-50",
+    "id": "3b7f83cf-42d0-440c-bb93-1a910dee83eb",
     "name": "Gracie Barra Tooting",
     "lat": 51.4273915,
     "lon": -0.1687921,
@@ -805,7 +805,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-51",
+    "id": "6a209b15-3eb4-40ed-b7d7-18f4dba845d8",
     "name": "Gracie Barra Twickenham",
     "lat": 51.4496872,
     "lon": -0.3303416,
@@ -821,7 +821,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-54",
+    "id": "af084c3f-2a29-4506-a0df-d788f562cd7f",
     "name": "Grand Union Jiu Jitsu - Farringdon",
     "lat": 51.5202107,
     "lon": -0.1057568,
@@ -837,7 +837,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-55",
+    "id": "35bff609-cbe3-4274-a13a-8b36364a43ca",
     "name": "Grange Jiu Jitsu",
     "lat": 51.5011042,
     "lon": -0.3065984,
@@ -853,7 +853,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-56",
+    "id": "d7c40684-5e9a-4759-bebb-c24a78b7e886",
     "name": "Grapple Collective",
     "lat": 51.5112823,
     "lon": -0.0569157,
@@ -869,7 +869,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-57",
+    "id": "d35c6230-7352-4bd1-afc7-eec527dc7080",
     "name": "Grapplelabs",
     "lat": 51.3731117,
     "lon": 0.0895642,
@@ -885,7 +885,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-58",
+    "id": "0e56e0e9-6eb0-402d-b975-62723e35885a",
     "name": "Grapplers Den",
     "lat": 51.4430399,
     "lon": -0.1515974,
@@ -901,7 +901,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-59",
+    "id": "0d1c1f55-a5ce-4289-9655-790bcf237760",
     "name": "Grapplers Den - Croydon",
     "lat": 51.3985808,
     "lon": -0.1000928,
@@ -917,7 +917,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-60",
+    "id": "2edeb8cc-e452-4351-a450-c7f77ba3b861",
     "name": "Grapplezone",
     "lat": 51.4981063,
     "lon": -0.1122692,
@@ -933,7 +933,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-61",
+    "id": "82cd7f5e-c57d-405d-be1d-57f26efd0abf",
     "name": "Great Britain Top Team",
     "lat": 51.400872,
     "lon": -0.1781763,
@@ -949,7 +949,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-62",
+    "id": "4d0e5cba-b39f-46cf-bd2a-844704ce62fb",
     "name": "Guild BJJ",
     "lat": 51.4610994,
     "lon": -0.1875294,
@@ -965,7 +965,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-63",
+    "id": "cb7c7089-79c1-4f2d-a0df-75e8b0cfbba8",
     "name": "Hampstead BJJ",
     "lat": 51.5467206,
     "lon": -0.1910332,
@@ -981,7 +981,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-64",
+    "id": "7cb715e8-30f7-448b-9fab-87baac8ffc6d",
     "name": "Havering Jiu Jitsu",
     "lat": 51.581535,
     "lon": 0.2059616,
@@ -997,7 +997,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-65",
+    "id": "11ad2600-b69c-469a-8d48-55762aff5d26",
     "name": "Hillingdon BJJ",
     "lat": 51.5031403,
     "lon": -0.4207197,
@@ -1013,7 +1013,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-66",
+    "id": "3ef16b1b-7ca3-49ce-b017-4aecd0b349dc",
     "name": "Hitio Gym - Orpington",
     "lat": 51.395767,
     "lon": 0.1071841,
@@ -1028,7 +1028,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-67",
+    "id": "868f1fdc-601e-4409-bc3b-f4a23079249d",
     "name": "Hounslow BJJ",
     "lat": 51.4810146,
     "lon": -0.3519792,
@@ -1043,7 +1043,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-68",
+    "id": "bd8ec070-242b-4889-b830-c7d8e1d7ec13",
     "name": "Inglorious Grapplers",
     "lat": 51.5179685,
     "lon": -0.0822015,
@@ -1059,7 +1059,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-71",
+    "id": "6a04c6a7-be2c-4c82-b683-fc002b75e987",
     "name": "Joe's Fight Gym",
     "lat": 51.538266,
     "lon": 0.099626,
@@ -1074,7 +1074,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-76",
+    "id": "7f8ac0a3-12d5-45f6-a6d6-7471e042af65",
     "name": "KO Combat Academy",
     "lat": 51.5281546,
     "lon": -0.0554378,
@@ -1090,7 +1090,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-72",
+    "id": "e435c76f-c7c1-48c3-9c70-3243d2be87b2",
     "name": "Khalid Ismail Academy",
     "lat": 51.575863,
     "lon": 0.0458398,
@@ -1106,7 +1106,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-73",
+    "id": "5bd5aa3f-63fc-4ff2-abd7-df4599ce1a68",
     "name": "Kinetic BJJ",
     "lat": 51.5256284,
     "lon": -0.0876094,
@@ -1122,7 +1122,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-74",
+    "id": "c54270ae-9971-43e6-a536-d2cc8dd7adc0",
     "name": "Kingston BJJ",
     "lat": 51.4125645,
     "lon": -0.3027535,
@@ -1138,7 +1138,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-75",
+    "id": "44ecda33-9a30-4c8d-b9b6-3888477bfb22",
     "name": "Kingston Jiu Jitsu",
     "lat": 51.4125645,
     "lon": -0.3027535,
@@ -1154,7 +1154,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-130",
+    "id": "7810bd75-1cc0-42b2-828d-630eb36e0515",
     "name": "Ladbroke Grove",
     "lat": 51.4939971,
     "lon": -0.1742004,
@@ -1169,7 +1169,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-77",
+    "id": "4eedc541-d620-4305-bae7-210fafb1a1a1",
     "name": "Legacy Martial Arts",
     "lat": 51.5300267,
     "lon": -0.074467,
@@ -1184,7 +1184,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-78",
+    "id": "342adc9f-ebc8-4df8-9cb6-8bdaa4fa81d9",
     "name": "Legion Grappling",
     "lat": 51.566705,
     "lon": -0.034536,
@@ -1200,7 +1200,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-79",
+    "id": "10885a7c-a0b9-47fe-87b3-c19f516f6b00",
     "name": "London Fight Factory",
     "lat": 51.5256284,
     "lon": -0.0876094,
@@ -1216,7 +1216,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-80",
+    "id": "7d1497a6-f16d-479e-beb5-d54097989311",
     "name": "London Grapple",
     "lat": 51.4789824,
     "lon": -0.0266353,
@@ -1232,7 +1232,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-81",
+    "id": "5d5390c8-f712-4f9c-b2f5-ac3598a4d0ab",
     "name": "London Olympic Grappling Academy",
     "lat": 51.5553661,
     "lon": -0.2863565,
@@ -1247,7 +1247,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-82",
+    "id": "6cb3554e-5e98-453d-8f1b-a9b86ab4f733",
     "name": "London Shootfighters",
     "lat": 51.5408036,
     "lon": -0.3000963,
@@ -1263,7 +1263,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-83",
+    "id": "ddfa13d9-1f65-4112-a828-792619b48365",
     "name": "London Shootfighters East",
     "lat": 51.5083005,
     "lon": -0.0069622,
@@ -1279,7 +1279,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-84",
+    "id": "1cc6e0ba-a144-49b6-83b6-ef63cdf53e47",
     "name": "Luciano Cristovam BJJ",
     "lat": 51.5503801,
     "lon": -0.1404477,
@@ -1295,7 +1295,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-89",
+    "id": "fb6fb6d1-cfdb-4bd2-aa00-cd8ba46ff61f",
     "name": "MCEC Jiu Jitsu",
     "lat": 51.6185827,
     "lon": -0.1114994,
@@ -1311,7 +1311,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-90",
+    "id": "95f55ce7-d2dd-475a-bbc6-213fccaa9088",
     "name": "MCMA",
     "lat": 51.5648147,
     "lon": -0.3524182,
@@ -1327,7 +1327,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-92",
+    "id": "cb36c256-592c-47bd-b12f-f9f91a121878",
     "name": "MMA LDN",
     "lat": 51.5155556,
     "lon": -0.0712299,
@@ -1343,7 +1343,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-85",
+    "id": "dca07238-472a-4739-a1da-0af8afd459fd",
     "name": "Mandala Jiu Jitsu",
     "lat": 51.425509,
     "lon": -0.0320708,
@@ -1359,7 +1359,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-86",
+    "id": "3416d00d-6800-4fcb-9388-d084d2545be5",
     "name": "Martial Arts & Yoga - Earlsfield",
     "lat": 51.4412756,
     "lon": -0.187282,
@@ -1374,7 +1374,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-91",
+    "id": "0efe11c5-98d0-4946-b9ee-44ec2a5a1964",
     "name": "Mill Hill BJJ",
     "lat": 51.5834983,
     "lon": -0.2279871,
@@ -1390,7 +1390,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-93",
+    "id": "e6c80261-2ef4-499a-a56a-eeef2c1edce1",
     "name": "Morton Martial Arts",
     "lat": 51.4244662,
     "lon": -0.3325731,
@@ -1406,7 +1406,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-94",
+    "id": "0d160d7e-abeb-4712-8d6d-f683d00fafd7",
     "name": "Myriad Jiu Jitsu",
     "lat": 51.4633813,
     "lon": -0.0358641,
@@ -1422,7 +1422,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-95",
+    "id": "34117d69-ad0c-44d3-a97f-3ec5f4b0095d",
     "name": "New Element MMA",
     "lat": 51.6171748,
     "lon": 0.0438665,
@@ -1438,7 +1438,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-96",
+    "id": "84e9b174-0757-4171-98f3-4be605e966db",
     "name": "New School BJJ (Battersea)",
     "lat": 51.4636536,
     "lon": -0.1690294,
@@ -1454,7 +1454,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-97",
+    "id": "45d9873c-136b-4bbc-a17f-fca105d1d5a8",
     "name": "New School BJJ (Brixton)",
     "lat": 51.4630998,
     "lon": -0.1144089,
@@ -1470,7 +1470,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-98",
+    "id": "f7cafe48-be49-4f0d-ab39-ffe24f258621",
     "name": "New School BJJ (Cheam)",
     "lat": 51.356331,
     "lon": -0.2160576,
@@ -1486,7 +1486,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-99",
+    "id": "b4c75c3b-8701-4817-b43d-994172fff83f",
     "name": "New Wave Academy - Bromley",
     "lat": 51.4006268,
     "lon": 0.0170661,
@@ -1501,7 +1501,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-100",
+    "id": "36da60e8-cb77-4f09-82df-5d5ed263c45f",
     "name": "New Wave Academy - Croydon",
     "lat": 51.5871384,
     "lon": -0.0421283,
@@ -1517,7 +1517,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-101",
+    "id": "0a41e229-fe98-4620-aefe-aeecc281e993",
     "name": "New Wave Academy - Penge",
     "lat": 51.3919855,
     "lon": -0.0879436,
@@ -1533,7 +1533,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-102",
+    "id": "21b45f61-590c-4a83-aa9d-280e6033be1f",
     "name": "North 12 Martial Arts",
     "lat": 51.6094637,
     "lon": -0.1884316,
@@ -1549,7 +1549,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-103",
+    "id": "0c612e0f-7b5c-43ea-97ad-0dc234eeb7b0",
     "name": "North London BJJ",
     "lat": 51.6321476,
     "lon": -0.1279123,
@@ -1565,7 +1565,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-88",
+    "id": "526bf747-a9c4-4748-9b98-da69e81745af",
     "name": "Northolt",
     "lat": 51.5149803,
     "lon": -0.3004067,
@@ -1580,7 +1580,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-104",
+    "id": "121e5e23-778a-4bbf-ab79-e475680205ec",
     "name": "Origin BJJ London",
     "lat": 51.5897111,
     "lon": -0.1024927,
@@ -1596,7 +1596,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-105",
+    "id": "3c4447b9-990c-45d5-a368-e25d11ca6146",
     "name": "Patello BJJ",
     "lat": 51.3561869,
     "lon": -0.3080478,
@@ -1612,7 +1612,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-106",
+    "id": "f0f1a8a3-45f6-40a7-ba81-626712064114",
     "name": "Premier BJJ - Central Harrow",
     "lat": 51.5792928,
     "lon": -0.3366641,
@@ -1628,7 +1628,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-107",
+    "id": "00ca13ae-b8ef-4f35-a7db-cea51409dd81",
     "name": "Premier BJJ - Ruislip Manor",
     "lat": 51.5744535,
     "lon": -0.4139786,
@@ -1644,7 +1644,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-108",
+    "id": "8c521000-a422-4b14-8895-2dbd52d33120",
     "name": "Premier BJJ - South Harrow",
     "lat": 51.5648147,
     "lon": -0.3524182,
@@ -1660,7 +1660,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-109",
+    "id": "bf11044d-2acf-445c-9e89-0a2650578ca0",
     "name": "Premier BJJ - South Ruislip",
     "lat": 51.5484582,
     "lon": -0.3695247,
@@ -1676,7 +1676,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-110",
+    "id": "8d3b7ed2-0d24-44dc-ad92-a98d51924ca7",
     "name": "Pure Jiu Jitsu",
     "lat": 51.5235769,
     "lon": -0.2597818,
@@ -1692,7 +1692,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-111",
+    "id": "b40e33ff-46b5-4cf3-9337-963fcf6e9c2a",
     "name": "Putney BJJ",
     "lat": 51.4605789,
     "lon": -0.2158087,
@@ -1708,7 +1708,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-70",
+    "id": "a8a8dda1-9025-4cce-b77d-238ae1ec6604",
     "name": "Queens Park",
     "lat": 51.5768177,
     "lon": -0.2139731,
@@ -1723,7 +1723,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-112",
+    "id": "f2947591-cfaf-4089-8bf2-fe9bdcd88e51",
     "name": "Ray Stevens Academy",
     "lat": 51.4094579,
     "lon": -0.2300735,
@@ -1739,7 +1739,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-113",
+    "id": "8d3e3c08-814a-4483-8765-94c981d9dea8",
     "name": "Revival MMA",
     "lat": 51.6087125,
     "lon": -0.3700564,
@@ -1755,7 +1755,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-114",
+    "id": "55fc4d59-9bb6-419b-99b9-f523832fb656",
     "name": "Roger Gracie Barnet",
     "lat": 51.6094637,
     "lon": -0.1884316,
@@ -1771,7 +1771,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-115",
+    "id": "bb93716e-99e6-4937-b30d-159fcb71ac12",
     "name": "Roger Gracie HQ",
     "lat": 51.494109,
     "lon": -0.2250607,
@@ -1787,7 +1787,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-116",
+    "id": "ce8f7fff-2f0d-4b0d-9a1d-537a00103830",
     "name": "Roger Gracie Moorgate",
     "lat": 51.5182516,
     "lon": -0.0890625,
@@ -1803,7 +1803,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-117",
+    "id": "b311902b-c729-48ff-9704-bc7f0e0981d5",
     "name": "Rolling Calf Jiu Jitsu",
     "lat": 51.4194578,
     "lon": -0.0527653,
@@ -1819,7 +1819,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-118",
+    "id": "554dda9f-a517-45be-8205-febc7381db1e",
     "name": "Royal Resistance",
     "lat": 51.4618653,
     "lon": 0.027896,
@@ -1835,7 +1835,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-119",
+    "id": "003708bb-fbfa-4979-9b7e-01058f54325b",
     "name": "Royce Gracie Jiu-Jitsu Essex",
     "lat": 51.5587702,
     "lon": 0.2515255,
@@ -1851,7 +1851,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-120",
+    "id": "25ed5ca9-7e4c-4de3-81b5-11b4b8bc65f3",
     "name": "Ruislip BJJ",
     "lat": 51.5565752,
     "lon": -0.3986189,
@@ -1867,7 +1867,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-122",
+    "id": "a2fbeb4b-e4d9-4f9c-9521-9177b255ed92",
     "name": "SCK Fitness Team",
     "lat": 51.5568183,
     "lon": -0.0051322,
@@ -1883,7 +1883,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-123",
+    "id": "e0abf1f4-858d-493f-b8d1-f577ed253cfe",
     "name": "SOAS BJJ",
     "lat": 51.5234289,
     "lon": -0.124118,
@@ -1899,7 +1899,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-121",
+    "id": "e8ceca08-3a39-4698-ae01-4893ef24ed37",
     "name": "School of Jiu Jitsu",
     "lat": 51.5347786,
     "lon": -0.1935916,
@@ -1915,7 +1915,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-124",
+    "id": "2686807a-9360-4d40-b095-f906e3c8ba2a",
     "name": "Southside Kings Fight Academy",
     "lat": 51.3770038,
     "lon": -0.1178974,
@@ -1931,7 +1931,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-125",
+    "id": "ab958f09-0d54-496d-b3a5-76a208eac42a",
     "name": "Stance Jiu Jitsu Academy",
     "lat": 51.4911396,
     "lon": 0.071047,
@@ -1947,7 +1947,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-126",
+    "id": "68ffc779-ebea-4711-9a33-e316a76173d6",
     "name": "Stone Fight Academy",
     "lat": 51.4644449,
     "lon": 0.1001455,
@@ -1963,7 +1963,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-127",
+    "id": "68b236f0-690c-4b26-9b26-95fdff20f172",
     "name": "Stronger Fitness and Martial Arts",
     "lat": 51.4155856,
     "lon": -0.1914323,
@@ -1979,7 +1979,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-128",
+    "id": "25e96a17-9109-4929-af2f-3d34b8bcc42b",
     "name": "Studio NW2",
     "lat": 51.5590423,
     "lon": -0.2120596,
@@ -1995,7 +1995,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-131",
+    "id": "44cb0805-c15c-44d7-956a-3ed763c86a1b",
     "name": "Submission School",
     "lat": 51.548871,
     "lon": 0.0249384,
@@ -2010,7 +2010,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-132",
+    "id": "42f28636-1c2d-4aff-bd38-3d799627fe20",
     "name": "Target Team",
     "lat": 51.5195582,
     "lon": 0.1160126,
@@ -2025,7 +2025,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-133",
+    "id": "f4810485-59a4-435a-8fe9-0199bbeee251",
     "name": "The Armoury",
     "lat": 51.3662803,
     "lon": -0.2043807,
@@ -2041,7 +2041,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-134",
+    "id": "1613f465-25e3-4bb7-9b70-13c7a5173d2b",
     "name": "The BJJ Place - Enfield",
     "lat": 51.6536683,
     "lon": -0.0890852,
@@ -2056,7 +2056,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-135",
+    "id": "c01ac8e8-95c5-42b1-963d-60d38fbd2c58",
     "name": "The BJJ Place - Stoke Newington",
     "lat": 51.5481908,
     "lon": -0.0760535,
@@ -2071,7 +2071,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-136",
+    "id": "71d62dc7-7d3f-4da2-ba93-d88768a1aee0",
     "name": "The BJJ Place - West Hampstead",
     "lat": 51.5467206,
     "lon": -0.1910332,
@@ -2086,7 +2086,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-137",
+    "id": "b79cde50-a44b-4712-a546-e211ef16f176",
     "name": "The Budokwai",
     "lat": 51.4919274,
     "lon": -0.1924361,
@@ -2102,7 +2102,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-138",
+    "id": "d8e7d335-aaff-4e1c-854d-26cb9339dae1",
     "name": "The Gauntlet Fight Academy",
     "lat": 51.5151841,
     "lon": -0.3022135,
@@ -2117,7 +2117,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-139",
+    "id": "fd7de1c2-8190-4fef-9c0b-e483a206fc5e",
     "name": "The Institute of Grappling (IOG)",
     "lat": 51.5834983,
     "lon": -0.2279871,
@@ -2133,7 +2133,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-140",
+    "id": "6e5a067e-7add-4f86-8c20-0e7ec682e34e",
     "name": "The Kodokan",
     "lat": 51.4913197,
     "lon": 0.0530414,
@@ -2149,7 +2149,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-141",
+    "id": "40a0995d-c511-48ce-a3d7-c05e84d8f1e6",
     "name": "The London Jiu Jitsu Centre",
     "lat": 51.5249495,
     "lon": -0.1393963,
@@ -2165,7 +2165,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-142",
+    "id": "5c4636e9-9600-4e7f-a2d3-43b4bfbe197a",
     "name": "The MMA Clinic - Angel",
     "lat": 51.5324874,
     "lon": -0.1060356,
@@ -2181,7 +2181,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-143",
+    "id": "6de65b29-28f5-4d90-8ae7-677e5933baa7",
     "name": "The MMA Clinic - Romford",
     "lat": 51.5744009,
     "lon": 0.1839019,
@@ -2197,7 +2197,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-144",
+    "id": "c1b2fc95-3fa3-41bc-a5ad-4b72d4c90bb3",
     "name": "The Resistance",
     "lat": 51.6512607,
     "lon": -0.1959506,
@@ -2213,7 +2213,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-145",
+    "id": "aa878550-f44f-48c6-a04c-a8b845860539",
     "name": "The Warehouse",
     "lat": 51.5792713,
     "lon": -0.2389047,
@@ -2228,7 +2228,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-146",
+    "id": "f5b5fd84-6efc-400e-96d3-4687252ec71f",
     "name": "Third Space - Moorgate",
     "lat": 51.5182516,
     "lon": -0.0890625,
@@ -2243,7 +2243,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-147",
+    "id": "ffde1b50-f72f-4698-afda-1fc804525599",
     "name": "Third Space - Soho",
     "lat": 51.5112598,
     "lon": -0.1357352,
@@ -2258,7 +2258,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-148",
+    "id": "1375f938-d376-475e-bc14-35ff8fa87eaa",
     "name": "Tokei Martial Arts",
     "lat": 51.5048764,
     "lon": -0.0851473,
@@ -2274,7 +2274,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-149",
+    "id": "53f5e288-9e3a-4826-97a4-67005733234c",
     "name": "Triccs Academy BJJ - Beckenham",
     "lat": 51.4108125,
     "lon": -0.0255987,
@@ -2290,7 +2290,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-152",
+    "id": "2d295dce-c3f3-4088-b801-0d2addabad18",
     "name": "Triccs Academy BJJ - Peckham",
     "lat": 51.4734386,
     "lon": -0.0584337,
@@ -2306,7 +2306,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-153",
+    "id": "5dc7d7f5-4477-4d93-a36e-3f2d20f1a1e6",
     "name": "True Virtues BJJ",
     "lat": 51.4202156,
     "lon": -0.2065393,
@@ -2322,7 +2322,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-154",
+    "id": "259a862a-e291-4a74-9e87-2e1946ceb2b9",
     "name": "UFC Gym London",
     "lat": 51.5256284,
     "lon": -0.0876094,
@@ -2338,7 +2338,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-155",
+    "id": "b4d482bb-7c6d-4ce9-be56-070c1ba9560c",
     "name": "Uncommon Jiu Jitsu",
     "lat": 51.5011444,
     "lon": -0.0932926,
@@ -2354,7 +2354,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-156",
+    "id": "a2354128-4664-4b79-863c-9f85c67b6b0b",
     "name": "Urban Warriors / Team Kevlar Fitness",
     "lat": 51.485663,
     "lon": -0.1248249,
@@ -2369,7 +2369,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-157",
+    "id": "bb59f449-110e-4519-8413-9fe1cc55d435",
     "name": "Vai BJJ",
     "lat": 51.4496872,
     "lon": -0.3303416,
@@ -2385,7 +2385,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-158",
+    "id": "7418512b-41c1-42c0-a3e0-7809ef89d01d",
     "name": "Valour Jiu Jitsu",
     "lat": 51.4687259,
     "lon": -0.2102924,
@@ -2400,7 +2400,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-159",
+    "id": "68d8e527-1fd2-47f5-8e1f-aceee6fc214c",
     "name": "Vasi Fusle Academy",
     "lat": 51.4877982,
     "lon": -0.0096006,
@@ -2416,7 +2416,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-160",
+    "id": "41cf33ec-266e-4535-b242-c508a60892b8",
     "name": "Wandsworth BJJ",
     "lat": 51.4610994,
     "lon": -0.1875294,
@@ -2432,7 +2432,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-161",
+    "id": "ccd038dd-2d11-4cfd-86e1-f7668d327aed",
     "name": "Wave BJJ",
     "lat": 51.4943872,
     "lon": -0.2448256,
@@ -2448,7 +2448,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-151",
+    "id": "38684b73-262f-4646-9e3e-dd9561ac6ef0",
     "name": "West Dulwich",
     "lat": 51.5032295,
     "lon": -0.1044786,
@@ -2463,7 +2463,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-162",
+    "id": "d9aab7dc-217c-44d7-a371-1d6d7cf630e8",
     "name": "Will BJJ",
     "lat": 51.4532909,
     "lon": -0.1009509,
@@ -2479,7 +2479,7 @@
     "updatedAt": "2025-10-16T19:46:18.663Z"
   },
   {
-    "id": "raw-163",
+    "id": "58503458-8cfb-425d-89f0-f73dfc6a5f40",
     "name": "Wimbledon BJJ",
     "lat": 51.4025904,
     "lon": -0.193352,
