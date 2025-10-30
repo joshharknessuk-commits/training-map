@@ -6,6 +6,7 @@ import { Controls } from '@/components/Controls';
 import { GymList } from '@/components/GymList';
 import { NearMeButton } from '@/components/NearMeButton';
 import { useGyms } from '@/state/useGyms';
+import { useGeodata } from '@/state/useGeodata';
 import { DEFAULT_MAP_STYLE_INDEX, MAP_STYLES } from '@/app/config/mapStyles';
 import { haversineKm } from '@/lib/distance';
 import type { Gym } from '@/types/osm';
@@ -24,6 +25,9 @@ export default function HomePage() {
     }
     return window.innerWidth >= 1024;
   });
+  const [showHeatmap, setShowHeatmap] = useState(false);
+  const [showBoroughHighlights, setShowBoroughHighlights] = useState(false);
+  const [showGymMarkers, setShowGymMarkers] = useState(true);
   const {
     filteredGyms,
     radius,
@@ -44,6 +48,11 @@ export default function HomePage() {
     clearFilters,
   } = useGyms();
   const mapStyle = MAP_STYLES[DEFAULT_MAP_STYLE_INDEX];
+  const {
+    boroughs: boroughFeatures,
+    loading: geodataLoading,
+    error: geodataError,
+  } = useGeodata();
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -132,6 +141,10 @@ export default function HomePage() {
                 highlightedGymIds={highlightedGymIds}
                 selectedGym={safeSelectedGym}
                 onGymFocus={setSelectedGym}
+                showHeatmap={showHeatmap}
+                showBoroughHighlights={showBoroughHighlights}
+                showGymMarkers={showGymMarkers}
+                boroughFeatureCollection={boroughFeatures ?? undefined}
               />
             </div>
 
@@ -176,6 +189,15 @@ export default function HomePage() {
         </div>
       </div>
 
+      {filtersOpen ? (
+        <button
+          type="button"
+          aria-label="Close filters"
+          onClick={() => setFiltersOpen(false)}
+          className="fixed inset-0 z-[940] bg-slate-950/60 backdrop-blur-sm transition-opacity lg:hidden"
+        />
+      ) : null}
+
       <Controls
         radius={radius}
         setRadius={setRadius}
@@ -194,17 +216,38 @@ export default function HomePage() {
         clearFilters={clearFilters}
         open={filtersOpen}
         onOpenChange={setFiltersOpen}
+        showHeatmap={showHeatmap}
+        setShowHeatmap={setShowHeatmap}
+        showBoroughHighlights={showBoroughHighlights}
+        setShowBoroughHighlights={setShowBoroughHighlights}
+        showGymMarkers={showGymMarkers}
+        setShowGymMarkers={setShowGymMarkers}
       />
 
-      {loading ? (
-        <div className="pointer-events-none fixed top-20 right-6 z-[900] rounded-xl bg-slate-900/85 px-3 py-2 text-sm font-semibold text-[#FFCC29] shadow-lg shadow-black/40 backdrop-blur">
-          Loading gyms…
+      {loading || geodataLoading ? (
+        <div className="pointer-events-none fixed top-20 right-6 z-[900] space-y-2">
+          {loading ? (
+            <div className="rounded-xl bg-slate-900/85 px-3 py-2 text-sm font-semibold text-[#FFCC29] shadow-lg shadow-black/40 backdrop-blur">
+              Loading gyms…
+            </div>
+          ) : null}
+          {geodataLoading ? (
+            <div className="rounded-xl bg-slate-900/85 px-3 py-2 text-sm font-semibold text-emerald-300 shadow-lg shadow-black/40 backdrop-blur">
+              Loading map overlays…
+            </div>
+          ) : null}
         </div>
       ) : null}
 
       {error ? (
         <div className="fixed top-24 left-1/2 z-[900] -translate-x-1/2 rounded-xl bg-[#B43A3A]/90 px-4 py-2 text-sm text-white shadow-lg">
           {error}
+        </div>
+      ) : null}
+
+      {geodataError ? (
+        <div className="fixed top-36 left-1/2 z-[900] -translate-x-1/2 rounded-xl bg-[#B43A3A]/90 px-4 py-2 text-sm text-white shadow-lg">
+          {geodataError}
         </div>
       ) : null}
     </div>

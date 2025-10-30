@@ -12,8 +12,23 @@ import {
   useMap,
   useMapEvents,
 } from 'react-leaflet';
-import type { Feature, Polygon } from '@turf/turf';
-import type { CircleMarker as LeafletCircleMarker, LatLngBounds, Map as LeafletMap } from 'leaflet';
+import type { Feature as TurfFeature, Polygon } from '@turf/turf';
+import L from 'leaflet';
+import 'leaflet.heat';
+import type {
+  CircleMarker as LeafletCircleMarker,
+  LatLngBounds,
+  Map as LeafletMap,
+  Layer,
+  PathOptions,
+} from 'leaflet';
+import type {
+  Feature as GeoJsonFeature,
+  FeatureCollection,
+  Geometry,
+  GeoJsonObject,
+  GeoJsonProperties,
+} from 'geojson';
 import Supercluster from 'supercluster';
 import type { ClusterFeature, PointFeature } from 'supercluster';
 import type { Gym } from '@/types/osm';
@@ -27,6 +42,119 @@ const RING_OUTLINE = '#009739';
 const RING_FILL = '#FFCC29';
 const MARKER_BORDER = '#002776';
 const MARKER_FILL = '#009739';
+const SINGLE_CLUSTER_DOT_ZOOM_LEVEL = 8;
+
+type HeatmapLatLng = [number, number, number?];
+
+type LeafletHeatLayer = L.Layer & {
+  setLatLngs: (latlngs: HeatmapLatLng[]) => LeafletHeatLayer;
+};
+
+interface HeatLayerFactory {
+  heatLayer: (latlngs: HeatmapLatLng[], options?: HeatLayerOptions) => LeafletHeatLayer;
+}
+
+interface HeatLayerOptions {
+  radius?: number;
+  blur?: number;
+  maxZoom?: number;
+  minOpacity?: number;
+  max?: number;
+  gradient?: Record<number, string>;
+}
+
+const HEATMAP_GRADIENT: Record<number, string> = {
+  0: 'rgba(0,0,0,0)',
+  0.07: 'rgba(33,102,172,0.42)',
+  0.18: 'rgba(35,139,169,0.52)',
+  0.3: 'rgba(65,182,196,0.6)',
+  0.45: 'rgba(127,205,187,0.68)',
+  0.6: 'rgba(161,218,180,0.75)',
+  0.7: 'rgba(199,233,180,0.78)',
+  0.78: 'rgba(237,248,177,0.82)',
+  0.85: 'rgba(255,255,178,0.84)',
+  0.9: 'rgba(254,227,145,0.9)',
+  0.95: 'rgba(254,204,92,0.95)',
+  1: 'rgba(253,141,60,1)',
+};
+
+const leafletWithHeat = L as unknown as typeof L & HeatLayerFactory;
+
+const escapeHtml = (value: string): string =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
+const buildLink = (label: string, url: string | undefined | null) => {
+  if (!url) {
+    return '';
+  }
+  const safeLabel = escapeHtml(label);
+  const safeUrl = escapeHtml(url);
+  return `<a class="inline-flex items-center gap-1 text-xs font-semibold text-indigo-200 underline underline-offset-2 hover:text-white transition" href="${safeUrl}" target="_blank" rel="noopener noreferrer">${safeLabel}</a>`;
+};
+
+const renderBoroughPopup = (name: string, count: number): string => {
+  const safeName = escapeHtml(name);
+  return `
+    <div class="min-w-[200px] max-w-[240px] space-y-2 rounded-2xl bg-slate-900/95 px-4 py-3 text-slate-100 shadow-lg">
+      <div class="flex items-center gap-2 text-sm font-semibold text-white">
+        <span aria-hidden="true">🏙️</span>
+        <span>${safeName}</span>
+      </div>
+      <div class="text-xs text-slate-300">Active gyms in this borough: <span class="font-semibold text-white">${count}</span></div>
+      <div class="text-[10px] uppercase tracking-wide text-slate-400">Based on current filter results.</div>
+    </div>
+  `;
+};
+
+function HeatmapOverlay({ gyms }: { gyms: Gym[] }) {
+  const map = useMap();
+  const layerRef = useRef<LeafletHeatLayer | null>(null);
+
+  const points = useMemo<HeatmapLatLng[]>(() => {
+    return gyms.map((gym) => [gym.lat, gym.lon, 1]);
+  }, [gyms]);
+
+  useEffect(() => {
+    if (!map) {
+      return;
+    }
+
+    if (points.length === 0) {
+      if (layerRef.current) {
+        map.removeLayer(layerRef.current);
+        layerRef.current = null;
+      }
+      return;
+    }
+
+    if (!layerRef.current) {
+      layerRef.current = leafletWithHeat.heatLayer(points, {
+        radius: 36,
+        blur: 26,
+        maxZoom: 17,
+        minOpacity: 0.48,
+        gradient: HEATMAP_GRADIENT,
+      });
+      layerRef.current.addTo(map);
+    } else {
+      layerRef.current.setLatLngs(points);
+    }
+
+    return () => {
+      if (layerRef.current) {
+        map.removeLayer(layerRef.current);
+        layerRef.current = null;
+      }
+    };
+  }, [map, points]);
+
+  return null;
+}
 
 const buildDirectionsUrl = (gym: Gym, origin?: { lat: number; lng: number } | null) => {
   const params = new URLSearchParams({
@@ -55,6 +183,10 @@ interface MapViewProps {
   highlightedGymIds?: string[];
   selectedGym?: Gym | null;
   onGymFocus?: (gym: Gym) => void;
+  showHeatmap?: boolean;
+  showBoroughHighlights?: boolean;
+  showGymMarkers?: boolean;
+  boroughFeatureCollection?: FeatureCollection<Geometry, GeoJsonFeature['properties']>;
 }
 
 interface ViewportState {
@@ -73,7 +205,7 @@ type ClusterPoint =
   | ClusterFeature<Supercluster.AnyProps>;
 
 const INITIAL_VIEWPORT: ViewportState = {
-  zoom: 10,
+  zoom: 8,
   bounds: null,
 };
 
@@ -87,6 +219,10 @@ export function MapView({
   highlightedGymIds,
   selectedGym,
   onGymFocus,
+  showHeatmap = false,
+  showBoroughHighlights = false,
+  showGymMarkers = true,
+  boroughFeatureCollection,
 }: MapViewProps) {
   const [viewport, setViewport] = useState<ViewportState>(INITIAL_VIEWPORT);
   const [debouncedZoom, setDebouncedZoom] = useState(INITIAL_VIEWPORT.zoom);
@@ -94,7 +230,8 @@ export function MapView({
   const [hoveredClusterId, setHoveredClusterId] = useState<number | null>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const markerRefs = useRef<Map<string, LeafletCircleMarker>>(new Map());
-  const shouldCluster = viewport.zoom <= CLUSTER_ZOOM_THRESHOLD;
+  const shouldRenderMarkers = showGymMarkers;
+  const shouldCluster = shouldRenderMarkers && viewport.zoom <= CLUSTER_ZOOM_THRESHOLD;
   const highlightedIds = useMemo(
     () => new Set(highlightedGymIds ?? []),
     [highlightedGymIds],
@@ -144,7 +281,7 @@ export function MapView({
   }, [mapInstance, selectedGym]);
 
   useEffect(() => {
-    if (!selectedGymId) {
+    if (!selectedGymId || !shouldRenderMarkers) {
       markerRefs.current.forEach((marker) => {
         marker.closePopup();
       });
@@ -167,7 +304,17 @@ export function MapView({
     return () => {
       window.clearTimeout(timer);
     };
-  }, [selectedGymId, shouldCluster]);
+  }, [selectedGymId, shouldCluster, shouldRenderMarkers]);
+
+  useEffect(() => {
+    if (shouldRenderMarkers) {
+      return;
+    }
+
+    markerRefs.current.forEach((marker) => {
+      marker.closePopup();
+    });
+  }, [shouldRenderMarkers]);
 
   const gymIndex = useMemo(() => new Map(gyms.map((gym) => [gym.id, gym])), [gyms]);
 
@@ -202,7 +349,7 @@ export function MapView({
   }, [geoPoints]);
 
   const clusterFeatures = useMemo<ClusterPoint[]>(() => {
-    if (!clusterIndex) {
+    if (!clusterIndex || !shouldRenderMarkers) {
       return [];
     }
 
@@ -211,8 +358,11 @@ export function MapView({
       ? [bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()]
       : [-180, -85, 180, 85];
 
-    return clusterIndex.getClusters(bbox, Math.round(debouncedZoom)) as ClusterPoint[];
-  }, [clusterIndex, viewport.bounds, debouncedZoom]);
+    const zoomLevel = Math.round(debouncedZoom);
+    const clusterZoomLevel = zoomLevel <= SINGLE_CLUSTER_DOT_ZOOM_LEVEL ? 0 : zoomLevel;
+
+    return clusterIndex.getClusters(bbox, clusterZoomLevel) as ClusterPoint[];
+  }, [clusterIndex, viewport.bounds, debouncedZoom, shouldRenderMarkers]);
 
   const rings = useMemo(() => {
     if (!showRings || radiusMiles <= 0 || shouldCluster) {
@@ -247,6 +397,71 @@ export function MapView({
       }
     },
     [],
+  );
+
+  const boroughDensity = useMemo(() => {
+    const counts = new Map<string, number>();
+
+    gyms.forEach((gym) => {
+      if (!gym.borough) {
+        return;
+      }
+      const key = gym.borough.trim().toLowerCase();
+      if (!key) {
+        return;
+      }
+      counts.set(key, (counts.get(key) ?? 0) + 1);
+    });
+
+    let max = 0;
+    counts.forEach((value) => {
+      if (value > max) {
+        max = value;
+      }
+    });
+
+    return { counts, max };
+  }, [gyms]);
+
+  const boroughStyle = useCallback<GeoStyleFn>(
+    (feature) => {
+      const name =
+        feature && typeof feature.properties?.name === 'string' ? feature.properties.name : '';
+      const key = name.trim().toLowerCase();
+      const count = boroughDensity.counts.get(key) ?? 0;
+      const intensity = boroughDensity.max > 0 ? count / boroughDensity.max : 0;
+      const color =
+        intensity >= 0.66 ? '#f97316' : intensity >= 0.33 ? '#facc15' : '#38bdf8';
+      const fillOpacity = intensity > 0 ? 0.2 + intensity * 0.35 : 0.08;
+
+      return {
+        color,
+        weight: intensity > 0 ? 2 : 1,
+        fillColor: color,
+        fillOpacity,
+      };
+    },
+    [boroughDensity],
+  );
+
+  const handleBoroughEachFeature = useCallback(
+    (feature: GeoJsonFeature, layer: Layer) => {
+      const name = typeof feature.properties?.name === 'string' ? feature.properties.name : 'Unknown borough';
+      const key = name.trim().toLowerCase();
+      const count = boroughDensity.counts.get(key) ?? 0;
+      layer.bindTooltip(`${name}: ${count} gyms`, {
+        direction: 'center',
+        className: 'borough-tooltip',
+        opacity: 0.9,
+        sticky: true,
+      });
+      const popupHtml = renderBoroughPopup(name, count);
+      layer.bindPopup(popupHtml, {
+        className: 'borough-popup',
+        maxWidth: 260,
+      });
+    },
+    [boroughDensity],
   );
 
   const renderGymPopupContent = (gym: Gym, distanceKm: number | null) => {
@@ -377,7 +592,7 @@ export function MapView({
     <MapContainer
       center={LONDON_COORDS}
       zoom={INITIAL_VIEWPORT.zoom}
-      minZoom={8}
+      minZoom={4}
       maxZoom={17}
       scrollWheelZoom
       zoomControl={false}
@@ -388,6 +603,7 @@ export function MapView({
       <MapViewportWatcher onViewportChange={handleViewportChange} onReady={handleMapReady} />
       <TileLayer key={mapStyle.id} attribution={mapStyle.attribution} url={mapStyle.url} />
       <ZoomControl position="topright" />
+      {showHeatmap ? <HeatmapOverlay gyms={gyms} /> : null}
 
       {userLocation ? (
         <CircleMarker
@@ -414,7 +630,7 @@ export function MapView({
       {rings.map(({ id, feature }) => (
         <GeoJSON
           key={`ring-${id}-${radiusMiles.toFixed(2)}`}
-          data={feature as Feature<Polygon>}
+          data={feature as TurfFeature<Polygon>}
           pane="rings"
           interactive={false}
           style={{
@@ -427,7 +643,17 @@ export function MapView({
         />
       ))}
 
-      {shouldCluster && clusterIndex
+      {showBoroughHighlights && boroughFeatureCollection ? (
+        <GeoJSON
+          key={`boroughs-${gyms.length}-${boroughDensity.max}`}
+          data={boroughFeatureCollection as GeoJsonObject}
+          style={boroughStyle}
+          onEachFeature={handleBoroughEachFeature}
+          pane="borough-highlights"
+        />
+      ) : null}
+
+      {shouldRenderMarkers && shouldCluster && clusterIndex
         ? clusterFeatures.map((feature) => {
             const [lon, lat] = feature.geometry.coordinates as [number, number];
             const properties = feature.properties as Record<string, unknown>;
@@ -497,9 +723,11 @@ export function MapView({
 
             return renderGymMarker(gym);
           })
-        : gyms.map((gym) => {
-            return renderGymMarker(gym);
-          })}
+        : shouldRenderMarkers
+          ? gyms.map((gym) => {
+              return renderGymMarker(gym);
+            })
+          : null}
     </MapContainer>
   );
 }
@@ -517,6 +745,7 @@ function MapPanesInitializer(): null {
     };
 
     ensurePane('rings', '350', 'none');
+    ensurePane('borough-highlights', '360');
     ensurePane('markers', '400');
     ensurePane('user-location', '425', 'none');
   }, [map]);
@@ -547,3 +776,6 @@ function MapViewportWatcher({
 
   return null;
 }
+type GeoJsonFeatureWithProps = GeoJsonFeature<Geometry, GeoJsonProperties>;
+
+type GeoStyleFn = (feature: GeoJsonFeatureWithProps | undefined) => PathOptions;

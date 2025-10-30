@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, type ChangeEvent } from 'react';
+import { useMemo, useState, type ChangeEvent } from 'react';
 
 interface BoroughOption {
   name: string;
@@ -25,6 +25,12 @@ interface ControlsProps {
   clearFilters: () => void;
   open: boolean;
   onOpenChange: (value: boolean) => void;
+  showHeatmap: boolean;
+  setShowHeatmap: (value: boolean) => void;
+  showBoroughHighlights: boolean;
+  setShowBoroughHighlights: (value: boolean) => void;
+  showGymMarkers: boolean;
+  setShowGymMarkers: (value: boolean) => void;
 }
 
 export function Controls({
@@ -45,11 +51,18 @@ export function Controls({
   clearFilters,
   open,
   onOpenChange,
+  showHeatmap,
+  setShowHeatmap,
+  showBoroughHighlights,
+  setShowBoroughHighlights,
+  showGymMarkers,
+  setShowGymMarkers,
 }: ControlsProps) {
   const filtersActive = useMemo(
     () => searchTerm.trim().length > 0 || selectedBoroughs.length > 0,
     [searchTerm, selectedBoroughs],
   );
+  const [viewsOpen, setViewsOpen] = useState(true);
 
   const handleRadiusChange = (event: ChangeEvent<HTMLInputElement>) => {
     setRadius(Number(event.target.value));
@@ -63,182 +76,250 @@ export function Controls({
     setShowRings(event.target.checked);
   };
 
-  return (
-    <>
-      <aside
-        className={`pointer-events-auto fixed inset-y-0 left-0 z-[950] flex w-full max-w-md transform bg-slate-950/90 text-slate-100 shadow-2xl shadow-slate-950/50 backdrop-blur transition-transform duration-300 ease-out lg:relative lg:max-w-[360px] ${
-          open ? 'translate-x-0' : '-translate-x-[calc(100%+4rem)] lg:-translate-x-[calc(100%+4rem)]'
-        }`}
-      >
-        <div className="flex h-full w-full flex-col border-r border-white/10">
-          <div className="relative border-b border-white/10 bg-gradient-to-r from-[#002776] via-[#009739] to-[#FFCC29] px-5 pb-4 pt-6 text-white shadow-lg shadow-black/40">
-            <div className="flex items-center justify-between gap-4">
-              <div>
-                <h2 className="text-lg font-semibold leading-tight">London BJJ Gyms</h2>
-                <p className="mt-1 text-xs text-white/80">
-                  Filter the dataset to explore clubs around Greater London.
-                </p>
-              </div>
-              <button
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/80"
-                type="button"
-                onClick={() => onOpenChange(false)}
-                aria-label="Collapse filters"
-              >
-                X
-              </button>
-            </div>
+  const handleHeatmapChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setShowHeatmap(event.target.checked);
+  };
 
-            <div className="mt-4 flex items-center gap-3 rounded-2xl bg-white/15 px-4 py-2 text-sm">
-              <span className="font-semibold text-[#FFCC29]">{shownCount}</span>
-              <span className="text-white/70">shown</span>
-              <span className="text-white/40">/</span>
-              <span className="text-white/70">{totalCount}</span>
-              {loading ? (
-                <span
-                  className="ml-auto h-2 w-2 animate-pulse rounded-full bg-[#FFCC29]"
-                  aria-hidden="true"
-                />
-              ) : null}
+  const handleBoroughHighlightChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setShowBoroughHighlights(event.target.checked);
+  };
+
+  const handleShowMarkersChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setShowGymMarkers(event.target.checked);
+  };
+
+  return (
+    <div
+      className={`pointer-events-auto fixed inset-y-0 left-0 z-[950] flex w-full max-w-md transform transition-transform duration-300 ease-out lg:relative lg:max-w-[360px] ${
+        open ? 'translate-x-0' : '-translate-x-[calc(100%+4rem)] lg:-translate-x-[calc(100%+4rem)]'
+      }`}
+    >
+      <aside className="flex h-[100dvh] w-full flex-col border-r border-white/10 bg-slate-950/90 text-slate-100 shadow-2xl shadow-slate-950/50 backdrop-blur lg:h-screen">
+        <div className="sticky top-0 z-10 border-b border-white/10 bg-gradient-to-r from-[#002776] via-[#009739] to-[#FFCC29] px-5 pb-4 pt-6 text-white shadow-lg shadow-black/40">
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <h2 className="text-lg font-semibold leading-tight">London BJJ Gyms</h2>
+              <p className="mt-1 text-xs text-white/80">Filter the dataset to explore clubs around Greater London.</p>
             </div>
+            <button
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/80"
+              type="button"
+              onClick={() => onOpenChange(false)}
+              aria-label="Collapse filters"
+            >
+              X
+            </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto px-5 py-6">
-            <div className="flex flex-col gap-5">
-              <section className="rounded-3xl border border-white/10 bg-white/10 px-4 py-4 shadow-sm shadow-black/20">
-                <header className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[#FFCC29]">
+          <div className="mt-4 flex items-center gap-3 rounded-2xl bg-white/15 px-4 py-2 text-sm">
+            <span className="font-semibold text-[#FFCC29]">{shownCount}</span>
+            <span className="text-white/70">shown</span>
+            <span className="text-white/40">/</span>
+            <span className="text-white/70">{totalCount}</span>
+            {loading ? (
+              <span className="ml-auto h-2 w-2 animate-pulse rounded-full bg-[#FFCC29]" aria-hidden="true" />
+            ) : null}
+          </div>
+        </div>
+
+        <div
+          className="flex-1 overflow-y-auto px-4 py-6 sm:px-5"
+          style={{ WebkitOverflowScrolling: 'touch', overscrollBehaviorY: 'contain', touchAction: 'pan-y' }}
+        >
+          <div className="flex flex-col gap-5 pb-16">
+            <section className="rounded-3xl border border-white/10 bg-white/10 px-4 py-4 shadow-sm shadow-black/20">
+              <header className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[#FFCC29]">
+                <span aria-hidden="true" className="text-base leading-none">
+                  🔍
+                </span>
+                <span>Search</span>
+              </header>
+              <div className="mt-3">
+                <input
+                  className="w-full rounded-xl border border-white/10 bg-slate-950/80 px-3 py-2 text-sm text-white placeholder:text-white/40 focus:border-[#FFCC29] focus:outline-none focus:ring-2 focus:ring-[#FFCC29]/30"
+                  type="search"
+                  placeholder="Name, station, borough..."
+                  value={searchTerm}
+                  onChange={(event) => setSearchTerm(event.target.value)}
+                />
+              </div>
+            </section>
+
+            <section className="rounded-3xl border border-white/10 bg-slate-900/70 px-4 py-4 shadow-sm shadow-black/20">
+              <button
+                type="button"
+                className="flex w-full items-center justify-between gap-2 text-xs font-semibold uppercase tracking-wide text-[#FFCC29]"
+                onClick={() => setViewsOpen((prev) => !prev)}
+                aria-expanded={viewsOpen}
+                aria-controls="views-panel"
+              >
+                <span className="flex items-center gap-2">
                   <span aria-hidden="true" className="text-base leading-none">
-                    🔍
+                    🗺️
                   </span>
-                  <span>Search</span>
-                </header>
-                <div className="mt-3">
-                  <input
-                    className="w-full rounded-xl border border-white/10 bg-slate-950/80 px-3 py-2 text-sm text-white placeholder:text-white/40 focus:border-[#FFCC29] focus:outline-none focus:ring-2 focus:ring-[#FFCC29]/30"
-                    type="search"
-                    placeholder="Name, station, borough..."
-                    value={searchTerm}
-                    onChange={(event) => setSearchTerm(event.target.value)}
-                  />
-                </div>
-              </section>
-
-              <section className="rounded-3xl border border-white/10 bg-slate-900/70 px-4 py-4 shadow-sm shadow-black/20">
-                <header className="flex items-center justify-between gap-4">
-                  <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[#FFCC29]">
-                    <span aria-hidden="true" className="text-base leading-none">
-                      🏷️
-                    </span>
-                    <span>Boroughs</span>
-                  </div>
-                  <button
-                    className="text-[11px] font-semibold uppercase tracking-wide text-white/70 transition hover:text-white disabled:cursor-not-allowed disabled:text-white/30"
-                    type="button"
-                    onClick={clearFilters}
-                    disabled={!filtersActive}
-                  >
-                    Clear
-                  </button>
-                </header>
-
-                <div className="mt-4 max-h-52 space-y-2 overflow-y-auto pr-2 text-sm">
-                  {boroughOptions.length === 0 ? (
-                    <p className="text-xs text-white/50">No borough metadata available.</p>
-                  ) : (
-                    boroughOptions.map((option) => {
-                      const checked = selectedBoroughs.includes(option.name);
-                      return (
-                        <label
-                          key={option.name}
-                          className={`flex cursor-pointer items-center justify-between rounded-xl border px-3 py-2 transition ${
-                            checked
-                              ? 'border-[#009739]/60 bg-[#009739]/20 text-white shadow-sm shadow-[#009739]/30'
-                              : 'border-transparent bg-white/5 text-white/80 hover:border-white/20'
-                          }`}
-                        >
-                          <span className="flex-1 truncate">{option.name}</span>
-                          <span className="ml-2 text-xs text-white/50">{option.count}</span>
-                          <input
-                            className="ml-3 h-4 w-4 accent-[#FFCC29]"
-                            type="checkbox"
-                            checked={checked}
-                            onChange={() => toggleBorough(option.name)}
-                          />
-                        </label>
-                      );
-                    })
-                  )}
-                </div>
-              </section>
-
-              <section className="rounded-3xl border border-white/10 bg-slate-900/70 px-4 py-4 text-sm shadow-sm shadow-black/20">
-                <header className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[#FFCC29]">
-                  <span aria-hidden="true" className="text-base leading-none">
-                    📍
-                  </span>
-                  <span>Map actions</span>
-                </header>
-
-                <div className="mt-4 space-y-6">
-                  <label className="block">
-                    <span className="text-[11px] font-semibold uppercase tracking-wide text-white/70">
-                      Radius ({radius.toFixed(1)} mi)
-                    </span>
-                    <input
-                      className="mt-2 w-full accent-[#FFCC29]"
-                      type="range"
-                      min={0}
-                      max={3}
-                      step={0.1}
-                      value={radius}
-                      onChange={handleRadiusChange}
-                    />
-                  </label>
-
-                  <label className="block">
-                    <span className="text-[11px] font-semibold uppercase tracking-wide text-white/70">
-                      Ring opacity ({opacity.toFixed(2)})
-                    </span>
-                    <input
-                      className="mt-2 w-full accent-[#FFCC29]"
-                      type="range"
-                      min={0.05}
-                      max={0.5}
-                      step={0.01}
-                      value={opacity}
-                      onChange={handleOpacityChange}
-                    />
-                  </label>
-
+                  Views
+                </span>
+                <span className="rounded-full bg-white/10 px-2 py-1 text-[10px] text-white/80">
+                  {viewsOpen ? 'Hide' : 'Show'}
+                </span>
+              </button>
+              {viewsOpen ? (
+                <div id="views-panel" className="mt-4 space-y-3 text-sm">
                   <label className="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-[13px] font-medium text-white/90">
-                    <span>Show coverage rings</span>
+                    <span>Show gym markers</span>
                     <input
                       className="h-4 w-4 accent-[#FFCC29]"
                       type="checkbox"
-                      checked={showRings}
-                      onChange={handleShowRingsChange}
+                      checked={showGymMarkers}
+                      onChange={handleShowMarkersChange}
                     />
                   </label>
-                </div>
-              </section>
-            </div>
-          </div>
+                  <p className="text-xs text-white/60">
+                    Toggle individual gym dots and clusters. Switch off when you only want density overlays.
+                  </p>
 
-          <div className="border-t border-white/10 px-5 py-5">
-            <section className="rounded-3xl border border-white/10 bg-slate-900/70 px-4 py-3 text-xs text-white/60 shadow-sm shadow-black/20">
-              <header className="mb-2 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wide text-[#FFCC29]">
-                <span aria-hidden="true" className="text-base leading-none">
-                  🧭
-                </span>
-                <span>Map info</span>
+                  <label className="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-[13px] font-medium text-white/90">
+                    <span>Heatmap overlay</span>
+                    <input
+                      className="h-4 w-4 accent-[#FFCC29]"
+                      type="checkbox"
+                      checked={showHeatmap}
+                      onChange={handleHeatmapChange}
+                    />
+                  </label>
+                  <p className="text-xs text-white/60">
+                    Visualise overall gym density. Works best when combined with a wider zoom level.
+                  </p>
+
+                  <label className="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-[13px] font-medium text-white/90">
+                    <span>Borough highlights</span>
+                    <input
+                      className="h-4 w-4 accent-[#FFCC29]"
+                      type="checkbox"
+                      checked={showBoroughHighlights}
+                      onChange={handleBoroughHighlightChange}
+                    />
+                  </label>
+                  <p className="text-xs text-white/60">
+                    Pins the approximate centre of each borough with gym counts so you can compare coverage quickly.
+                  </p>
+                </div>
+              ) : null}
+            </section>
+
+            <section className="rounded-3xl border border-white/10 bg-slate-900/70 px-4 py-4 shadow-sm shadow-black/20">
+              <header className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[#FFCC29]">
+                  <span aria-hidden="true" className="text-base leading-none">
+                    🏷️
+                  </span>
+                  <span>Boroughs</span>
+                </div>
+                <button
+                  className="text-[11px] font-semibold uppercase tracking-wide text-white/70 transition hover:text-white disabled:cursor-not-allowed disabled:text-white/30"
+                  type="button"
+                  onClick={clearFilters}
+                  disabled={!filtersActive}
+                >
+                  Clear
+                </button>
               </header>
-              <p>
-                Data sourced from curated CSV + OpenStreetMap geocoding; last sync via Postgres backend.
-              </p>
+
+              <div className="mt-4 max-h-52 space-y-2 overflow-y-auto pr-2 text-sm">
+                {boroughOptions.length === 0 ? (
+                  <p className="text-xs text-white/50">No borough metadata available.</p>
+                ) : (
+                  boroughOptions.map((option) => {
+                    const checked = selectedBoroughs.includes(option.name);
+                    return (
+                      <label
+                        key={option.name}
+                        className={`flex cursor-pointer items-center justify-between rounded-xl border px-3 py-2 transition ${
+                          checked
+                            ? 'border-[#009739]/60 bg-[#009739]/20 text-white shadow-sm shadow-[#009739]/30'
+                            : 'border-transparent bg-white/5 text-white/80 hover:border-white/20'
+                        }`}
+                      >
+                        <span className="flex-1 truncate">{option.name}</span>
+                        <span className="ml-2 text-xs text-white/50">{option.count}</span>
+                        <input
+                          className="ml-3 h-4 w-4 accent-[#FFCC29]"
+                          type="checkbox"
+                          checked={checked}
+                          onChange={() => toggleBorough(option.name)}
+                        />
+                      </label>
+                    );
+                  })
+                )}
+              </div>
+            </section>
+
+            <section className="rounded-3xl border border-white/10 bg-slate-900/70 px-4 py-4 text-sm shadow-sm shadow-black/20">
+              <header className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[#FFCC29]">
+                <span aria-hidden="true" className="text-base leading-none">
+                  📍
+                </span>
+                <span>Map actions</span>
+              </header>
+
+              <div className="mt-4 space-y-6">
+                <label className="block">
+                  <span className="text-[11px] font-semibold uppercase tracking-wide text-white/70">
+                    Radius ({radius.toFixed(1)} mi)
+                  </span>
+                  <input
+                    className="mt-2 w-full accent-[#FFCC29]"
+                    type="range"
+                    min={0}
+                    max={3}
+                    step={0.1}
+                    value={radius}
+                    onChange={handleRadiusChange}
+                  />
+                </label>
+
+                <label className="block">
+                  <span className="text-[11px] font-semibold uppercase tracking-wide text-white/70">
+                    Ring opacity ({opacity.toFixed(2)})
+                  </span>
+                  <input
+                    className="mt-2 w-full accent-[#FFCC29]"
+                    type="range"
+                    min={0.05}
+                    max={0.5}
+                    step={0.01}
+                    value={opacity}
+                    onChange={handleOpacityChange}
+                  />
+                </label>
+
+                <label className="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-[13px] font-medium text-white/90">
+                  <span>Show coverage rings</span>
+                  <input
+                    className="h-4 w-4 accent-[#FFCC29]"
+                    type="checkbox"
+                    checked={showRings}
+                    onChange={handleShowRingsChange}
+                  />
+                </label>
+              </div>
+            </section>
+
+            <section className="border-t border-white/10 pt-5">
+              <div className="rounded-3xl border border-white/10 bg-slate-900/70 px-4 py-3 text-xs text-white/60 shadow-sm shadow-black/20">
+                <header className="mb-2 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wide text-[#FFCC29]">
+                  <span aria-hidden="true" className="text-base leading-none">
+                    🧭
+                  </span>
+                  <span>Map info</span>
+                </header>
+                <p>Data sourced from curated CSV + OpenStreetMap geocoding; last sync via Postgres backend.</p>
+              </div>
             </section>
           </div>
         </div>
       </aside>
-    </>
+    </div>
   );
 }
