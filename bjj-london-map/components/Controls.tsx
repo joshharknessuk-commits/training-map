@@ -90,11 +90,12 @@ export function Controls({
 
   return (
     <div
-      className={`pointer-events-auto fixed inset-y-0 left-0 z-[950] flex w-full max-w-md transform transition-transform duration-300 ease-out lg:relative lg:max-w-[360px] ${
+      className={`pointer-events-auto fixed bottom-0 left-0 z-[950] flex w-full max-w-md transform transition-transform duration-300 ease-out lg:max-w-[360px] ${
         open ? 'translate-x-0' : '-translate-x-[calc(100%+4rem)] lg:-translate-x-[calc(100%+4rem)]'
       }`}
+      style={{ top: 'var(--header-offset, 3rem)' }}
     >
-      <aside className="flex h-[100dvh] w-full flex-col border-r border-white/10 bg-slate-950/90 text-slate-100 shadow-2xl shadow-slate-950/50 backdrop-blur lg:h-screen">
+      <aside className="flex h-full w-full flex-col border-r border-white/10 bg-slate-950/90 text-slate-100 shadow-2xl shadow-slate-950/50 backdrop-blur lg:h-full">
         <div className="sticky top-0 z-10 border-b border-white/10 bg-gradient-to-r from-[#002776] via-[#009739] to-[#FFCC29] px-5 pb-4 pt-6 text-white shadow-lg shadow-black/40">
           <div className="flex items-center justify-between gap-4">
             <div>
