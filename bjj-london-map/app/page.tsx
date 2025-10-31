@@ -1,6 +1,7 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import type { CSSProperties } from 'react';
 import dynamic from 'next/dynamic';
 import { Controls } from '@/components/Controls';
 import { GymList } from '@/components/GymList';
@@ -28,6 +29,8 @@ export default function HomePage() {
   const [showHeatmap, setShowHeatmap] = useState(false);
   const [showBoroughHighlights, setShowBoroughHighlights] = useState(false);
   const [showGymMarkers, setShowGymMarkers] = useState(true);
+  const headerRef = useRef<HTMLElement | null>(null);
+  const [headerOffset, setHeaderOffset] = useState<string>('calc(3rem + env(safe-area-inset-top))');
   const {
     filteredGyms,
     radius,
@@ -75,6 +78,35 @@ export default function HomePage() {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    const element = headerRef.current;
+    if (!element) {
+      return;
+    }
+
+    const updateOffset = () => {
+      setHeaderOffset(`${element.getBoundingClientRect().height}px`);
+    };
+
+    updateOffset();
+
+    let observer: ResizeObserver | null = null;
+    if (typeof ResizeObserver === 'function') {
+      observer = new ResizeObserver(updateOffset);
+      observer.observe(element);
+    }
+
+    window.addEventListener('resize', updateOffset);
+    window.addEventListener('orientationchange', updateOffset);
+
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener('resize', updateOffset);
+      window.removeEventListener('orientationchange', updateOffset);
+    };
+  }, []);
+
   const handleNearMeLocate = useCallback(
     (coords: { lat: number; lng: number }) => {
       setUserLocation(coords);
@@ -125,69 +157,115 @@ export default function HomePage() {
     [searchTerm, selectedBoroughs],
   );
 
-  return (
-    <div className="relative h-screen w-full overflow-hidden bg-slate-950 text-slate-100">
-      <div className="absolute inset-0 flex flex-col px-6 py-6">
-        <div className="relative flex flex-1 flex-col overflow-hidden rounded-[48px] border-t-[3px] border-l-[3px] border-b-[3px] border-r-0 border-t-[#002776] border-l-[#009739] border-b-[#B43A3A] bg-slate-950/70 shadow-[0_45px_90px_-50px_rgba(8,15,35,0.85)] backdrop-blur">
-          <div className="relative flex-1 min-h-0 overflow-hidden rounded-[38px] border border-[#002776]/35 bg-slate-950/30 shadow-inner">
-            <div className="absolute inset-0">
-              <MapView
-                gyms={filteredGyms}
-                radiusMiles={radius}
-                showRings={showRings}
-                fillOpacity={opacity}
-                mapStyle={mapStyle}
-                userLocation={mapUserLocation}
-                highlightedGymIds={highlightedGymIds}
-                selectedGym={safeSelectedGym}
-                onGymFocus={setSelectedGym}
-                showHeatmap={showHeatmap}
-                showBoroughHighlights={showBoroughHighlights}
-                showGymMarkers={showGymMarkers}
-                boroughFeatureCollection={boroughFeatures ?? undefined}
-              />
-            </div>
+  const headerStatus = useMemo(() => {
+    if (error) {
+      return <span className="font-medium text-rose-300">{error}</span>;
+    }
 
-            <div className="pointer-events-none absolute inset-0 p-6">
-              <div className="pointer-events-auto absolute bottom-6 left-6 right-6 z-[940] flex flex-col gap-3 sm:left-auto sm:right-6 sm:w-auto sm:max-w-full sm:items-end">
-                <GymList
-                  gyms={filteredGyms}
-                  userLocation={userLocation}
-                  onUserLocation={setUserLocation}
-                  onActiveChange={setNearMeActive}
-                  selectedGymId={safeSelectedGym?.id ?? null}
-                  onSelectGym={setSelectedGym}
-                />
-                <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:justify-end">
-                  {!filtersOpen ? (
-                    <button
-                      type="button"
-                      onClick={() => setFiltersOpen(true)}
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#002776] px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white shadow-lg shadow-slate-900/60 transition hover:bg-[#0f3f9c] focus:outline-none focus:ring-2 focus:ring-[#009739]/50 focus:ring-offset-2 focus:ring-offset-slate-950 sm:w-auto"
-                    >
-                      <span aria-hidden="true">☰</span>
-                      Filters
-                      {filtersActive ? (
-                        <span
-                          className="ml-1 inline-flex h-2 w-2 rounded-full bg-[#FFCC29]"
-                          aria-hidden="true"
-                        />
-                      ) : null}
-                    </button>
-                  ) : null}
-                  <NearMeButton
-                    onLocate={handleNearMeLocate}
-                    onError={handleNearMeError}
-                    className="w-full bg-[#FFCC29] px-5 py-2 text-sm uppercase tracking-wide text-[#002776] shadow-lg shadow-[#FFCC29]/40 transition hover:bg-[#f6bb12] focus:outline-none focus:ring-2 focus:ring-[#009739]/60 focus:ring-offset-2 focus:ring-offset-slate-950 sm:w-auto"
+    if (loading) {
+      return <span className="text-slate-300">Loading gym data…</span>;
+    }
+
+    if (totalCount === 0) {
+      return <span className="text-slate-400">No gyms available right now.</span>;
+    }
+
+    return (
+      <span className="text-slate-300">
+        {shownCount} of {totalCount} gyms displayed
+      </span>
+    );
+  }, [error, loading, shownCount, totalCount]);
+
+  const headerVariables = useMemo<CSSProperties>(
+    () => ({
+      '--header-offset': headerOffset,
+    }),
+    [headerOffset],
+  );
+
+  return (
+    <div className="min-h-screen w-full bg-slate-950 text-slate-100" style={headerVariables}>
+      <header
+        ref={headerRef}
+        className="box-border fixed top-0 left-0 right-0 z-[980] flex flex-col gap-2 border-b border-slate-800/70 bg-slate-900/85 px-4 py-2 backdrop-blur sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:px-5"
+        style={{ paddingTop: 'env(safe-area-inset-top)' }}
+      >
+        <div className="space-y-0.5">
+          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.45em] text-sky-300">
+            Grapple Map
+          </p>
+          <p className="text-sm font-semibold text-slate-100">London BJJ Gyms</p>
+        </div>
+        <div className="min-w-0 text-xs leading-tight text-slate-300 sm:text-right">
+          {headerStatus}
+        </div>
+      </header>
+
+      <main className="relative" style={{ paddingTop: 'var(--header-offset, 3rem)' }}>
+        <div
+          className="relative w-full"
+          style={{
+            height: 'calc(100dvh - var(--header-offset, 3rem))',
+            minHeight: 'calc(100vh - var(--header-offset, 3rem))',
+          }}
+        >
+          <div className="absolute inset-0">
+            <MapView
+              gyms={filteredGyms}
+              radiusMiles={radius}
+              showRings={showRings}
+              fillOpacity={opacity}
+              mapStyle={mapStyle}
+              userLocation={mapUserLocation}
+              highlightedGymIds={highlightedGymIds}
+              selectedGym={safeSelectedGym}
+              onGymFocus={setSelectedGym}
+              showHeatmap={showHeatmap}
+              showBoroughHighlights={showBoroughHighlights}
+              showGymMarkers={showGymMarkers}
+              boroughFeatureCollection={boroughFeatures ?? undefined}
+            />
+          </div>
+          <div className="pointer-events-none absolute inset-0">
+            <div
+              className="pointer-events-auto absolute bottom-4 left-4 right-4 z-[940] flex flex-col gap-3 sm:left-auto sm:right-4 sm:w-auto sm:max-w-full sm:items-end"
+              style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+            >
+              <GymList
+                gyms={filteredGyms}
+                userLocation={userLocation}
+                onUserLocation={setUserLocation}
+                onActiveChange={setNearMeActive}
+                selectedGymId={safeSelectedGym?.id ?? null}
+                onSelectGym={setSelectedGym}
+              />
+              <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:justify-end">
+                {!filtersOpen ? (
+                  <button
+                    type="button"
+                    onClick={() => setFiltersOpen(true)}
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#002776] px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white shadow-lg shadow-slate-900/60 transition hover:bg-[#0f3f9c] focus:outline-none focus:ring-2 focus:ring-[#009739]/50 focus:ring-offset-2 focus:ring-offset-slate-950 sm:w-auto"
                   >
-                    Gyms near me
-                  </NearMeButton>
-                </div>
+                    <span aria-hidden="true">☰</span>
+                    Filters
+                    {filtersActive ? (
+                      <span className="ml-1 inline-flex h-2 w-2 rounded-full bg-[#FFCC29]" aria-hidden="true" />
+                    ) : null}
+                  </button>
+                ) : null}
+                <NearMeButton
+                  onLocate={handleNearMeLocate}
+                  onError={handleNearMeError}
+                  className="w-full bg-[#FFCC29] px-5 py-2 text-sm uppercase tracking-wide text-[#002776] shadow-lg shadow-[#FFCC29]/40 transition hover:bg-[#f6bb12] focus:outline-none focus:ring-2 focus:ring-[#009739]/60 focus:ring-offset-2 focus:ring-offset-slate-950 sm:w-auto"
+                >
+                  Gyms near me
+                </NearMeButton>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </main>
 
       {filtersOpen ? (
         <button
@@ -195,7 +273,35 @@ export default function HomePage() {
           aria-label="Close filters"
           onClick={() => setFiltersOpen(false)}
           className="fixed inset-0 z-[940] bg-slate-950/60 backdrop-blur-sm transition-opacity lg:hidden"
+          style={{ top: 'var(--header-offset, 3rem)' }}
         />
+      ) : null}
+
+      {loading || geodataLoading ? (
+        <div className="pointer-events-none fixed top-24 right-6 z-[900] space-y-2">
+          {loading ? (
+            <div className="rounded-xl bg-slate-900/85 px-3 py-2 text-sm font-semibold text-[#FFCC29] shadow-lg shadow-black/40 backdrop-blur">
+              Loading gyms…
+            </div>
+          ) : null}
+          {geodataLoading ? (
+            <div className="rounded-xl bg-slate-900/85 px-3 py-2 text-sm font-semibold text-emerald-300 shadow-lg shadow-black/40 backdrop-blur">
+              Loading map overlays…
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+
+      {error ? (
+        <div className="fixed top-28 left-1/2 z-[900] -translate-x-1/2 rounded-xl bg-[#B43A3A]/90 px-4 py-2 text-sm text-white shadow-lg">
+          {error}
+        </div>
+      ) : null}
+
+      {geodataError ? (
+        <div className="fixed top-36 left-1/2 z-[900] -translate-x-1/2 rounded-xl bg-[#B43A3A]/90 px-4 py-2 text-sm text-white shadow-lg">
+          {geodataError}
+        </div>
       ) : null}
 
       <Controls
@@ -223,33 +329,6 @@ export default function HomePage() {
         showGymMarkers={showGymMarkers}
         setShowGymMarkers={setShowGymMarkers}
       />
-
-      {loading || geodataLoading ? (
-        <div className="pointer-events-none fixed top-20 right-6 z-[900] space-y-2">
-          {loading ? (
-            <div className="rounded-xl bg-slate-900/85 px-3 py-2 text-sm font-semibold text-[#FFCC29] shadow-lg shadow-black/40 backdrop-blur">
-              Loading gyms…
-            </div>
-          ) : null}
-          {geodataLoading ? (
-            <div className="rounded-xl bg-slate-900/85 px-3 py-2 text-sm font-semibold text-emerald-300 shadow-lg shadow-black/40 backdrop-blur">
-              Loading map overlays…
-            </div>
-          ) : null}
-        </div>
-      ) : null}
-
-      {error ? (
-        <div className="fixed top-24 left-1/2 z-[900] -translate-x-1/2 rounded-xl bg-[#B43A3A]/90 px-4 py-2 text-sm text-white shadow-lg">
-          {error}
-        </div>
-      ) : null}
-
-      {geodataError ? (
-        <div className="fixed top-36 left-1/2 z-[900] -translate-x-1/2 rounded-xl bg-[#B43A3A]/90 px-4 py-2 text-sm text-white shadow-lg">
-          {geodataError}
-        </div>
-      ) : null}
     </div>
   );
 }
