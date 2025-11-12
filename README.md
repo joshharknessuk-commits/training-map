@@ -46,7 +46,6 @@ behaviour.
 
 - Collapsible control panel with quick access to ring radius (0.5–3 mi), opacity (0.05–0.5), and ring visibility.
 - Brazilian flag-inspired theme (blue/green/yellow map accents) with glowing coverage rings and markers.
-- Legend explaining the 1 mile coverage rings.
 - Inline loading & error states to highlight the fetch status.
 
 ## Project structure
@@ -54,7 +53,7 @@ behaviour.
 ```
 bjj-london-map/
 ├─ app/                    # Next.js App Router entrypoints (layout, page, API)
-├─ components/             # MapView, Controls, Legend (client components)
+├─ components/             # MapView, Controls, NearMeButton (client components)
 ├─ data/map-data.csv       # curated master list of gyms
 ├─ lib/                    # Postgres pool, turf helpers, etc.
 ├─ public/                 # static assets
