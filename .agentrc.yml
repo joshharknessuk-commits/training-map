@@ -1,0 +1,89 @@
+# Agent Configuration File
+# This YAML defines how AI agents should reason about, generate, and modify code in this repository.
+# It mirrors the philosophy and rules in AGENTS.md but in a structured, machine-readable format.
+
+meta:
+  version: 1.0
+  last_updated: 2025-11-12
+  philosophy_file: AGENTS.md
+  purpose: >
+    Ensure all AI agents align with the project's design philosophy, architecture,
+    and complexity management principles inspired by John Ousterhout.
+
+principles:
+  - complexity_is_the_root_of_evil
+  - design_interfaces_not_implementations
+  - deep_modules_simple_interfaces
+  - clarity_over_cleverness
+  - code_should_remain_simple_as_it_grows
+
+core_rules:
+  read_before_edit: true
+  require_human_review: true
+  reduce_or_contain_complexity: true
+  prefer_refactor_over_extension: true
+  prohibit_speculative_abstractions: true
+  match_existing_conventions: true
+  enforce_formatting: true
+
+structure:
+  workspace: bjj-london-map
+  stack: [Next.js, TypeScript, Tailwind, pnpm, Postgres]
+  directories:
+    app: "App Router pages and API routes"
+    components: "UI widgets and client components"
+    lib: "Data access, services, and helpers"
+    state: "Hooks and state management"
+    types: "Shared TypeScript definitions"
+    public: "Static assets"
+    data: "Gym dataset and geospatial CSVs"
+    scripts: "CSV → Postgres sync and utilities"
+
+development_practices:
+  commands:
+    - pnpm install
+    - pnpm dev
+    - pnpm build
+    - pnpm start
+    - pnpm lint
+    - pnpm typecheck
+    - pnpm format:write
+    - pnpm sync:gyms
+    - pnpm sync:geodata
+  env_required:
+    - DATABASE_URL
+  documentation_required: true
+  remove_dead_code: true
+
+naming_conventions:
+  components: PascalCase
+  functions: camelCase
+  hooks: usePrefix
+  files: kebab_or_camel
+  tests: "*.test.tsx"
+
+testing_policy:
+  behavior_first: true
+  colocate_with_features: true
+  test_observable_outcomes_only: true
+  treat_hard_to_test_code_as_design_debt: true
+
+agent_behavior:
+  analyze_surrounding_files_before_changes: true
+  avoid_unused_abstractions: true
+  prefer_consistency_over_novelty: true
+  limit_function_length: 30
+  write_jsdoc_headers: true
+  auto_verify_simplification: true
+
+commit_policy:
+  conventional_commits: [feat, fix, chore]
+  pr_must_include:
+    - rationale
+    - screenshots_if_ui
+    - data_sync_steps
+  every_commit_must_reduce_complexity: true
+
+guiding_thought: >
+  "Good design is about managing complexity." — John Ousterhout
+  Every contribution, human or AI, should leave the codebase simpler than before.

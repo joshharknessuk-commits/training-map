@@ -12,6 +12,8 @@ import { DEFAULT_MAP_STYLE_INDEX, MAP_STYLES } from '@/app/config/mapStyles';
 import { haversineKm } from '@/lib/distance';
 import type { Gym } from '@/types/osm';
 
+type LayoutVars = CSSProperties & { '--header-offset'?: string };
+
 const MapView = dynamic(() => import('@/components/MapView').then((mod) => mod.MapView), {
   ssr: false,
 });
@@ -177,10 +179,8 @@ export default function HomePage() {
     );
   }, [error, loading, shownCount, totalCount]);
 
-  const headerVariables = useMemo<CSSProperties>(
-    () => ({
-      '--header-offset': headerOffset,
-    }),
+  const headerVariables = useMemo<LayoutVars>(
+    () => ({ '--header-offset': headerOffset }),
     [headerOffset],
   );
 
