@@ -29,7 +29,7 @@ function createPool(): Pool {
   return instance;
 }
 
-function getPool(): Pool {
+export function getPool(): Pool {
   if (!pool) {
     pool = createPool();
   }
