@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import 'leaflet/dist/leaflet.css';
 import './globals.css';
 import { Analytics } from '@vercel/analytics/next';
-import { ContactButton } from '@/components/ContactButton';
 
 export const metadata: Metadata = {
   title: 'BJJ London Map',
@@ -20,7 +19,6 @@ export default function RootLayout({
       <body className="min-h-screen antialiased">
         {children}
         <Analytics />
-        <ContactButton />
       </body>
     </html>
   );

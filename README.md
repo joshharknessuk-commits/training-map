@@ -47,7 +47,7 @@ behaviour.
 - Collapsible control panel with quick access to ring radius (0.5–3 mi), opacity (0.05–0.5), and ring visibility.
 - Brazilian flag-inspired theme (blue/green/yellow map accents) with glowing coverage rings and markers.
 - Inline loading & error states to highlight the fetch status.
-- Floating Contact button routes quick feedback to `/api/feedback` (hidden honeypot + toast confirmation).
+- Contact button beside the “Gyms near me” control routes quick feedback to `/api/feedback` (hidden honeypot + toast confirmation).
 
 ## Project structure
 

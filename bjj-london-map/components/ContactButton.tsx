@@ -3,7 +3,12 @@
 import { useEffect, useState } from 'react';
 import { FeedbackModal } from '@/components/FeedbackModal';
 
-export function ContactButton() {
+interface ContactButtonProps {
+  className?: string;
+  buttonClassName?: string;
+}
+
+export function ContactButton({ className, buttonClassName }: ContactButtonProps = {}) {
   const [open, setOpen] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
@@ -22,12 +27,17 @@ export function ContactButton() {
     setShowSuccess(true);
   };
 
+  const wrapperClasses = ['flex flex-col items-end gap-2', className].filter(Boolean).join(' ');
+  const baseButtonClasses =
+    'inline-flex items-center gap-2 rounded-full bg-slate-900/90 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-slate-950/70 ring-1 ring-white/10 transition hover:bg-slate-800 hover:ring-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 disabled:opacity-75';
+  const buttonClasses = [baseButtonClasses, buttonClassName].filter(Boolean).join(' ');
+
   return (
     <>
-      <div className="pointer-events-none fixed bottom-4 right-4 z-[1050] flex flex-col items-end gap-2 sm:bottom-6 sm:right-6">
+      <div className={wrapperClasses}>
         {showSuccess ? (
           <div
-            className="pointer-events-auto rounded-full bg-emerald-500/90 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white shadow-lg shadow-emerald-900/40"
+            className="rounded-full bg-emerald-500/90 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white shadow-lg shadow-emerald-900/40"
             role="status"
           >
             Thanks for reaching out!
@@ -35,7 +45,7 @@ export function ContactButton() {
         ) : null}
         <button
           type="button"
-          className="pointer-events-auto inline-flex items-center gap-2 rounded-full bg-slate-900/90 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-slate-950/70 ring-1 ring-white/10 transition hover:bg-slate-800 hover:ring-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
+          className={buttonClasses}
           aria-haspopup="dialog"
           aria-expanded={open}
           onClick={() => setOpen(true)}
