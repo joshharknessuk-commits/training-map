@@ -174,7 +174,6 @@ export default function HomePage() {
       <div className="intro-overlay" aria-hidden="true">
         <div className="intro-logo-wrapper">
           <GrappleMapWordmark
-            priority
             className="intro-logo-wordmark"
             textClassName="intro-logo-text flex items-center text-4xl font-semibold uppercase tracking-[0.35em] text-white sm:text-5xl"
             logoWrapperClassName="intro-logo-mark relative ml-4 h-32 w-32 sm:h-36 sm:w-36"
@@ -193,7 +192,6 @@ export default function HomePage() {
           aria-label="Return to network home"
         >
           <GrappleMapWordmark
-            priority
             logoWrapperClassName="ml-[0.05em] h-28 w-28 shrink-0 sm:h-20 sm:w-20"
             textClassName="flex items-center text-2xl font-semibold uppercase tracking-[0.2em] text-emerald-200"
           />
