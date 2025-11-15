@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { Gym } from '@/types/osm';
 
-const DEFAULT_RADIUS = 1;
-const DEFAULT_OPACITY = 0.15;
+export const DEFAULT_RADIUS = 1;
+export const DEFAULT_OPACITY = 0.15;
 
 interface UseGymsState {
   gyms: Gym[];
