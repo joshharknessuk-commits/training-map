@@ -8,6 +8,7 @@ import { Controls } from '@/components/Controls';
 import { GymList } from '@/components/GymList';
 import { NearMeButton } from '@/components/NearMeButton';
 import { ContactButton } from '@ui/contact-button';
+import { GrappleMapWordmark } from '@ui/grapple-map-wordmark';
 import { MobileActionBar } from '@/components/MobileActionBar';
 import { useGyms } from '@/state/useGyms';
 import { useGeodata } from '@/state/useGeodata';
@@ -24,7 +25,7 @@ export default function HomePage() {
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [nearMeActive, setNearMeActive] = useState(false);
   const [selectedGym, setSelectedGym] = useState<Gym | null>(null);
-  const [filtersOpen, setFiltersOpen] = useState(true);
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const [showHeatmap, setShowHeatmap] = useState(false);
   const [showBoroughHighlights, setShowBoroughHighlights] = useState(false);
   const [showGymMarkers, setShowGymMarkers] = useState(true);
@@ -55,28 +56,6 @@ export default function HomePage() {
     loading: geodataLoading,
     error: geodataError,
   } = useGeodata();
-
-  useEffect(() => {
-    if (typeof window === 'undefined') {
-      return;
-    }
-
-    let lastIsLarge = window.innerWidth >= 1024;
-    setFiltersOpen(lastIsLarge);
-
-    const handleResize = () => {
-      const isLarge = window.innerWidth >= 1024;
-      if (isLarge && !lastIsLarge) {
-        setFiltersOpen(true);
-      } else if (!isLarge && lastIsLarge) {
-        setFiltersOpen(false);
-      }
-      lastIsLarge = isLarge;
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   useEffect(() => {
     const element = headerRef.current;
@@ -192,14 +171,31 @@ export default function HomePage() {
         backgroundColor: '#010307',
       }}
     >
+      <div className="intro-overlay" aria-hidden="true">
+        <div className="intro-logo-wrapper">
+          <GrappleMapWordmark
+            className="intro-logo-wordmark"
+            textClassName="intro-logo-text flex items-center text-4xl font-semibold uppercase tracking-[0.35em] text-white sm:text-5xl"
+            logoWrapperClassName="intro-logo-mark relative ml-4 h-32 w-32 sm:h-36 sm:w-36"
+          />
+          <span className="intro-logo-trace" />
+        </div>
+      </div>
       <header
         ref={headerRef}
-        className="box-border fixed top-0 left-0 right-0 z-[980] flex flex-col gap-2 border-b border-slate-800/70 bg-slate-900/85 px-4 py-2 backdrop-blur sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:px-5"
+        className="box-border fixed top-0 left-0 right-0 z-[980] flex flex-col gap-2 border-b border-slate-800/70 bg-slate-900/85 pl-2 pr-4 py-2 backdrop-blur sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:pl-4 sm:pr-5"
         style={{ paddingTop: 'env(safe-area-inset-top)' }}
       >
-        <div className="space-y-0.5">
-          <p className="text-2xl font-semibold uppercase tracking-[0.2em] text-emerald-200">Grapple Map</p>
-        </div>
+        <Link
+          href="/network"
+          className="group inline-flex items-center rounded-r-full bg-transparent pl-1 pr-2 text-left transition hover:bg-emerald-500/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400"
+          aria-label="Return to network home"
+        >
+          <GrappleMapWordmark
+            logoWrapperClassName="ml-[0.05em] h-28 w-28 shrink-0 sm:h-20 sm:w-20"
+            textClassName="flex items-center text-2xl font-semibold uppercase tracking-[0.2em] text-emerald-200"
+          />
+        </Link>
         <div className="flex flex-col items-end gap-2">
           <div className="min-w-0 text-xs leading-tight text-slate-300 sm:text-right">
             {headerStatus}

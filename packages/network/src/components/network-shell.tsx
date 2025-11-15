@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import Link from 'next/link';
+import { GrappleMapWordmark } from '@ui/grapple-map-wordmark';
 import { ContactButton } from '@ui/contact-button';
 
 interface NetworkShellProps {
@@ -33,28 +34,40 @@ export function NetworkShell({
       <div className="pointer-events-none absolute inset-0 opacity-60" style={{ backgroundImage: 'radial-gradient(circle at center, rgba(34,197,94,0.15), transparent 55%)', animation: 'pulse 6s ease-in-out infinite' }} />
       <div className="relative">
         <header className="sticky top-0 z-[1010] border-b border-white/10 bg-slate-950/80 backdrop-blur">
-          <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-center gap-3 px-6 py-4 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-white/70 sm:px-10">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-3 py-1 transition hover:-translate-y-0.5 hover:border-white/40 hover:text-white"
-            >
-              <span aria-hidden="true">🗺</span>
-              Public Map
-            </Link>
+          <div className="flex w-full flex-wrap items-center justify-between gap-4 px-2 py-4 sm:px-4">
             <Link
               href="/network"
-              className="inline-flex items-center gap-2 rounded-full border border-emerald-400/60 bg-emerald-400/15 px-3 py-1 text-white transition hover:-translate-y-0.5 hover:border-emerald-300/70 hover:bg-emerald-400/20"
+              aria-label="Return to network home"
+              className="inline-flex items-center rounded-r-full bg-transparent pl-1 pr-2 text-left transition hover:bg-emerald-500/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400"
             >
-              <span aria-hidden="true">⚡</span>
-              Network HQ
+              <GrappleMapWordmark
+                logoWrapperClassName="ml-[0.05em] h-28 w-28 shrink-0 sm:h-20 sm:w-20"
+                textClassName="flex items-center text-2xl font-semibold uppercase tracking-[0.2em] text-emerald-200"
+              />
             </Link>
-            <Link
-              href="/network/checkin"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-3 py-1 transition hover:-translate-y-0.5 hover:border-white/40 hover:text-white"
-            >
-              <span aria-hidden="true">📱</span>
-              Check-in Tool
-            </Link>
+            <div className="flex flex-wrap items-center justify-center gap-3 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-white/70 sm:justify-end">
+              <Link
+                href="/"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-3 py-1 transition hover:-translate-y-0.5 hover:border-white/40 hover:text-white"
+              >
+                <span aria-hidden="true">🗺</span>
+                Public Map
+              </Link>
+              <Link
+                href="/network"
+                className="inline-flex items-center gap-2 rounded-full border border-emerald-400/60 bg-emerald-400/15 px-3 py-1 text-white transition hover:-translate-y-0.5 hover:border-emerald-300/70 hover:bg-emerald-400/20"
+              >
+                <span aria-hidden="true">⚡</span>
+                Network HQ
+              </Link>
+              <Link
+                href="/network/checkin"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-3 py-1 transition hover:-translate-y-0.5 hover:border-white/40 hover:text-white"
+              >
+                <span aria-hidden="true">📱</span>
+                Check-in Tool
+              </Link>
+            </div>
           </div>
         </header>
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 pb-16 pt-24 text-center sm:px-10">
