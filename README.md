@@ -47,6 +47,7 @@ behaviour.
 - Collapsible control panel with quick access to ring radius (0.5–3 mi), opacity (0.05–0.5), and ring visibility.
 - Brazilian flag-inspired theme (blue/green/yellow map accents) with glowing coverage rings and markers.
 - Inline loading & error states to highlight the fetch status.
+- Contact button beside the “Gyms near me” control routes quick feedback to `/api/feedback` (hidden honeypot + toast confirmation).
 
 ## Project structure
 
@@ -68,4 +69,5 @@ bjj-london-map/
 - If the sync script reports a few gyms that could not be geocoded, inspect those rows manually—refining the `nearest transport` or borough fields usually helps.
 - Tailwind classes keep the control panel simple and lightweight; customise them in `app/globals.css` or the respective component files if desired.
 - Coverage polygons are memoised per gym + radius to reduce repeated Turf computations.
+- Use the Contact button to test the feedback flow; submissions land in the `feedback` table via `/api/feedback`.
 # training-map

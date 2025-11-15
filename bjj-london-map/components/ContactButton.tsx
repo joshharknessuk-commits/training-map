@@ -16,11 +16,9 @@ export function ContactButton({ className, buttonClassName }: ContactButtonProps
     if (!showSuccess) {
       return;
     }
-
     const timer = window.setTimeout(() => {
       setShowSuccess(false);
     }, 3000);
-
     return () => window.clearTimeout(timer);
   }, [showSuccess]);
 
@@ -41,7 +39,6 @@ export function ContactButton({ className, buttonClassName }: ContactButtonProps
           <div
             className="rounded-full bg-emerald-500/90 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white shadow-lg shadow-emerald-900/40"
             role="status"
-            aria-live="polite"
           >
             Thanks for reaching out!
           </div>

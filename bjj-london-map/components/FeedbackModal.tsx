@@ -1,14 +1,6 @@
 'use client';
 
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  type FormEvent,
-  type MouseEvent as ReactMouseEvent,
-} from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 
 interface FeedbackModalProps {
   open: boolean;
@@ -73,15 +65,12 @@ export function FeedbackModal({ open, onClose, onSuccess }: FeedbackModalProps) 
       if (!container) {
         return;
       }
-
       const focusable = Array.from(
         container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTORS),
       ).filter((element) => !element.hasAttribute('data-focus-guard'));
-
       if (focusable.length === 0) {
         return;
       }
-
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
 
@@ -109,7 +98,7 @@ export function FeedbackModal({ open, onClose, onSuccess }: FeedbackModalProps) 
     };
   }, [open, onClose]);
 
-  const handleOverlayClick = (event: ReactMouseEvent<HTMLDivElement>) => {
+  const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget && !submitting) {
       onClose();
     }
@@ -143,16 +132,27 @@ export function FeedbackModal({ open, onClose, onSuccess }: FeedbackModalProps) 
         }),
       });
 
-      if (!response.ok) {
-        const data = (await response.json().catch(() => null)) as { message?: string } | null;
-        const fallbackMessage = response.status >= 500 ? 'Server error.' : 'Submission failed.';
-        setError(data?.message ?? fallbackMessage);
-        setSubmitting(false);
+      if (response.status === 204 || response.ok) {
+        resetForm();
+        onSuccess();
         return;
       }
 
-      onSuccess();
-      resetForm();
+      let messageText = 'Unable to send feedback right now.';
+      try {
+        const payload = (await response.json()) as {
+          error?: string;
+          issues?: { formErrors?: string[]; fieldErrors?: Record<string, string[]> };
+        };
+        if (payload.issues?.formErrors?.length) {
+          messageText = payload.issues.formErrors.join(' ');
+        } else if (payload.error) {
+          messageText = payload.error;
+        }
+      } catch {
+        // Ignore parse issues and keep the generic message.
+      }
+      setError(messageText);
     } catch {
       setError('Network error. Please try again in a moment.');
     } finally {
@@ -170,7 +170,7 @@ export function FeedbackModal({ open, onClose, onSuccess }: FeedbackModalProps) 
 
   const dialogClasses = useMemo(
     () =>
-      'pointer-events-auto w-full max-w-md rounded-3xl border border-white/10 bg-slate-950/95 text-slate-100 shadow-2xl shadow-slate-900/80 backdrop-blur',
+      'pointer-events-auto w-full max-w-md rounded-3xl border border-white/10 bg-slate-950/95 p-6 text-slate-100 shadow-2xl shadow-slate-900/80 backdrop-blur',
     [],
   );
 
@@ -180,37 +180,19 @@ export function FeedbackModal({ open, onClose, onSuccess }: FeedbackModalProps) 
 
   return (
     <div
-      className="fixed inset-0 z-[1100] flex items-center justify-center bg-slate-950/70 px-3 py-6 sm:px-4 sm:py-10"
+      className="fixed inset-0 z-[1100] flex items-center justify-center bg-slate-950/70 px-4 py-8"
       onClick={handleOverlayClick}
-      style={{
-        paddingTop: 'calc(var(--safe-area-top) + 1rem)',
-        paddingBottom: 'calc(var(--safe-area-bottom) + var(--mobile-action-bar-offset) + 1rem)',
-      }}
     >
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby="feedback-dialog-title"
         aria-describedby="feedback-dialog-description"
-        className={`${dialogClasses} relative flex flex-col overflow-hidden p-6`}
+        className={dialogClasses}
         ref={dialogRef}
         onClick={(event) => event.stopPropagation()}
-        style={{
-          maxHeight:
-            'min(660px, calc(100vh - var(--safe-area-top) - var(--safe-area-bottom) - var(--mobile-action-bar-offset) - 1.5rem))',
-        }}
       >
-        <button
-          type="button"
-          aria-label="Close"
-          className="absolute right-4 top-4 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white/80 transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/60"
-          onClick={handleCancel}
-          disabled={disableActions}
-        >
-          Close
-        </button>
-
-        <div className="space-y-2 pr-10">
+        <div className="space-y-2">
           <p
             id="feedback-dialog-title"
             className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-300"
@@ -223,7 +205,7 @@ export function FeedbackModal({ open, onClose, onSuccess }: FeedbackModalProps) 
           </p>
         </div>
 
-        <form className="mt-4 flex flex-1 flex-col gap-4 overflow-y-auto pr-1" onSubmit={handleSubmit}>
+        <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
           <label className="block text-sm font-medium text-slate-200">
             Name (optional)
             <input

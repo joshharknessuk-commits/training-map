@@ -13,6 +13,7 @@ import { useGeodata } from '@/state/useGeodata';
 import { DEFAULT_MAP_STYLE_INDEX, MAP_STYLES } from '@/app/config/mapStyles';
 import { haversineKm } from '@/lib/distance';
 import type { Gym } from '@/types/osm';
+import { ContactButton } from '@/components/ContactButton';
 
 type LayoutVars = CSSProperties & { '--header-offset'?: string };
 
@@ -274,14 +275,15 @@ export default function HomePage() {
                     ) : null}
                   </button>
                 ) : null}
-                <div className="hidden w-full flex-col gap-3 sm:flex sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:justify-end">
+                <div className="flex w-full flex-col gap-2 sm:w-auto">
                   <ContactButton
-                    buttonClassName="min-h-[48px] w-full justify-center rounded-full px-5 py-2 text-sm font-semibold uppercase tracking-wide sm:w-auto"
+                    className="w-full items-stretch sm:w-auto sm:items-end"
+                    buttonClassName="w-full justify-center sm:w-auto"
                   />
                   <NearMeButton
                     onLocate={handleNearMeLocate}
                     onError={handleNearMeError}
-                    className="min-h-[48px] w-full bg-[#FFCC29] px-5 py-2 text-sm uppercase tracking-wide text-[#002776] shadow-lg shadow-[#FFCC29]/40 transition hover:bg-[#f6bb12] focus:outline-none focus:ring-2 focus:ring-[#009739]/60 focus:ring-offset-2 focus:ring-offset-slate-950 sm:w-auto"
+                    className="w-full bg-[#FFCC29] px-5 py-2 text-sm uppercase tracking-wide text-[#002776] shadow-lg shadow-[#FFCC29]/40 transition hover:bg-[#f6bb12] focus:outline-none focus:ring-2 focus:ring-[#009739]/60 focus:ring-offset-2 focus:ring-offset-slate-950 sm:w-auto"
                   >
                     Gyms near me
                   </NearMeButton>

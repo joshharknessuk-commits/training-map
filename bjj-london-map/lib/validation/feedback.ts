@@ -1,46 +1,50 @@
 import { z } from 'zod';
 
-const optionalNameField = z
-  .union([z.string().trim().max(120, { message: 'Name must be 120 characters or fewer.' }), z.literal(''), z.undefined()])
-  .transform((value) => {
-    if (!value) {
+const optionalNameField = z.preprocess(
+  (value) => {
+    if (typeof value !== 'string') {
       return undefined;
     }
     const trimmed = value.trim();
-    return trimmed.length === 0 ? undefined : trimmed;
-  });
+    return trimmed.length > 0 ? trimmed : undefined;
+  },
+  z
+    .string()
+    .max(80, { message: 'Name must be 80 characters or fewer.' })
+    .optional(),
+);
 
-const optionalEmailField = z
-  .union([
-    z
-      .string()
-      .trim()
-      .email({ message: 'Please provide a valid email address.' })
-      .max(180, { message: 'Email must be 180 characters or fewer.' }),
-    z.literal(''),
-    z.undefined(),
-  ])
-  .transform((value) => {
-    if (!value) {
+const optionalEmailField = z.preprocess(
+  (value) => {
+    if (typeof value !== 'string') {
       return undefined;
     }
     const trimmed = value.trim();
-    return trimmed.length === 0 ? undefined : trimmed;
-  });
+    return trimmed.length > 0 ? trimmed : undefined;
+  },
+  z
+    .string()
+    .max(120, { message: 'Email must be 120 characters or fewer.' })
+    .email({ message: 'Please provide a valid email address.' })
+    .optional(),
+);
 
-const honeypotField = z
-  .union([z.string(), z.undefined()])
-  .transform((value) => (value ?? '').trim());
+const messageField = z
+  .string()
+  .trim()
+  .min(10, { message: 'Message must be at least 10 characters.' })
+  .max(1000, { message: 'Message must be 1000 characters or fewer.' });
+
+const websiteField = z
+  .string()
+  .optional()
+  .transform((value) => (typeof value === 'string' ? value.trim() : ''));
 
 export const feedbackSchema = z.object({
   name: optionalNameField,
   email: optionalEmailField,
-  message: z
-    .string()
-    .trim()
-    .min(10, { message: 'Message must be at least 10 characters.' })
-    .max(1000, { message: 'Message must be 1000 characters or fewer.' }),
-  website: honeypotField.default(''),
+  message: messageField,
+  website: websiteField,
 });
 
 export type FeedbackSubmission = z.infer<typeof feedbackSchema>;
