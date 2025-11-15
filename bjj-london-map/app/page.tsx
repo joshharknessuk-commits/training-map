@@ -13,8 +13,6 @@ import { useGeodata } from '@/state/useGeodata';
 import { DEFAULT_MAP_STYLE_INDEX, MAP_STYLES } from '@/app/config/mapStyles';
 import { haversineKm } from '@/lib/distance';
 import type { Gym } from '@/types/osm';
-import { ContactButton } from '@/components/ContactButton';
-
 type LayoutVars = CSSProperties & { '--header-offset'?: string };
 
 const MapView = dynamic(() => import('@/components/MapView').then((mod) => mod.MapView), {
