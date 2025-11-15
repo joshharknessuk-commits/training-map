@@ -35,6 +35,7 @@ import type { Gym } from '@/types/osm';
 import { getCircle } from '@/lib/turf';
 import { ClaimButton } from '@/components/ClaimButton';
 import { haversineKm } from '@/lib/distance';
+import { buildDirectionsUrl } from '@/lib/directions';
 
 const LONDON_COORDS: [number, number] = [51.5074, -0.1278];
 const CLUSTER_ZOOM_THRESHOLD = 11;
@@ -87,15 +88,6 @@ const escapeHtml = (value: string): string =>
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
-
-const buildLink = (label: string, url: string | undefined | null) => {
-  if (!url) {
-    return '';
-  }
-  const safeLabel = escapeHtml(label);
-  const safeUrl = escapeHtml(url);
-  return `<a class="inline-flex items-center gap-1 text-xs font-semibold text-indigo-200 underline underline-offset-2 hover:text-white transition" href="${safeUrl}" target="_blank" rel="noopener noreferrer">${safeLabel}</a>`;
-};
 
 const renderBoroughPopup = (name: string, count: number): string => {
   const safeName = escapeHtml(name);
@@ -156,19 +148,6 @@ function HeatmapOverlay({ gyms }: { gyms: Gym[] }) {
   return null;
 }
 
-const buildDirectionsUrl = (gym: Gym, origin?: { lat: number; lng: number } | null) => {
-  const params = new URLSearchParams({
-    api: '1',
-    destination: `${gym.lat},${gym.lon}`,
-  });
-
-  if (origin) {
-    params.set('origin', `${origin.lat},${origin.lng}`);
-  }
-
-  return `https://www.google.com/maps/dir/?${params.toString()}`;
-};
-
 interface MapViewProps {
   gyms: Gym[];
   radiusMiles: number;
@@ -187,6 +166,7 @@ interface MapViewProps {
   showBoroughHighlights?: boolean;
   showGymMarkers?: boolean;
   boroughFeatureCollection?: FeatureCollection<Geometry, GeoJsonFeature['properties']>;
+  showZoomControl?: boolean;
 }
 
 interface ViewportState {
@@ -223,6 +203,7 @@ export function MapView({
   showBoroughHighlights = false,
   showGymMarkers = true,
   boroughFeatureCollection,
+  showZoomControl = true,
 }: MapViewProps) {
   const [viewport, setViewport] = useState<ViewportState>(INITIAL_VIEWPORT);
   const [debouncedZoom, setDebouncedZoom] = useState(INITIAL_VIEWPORT.zoom);
@@ -532,7 +513,7 @@ export function MapView({
           ))}
           <a
             className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#FFCC29]/90 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-[#002776] transition hover:bg-[#f6bb12]"
-            href={buildDirectionsUrl(gym, userLocation)}
+            href={buildDirectionsUrl({ lat: gym.lat, lon: gym.lon }, userLocation)}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -602,7 +583,7 @@ export function MapView({
       <MapPanesInitializer />
       <MapViewportWatcher onViewportChange={handleViewportChange} onReady={handleMapReady} />
       <TileLayer key={mapStyle.id} attribution={mapStyle.attribution} url={mapStyle.url} />
-      <ZoomControl position="topright" />
+      {showZoomControl ? <ZoomControl position="topright" /> : null}
       {showHeatmap ? <HeatmapOverlay gyms={gyms} /> : null}
 
       {userLocation ? (

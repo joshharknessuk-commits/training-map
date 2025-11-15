@@ -17,7 +17,3 @@ export function getCircle(lon: number, lat: number, miles: number): Feature<Poly
   circleCache.set(key, geometry);
   return geometry;
 }
-
-export function clearCircles(): void {
-  circleCache.clear();
-}

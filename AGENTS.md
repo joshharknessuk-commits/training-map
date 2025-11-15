@@ -88,6 +88,7 @@
 
 ---
 
-> **Guiding Thought:**  
+> **Guiding Thoughts:**  
+>"The goal of all theory is to make the basic elements as simple and as few as possible without having to surrender the adequate representation of experience." -*Albert Einstien* 
 > “Good design is about managing complexity.” — *John Ousterhout*  
 > Every contribution — human or AI — should leave the codebase simpler than before.
