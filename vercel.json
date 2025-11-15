@@ -1,6 +1,6 @@
 {
   "framework": "nextjs",
-  "installCommand": "corepack prepare pnpm@10.12.2 --activate && corepack pnpm --dir bjj-london-map install --frozen-lockfile",
-  "buildCommand": "corepack pnpm --dir bjj-london-map build",
-  "outputDirectory": "bjj-london-map/.next"
+  "installCommand": "corepack prepare pnpm@10.12.2 --activate && corepack pnpm install --frozen-lockfile",
+  "buildCommand": "corepack pnpm --dir apps/grapplemap-web build",
+  "outputDirectory": "apps/grapplemap-web/.next"
 }
