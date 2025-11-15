@@ -9,7 +9,7 @@ export const highlights: Highlight[] = [
     title: 'Unified Network Access',
     description:
       'One pass unlocks every GrappleMap Network partner open mat plus guest spots at rotating host gyms.',
-    badge: 'New',
+    badge: 'New this month',
   },
   {
     title: 'Instant QR Verification',

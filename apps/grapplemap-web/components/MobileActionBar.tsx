@@ -73,7 +73,7 @@ export function MobileActionBar({ onLocate, onError }: MobileActionBarProps) {
               <NearMeButton
                 onLocate={onLocate}
                 onError={onError}
-                className="min-h-[44px] w-full justify-center rounded-2xl bg-[#FFCC29] px-4 py-2.5 text-sm font-semibold uppercase tracking-wide text-[#002776] shadow-lg shadow-[#FFCC29]/40 transition hover:bg-[#f6bb12]"
+                className="min-h-[44px] w-full justify-center rounded-2xl bg-gradient-to-r from-emerald-400 via-emerald-500 to-sky-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-wide text-slate-900 shadow-lg shadow-emerald-900/40 transition hover:scale-[1.01]"
               >
                 Gyms near me
               </NearMeButton>

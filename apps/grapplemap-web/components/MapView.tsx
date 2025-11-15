@@ -39,10 +39,10 @@ import { buildDirectionsUrl } from '@/lib/directions';
 
 const LONDON_COORDS: [number, number] = [51.5074, -0.1278];
 const CLUSTER_ZOOM_THRESHOLD = 11;
-const RING_OUTLINE = '#009739';
-const RING_FILL = '#FFCC29';
-const MARKER_BORDER = '#002776';
-const MARKER_FILL = '#009739';
+const RING_OUTLINE = '#065f46';
+const RING_FILL = '#34d399';
+const MARKER_BORDER = '#065f46';
+const MARKER_FILL = '#10b981';
 const SINGLE_CLUSTER_DOT_ZOOM_LEVEL = 8;
 
 type HeatmapLatLng = [number, number, number?];
@@ -450,7 +450,7 @@ export function MapView({
       <div className="min-w-[260px] max-w-[280px] rounded-3xl bg-slate-950/95 p-4 text-slate-100 shadow-[0_12px_32px_-12px_rgba(15,23,42,0.95)] backdrop-blur">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-[#FFCC29]">
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-emerald-300">
               Gym details
             </p>
             <h3 className="mt-1 text-base font-semibold leading-tight text-white">{gym.name}</h3>
@@ -459,7 +459,7 @@ export function MapView({
 
         <dl className="mt-3 space-y-2 text-sm">
           {distanceKm !== null ? (
-            <div className="flex items-center justify-between rounded-2xl border border-blue-500/40 bg-blue-500/10 px-3 py-2 text-blue-100">
+            <div className="flex items-center justify-between rounded-2xl border border-emerald-400/40 bg-emerald-500/10 px-3 py-2 text-emerald-200">
               <dt className="flex items-center gap-2 font-semibold">
                 <span aria-hidden="true">📏</span>
                 Distance
@@ -490,7 +490,7 @@ export function MapView({
         <div className="mt-4 space-y-2 text-sm">
           {gym.website ? (
             <a
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white/10 px-4 py-2 font-semibold text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-[#FFCC29]/60"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white/10 px-4 py-2 font-semibold text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-emerald-400/60"
               href={gym.website}
               target="_blank"
               rel="noopener noreferrer"
@@ -502,7 +502,7 @@ export function MapView({
           {gym.extraWebsites?.map((url) => (
             <a
               key={url}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white/5 px-4 py-2 text-sm font-medium text-white/80 transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-[#FFCC29]/40"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white/5 px-4 py-2 text-sm font-medium text-white/80 transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-emerald-400/40"
               href={url}
               target="_blank"
               rel="noopener noreferrer"
@@ -512,7 +512,7 @@ export function MapView({
             </a>
           ))}
           <a
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#FFCC29]/90 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-[#002776] transition hover:bg-[#f6bb12]"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-sky-500 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-slate-900 transition hover:scale-[1.01]"
             href={buildDirectionsUrl({ lat: gym.lat, lon: gym.lon }, userLocation)}
             target="_blank"
             rel="noopener noreferrer"
@@ -671,13 +671,13 @@ export function MapView({
                   <Tooltip
                     permanent
                     direction="center"
-                    className="!bg-[#002776] !text-white !border-none !shadow-lg !rounded-full !px-3 !py-1 !font-semibold !tracking-wide !text-xs"
+                    className="!bg-emerald-950 !text-white !border-none !shadow-lg !rounded-full !px-3 !py-1 !font-semibold !tracking-wide !text-xs"
                   >
                     {abbreviated}
                   </Tooltip>
                   <Popup>
                     <div className="space-y-2 text-sm">
-                      <div className="font-semibold text-[#002776]">Gyms in this area</div>
+                      <div className="font-semibold text-emerald-300">Gyms in this area</div>
                       <div className="text-xs text-slate-600">{pointCount} gyms grouped here</div>
                       <ul className="max-h-40 space-y-1 overflow-y-auto pr-1 text-xs text-slate-600">
                         {previewGyms.map((gym) => (

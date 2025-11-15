@@ -182,17 +182,23 @@ export default function HomePage() {
   );
 
   return (
-    <div className="min-h-screen w-full bg-slate-950 text-slate-100" style={headerVariables}>
+    <div
+      className="min-h-screen w-full bg-slate-950 text-slate-100"
+      style={{
+        ...headerVariables,
+        backgroundImage:
+          'radial-gradient(circle at top, rgba(16,185,129,0.08), transparent 55%), linear-gradient(to bottom, #020b08, #030712 60%, #010409), url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'none\' stroke=\'rgba(255,255,255,0.025)\' stroke-width=\'0.5\'/%3E%3C/svg%3E")',
+        backgroundBlendMode: 'screen, normal',
+        backgroundColor: '#010307',
+      }}
+    >
       <header
         ref={headerRef}
         className="box-border fixed top-0 left-0 right-0 z-[980] flex flex-col gap-2 border-b border-slate-800/70 bg-slate-900/85 px-4 py-2 backdrop-blur sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:px-5"
         style={{ paddingTop: 'env(safe-area-inset-top)' }}
       >
         <div className="space-y-0.5">
-          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.45em] text-sky-300">
-            Grapple Map
-          </p>
-          <p className="text-sm font-semibold text-slate-100">London BJJ Gyms</p>
+          <p className="text-2xl font-semibold uppercase tracking-[0.2em] text-emerald-200">Grapple Map</p>
         </div>
         <div className="flex flex-col items-end gap-2">
           <div className="min-w-0 text-xs leading-tight text-slate-300 sm:text-right">
@@ -244,7 +250,7 @@ export default function HomePage() {
                 onClick={() => setFiltersOpen((prev) => !prev)}
                 aria-pressed={filtersOpen}
                 aria-label={filtersOpen ? 'Hide filters' : 'Show filters'}
-                className={`group inline-flex items-center gap-2 rounded-full border border-white/15 bg-[#002776]/90 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-white shadow-[0_10px_20px_rgba(0,0,0,0.45)] transition hover:bg-[#0f3f9c]/90 focus:outline-none focus:ring-2 focus:ring-white/30 ${
+                className={`group inline-flex items-center gap-2 rounded-full border border-white/15 bg-emerald-950/80 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-white shadow-[0_10px_20px_rgba(0,0,0,0.45)] transition hover:bg-emerald-900/80 focus:outline-none focus:ring-2 focus:ring-white/30 ${
                   filtersOpen ? 'opacity-95' : 'opacity-80'
                 }`}
               >
@@ -253,7 +259,7 @@ export default function HomePage() {
                 </span>
                 <span>Filters</span>
                 {filtersActive ? (
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#FFCC29]" aria-hidden="true" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-300" aria-hidden="true" />
                 ) : null}
               </button>
             </div>
@@ -274,12 +280,12 @@ export default function HomePage() {
                   <button
                     type="button"
                     onClick={() => setFiltersOpen(true)}
-                    className="hidden w-full items-center justify-center gap-2 rounded-full bg-[#002776] px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white shadow-lg shadow-slate-900/60 transition hover:bg-[#0f3f9c] focus:outline-none focus:ring-2 focus:ring-[#009739]/50 focus:ring-offset-2 focus:ring-offset-slate-950 sm:inline-flex sm:w-auto"
+                    className="hidden w-full items-center justify-center gap-2 rounded-full bg-emerald-950 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white shadow-lg shadow-slate-950/70 transition hover:bg-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-400/60 focus:ring-offset-2 focus:ring-offset-slate-950 sm:inline-flex sm:w-auto"
                   >
                     <span aria-hidden="true">☰</span>
                     Filters
                     {filtersActive ? (
-                      <span className="ml-1 inline-flex h-2 w-2 rounded-full bg-[#FFCC29]" aria-hidden="true" />
+                      <span className="ml-1 inline-flex h-2 w-2 rounded-full bg-emerald-300" aria-hidden="true" />
                     ) : null}
                   </button>
                 ) : null}
@@ -291,7 +297,7 @@ export default function HomePage() {
                   <NearMeButton
                     onLocate={handleNearMeLocate}
                     onError={handleNearMeError}
-                    className="w-full bg-[#FFCC29] px-5 py-2 text-sm uppercase tracking-wide text-[#002776] shadow-lg shadow-[#FFCC29]/40 transition hover:bg-[#f6bb12] focus:outline-none focus:ring-2 focus:ring-[#009739]/60 focus:ring-offset-2 focus:ring-offset-slate-950 sm:w-auto"
+                    className="w-full rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-sky-500 px-5 py-2 text-sm font-semibold uppercase tracking-wide text-slate-900 shadow-lg shadow-emerald-900/40 transition hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-emerald-400/60 focus:ring-offset-2 focus:ring-offset-slate-950 sm:w-auto"
                   >
                     Gyms near me
                   </NearMeButton>
@@ -317,7 +323,7 @@ export default function HomePage() {
       {loading || geodataLoading ? (
         <div className="pointer-events-none fixed top-24 right-6 z-[900] space-y-2">
           {loading ? (
-            <div className="rounded-xl bg-slate-900/85 px-3 py-2 text-sm font-semibold text-[#FFCC29] shadow-lg shadow-black/40 backdrop-blur">
+            <div className="rounded-xl bg-slate-900/85 px-3 py-2 text-sm font-semibold text-emerald-300 shadow-lg shadow-black/40 backdrop-blur">
               Loading gyms…
             </div>
           ) : null}

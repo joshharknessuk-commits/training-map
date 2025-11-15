@@ -82,7 +82,7 @@ export function GymList({
         <aside className="max-h-[calc(100vh-144px)] overflow-y-auto rounded-3xl border border-white/10 bg-slate-950/90 p-4 text-slate-100 shadow-2xl backdrop-blur">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-[#FFCC29]">
+              <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-emerald-300">
                 <span aria-hidden="true" className="text-base">
                   🚶‍♀️
                 </span>
@@ -116,7 +116,7 @@ export function GymList({
                   >
                     <div className="flex items-start gap-3">
                       {index < 2 ? (
-                        <span className="inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-[11px] font-semibold text-white shadow shadow-blue-900/40">
+                        <span className="inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500 text-[11px] font-semibold text-slate-900 shadow shadow-emerald-900/40">
                           {index + 1}
                         </span>
                       ) : (
@@ -156,7 +156,7 @@ export function GymList({
                         <span className="text-white/40">No website listed</span>
                       )}
                       <a
-                        className="inline-flex items-center gap-1 rounded-full bg-[#FFCC29]/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-[#002776] transition hover:bg-[#f6bb12]"
+                        className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-emerald-400 to-sky-400 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-900 transition hover:scale-[1.01]"
                         href={buildDirectionsUrl({ lat: gym.lat, lon: gym.lon }, storedLocation)}
                         target="_blank"
                         rel="noopener noreferrer"
