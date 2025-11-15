@@ -6,6 +6,8 @@ import dynamic from 'next/dynamic';
 import { Controls } from '@/components/Controls';
 import { GymList } from '@/components/GymList';
 import { NearMeButton } from '@/components/NearMeButton';
+import { ContactButton } from '@/components/ContactButton';
+import { MobileActionBar } from '@/components/MobileActionBar';
 import { useGyms } from '@/state/useGyms';
 import { useGeodata } from '@/state/useGeodata';
 import { DEFAULT_MAP_STYLE_INDEX, MAP_STYLES } from '@/app/config/mapStyles';
@@ -22,12 +24,7 @@ export default function HomePage() {
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [nearMeActive, setNearMeActive] = useState(false);
   const [selectedGym, setSelectedGym] = useState<Gym | null>(null);
-  const [filtersOpen, setFiltersOpen] = useState(() => {
-    if (typeof window === 'undefined') {
-      return true;
-    }
-    return window.innerWidth >= 1024;
-  });
+  const [filtersOpen, setFiltersOpen] = useState(true);
   const [showHeatmap, setShowHeatmap] = useState(false);
   const [showBoroughHighlights, setShowBoroughHighlights] = useState(false);
   const [showGymMarkers, setShowGymMarkers] = useState(true);
@@ -225,12 +222,35 @@ export default function HomePage() {
               showBoroughHighlights={showBoroughHighlights}
               showGymMarkers={showGymMarkers}
               boroughFeatureCollection={boroughFeatures ?? undefined}
+              showZoomControl={!filtersOpen}
             />
           </div>
           <div className="pointer-events-none absolute inset-0">
             <div
-              className="pointer-events-auto absolute bottom-4 left-4 right-4 z-[940] flex flex-col gap-3 sm:left-auto sm:right-4 sm:w-auto sm:max-w-full sm:items-end"
-              style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+              className="pointer-events-auto absolute left-4 z-[950] sm:hidden"
+              style={{ top: 'calc(var(--header-offset, 3rem) + 0.2rem)' }}
+            >
+              <button
+                type="button"
+                onClick={() => setFiltersOpen((prev) => !prev)}
+                aria-pressed={filtersOpen}
+                aria-label={filtersOpen ? 'Hide filters' : 'Show filters'}
+                className={`group inline-flex items-center gap-2 rounded-full border border-white/15 bg-[#002776]/90 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-white shadow-[0_10px_20px_rgba(0,0,0,0.45)] transition hover:bg-[#0f3f9c]/90 focus:outline-none focus:ring-2 focus:ring-white/30 ${
+                  filtersOpen ? 'opacity-95' : 'opacity-80'
+                }`}
+              >
+                <span aria-hidden="true" className="text-sm leading-none text-white/75 group-hover:text-white">
+                  {filtersOpen ? '–' : '☰'}
+                </span>
+                <span>Filters</span>
+                {filtersActive ? (
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#FFCC29]" aria-hidden="true" />
+                ) : null}
+              </button>
+            </div>
+            <div
+              className="pointer-events-auto absolute left-4 right-4 z-[940] flex flex-col gap-4 sm:left-auto sm:right-4 sm:w-auto sm:max-w-full sm:items-end"
+              style={{ bottom: 'var(--mobile-map-control-offset)', paddingBottom: 'var(--safe-area-bottom)' }}
             >
               <GymList
                 gyms={filteredGyms}
@@ -240,12 +260,12 @@ export default function HomePage() {
                 selectedGymId={safeSelectedGym?.id ?? null}
                 onSelectGym={setSelectedGym}
               />
-              <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:justify-end">
+              <div className="flex w-full flex-col gap-3 sm:w-auto sm:items-end">
                 {!filtersOpen ? (
                   <button
                     type="button"
                     onClick={() => setFiltersOpen(true)}
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#002776] px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white shadow-lg shadow-slate-900/60 transition hover:bg-[#0f3f9c] focus:outline-none focus:ring-2 focus:ring-[#009739]/50 focus:ring-offset-2 focus:ring-offset-slate-950 sm:w-auto"
+                    className="hidden w-full items-center justify-center gap-2 rounded-full bg-[#002776] px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white shadow-lg shadow-slate-900/60 transition hover:bg-[#0f3f9c] focus:outline-none focus:ring-2 focus:ring-[#009739]/50 focus:ring-offset-2 focus:ring-offset-slate-950 sm:inline-flex sm:w-auto"
                   >
                     <span aria-hidden="true">☰</span>
                     Filters
@@ -254,25 +274,32 @@ export default function HomePage() {
                     ) : null}
                   </button>
                 ) : null}
-                <NearMeButton
-                  onLocate={handleNearMeLocate}
-                  onError={handleNearMeError}
-                  className="w-full bg-[#FFCC29] px-5 py-2 text-sm uppercase tracking-wide text-[#002776] shadow-lg shadow-[#FFCC29]/40 transition hover:bg-[#f6bb12] focus:outline-none focus:ring-2 focus:ring-[#009739]/60 focus:ring-offset-2 focus:ring-offset-slate-950 sm:w-auto"
-                >
-                  Gyms near me
-                </NearMeButton>
+                <div className="hidden w-full flex-col gap-3 sm:flex sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:justify-end">
+                  <ContactButton
+                    buttonClassName="min-h-[48px] w-full justify-center rounded-full px-5 py-2 text-sm font-semibold uppercase tracking-wide sm:w-auto"
+                  />
+                  <NearMeButton
+                    onLocate={handleNearMeLocate}
+                    onError={handleNearMeError}
+                    className="min-h-[48px] w-full bg-[#FFCC29] px-5 py-2 text-sm uppercase tracking-wide text-[#002776] shadow-lg shadow-[#FFCC29]/40 transition hover:bg-[#f6bb12] focus:outline-none focus:ring-2 focus:ring-[#009739]/60 focus:ring-offset-2 focus:ring-offset-slate-950 sm:w-auto"
+                  >
+                    Gyms near me
+                  </NearMeButton>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </main>
 
+      <MobileActionBar onLocate={handleNearMeLocate} onError={handleNearMeError} />
+
       {filtersOpen ? (
         <button
           type="button"
           aria-label="Close filters"
           onClick={() => setFiltersOpen(false)}
-          className="fixed inset-0 z-[940] bg-slate-950/60 backdrop-blur-sm transition-opacity lg:hidden"
+          className="fixed inset-0 z-[920] bg-slate-950/60 backdrop-blur-sm transition-opacity lg:hidden"
           style={{ top: 'var(--header-offset, 3rem)' }}
         />
       ) : null}

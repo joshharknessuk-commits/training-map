@@ -2,22 +2,10 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { haversineKm } from '@/lib/distance';
+import { buildDirectionsUrl } from '@/lib/directions';
 import type { Gym } from '@/types/osm';
 
 const MAX_RESULTS = 2;
-
-const buildDirectionsUrl = (gym: Gym, origin?: { lat: number; lng: number } | null) => {
-  const params = new URLSearchParams({
-    api: '1',
-    destination: `${gym.lat},${gym.lon}`,
-  });
-
-  if (origin) {
-    params.set('origin', `${origin.lat},${origin.lng}`);
-  }
-
-  return `https://www.google.com/maps/dir/?${params.toString()}`;
-};
 
 interface GymListProps {
   gyms: Gym[];
@@ -169,7 +157,7 @@ export function GymList({
                       )}
                       <a
                         className="inline-flex items-center gap-1 rounded-full bg-[#FFCC29]/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-[#002776] transition hover:bg-[#f6bb12]"
-                        href={buildDirectionsUrl(gym, storedLocation)}
+                        href={buildDirectionsUrl({ lat: gym.lat, lon: gym.lon }, storedLocation)}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
