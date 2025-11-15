@@ -1,2 +1,3 @@
 packages:
-  - 'bjj-london-map'
+  - 'apps/*'
+  - 'packages/*'

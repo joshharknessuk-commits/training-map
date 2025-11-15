@@ -2,27 +2,33 @@
   "name": "bjj-project",
   "private": true,
   "workspaces": [
-    "bjj-london-map"
+    "apps/*",
+    "packages/*"
   ],
   "scripts": {
-    "dev": "pnpm --dir bjj-london-map dev",
-    "build": "pnpm --dir bjj-london-map build",
-    "start": "pnpm --dir bjj-london-map start",
-    "lint": "pnpm --dir bjj-london-map lint",
-    "typecheck": "pnpm --dir bjj-london-map typecheck",
-    "sync:gyms": "pnpm --dir bjj-london-map sync:gyms",
-    "sync:geodata": "pnpm --dir bjj-london-map sync:geodata"
+    "dev": "pnpm --dir apps/grapplemap-web dev",
+    "build": "pnpm --dir apps/grapplemap-web build",
+    "start": "pnpm --dir apps/grapplemap-web start",
+    "lint": "pnpm --dir apps/grapplemap-web lint",
+    "typecheck": "pnpm --dir apps/grapplemap-web typecheck",
+    "sync:gyms": "pnpm --dir apps/grapplemap-web sync:gyms",
+    "sync:geodata": "pnpm --dir apps/grapplemap-web sync:geodata"
   },
   "engines": {
     "node": ">=20 <21"
   },
   "devDependencies": {
-    "next": "14.2.3",
+    "@grapplemap/config": "workspace:*",
+    "@types/pg": "^8.15.5",
+    "@types/react": "^18.2.38",
+    "@types/react-dom": "^18.2.16",
+    "pg": "^8.16.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
-    "yaml": "^2.8.1",
-    "zod": "^3.25.76"
+    "yaml": "^2.8.1"
   },
   "packageManager": "pnpm@10.12.2"
 }

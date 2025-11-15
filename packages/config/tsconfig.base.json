@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "target": "es2019",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "baseUrl": "../..",
+    "paths": {
+      "@/app/*": ["apps/grapplemap-web/app/*"],
+      "@/components/*": ["apps/grapplemap-web/components/*"],
+      "@/lib/*": ["apps/grapplemap-web/lib/*"],
+      "@/state/*": ["apps/grapplemap-web/state/*"],
+      "@/types/*": ["apps/grapplemap-web/types/*"],
+      "@ui/*": ["packages/ui/src/*"],
+      "@db/*": ["packages/db/src/*"],
+      "@network/*": ["packages/network/src/*"],
+      "@utils/*": ["packages/utils/src/*"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  }
+}

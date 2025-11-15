@@ -1,0 +1,11 @@
+{
+  "name": "@grapplemap/config",
+  "version": "0.0.1",
+  "private": true,
+  "exports": {
+    "./eslint-next": "./eslint-next.cjs",
+    "./tailwind": "./tailwind-preset.js",
+    "./tailwind-preset": "./tailwind-preset.js",
+    "./eslint/next": "./eslint-next.cjs"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "@grapplemap/network",
+  "version": "0.0.1",
+  "private": true,
+  "main": "src/routes/page.tsx",
+  "module": "src/routes/page.tsx",
+  "types": "src/routes/page.tsx",
+  "dependencies": {
+    "drizzle-orm": "^0.44.7",
+    "zod": "^3.25.76"
+  },
+  "peerDependencies": {
+    "next": "14.x",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
