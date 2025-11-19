@@ -98,18 +98,14 @@ export default function HomePage() {
     setNearMeActive(false);
   }, []);
 
+  const selectedGymId = selectedGym?.id ?? null;
+
   const safeSelectedGym = useMemo(() => {
-    if (!selectedGym) {
+    if (!selectedGymId) {
       return null;
     }
-    return filteredGyms.find((gym) => gym.id === selectedGym.id) ?? null;
-  }, [filteredGyms, selectedGym]);
-
-  useEffect(() => {
-    if (selectedGym && !safeSelectedGym) {
-      setSelectedGym(null);
-    }
-  }, [safeSelectedGym, selectedGym]);
+    return filteredGyms.find((gym) => gym.id === selectedGymId) ?? null;
+  }, [filteredGyms, selectedGymId]);
 
   const highlightedGymIds = useMemo(() => {
     if (!userLocation || !nearMeActive) {
