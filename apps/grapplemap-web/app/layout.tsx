@@ -2,11 +2,13 @@ import type { Metadata } from 'next';
 import 'leaflet/dist/leaflet.css';
 import './globals.css';
 import { Analytics } from '@vercel/analytics/next';
+import { Providers } from './providers';
+import Navigation from '@/components/Navigation';
 
 export const metadata: Metadata = {
-  title: 'BJJ London Map',
+  title: 'GrappleMap Network - BJJ London',
   description:
-    'Interactive map of Brazilian Jiu-Jitsu gyms across Greater London with coverage rings.',
+    'Connect with BJJ gyms and grapplers across Greater London. Find classes, book training sessions, and grow your network.',
 };
 
 export default function RootLayout({
@@ -17,8 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen antialiased">
-        {children}
-        <Analytics />
+        <Providers>
+          <Navigation />
+          {children}
+          <Analytics />
+        </Providers>
       </body>
     </html>
   );
