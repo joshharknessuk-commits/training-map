@@ -1,5 +1,5 @@
-import { Pool } from 'pg';
 import { drizzle } from 'drizzle-orm/node-postgres';
+import { getPool, db as sharedDb } from '@grapplemap/db';
 import { createIngestLogger } from './logger';
 import { gyms } from './schema';
 
@@ -7,35 +7,22 @@ const schema = { gyms };
 
 const dbLogger = createIngestLogger('drizzle');
 
-let pool: Pool | undefined;
 let db: ReturnType<typeof drizzle<typeof schema>> | undefined;
-
-const createPool = () => {
-  const connectionString = process.env.DATABASE_URL;
-  if (!connectionString) {
-    throw new Error(
-      'DATABASE_URL is not configured. Please set it before running the scraper.',
-    );
-  }
-  return new Pool({
-    connectionString,
-    max: 5,
-  });
-};
 
 export const getIngestDb = () => {
   if (!db) {
-    pool = pool ?? createPool();
+    // Use the centralized pool from @grapplemap/db
+    const pool = getPool();
     db = drizzle(pool, { schema });
-    dbLogger.info('initialized drizzle connection');
+    dbLogger.info('initialized drizzle connection using centralized pool');
   }
   return db;
 };
 
 export const closeIngestDb = async () => {
-  if (pool) {
-    await pool.end();
-    pool = undefined;
+  if (db) {
+    // Use the centralized db's end method
+    await sharedDb.end();
     db = undefined;
     dbLogger.info('closed drizzle connection');
   }

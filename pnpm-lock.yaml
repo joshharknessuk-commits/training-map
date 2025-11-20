@@ -114,6 +114,9 @@ importers:
       '@grapplemap/config':
         specifier: workspace:*
         version: link:../../packages/config
+      '@grapplemap/db':
+        specifier: workspace:*
+        version: link:../../packages/db
       '@types/geojson':
         specifier: ^7946.0.16
         version: 7946.0.16

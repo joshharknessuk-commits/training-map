@@ -50,6 +50,7 @@
     "@types/react": "^18.2.38",
     "@types/react-dom": "^18.2.16",
     "@grapplemap/config": "workspace:*",
+    "@grapplemap/db": "workspace:*",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "autoprefixer": "^10.4.17",

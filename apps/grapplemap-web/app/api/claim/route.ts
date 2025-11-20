@@ -1,17 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { neon } from '@neondatabase/serverless';
+import { getDrizzleDb, gymClaims, checkRateLimit } from '@grapplemap/db';
 import { claimSchema } from '@/lib/validation/claim';
 
 export const runtime = 'nodejs';
 
-interface RateLimitEntry {
-  count: number;
-  firstRequest: number;
-}
-
 const RATE_LIMIT = 5;
-const WINDOW_MS = 60 * 60 * 1000;
-const rateLimitStore = new Map<string, RateLimitEntry>();
+const WINDOW_MS = 60 * 60 * 1000; // 1 hour
 
 function successResponse(): NextResponse {
   return NextResponse.json({ success: true });
@@ -29,31 +23,20 @@ function getClientIp(request: NextRequest): string {
   return request.ip ?? 'unknown';
 }
 
-function applyRateLimit(ip: string): NextResponse | null {
-  const now = Date.now();
-  const entry = rateLimitStore.get(ip);
+export async function POST(request: NextRequest): Promise<NextResponse> {
+  const ip = getClientIp(request);
 
-  if (!entry || now - entry.firstRequest > WINDOW_MS) {
-    rateLimitStore.set(ip, { count: 1, firstRequest: now });
-    return null;
-  }
+  // Apply database-backed rate limiting
+  const rateLimitResult = await checkRateLimit(`claim:${ip}`, {
+    maxRequests: RATE_LIMIT,
+    windowMs: WINDOW_MS,
+  });
 
-  if (entry.count >= RATE_LIMIT) {
+  if (!rateLimitResult.allowed) {
     return NextResponse.json(
       { error: 'Too many requests. Please try again later.' },
       { status: 429 },
     );
-  }
-
-  entry.count += 1;
-  return null;
-}
-
-export async function POST(request: NextRequest): Promise<NextResponse> {
-  const ip = getClientIp(request);
-  const rateLimitResponse = applyRateLimit(ip);
-  if (rateLimitResponse) {
-    return rateLimitResponse;
   }
 
   let body: unknown;
@@ -84,20 +67,17 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     );
   }
 
-  const connectionString = process.env.DATABASE_URL;
-  if (!connectionString) {
-    console.error('Missing DATABASE_URL environment variable.');
-    return NextResponse.json({ error: 'Server misconfiguration.' }, { status: 500 });
-  }
-
   try {
-    const sql = neon(connectionString);
+    const db = getDrizzleDb();
     const { gymId, name, email, proof, message } = parseResult.data;
 
-    await sql`
-      INSERT INTO gym_claims (gym_id, claimant_name, claimant_email, proof_url, message)
-      VALUES (${gymId}::uuid, ${name}, ${email}, ${proof ?? null}, ${message ?? null});
-    `;
+    await db.insert(gymClaims).values({
+      gymId,
+      claimantName: name,
+      claimantEmail: email,
+      proofUrl: proof ?? null,
+      message: message ?? null,
+    });
 
     console.log(`Gym claim recorded for ${gymId} by ${email}`);
     return successResponse();
