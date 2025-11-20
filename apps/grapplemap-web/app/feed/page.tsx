@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
@@ -20,18 +20,7 @@ export default function FeedPage() {
   const [loading, setLoading] = useState(true);
   const [feedType, setFeedType] = useState<'all' | 'connections' | 'my'>('all');
 
-  useEffect(() => {
-    if (status === 'unauthenticated') {
-      router.push('/auth/signin');
-      return;
-    }
-
-    if (status === 'authenticated') {
-      fetchActivities();
-    }
-  }, [status, feedType, router]);
-
-  const fetchActivities = async () => {
+  const fetchActivities = useCallback(async () => {
     setLoading(true);
     try {
       const response = await fetch(`/api/activity-feed?type=${feedType}`);
@@ -44,7 +33,18 @@ export default function FeedPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [feedType]);
+
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      router.push('/auth/signin');
+      return;
+    }
+
+    if (status === 'authenticated') {
+      fetchActivities();
+    }
+  }, [status, feedType, router, fetchActivities]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@grapplemap/db';
-import { gymProfiles, gyms } from '@grapplemap/db/schema';
+import { db, gymProfiles, gyms } from '@grapplemap/db';
 import { eq } from 'drizzle-orm';
 
 export async function GET(

@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
-import { db } from '@grapplemap/db';
-import { userProfiles, users } from '@grapplemap/db/schema';
+import { db, userProfiles, users } from '@grapplemap/db';
 import { eq } from 'drizzle-orm';
 
 export async function GET(request: NextRequest) {

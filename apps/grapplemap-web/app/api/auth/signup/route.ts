@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { hash } from 'bcryptjs';
-import { db } from '@grapplemap/db';
-import { users, userProfiles } from '@grapplemap/db/schema';
+import { db, users, userProfiles } from '@grapplemap/db';
 import { eq } from 'drizzle-orm';
 
 export async function POST(request: NextRequest) {

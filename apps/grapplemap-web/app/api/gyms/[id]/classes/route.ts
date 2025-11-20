@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@grapplemap/db';
-import { classes } from '@grapplemap/db/schema';
+import { db, classes } from '@grapplemap/db';
 import { eq, and } from 'drizzle-orm';
 
 export async function GET(

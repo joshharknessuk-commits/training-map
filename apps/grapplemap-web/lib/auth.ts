@@ -1,8 +1,7 @@
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import { compare } from 'bcryptjs';
-import { db } from '@grapplemap/db';
-import { users } from '@grapplemap/db/schema';
+import { db, users } from '@grapplemap/db';
 import { eq } from 'drizzle-orm';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({

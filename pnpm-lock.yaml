@@ -120,6 +120,9 @@ importers:
       '@grapplemap/config':
         specifier: workspace:*
         version: link:../../packages/config
+      '@grapplemap/db':
+        specifier: workspace:*
+        version: link:../../packages/db
       '@types/bcryptjs':
         specifier: ^3.0.0
         version: 3.0.0

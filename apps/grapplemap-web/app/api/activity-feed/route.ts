@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
-import { db } from '@grapplemap/db';
-import { activityFeed, userConnections, users, userProfiles } from '@grapplemap/db/schema';
+import { db, activityFeed, userConnections, users, userProfiles } from '@grapplemap/db';
 import { eq, or, and, inArray, desc } from 'drizzle-orm';
 
 export async function GET(request: NextRequest) {

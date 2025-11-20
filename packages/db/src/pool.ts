@@ -37,7 +37,7 @@ export function getPool(): Pool {
   return pool;
 }
 
-export const db = {
+export const poolDb = {
   query: async <T extends QueryResultRow>(
     text: string,
     params?: unknown[],

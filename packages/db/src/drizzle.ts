@@ -11,3 +11,6 @@ export function getDrizzleDb(): NodePgDatabase<typeof schema> {
   }
   return cachedDb;
 }
+
+// Export a db instance for convenient imports
+export const db = getDrizzleDb();

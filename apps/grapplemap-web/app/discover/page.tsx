@@ -124,7 +124,7 @@ export default function DiscoverPage() {
             className="bg-green-600 text-white rounded-lg shadow p-6 hover:bg-green-700 transition"
           >
             <h3 className="text-lg font-semibold">Activity Feed</h3>
-            <p className="text-sm mt-2 opacity-90">See who's training</p>
+            <p className="text-sm mt-2 opacity-90">See who&apos;s training</p>
           </Link>
           <Link
             href="/bookings"
