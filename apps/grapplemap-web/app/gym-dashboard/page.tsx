@@ -113,141 +113,148 @@ export default function GymDashboardPage() {
   if (loading && classes.length === 0) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-lg">Loading dashboard...</div>
+        <div className="text-lg text-white">Loading dashboard...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Gym Dashboard</h1>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200">
+              Management
+            </p>
+            <h1 className="text-3xl font-semibold text-white mt-2">Gym Dashboard</h1>
+          </div>
           <button
             onClick={() => setShowAddForm(!showAddForm)}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+            className="px-4 py-2 bg-emerald-500 text-white rounded-full hover:bg-emerald-600 transition font-medium"
           >
             {showAddForm ? 'Cancel' : 'Add Class'}
           </button>
         </div>
 
         {showAddForm && (
-          <div className="bg-white rounded-lg shadow p-6 mb-8">
-            <h2 className="text-xl font-semibold mb-4">Add New Class</h2>
+          <div className="rounded-3xl border border-white/10 bg-slate-950/70 p-6 mb-8 shadow-glow">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200 mb-4">
+              Add New Class
+            </p>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Class Name</label>
+                  <label className="block text-sm font-medium text-slate-300 mb-1">Class Name</label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Instructor</label>
+                  <label className="block text-sm font-medium text-slate-300 mb-1">Instructor</label>
                   <input
                     type="text"
                     value={formData.instructorName}
                     onChange={(e) => setFormData({ ...formData, instructorName: e.target.value })}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700">Description</label>
+                <label className="block text-sm font-medium text-slate-300 mb-1">Description</label>
                 <textarea
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   rows={3}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
                 />
               </div>
 
               <div className="grid grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Class Type</label>
+                  <label className="block text-sm font-medium text-slate-300 mb-1">Class Type</label>
                   <select
                     value={formData.classType}
                     onChange={(e) => setFormData({ ...formData, classType: e.target.value })}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
                   >
-                    <option value="gi">Gi</option>
-                    <option value="nogi">No-Gi</option>
-                    <option value="open_mat">Open Mat</option>
-                    <option value="fundamentals">Fundamentals</option>
-                    <option value="advanced">Advanced</option>
-                    <option value="all_levels">All Levels</option>
+                    <option value="gi" className="bg-slate-900">Gi</option>
+                    <option value="nogi" className="bg-slate-900">No-Gi</option>
+                    <option value="open_mat" className="bg-slate-900">Open Mat</option>
+                    <option value="fundamentals" className="bg-slate-900">Fundamentals</option>
+                    <option value="advanced" className="bg-slate-900">Advanced</option>
+                    <option value="all_levels" className="bg-slate-900">All Levels</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Day of Week</label>
+                  <label className="block text-sm font-medium text-slate-300 mb-1">Day of Week</label>
                   <select
                     value={formData.dayOfWeek}
                     onChange={(e) => setFormData({ ...formData, dayOfWeek: e.target.value })}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
                   >
-                    <option value="monday">Monday</option>
-                    <option value="tuesday">Tuesday</option>
-                    <option value="wednesday">Wednesday</option>
-                    <option value="thursday">Thursday</option>
-                    <option value="friday">Friday</option>
-                    <option value="saturday">Saturday</option>
-                    <option value="sunday">Sunday</option>
+                    <option value="monday" className="bg-slate-900">Monday</option>
+                    <option value="tuesday" className="bg-slate-900">Tuesday</option>
+                    <option value="wednesday" className="bg-slate-900">Wednesday</option>
+                    <option value="thursday" className="bg-slate-900">Thursday</option>
+                    <option value="friday" className="bg-slate-900">Friday</option>
+                    <option value="saturday" className="bg-slate-900">Saturday</option>
+                    <option value="sunday" className="bg-slate-900">Sunday</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Capacity</label>
+                  <label className="block text-sm font-medium text-slate-300 mb-1">Capacity</label>
                   <input
                     type="number"
                     required
                     min="1"
                     value={formData.capacity}
                     onChange={(e) => setFormData({ ...formData, capacity: parseInt(e.target.value) })}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Start Time</label>
+                  <label className="block text-sm font-medium text-slate-300 mb-1">Start Time</label>
                   <input
                     type="time"
                     required
                     value={formData.startTime}
                     onChange={(e) => setFormData({ ...formData, startTime: e.target.value })}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">End Time</label>
+                  <label className="block text-sm font-medium text-slate-300 mb-1">End Time</label>
                   <input
                     type="time"
                     required
                     value={formData.endTime}
                     onChange={(e) => setFormData({ ...formData, endTime: e.target.value })}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700">Price per Session (£)</label>
+                <label className="block text-sm font-medium text-slate-300 mb-1">Price per Session (£)</label>
                 <input
                   type="number"
                   min="0"
                   step="0.01"
                   value={formData.pricePerSession}
                   onChange={(e) => setFormData({ ...formData, pricePerSession: parseFloat(e.target.value) })}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
                 />
               </div>
 
@@ -256,9 +263,9 @@ export default function GymDashboardPage() {
                   type="checkbox"
                   checked={formData.isFreeForMembers}
                   onChange={(e) => setFormData({ ...formData, isFreeForMembers: e.target.checked })}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 rounded border-white/10 bg-white/5 text-emerald-500 focus:ring-emerald-500/50"
                 />
-                <label className="ml-2 block text-sm text-gray-900">
+                <label className="ml-2 block text-sm text-slate-300">
                   Free for network members
                 </label>
               </div>
@@ -266,7 +273,7 @@ export default function GymDashboardPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
+                className="w-full px-4 py-2.5 bg-emerald-500 text-white rounded-full hover:bg-emerald-600 disabled:opacity-50 transition font-medium"
               >
                 {loading ? 'Creating...' : 'Create Class'}
               </button>
@@ -274,59 +281,63 @@ export default function GymDashboardPage() {
           </div>
         )}
 
-        <div className="bg-white rounded-lg shadow overflow-hidden">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <h2 className="text-xl font-semibold text-gray-900">Your Classes</h2>
+        <div className="rounded-3xl border border-white/10 bg-slate-950/70 shadow-glow overflow-hidden">
+          <div className="px-6 py-4 border-b border-white/10">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200">
+              Your Classes
+            </p>
           </div>
 
           {classes.length === 0 ? (
-            <div className="p-8 text-center text-gray-600">
-              No classes yet. Add your first class to get started!
+            <div className="p-8 text-center">
+              <p className="text-slate-400">No classes yet. Add your first class to get started!</p>
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+              <table className="min-w-full">
+                <thead className="border-b border-white/5">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
                       Class
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
                       Day & Time
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
                       Bookings
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
                       Price
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
                       Status
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="divide-y divide-white/5">
                   {classes.map((cls) => (
-                    <tr key={cls.id}>
+                    <tr key={cls.id} className="hover:bg-white/5 transition">
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm font-medium text-gray-900">{cls.name}</div>
-                        <div className="text-sm text-gray-500 capitalize">{cls.classType.replace(/_/g, ' ')}</div>
+                        <div className="text-sm font-medium text-white">{cls.name}</div>
+                        <div className="text-sm text-slate-400 capitalize">{cls.classType.replace(/_/g, ' ')}</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900 capitalize">{cls.dayOfWeek}</div>
-                        <div className="text-sm text-gray-500">{cls.startTime} - {cls.endTime}</div>
+                        <div className="text-sm text-white capitalize">{cls.dayOfWeek}</div>
+                        <div className="text-sm text-slate-400">{cls.startTime} - {cls.endTime}</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">
+                        <div className="text-sm text-white">
                           {cls.currentBookings} / {cls.capacity}
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
                         £{cls.pricePerSession.toFixed(2)}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                          cls.isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                        <span className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                          cls.isActive
+                            ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+                            : 'bg-red-500/20 text-red-300 border border-red-500/30'
                         }`}>
                           {cls.isActive ? 'Active' : 'Inactive'}
                         </span>

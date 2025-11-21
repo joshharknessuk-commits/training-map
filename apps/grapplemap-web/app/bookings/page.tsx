@@ -69,7 +69,7 @@ export default function BookingsPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-lg">Loading bookings...</div>
+        <div className="text-lg text-white">Loading bookings...</div>
       </div>
     );
   }
@@ -86,24 +86,31 @@ export default function BookingsPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">My Bookings</h1>
+        <div className="mb-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200">
+            Bookings
+          </p>
+          <h1 className="text-3xl font-semibold text-white mt-2">My Bookings</h1>
+        </div>
 
         <div className="space-y-8">
-          <div>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Upcoming</h2>
+          <div className="rounded-3xl border border-white/10 bg-slate-950/70 p-6 shadow-glow">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200 mb-4">
+              Upcoming
+            </p>
             {upcomingBookings.length === 0 ? (
-              <div className="bg-white rounded-lg shadow p-6 text-center text-gray-600">
-                No upcoming bookings
+              <div className="rounded-2xl border border-white/5 bg-white/5 p-6 text-center">
+                <p className="text-slate-400">No upcoming bookings</p>
               </div>
             ) : (
               <div className="space-y-4">
                 {upcomingBookings.map((booking) => (
-                  <div key={booking.id} className="bg-white rounded-lg shadow p-6">
+                  <div key={booking.id} className="rounded-2xl border border-white/5 bg-white/5 p-4">
                     <div className="flex justify-between items-start">
                       <div>
-                        <p className="text-lg font-semibold text-gray-900">
+                        <p className="text-lg font-semibold text-white">
                           {new Date(booking.bookingDate).toLocaleDateString('en-GB', {
                             weekday: 'long',
                             year: 'numeric',
@@ -111,18 +118,18 @@ export default function BookingsPage() {
                             day: 'numeric',
                           })}
                         </p>
-                        <p className="text-sm text-gray-600 mt-1">
+                        <p className="text-sm text-slate-400 mt-1">
                           Payment: {booking.paymentStatus}
                         </p>
                         {booking.amountPaid > 0 && (
-                          <p className="text-sm text-gray-600">
+                          <p className="text-sm text-slate-400">
                             Amount: £{booking.amountPaid.toFixed(2)}
                           </p>
                         )}
                       </div>
                       <button
                         onClick={() => handleCancelBooking(booking.id)}
-                        className="px-4 py-2 text-red-600 border border-red-600 rounded-md hover:bg-red-50"
+                        className="px-4 py-2 text-red-400 border border-red-500/30 rounded-full hover:bg-red-500/10 transition"
                       >
                         Cancel
                       </button>
@@ -133,19 +140,21 @@ export default function BookingsPage() {
             )}
           </div>
 
-          <div>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Past Bookings</h2>
+          <div className="rounded-3xl border border-white/10 bg-slate-950/70 p-6 shadow-glow">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200 mb-4">
+              Past Bookings
+            </p>
             {pastBookings.length === 0 ? (
-              <div className="bg-white rounded-lg shadow p-6 text-center text-gray-600">
-                No past bookings
+              <div className="rounded-2xl border border-white/5 bg-white/5 p-6 text-center">
+                <p className="text-slate-400">No past bookings</p>
               </div>
             ) : (
               <div className="space-y-4">
                 {pastBookings.slice(0, 10).map((booking) => (
-                  <div key={booking.id} className="bg-white rounded-lg shadow p-6">
+                  <div key={booking.id} className="rounded-2xl border border-white/5 bg-white/5 p-4">
                     <div className="flex justify-between items-start">
                       <div>
-                        <p className="text-lg font-semibold text-gray-900">
+                        <p className="text-lg font-semibold text-white">
                           {new Date(booking.bookingDate).toLocaleDateString('en-GB', {
                             weekday: 'long',
                             year: 'numeric',
@@ -153,7 +162,7 @@ export default function BookingsPage() {
                             day: 'numeric',
                           })}
                         </p>
-                        <p className="text-sm text-gray-600 mt-1 capitalize">
+                        <p className="text-sm text-slate-400 mt-1 capitalize">
                           Status: {booking.bookingStatus.replace(/_/g, ' ')}
                         </p>
                       </div>

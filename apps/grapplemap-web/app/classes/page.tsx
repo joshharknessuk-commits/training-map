@@ -99,43 +99,46 @@ export default function ClassesPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-lg">Loading classes...</div>
+        <div className="text-lg text-white">Loading classes...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Browse Classes</h1>
-          <p className="mt-2 text-gray-600">Find and book BJJ classes across London</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200">
+            Classes
+          </p>
+          <h1 className="text-3xl font-semibold text-white mt-2">Browse Classes</h1>
+          <p className="mt-2 text-slate-300">Find and book BJJ classes across London</p>
         </div>
 
         {Object.keys(groupedClasses).length === 0 ? (
-          <div className="bg-white rounded-lg shadow p-8 text-center">
-            <p className="text-gray-600">No classes available at the moment.</p>
+          <div className="rounded-3xl border border-white/10 bg-slate-950/70 p-8 text-center shadow-glow">
+            <p className="text-slate-400">No classes available at the moment.</p>
           </div>
         ) : (
           <div className="space-y-8">
             {Object.entries(groupedClasses).map(([day, dayClasses]) => (
               <div key={day}>
-                <h2 className="text-2xl font-semibold text-gray-900 mb-4 capitalize">{day}</h2>
+                <h2 className="text-xl font-semibold text-white mb-4 capitalize">{day}</h2>
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                   {dayClasses.map((cls) => (
-                    <div key={cls.id} className="bg-white rounded-lg shadow p-6">
+                    <div key={cls.id} className="rounded-3xl border border-white/10 bg-slate-950/70 p-6 shadow-glow">
                       <div className="flex justify-between items-start mb-4">
                         <div>
-                          <h3 className="text-lg font-semibold text-gray-900">{cls.name}</h3>
-                          <p className="text-sm text-gray-600 capitalize">{cls.classType.replace(/_/g, ' ')}</p>
+                          <h3 className="text-lg font-semibold text-white">{cls.name}</h3>
+                          <p className="text-sm text-slate-400 capitalize">{cls.classType.replace(/_/g, ' ')}</p>
                         </div>
                         <span
                           className={`px-3 py-1 rounded-full text-xs font-medium ${
                             cls.currentBookings >= cls.capacity
-                              ? 'bg-red-100 text-red-800'
+                              ? 'bg-red-500/20 text-red-300 border border-red-500/30'
                               : cls.currentBookings >= cls.capacity * 0.8
-                                ? 'bg-yellow-100 text-yellow-800'
-                                : 'bg-green-100 text-green-800'
+                                ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
+                                : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
                           }`}
                         >
                           {cls.capacity - cls.currentBookings} spots left
@@ -143,20 +146,20 @@ export default function ClassesPage() {
                       </div>
 
                       {cls.description && (
-                        <p className="text-sm text-gray-600 mb-4">{cls.description}</p>
+                        <p className="text-sm text-slate-400 mb-4">{cls.description}</p>
                       )}
 
                       <div className="space-y-2 mb-4">
                         {cls.instructorName && (
-                          <p className="text-sm text-gray-700">
-                            <span className="font-medium">Instructor:</span> {cls.instructorName}
+                          <p className="text-sm text-slate-300">
+                            <span className="text-slate-500">Instructor:</span> {cls.instructorName}
                           </p>
                         )}
-                        <p className="text-sm text-gray-700">
-                          <span className="font-medium">Time:</span> {cls.startTime} - {cls.endTime}
+                        <p className="text-sm text-slate-300">
+                          <span className="text-slate-500">Time:</span> {cls.startTime} - {cls.endTime}
                         </p>
-                        <p className="text-sm text-gray-700">
-                          <span className="font-medium">Price:</span>{' '}
+                        <p className="text-sm text-slate-300">
+                          <span className="text-slate-500">Price:</span>{' '}
                           {cls.isFreeForMembers
                             ? 'Free for members'
                             : `£${cls.pricePerSession.toFixed(2)}`}
@@ -168,7 +171,7 @@ export default function ClassesPage() {
                         disabled={
                           cls.currentBookings >= cls.capacity || bookingClass === cls.id
                         }
-                        className="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full px-4 py-2 bg-emerald-500 text-white rounded-full hover:bg-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed transition font-medium"
                       >
                         {bookingClass === cls.id
                           ? 'Booking...'
@@ -187,7 +190,7 @@ export default function ClassesPage() {
         <div className="mt-8">
           <Link
             href="/bookings"
-            className="text-blue-600 hover:text-blue-700 font-medium"
+            className="text-emerald-400 hover:text-emerald-300 font-medium"
           >
             View My Bookings →
           </Link>
