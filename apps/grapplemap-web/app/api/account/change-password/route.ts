@@ -66,9 +66,18 @@ export async function POST(request: NextRequest) {
       .set({
         passwordHash: newPasswordHash,
         updatedAt: new Date(),
+        // TODO: Add passwordChangedAt field to invalidate old sessions
+        // This requires:
+        // 1. Database migration to add passwordChangedAt timestamp field
+        // 2. Update this line to: passwordChangedAt: new Date()
+        // 3. Update auth config (lib/auth.ts) JWT callback to check:
+        //    if (token.iat < user.passwordChangedAt) { return null; }
+        // Without this, old sessions remain valid after password change (security risk)
       })
       .where(eq(users.id, session.user.id));
 
+    // TODO: Once passwordChangedAt is implemented, this will automatically
+    // invalidate all existing sessions for this user
     return NextResponse.json({
       success: true,
       message: 'Password changed successfully',

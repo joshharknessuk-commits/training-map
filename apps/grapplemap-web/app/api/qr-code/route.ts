@@ -11,7 +11,10 @@ function generateQRToken(email: string, membershipTier: string, membershipStatus
   const timestamp = Date.now();
   const hourTimestamp = Math.floor(timestamp / (60 * 60 * 1000)); // Round to hour
 
-  const secret = process.env.QR_SECRET || 'default-secret-change-in-production';
+  const secret = process.env.QR_SECRET;
+  if (!secret) {
+    throw new Error('QR_SECRET must be set in environment variables');
+  }
   const data = `${email}:${hourTimestamp}:${membershipTier}:${membershipStatus}`;
 
   const signature = crypto
@@ -105,7 +108,10 @@ export async function POST(request: NextRequest) {
       const [email, hourTimestamp, membershipTier, membershipStatus, signature] = parts;
 
       // Verify signature
-      const secret = process.env.QR_SECRET || 'default-secret-change-in-production';
+      const secret = process.env.QR_SECRET;
+      if (!secret) {
+        throw new Error('QR_SECRET must be set in environment variables');
+      }
       const data = `${email}:${hourTimestamp}:${membershipTier}:${membershipStatus}`;
       const expectedSignature = crypto
         .createHmac('sha256', secret)
@@ -121,7 +127,7 @@ export async function POST(request: NextRequest) {
       const currentHourTimestamp = Math.floor(Date.now() / (60 * 60 * 1000));
       const tokenHourTimestamp = parseInt(hourTimestamp);
 
-      if (currentHourTimestamp - tokenHourTimestamp > 0) {
+      if (currentHourTimestamp - tokenHourTimestamp >= 1) {
         return NextResponse.json({ error: 'Token expired' }, { status: 400 });
       }
 

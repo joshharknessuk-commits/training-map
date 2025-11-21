@@ -32,22 +32,22 @@ export async function DELETE(request: NextRequest) {
     }
 
     // Cancel Stripe subscription if exists
+    // IMPORTANT: Do NOT catch errors here - if Stripe cancellation fails,
+    // the entire deletion should fail to prevent user being deleted while
+    // still being charged by Stripe
     if (stripe && user.stripeCustomerId) {
-      try {
-        // Get all active subscriptions
-        const subscriptions = await stripe.subscriptions.list({
-          customer: user.stripeCustomerId,
-          status: 'active',
-        });
+      // Get all active subscriptions
+      const subscriptions = await stripe.subscriptions.list({
+        customer: user.stripeCustomerId,
+        status: 'active',
+      });
 
-        // Cancel all subscriptions immediately
-        for (const subscription of subscriptions.data) {
-          await stripe.subscriptions.cancel(subscription.id);
-        }
-      } catch (stripeError) {
-        console.error('Error cancelling Stripe subscriptions:', stripeError);
-        // Continue with deletion even if Stripe fails
+      // Cancel all subscriptions immediately
+      for (const subscription of subscriptions.data) {
+        await stripe.subscriptions.cancel(subscription.id);
       }
+
+      console.log(`Canceled ${subscriptions.data.length} subscription(s) for customer ${user.stripeCustomerId}`);
     }
 
     // Delete user's check-ins

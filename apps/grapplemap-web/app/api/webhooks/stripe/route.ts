@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { db, users } from '@grapplemap/db';
+import { eq } from 'drizzle-orm';
 
 // Initialize Stripe
 const stripe = process.env.STRIPE_SECRET_KEY
@@ -82,7 +84,7 @@ export async function POST(request: NextRequest) {
 }
 
 // ============================================
-// Webhook Event Handlers (Scaffolding)
+// Webhook Event Handlers
 // ============================================
 
 async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
@@ -91,31 +93,61 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
   const email = session.customer_email || session.metadata?.email;
   const tier = session.metadata?.tier;
   const customerId = session.customer as string;
+  const subscriptionId = session.subscription as string;
 
-  // TODO: Implement the following:
-  // 1. Find or create user by email
-  // 2. Update user's stripeCustomerId
-  // 3. Set membershipStatus to 'active'
-  // 4. Set membershipTier to the purchased tier
-  // 5. Set activeUntil to subscription period end
-  // 6. Send welcome email
+  if (!email) {
+    console.error('No email found in checkout session:', session.id);
+    return;
+  }
 
-  console.log('TODO: Activate membership for:', { email, tier, customerId });
+  try {
+    // Get subscription details to find the period end
+    let activeUntil: Date | null = null;
+    if (subscriptionId && stripe) {
+      const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+      activeUntil = new Date(subscription.current_period_end * 1000);
+    }
+
+    // Update user with Stripe customer ID and activate membership
+    await db
+      .update(users)
+      .set({
+        stripeCustomerId: customerId,
+        membershipStatus: 'active',
+        membershipTier: (tier as 'standard' | 'pro' | 'academy') || 'standard',
+        activeUntil: activeUntil,
+      })
+      .where(eq(users.email, email));
+
+    console.log('Membership activated for:', { email, tier, customerId });
+    // TODO: Send welcome email
+  } catch (error) {
+    console.error('Error handling checkout completed:', error);
+    throw error;
+  }
 }
 
 async function handleSubscriptionCreated(subscription: Stripe.Subscription) {
   console.log('Subscription created:', subscription.id);
 
   const customerId = subscription.customer as string;
-  const tier = subscription.metadata?.tier;
   const periodEnd = new Date(subscription.current_period_end * 1000);
 
-  // TODO: Implement the following:
-  // 1. Find user by stripeCustomerId
-  // 2. Update membershipStatus to 'active'
-  // 3. Update activeUntil to periodEnd
+  try {
+    // Update user membership based on subscription
+    await db
+      .update(users)
+      .set({
+        membershipStatus: 'active',
+        activeUntil: periodEnd,
+      })
+      .where(eq(users.stripeCustomerId, customerId));
 
-  console.log('TODO: Process subscription creation:', { customerId, tier, periodEnd });
+    console.log('Subscription activated for customer:', customerId);
+  } catch (error) {
+    console.error('Error handling subscription created:', error);
+    throw error;
+  }
 }
 
 async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
@@ -125,16 +157,44 @@ async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
   const status = subscription.status;
   const periodEnd = new Date(subscription.current_period_end * 1000);
 
-  // TODO: Implement the following:
-  // 1. Find user by stripeCustomerId
-  // 2. Update membershipStatus based on subscription status:
-  //    - 'active' -> 'active'
-  //    - 'past_due' -> 'past_due'
-  //    - 'canceled' -> 'canceled'
-  //    - 'unpaid' -> 'past_due'
-  // 3. Update activeUntil to periodEnd
+  // Map Stripe subscription status to our membership status
+  let membershipStatus: 'active' | 'past_due' | 'canceled' | 'grace' = 'active';
 
-  console.log('TODO: Process subscription update:', { customerId, status, periodEnd });
+  switch (status) {
+    case 'active':
+      membershipStatus = 'active';
+      break;
+    case 'past_due':
+    case 'unpaid':
+      membershipStatus = 'past_due';
+      break;
+    case 'canceled':
+    case 'incomplete_expired':
+      membershipStatus = 'canceled';
+      break;
+    case 'trialing':
+      membershipStatus = 'active'; // Treat trial as active
+      break;
+    default:
+      console.warn('Unknown subscription status:', status);
+      membershipStatus = 'canceled';
+  }
+
+  try {
+    // Update user membership based on subscription status
+    await db
+      .update(users)
+      .set({
+        membershipStatus,
+        activeUntil: periodEnd,
+      })
+      .where(eq(users.stripeCustomerId, customerId));
+
+    console.log('Subscription updated for customer:', { customerId, status: membershipStatus });
+  } catch (error) {
+    console.error('Error handling subscription updated:', error);
+    throw error;
+  }
 }
 
 async function handleSubscriptionDeleted(subscription: Stripe.Subscription) {
@@ -142,13 +202,21 @@ async function handleSubscriptionDeleted(subscription: Stripe.Subscription) {
 
   const customerId = subscription.customer as string;
 
-  // TODO: Implement the following:
-  // 1. Find user by stripeCustomerId
-  // 2. Set membershipStatus to 'canceled'
-  // 3. Keep activeUntil as is (they have access until period end)
-  // 4. Send cancellation email
+  try {
+    // Set membership to canceled but keep activeUntil (they have access until period end)
+    await db
+      .update(users)
+      .set({
+        membershipStatus: 'canceled',
+      })
+      .where(eq(users.stripeCustomerId, customerId));
 
-  console.log('TODO: Process subscription cancellation:', { customerId });
+    console.log('Subscription canceled for customer:', customerId);
+    // TODO: Send cancellation email
+  } catch (error) {
+    console.error('Error handling subscription deleted:', error);
+    throw error;
+  }
 }
 
 async function handleInvoicePaid(invoice: Stripe.Invoice) {
@@ -157,13 +225,29 @@ async function handleInvoicePaid(invoice: Stripe.Invoice) {
   const customerId = invoice.customer as string;
   const subscriptionId = invoice.subscription as string;
 
-  // TODO: Implement the following:
-  // 1. Find user by stripeCustomerId
-  // 2. Update membershipStatus to 'active' (in case they were past_due)
-  // 3. Extend activeUntil if needed
-  // 4. Send payment confirmation email
+  try {
+    // Get subscription to find the period end
+    let activeUntil: Date | null = null;
+    if (subscriptionId && stripe) {
+      const subscription = await stripe.subscriptions.retrieve(subscriptionId as string);
+      activeUntil = new Date(subscription.current_period_end * 1000);
+    }
 
-  console.log('TODO: Process invoice payment:', { customerId, subscriptionId });
+    // Reactivate membership if it was past_due
+    await db
+      .update(users)
+      .set({
+        membershipStatus: 'active',
+        ...(activeUntil && { activeUntil }),
+      })
+      .where(eq(users.stripeCustomerId, customerId));
+
+    console.log('Invoice paid for customer:', customerId);
+    // TODO: Send payment confirmation email
+  } catch (error) {
+    console.error('Error handling invoice paid:', error);
+    throw error;
+  }
 }
 
 async function handleInvoicePaymentFailed(invoice: Stripe.Invoice) {
@@ -171,10 +255,19 @@ async function handleInvoicePaymentFailed(invoice: Stripe.Invoice) {
 
   const customerId = invoice.customer as string;
 
-  // TODO: Implement the following:
-  // 1. Find user by stripeCustomerId
-  // 2. Update membershipStatus to 'past_due'
-  // 3. Send payment failure notification email
+  try {
+    // Mark membership as past_due when payment fails
+    await db
+      .update(users)
+      .set({
+        membershipStatus: 'past_due',
+      })
+      .where(eq(users.stripeCustomerId, customerId));
 
-  console.log('TODO: Process payment failure:', { customerId });
+    console.log('Payment failed for customer:', customerId);
+    // TODO: Send payment failure notification email
+  } catch (error) {
+    console.error('Error handling invoice payment failed:', error);
+    throw error;
+  }
 }
