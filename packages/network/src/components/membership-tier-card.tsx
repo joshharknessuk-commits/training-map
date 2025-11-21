@@ -15,11 +15,15 @@ export function MembershipTierCard({ tier, featured = false, variant = 'member' 
   );
 
   const isGymTier = tier.id === 'academy';
+  const isFreeTier = tier.isFree || tier.price === 0;
+
   const signupUrl = isGymTier
     ? '/network/signup/gym'
+    : isFreeTier
+    ? '/auth/signup'
     : `/network/checkout?tier=${tier.id}`;
 
-  const buttonLabel = isGymTier ? 'Contact Sales' : 'Sign Up';
+  const buttonLabel = isGymTier ? 'Contact Sales' : isFreeTier ? 'Sign Up Free' : 'Sign Up';
 
   return (
     <div className={cardClasses}>
@@ -29,8 +33,14 @@ export function MembershipTierCard({ tier, featured = false, variant = 'member' 
         <p className="text-base text-slate-300">{tier.description}</p>
       </div>
       <div className="mt-6 flex items-baseline gap-2">
-        <span className="text-4xl font-bold text-white">£{tier.price}</span>
-        <span className="text-sm text-slate-400">per month</span>
+        {isFreeTier ? (
+          <span className="text-4xl font-bold text-emerald-400">Free</span>
+        ) : (
+          <>
+            <span className="text-4xl font-bold text-white">£{tier.price}</span>
+            <span className="text-sm text-slate-400">per month</span>
+          </>
+        )}
       </div>
       <ul className="mt-6 space-y-2 text-sm text-slate-200">
         {tier.perks.map((perk) => (

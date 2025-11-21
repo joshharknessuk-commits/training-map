@@ -21,7 +21,7 @@ interface UserProfile {
 
 interface UserAccount {
   email: string;
-  membershipTier: 'standard' | 'pro' | 'academy';
+  membershipTier: 'free' | 'standard' | 'pro' | 'academy';
   membershipStatus: 'active' | 'grace' | 'paused' | 'past_due' | 'canceled';
   activeUntil?: string;
   stripeCustomerId?: string;
@@ -670,7 +670,7 @@ export default function ProfilePage() {
                       Tier
                     </h4>
                     <p className="text-lg font-semibold text-white capitalize">
-                      {account.membershipTier === 'pro' ? 'Network Pro' : account.membershipTier === 'standard' ? 'Network' : account.membershipTier}
+                      {account.membershipTier === 'pro' ? 'Network Pro' : account.membershipTier === 'standard' ? 'Network' : account.membershipTier === 'free' ? 'Network Free' : account.membershipTier}
                     </p>
                   </div>
                 </div>
@@ -762,8 +762,37 @@ export default function ProfilePage() {
           </div>
         )}
 
+        {/* Free Tier Upgrade Prompt */}
+        {account && account.membershipTier === 'free' && (
+          <div className="mt-8 rounded-3xl border border-emerald-400/20 bg-gradient-to-br from-emerald-950/30 to-slate-950/70 p-6 shadow-glow">
+            <div className="mb-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200">
+                Upgrade to Access
+              </p>
+              <h2 className="text-2xl font-semibold text-white mt-2">Unlock Gym Check-ins</h2>
+              <p className="text-sm text-slate-300 mt-1">Upgrade to a paid tier for QR check-in access at partner gyms</p>
+            </div>
+
+            <div className="rounded-2xl border border-emerald-400/30 bg-slate-900/60 p-6">
+              <div className="flex flex-col items-center justify-center text-center">
+                <div className="mb-4 text-6xl">🔒</div>
+                <p className="text-lg font-semibold text-white mb-2">Check-in Access Locked</p>
+                <p className="text-sm text-slate-300 mb-6 max-w-md">
+                  Free tier members can browse and discover gyms. Upgrade to Network or Network Pro to check in at partner gyms, book classes, and get SMS reminders.
+                </p>
+                <Link
+                  href="/network#membership"
+                  className="inline-flex items-center justify-center rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-400"
+                >
+                  View Membership Options
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* QR Code Section */}
-        {account && (account.membershipStatus === 'active' || account.membershipStatus === 'grace') && (
+        {account && (account.membershipStatus === 'active' || account.membershipStatus === 'grace') && account.membershipTier !== 'free' && (
           <div className="mt-8 rounded-3xl border border-emerald-400/20 bg-gradient-to-br from-emerald-950/30 to-slate-950/70 p-6 shadow-glow">
             <div className="mb-6">
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200">

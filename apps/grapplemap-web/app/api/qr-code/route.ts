@@ -54,10 +54,18 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
-    // Only generate QR codes for active or grace period members
+    // Only generate QR codes for active or grace period members with paid tiers
     if (user.membershipStatus !== 'active' && user.membershipStatus !== 'grace') {
       return NextResponse.json(
         { error: 'QR code only available for active members' },
+        { status: 403 },
+      );
+    }
+
+    // Free tier members cannot check in at gyms
+    if (user.membershipTier === 'free') {
+      return NextResponse.json(
+        { error: 'QR code not available for free tier. Upgrade to check in at partner gyms.' },
         { status: 403 },
       );
     }
