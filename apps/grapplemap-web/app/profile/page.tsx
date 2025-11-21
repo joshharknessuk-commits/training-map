@@ -16,6 +16,7 @@ interface UserProfile {
   trainingGoals?: string[];
   isPublic?: boolean;
   city?: string;
+  avatarUrl?: string;
 }
 
 interface UserAccount {
@@ -52,6 +53,9 @@ export default function ProfilePage() {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deleteConfirmText, setDeleteConfirmText] = useState('');
   const [deleteLoading, setDeleteLoading] = useState(false);
+
+  // Avatar upload state
+  const [avatarUploading, setAvatarUploading] = useState(false);
 
   useEffect(() => {
     if (status === 'unauthenticated') {
@@ -291,6 +295,76 @@ export default function ProfilePage() {
     }
   };
 
+  const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      alert('Please select an image file');
+      return;
+    }
+
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      alert('Image size must be less than 5MB');
+      return;
+    }
+
+    setAvatarUploading(true);
+    try {
+      const uploadFormData = new FormData();
+      uploadFormData.append('avatar', file);
+
+      const response = await fetch('/api/upload/avatar', {
+        method: 'POST',
+        body: uploadFormData,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setFormData({ ...formData, avatarUrl: data.url });
+        setProfile({ ...profile, avatarUrl: data.url });
+        await fetchProfile(); // Refresh profile data
+      } else {
+        const data = await response.json();
+        alert(data.error || 'Failed to upload avatar');
+      }
+    } catch (error) {
+      console.error('Failed to upload avatar:', error);
+      alert('Failed to upload avatar');
+    } finally {
+      setAvatarUploading(false);
+    }
+  };
+
+  const handleRemoveAvatar = async () => {
+    if (!confirm('Are you sure you want to remove your avatar?')) {
+      return;
+    }
+
+    setAvatarUploading(true);
+    try {
+      const response = await fetch('/api/upload/avatar', {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        setFormData({ ...formData, avatarUrl: undefined });
+        setProfile({ ...profile, avatarUrl: undefined });
+        await fetchProfile(); // Refresh profile data
+      } else {
+        const data = await response.json();
+        alert(data.error || 'Failed to remove avatar');
+      }
+    } catch (error) {
+      console.error('Failed to remove avatar:', error);
+      alert('Failed to remove avatar');
+    } finally {
+      setAvatarUploading(false);
+    }
+  };
+
   if (loading && !profile) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -320,6 +394,54 @@ export default function ProfilePage() {
 
           {editing ? (
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Avatar Upload */}
+              <div className="flex flex-col items-center gap-4">
+                <div className="relative">
+                  <div className="h-32 w-32 rounded-full border-4 border-white/10 bg-slate-900 overflow-hidden">
+                    {formData.avatarUrl ? (
+                      <img
+                        src={formData.avatarUrl}
+                        alt="Avatar"
+                        className="h-full w-full object-cover"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center text-4xl text-slate-600">
+                        👤
+                      </div>
+                    )}
+                  </div>
+                  {avatarUploading && (
+                    <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black/50">
+                      <span className="text-white text-sm">Uploading...</span>
+                    </div>
+                  )}
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <div className="flex gap-2">
+                    <label className="cursor-pointer rounded-full bg-emerald-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-600">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleAvatarUpload}
+                        className="hidden"
+                        disabled={avatarUploading}
+                      />
+                      {avatarUploading ? 'Uploading...' : formData.avatarUrl ? 'Change' : 'Upload'}
+                    </label>
+                    {formData.avatarUrl && !avatarUploading && (
+                      <button
+                        type="button"
+                        onClick={handleRemoveAvatar}
+                        className="rounded-full border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm font-medium text-red-300 transition hover:bg-red-500/20"
+                      >
+                        Remove
+                      </button>
+                    )}
+                  </div>
+                  <p className="text-xs text-slate-400">Max 5MB, JPG/PNG</p>
+                </div>
+              </div>
+
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-1">Display Name</label>
                 <input
@@ -455,11 +577,27 @@ export default function ProfilePage() {
             </form>
           ) : (
             <div className="space-y-6">
-              <div className="rounded-2xl border border-white/5 bg-white/5 p-4">
-                <h3 className="text-lg font-semibold text-white">
-                  {profile?.displayName || 'No name set'}
-                </h3>
-                <p className="text-slate-400">{session?.user?.email}</p>
+              {/* Avatar Display */}
+              <div className="flex items-center gap-4 rounded-2xl border border-white/5 bg-white/5 p-4">
+                <div className="h-20 w-20 flex-shrink-0 rounded-full border-4 border-white/10 bg-slate-900 overflow-hidden">
+                  {profile?.avatarUrl ? (
+                    <img
+                      src={profile.avatarUrl}
+                      alt={profile.displayName || 'Avatar'}
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center text-3xl text-slate-600">
+                      👤
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white">
+                    {profile?.displayName || 'No name set'}
+                  </h3>
+                  <p className="text-slate-400">{session?.user?.email}</p>
+                </div>
               </div>
 
               {profile?.bio && (
