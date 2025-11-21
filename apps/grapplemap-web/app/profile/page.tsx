@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import Link from 'next/link';
 
 interface UserProfile {
   displayName?: string;
@@ -17,13 +18,24 @@ interface UserProfile {
   city?: string;
 }
 
+interface UserAccount {
+  email: string;
+  membershipTier: 'standard' | 'pro' | 'academy';
+  membershipStatus: 'active' | 'grace' | 'paused' | 'past_due' | 'canceled';
+  activeUntil?: string;
+  stripeCustomerId?: string;
+}
+
 export default function ProfilePage() {
   const router = useRouter();
   const { data: session, status } = useSession();
   const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [account, setAccount] = useState<UserAccount | null>(null);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
   const [formData, setFormData] = useState<UserProfile>({});
+  const [cancelLoading, setCancelLoading] = useState(false);
+  const [showCancelConfirm, setShowCancelConfirm] = useState(false);
 
   useEffect(() => {
     if (status === 'unauthenticated') {
@@ -33,6 +45,7 @@ export default function ProfilePage() {
 
     if (status === 'authenticated') {
       fetchProfile();
+      fetchAccount();
     }
   }, [status, router]);
 
@@ -48,6 +61,18 @@ export default function ProfilePage() {
       console.error('Failed to fetch profile:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchAccount = async () => {
+    try {
+      const response = await fetch('/api/account');
+      if (response.ok) {
+        const data = await response.json();
+        setAccount(data.account);
+      }
+    } catch (error) {
+      console.error('Failed to fetch account:', error);
     }
   };
 
@@ -84,6 +109,80 @@ export default function ProfilePage() {
       ...formData,
       [name]: type === 'number' ? parseInt(value) : value,
     });
+  };
+
+  const handleCancelMembership = async () => {
+    setCancelLoading(true);
+    try {
+      const response = await fetch('/api/membership/cancel', {
+        method: 'POST',
+      });
+
+      if (response.ok) {
+        await fetchAccount();
+        setShowCancelConfirm(false);
+        alert('Your membership has been cancelled. You will retain access until the end of your billing period.');
+      } else {
+        const data = await response.json();
+        alert(data.error || 'Failed to cancel membership');
+      }
+    } catch (error) {
+      console.error('Failed to cancel membership:', error);
+      alert('Failed to cancel membership');
+    } finally {
+      setCancelLoading(false);
+    }
+  };
+
+  const handleManageBilling = async () => {
+    try {
+      const response = await fetch('/api/membership/billing-portal');
+      if (response.ok) {
+        const data = await response.json();
+        if (data.url) {
+          window.location.href = data.url;
+        }
+      } else {
+        alert('Failed to open billing portal');
+      }
+    } catch (error) {
+      console.error('Failed to open billing portal:', error);
+      alert('Failed to open billing portal');
+    }
+  };
+
+  const getMembershipStatusColor = (status: string) => {
+    switch (status) {
+      case 'active':
+        return 'text-emerald-400';
+      case 'grace':
+        return 'text-blue-400';
+      case 'past_due':
+        return 'text-yellow-400';
+      case 'canceled':
+        return 'text-red-400';
+      case 'paused':
+        return 'text-slate-400';
+      default:
+        return 'text-slate-400';
+    }
+  };
+
+  const getMembershipStatusLabel = (status: string) => {
+    switch (status) {
+      case 'active':
+        return 'Active';
+      case 'grace':
+        return 'Grace Period';
+      case 'past_due':
+        return 'Payment Due';
+      case 'canceled':
+        return 'Cancelled';
+      case 'paused':
+        return 'Paused';
+      default:
+        return status;
+    }
   };
 
   if (loading && !profile) {
@@ -299,6 +398,125 @@ export default function ProfilePage() {
             </div>
           )}
         </div>
+
+        {/* Account Management Section */}
+        {account && (
+          <div className="mt-8 rounded-3xl border border-white/10 bg-slate-950/70 p-6 shadow-glow">
+            <div className="mb-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200">
+                Account Management
+              </p>
+              <h2 className="text-2xl font-semibold text-white mt-2">Membership & Billing</h2>
+            </div>
+
+            <div className="space-y-4">
+              {/* Membership Status */}
+              <div className="rounded-2xl border border-white/5 bg-white/5 p-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200 mb-2">
+                      Membership Status
+                    </h4>
+                    <p className={`text-lg font-semibold ${getMembershipStatusColor(account.membershipStatus)}`}>
+                      {getMembershipStatusLabel(account.membershipStatus)}
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200 mb-2">
+                      Tier
+                    </h4>
+                    <p className="text-lg font-semibold text-white capitalize">
+                      {account.membershipTier === 'pro' ? 'Network Pro' : account.membershipTier === 'standard' ? 'Network' : account.membershipTier}
+                    </p>
+                  </div>
+                </div>
+                {account.activeUntil && (
+                  <div className="mt-3 pt-3 border-t border-white/10">
+                    <p className="text-xs text-slate-400">
+                      {account.membershipStatus === 'canceled'
+                        ? `Access until: ${new Date(account.activeUntil).toLocaleDateString()}`
+                        : `Next billing: ${new Date(account.activeUntil).toLocaleDateString()}`
+                      }
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* Action Buttons */}
+              <div className="grid gap-3 sm:grid-cols-2">
+                {/* Change Tier */}
+                <Link
+                  href="/network#membership"
+                  className="flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm font-medium text-white transition hover:bg-white/10"
+                >
+                  <span>Change Tier</span>
+                  <span>→</span>
+                </Link>
+
+                {/* Manage Billing */}
+                {account.stripeCustomerId && account.membershipStatus !== 'canceled' && (
+                  <button
+                    onClick={handleManageBilling}
+                    className="flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm font-medium text-white transition hover:bg-white/10"
+                  >
+                    <span>Manage Billing</span>
+                  </button>
+                )}
+              </div>
+
+              {/* Cancel Membership */}
+              {account.membershipStatus === 'active' && !showCancelConfirm && (
+                <button
+                  onClick={() => setShowCancelConfirm(true)}
+                  className="w-full rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm font-medium text-red-300 transition hover:bg-red-500/20"
+                >
+                  Cancel Membership
+                </button>
+              )}
+
+              {/* Cancel Confirmation */}
+              {showCancelConfirm && (
+                <div className="rounded-2xl border border-red-500/30 bg-red-950/30 p-4">
+                  <h4 className="text-sm font-semibold text-white mb-2">
+                    Are you sure you want to cancel?
+                  </h4>
+                  <p className="text-xs text-slate-300 mb-4">
+                    Your membership will remain active until{' '}
+                    {account.activeUntil ? new Date(account.activeUntil).toLocaleDateString() : 'the end of your billing period'}.
+                    You can resubscribe anytime.
+                  </p>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={handleCancelMembership}
+                      disabled={cancelLoading}
+                      className="flex-1 rounded-lg bg-red-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-600 disabled:opacity-50"
+                    >
+                      {cancelLoading ? 'Cancelling...' : 'Yes, Cancel'}
+                    </button>
+                    <button
+                      onClick={() => setShowCancelConfirm(false)}
+                      className="flex-1 rounded-lg border border-white/20 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/5"
+                    >
+                      Keep Membership
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Info Box */}
+              <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-4">
+                <p className="text-xs uppercase tracking-[0.35em] text-emerald-200 mb-2">Need Help?</p>
+                <p className="text-sm text-slate-300">
+                  Contact us at{' '}
+                  <a href="mailto:support@grapplemap.uk" className="text-emerald-300 hover:text-emerald-200">
+                    support@grapplemap.uk
+                  </a>{' '}
+                  for billing questions or membership changes.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
