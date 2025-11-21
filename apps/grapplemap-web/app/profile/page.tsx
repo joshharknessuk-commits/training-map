@@ -26,16 +26,32 @@ interface UserAccount {
   stripeCustomerId?: string;
 }
 
+interface QRCodeData {
+  token: string;
+  expiresAt: string;
+}
+
 export default function ProfilePage() {
   const router = useRouter();
   const { data: session, status } = useSession();
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [account, setAccount] = useState<UserAccount | null>(null);
+  const [qrCode, setQrCode] = useState<QRCodeData | null>(null);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
   const [formData, setFormData] = useState<UserProfile>({});
   const [cancelLoading, setCancelLoading] = useState(false);
   const [showCancelConfirm, setShowCancelConfirm] = useState(false);
+
+  // Password change state
+  const [showPasswordChange, setShowPasswordChange] = useState(false);
+  const [passwordData, setPasswordData] = useState({ currentPassword: '', newPassword: '', confirmPassword: '' });
+  const [passwordLoading, setPasswordLoading] = useState(false);
+
+  // Delete account state
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [deleteConfirmText, setDeleteConfirmText] = useState('');
+  const [deleteLoading, setDeleteLoading] = useState(false);
 
   useEffect(() => {
     if (status === 'unauthenticated') {
@@ -46,8 +62,19 @@ export default function ProfilePage() {
     if (status === 'authenticated') {
       fetchProfile();
       fetchAccount();
+      fetchQRCode();
     }
   }, [status, router]);
+
+  // Refresh QR code every minute
+  useEffect(() => {
+    if (status === 'authenticated' && account?.membershipStatus === 'active') {
+      const interval = setInterval(() => {
+        fetchQRCode();
+      }, 60000); // Refresh every minute
+      return () => clearInterval(interval);
+    }
+  }, [status, account?.membershipStatus]);
 
   const fetchProfile = async () => {
     try {
@@ -73,6 +100,18 @@ export default function ProfilePage() {
       }
     } catch (error) {
       console.error('Failed to fetch account:', error);
+    }
+  };
+
+  const fetchQRCode = async () => {
+    try {
+      const response = await fetch('/api/qr-code');
+      if (response.ok) {
+        const data = await response.json();
+        setQrCode(data);
+      }
+    } catch (error) {
+      console.error('Failed to fetch QR code:', error);
     }
   };
 
@@ -182,6 +221,73 @@ export default function ProfilePage() {
         return 'Paused';
       default:
         return status;
+    }
+  };
+
+  const handlePasswordChange = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (passwordData.newPassword !== passwordData.confirmPassword) {
+      alert('New passwords do not match');
+      return;
+    }
+
+    if (passwordData.newPassword.length < 8) {
+      alert('New password must be at least 8 characters');
+      return;
+    }
+
+    setPasswordLoading(true);
+    try {
+      const response = await fetch('/api/account/change-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          currentPassword: passwordData.currentPassword,
+          newPassword: passwordData.newPassword,
+        }),
+      });
+
+      if (response.ok) {
+        alert('Password changed successfully');
+        setShowPasswordChange(false);
+        setPasswordData({ currentPassword: '', newPassword: '', confirmPassword: '' });
+      } else {
+        const data = await response.json();
+        alert(data.error || 'Failed to change password');
+      }
+    } catch (error) {
+      console.error('Failed to change password:', error);
+      alert('Failed to change password');
+    } finally {
+      setPasswordLoading(false);
+    }
+  };
+
+  const handleDeleteAccount = async () => {
+    if (deleteConfirmText.toLowerCase() !== 'delete my account') {
+      alert('Please type "delete my account" to confirm');
+      return;
+    }
+
+    setDeleteLoading(true);
+    try {
+      const response = await fetch('/api/account/delete', {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        alert('Your account has been deleted. You will be logged out.');
+        router.push('/');
+      } else {
+        const data = await response.json();
+        alert(data.error || 'Failed to delete account');
+      }
+    } catch (error) {
+      console.error('Failed to delete account:', error);
+      alert('Failed to delete account');
+    } finally {
+      setDeleteLoading(false);
     }
   };
 
@@ -517,6 +623,196 @@ export default function ProfilePage() {
             </div>
           </div>
         )}
+
+        {/* QR Code Section */}
+        {account && (account.membershipStatus === 'active' || account.membershipStatus === 'grace') && (
+          <div className="mt-8 rounded-3xl border border-emerald-400/20 bg-gradient-to-br from-emerald-950/30 to-slate-950/70 p-6 shadow-glow">
+            <div className="mb-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200">
+                Member Access
+              </p>
+              <h2 className="text-2xl font-semibold text-white mt-2">Your QR Code</h2>
+              <p className="text-sm text-slate-300 mt-1">Show this at partner gyms to check in</p>
+            </div>
+
+            <div className="space-y-4">
+              <div className="rounded-2xl border border-emerald-400/30 bg-slate-900/60 p-6">
+                <div className="flex flex-col items-center justify-center">
+                  {qrCode ? (
+                    <>
+                      <div className="flex h-64 w-64 items-center justify-center rounded-2xl border-4 border-emerald-400/40 bg-white p-4">
+                        {/* QR Code Placeholder - Will be replaced with actual QR code */}
+                        <div className="text-center">
+                          <div className="mb-4 text-6xl">📱</div>
+                          <p className="text-xs text-slate-600 font-mono break-all">{qrCode.token.substring(0, 20)}...</p>
+                          <p className="mt-2 text-xs text-slate-500">QR Code Display</p>
+                          <p className="text-xs text-slate-400">(Install QR library to render)</p>
+                        </div>
+                      </div>
+                      <div className="mt-4 text-center">
+                        <p className="text-xs text-emerald-300">
+                          Code refreshes: {new Date(qrCode.expiresAt).toLocaleTimeString()}
+                        </p>
+                        <p className="text-xs text-slate-400 mt-1">Valid for 1 hour</p>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="flex h-64 w-64 items-center justify-center rounded-2xl border-2 border-dashed border-slate-600">
+                      <p className="text-slate-400">Loading QR code...</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-4">
+                <p className="text-xs uppercase tracking-[0.35em] text-emerald-200 mb-2">How to use</p>
+                <ul className="space-y-1 text-sm text-slate-300">
+                  <li>• Open this page on your phone before arriving at the gym</li>
+                  <li>• Show the QR code to staff at check-in</li>
+                  <li>• Code refreshes every hour for security</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Security Section */}
+        <div className="mt-8 rounded-3xl border border-white/10 bg-slate-950/70 p-6 shadow-glow">
+          <div className="mb-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200">
+              Security & Privacy
+            </p>
+            <h2 className="text-2xl font-semibold text-white mt-2">Account Security</h2>
+          </div>
+
+          <div className="space-y-4">
+            {/* Change Password */}
+            {!showPasswordChange ? (
+              <button
+                onClick={() => setShowPasswordChange(true)}
+                className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-left text-sm font-medium text-white transition hover:bg-white/10"
+              >
+                <div className="flex items-center justify-between">
+                  <span>Change Password</span>
+                  <span>→</span>
+                </div>
+              </button>
+            ) : (
+              <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-4">
+                <h4 className="text-sm font-semibold text-white mb-4">Change Password</h4>
+                <form onSubmit={handlePasswordChange} className="space-y-3">
+                  <div>
+                    <label className="block text-xs font-medium text-slate-300 mb-1">
+                      Current Password
+                    </label>
+                    <input
+                      type="password"
+                      value={passwordData.currentPassword}
+                      onChange={(e) => setPasswordData({ ...passwordData, currentPassword: e.target.value })}
+                      required
+                      className="w-full rounded-lg border border-white/10 bg-slate-950/60 px-3 py-2 text-sm text-white placeholder:text-slate-500 focus:border-emerald-400/50 focus:outline-none focus:ring-1 focus:ring-emerald-400/50"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium text-slate-300 mb-1">
+                      New Password
+                    </label>
+                    <input
+                      type="password"
+                      value={passwordData.newPassword}
+                      onChange={(e) => setPasswordData({ ...passwordData, newPassword: e.target.value })}
+                      required
+                      minLength={8}
+                      className="w-full rounded-lg border border-white/10 bg-slate-950/60 px-3 py-2 text-sm text-white placeholder:text-slate-500 focus:border-emerald-400/50 focus:outline-none focus:ring-1 focus:ring-emerald-400/50"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium text-slate-300 mb-1">
+                      Confirm New Password
+                    </label>
+                    <input
+                      type="password"
+                      value={passwordData.confirmPassword}
+                      onChange={(e) => setPasswordData({ ...passwordData, confirmPassword: e.target.value })}
+                      required
+                      minLength={8}
+                      className="w-full rounded-lg border border-white/10 bg-slate-950/60 px-3 py-2 text-sm text-white placeholder:text-slate-500 focus:border-emerald-400/50 focus:outline-none focus:ring-1 focus:ring-emerald-400/50"
+                    />
+                  </div>
+                  <div className="flex gap-2 pt-2">
+                    <button
+                      type="submit"
+                      disabled={passwordLoading}
+                      className="flex-1 rounded-lg bg-emerald-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-600 disabled:opacity-50"
+                    >
+                      {passwordLoading ? 'Changing...' : 'Change Password'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setShowPasswordChange(false);
+                        setPasswordData({ currentPassword: '', newPassword: '', confirmPassword: '' });
+                      }}
+                      className="flex-1 rounded-lg border border-white/20 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/5"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
+            )}
+
+            {/* Delete Account */}
+            {!showDeleteConfirm ? (
+              <button
+                onClick={() => setShowDeleteConfirm(true)}
+                className="w-full rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-left text-sm font-medium text-red-300 transition hover:bg-red-500/20"
+              >
+                <div className="flex items-center justify-between">
+                  <span>Delete Account</span>
+                  <span>→</span>
+                </div>
+              </button>
+            ) : (
+              <div className="rounded-2xl border border-red-500/30 bg-red-950/30 p-4">
+                <h4 className="text-sm font-semibold text-white mb-2">Delete Your Account</h4>
+                <p className="text-xs text-slate-300 mb-4">
+                  This action cannot be undone. All your data, including profile, check-in history, and membership will be permanently deleted.
+                </p>
+                <div className="mb-3">
+                  <label className="block text-xs font-medium text-slate-300 mb-2">
+                    Type "delete my account" to confirm:
+                  </label>
+                  <input
+                    type="text"
+                    value={deleteConfirmText}
+                    onChange={(e) => setDeleteConfirmText(e.target.value)}
+                    placeholder="delete my account"
+                    className="w-full rounded-lg border border-red-500/30 bg-slate-950/60 px-3 py-2 text-sm text-white placeholder:text-slate-500 focus:border-red-400/50 focus:outline-none focus:ring-1 focus:ring-red-400/50"
+                  />
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={handleDeleteAccount}
+                    disabled={deleteLoading || deleteConfirmText.toLowerCase() !== 'delete my account'}
+                    className="flex-1 rounded-lg bg-red-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {deleteLoading ? 'Deleting...' : 'Delete Forever'}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setShowDeleteConfirm(false);
+                      setDeleteConfirmText('');
+                    }}
+                    className="flex-1 rounded-lg border border-white/20 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/5"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
