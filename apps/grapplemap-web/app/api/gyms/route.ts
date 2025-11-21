@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import { NextResponse } from 'next/server';
-import { poolDb as db } from '@db/pool';
+import { mapDb as db } from '@db/pool';
 
 interface GymRow {
   id: string;
