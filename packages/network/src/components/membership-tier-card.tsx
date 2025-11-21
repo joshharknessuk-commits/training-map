@@ -1,17 +1,25 @@
+import Link from 'next/link';
 import { cn } from '@utils/index';
 import type { TierDefinition } from '../lib/membership-tiers';
-import { ContactButton } from '@ui/contact-button';
 
 interface MembershipTierCardProps {
   tier: TierDefinition;
   featured?: boolean;
+  variant?: 'member' | 'gym';
 }
 
-export function MembershipTierCard({ tier, featured = false }: MembershipTierCardProps) {
+export function MembershipTierCard({ tier, featured = false, variant = 'member' }: MembershipTierCardProps) {
   const cardClasses = cn(
     'flex flex-col rounded-3xl border bg-gradient-to-b from-slate-950/80 via-slate-950/60 to-emerald-950/30 p-7 shadow-[0_25px_60px_rgba(2,6,23,0.65)] backdrop-blur transition duration-200 hover:-translate-y-1 hover:border-emerald-400/40',
     featured ? 'border-emerald-400/60' : 'border-white/10',
   );
+
+  const isGymTier = tier.id === 'academy';
+  const signupUrl = isGymTier
+    ? '/network/signup/gym'
+    : `/network/checkout?tier=${tier.id}`;
+
+  const buttonLabel = isGymTier ? 'Contact Sales' : 'Sign Up';
 
   return (
     <div className={cardClasses}>
@@ -33,7 +41,17 @@ export function MembershipTierCard({ tier, featured = false }: MembershipTierCar
         ))}
       </ul>
       <div className="mt-8">
-        <ContactButton className="w-full" buttonClassName="w-full justify-center" />
+        <Link
+          href={signupUrl}
+          className={cn(
+            'inline-flex w-full items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition',
+            featured
+              ? 'bg-emerald-500 text-white hover:bg-emerald-400'
+              : 'bg-white/10 text-white hover:bg-white/20',
+          )}
+        >
+          {buttonLabel}
+        </Link>
       </div>
     </div>
   );
