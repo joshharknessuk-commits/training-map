@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { Feature, FeatureCollection, Geometry, GeoJsonProperties } from 'geojson';
-import { db } from '@db/pool';
+import { mapDb as db } from '@db/pool';
 
 type FeatureRow = {
   feature: Feature<Geometry, GeoJsonProperties> | { type: string };

@@ -11,3 +11,11 @@ export function getDrizzleDb(): NodePgDatabase<typeof schema> {
   }
   return cachedDb;
 }
+
+// Export a lazy db proxy that only initializes on first use
+// This prevents database connections during Vercel build
+export const db = new Proxy({} as NodePgDatabase<typeof schema>, {
+  get(_, prop) {
+    return getDrizzleDb()[prop as keyof NodePgDatabase<typeof schema>];
+  },
+});
