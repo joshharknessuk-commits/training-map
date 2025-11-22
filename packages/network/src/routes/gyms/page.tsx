@@ -34,7 +34,7 @@ export default function GymsPage() {
 
       <section className="space-y-3">
         <h2 className="text-lg font-semibold tracking-tight text-neutral-900">Operational wins</h2>
-        <ul className="grid gap-3 text-sm text-slate-200 sm:grid-cols-2">
+        <ul className="grid gap-3 text-sm text-neutral-900 sm:grid-cols-2">
           {GYM_BENEFITS.map((benefit) => (
             <li key={benefit} className="rounded-2xl border-2 border-neutral-200 bg-neutral-50 px-4 py-3">
               {benefit}
@@ -98,8 +98,8 @@ export default function GymsPage() {
         </section>
       ) : null}
 
-      <section className="space-y-3 rounded-3xl border-2 border-neutral-200 bg-neutral-50 px-6 py-5 text-slate-900">
-        <h2 className="text-lg font-semibold tracking-tight text-slate-900">How the tablet works</h2>
+      <section className="space-y-3 rounded-3xl border-2 border-neutral-200 bg-neutral-50 px-6 py-5 text-white">
+        <h2 className="text-lg font-semibold tracking-tight text-white">How the tablet works</h2>
         <p className="text-sm">
           Staff opens the scanner, points at the member QR, and sees “Verified ✓” plus tier info. No extra CRM, no
           training. Each scan updates your payout ledger.
@@ -108,7 +108,7 @@ export default function GymsPage() {
 
       <section className="space-y-3">
         <h2 className="text-lg font-semibold tracking-tight text-neutral-900">Onboarding steps</h2>
-        <ul className="space-y-2 text-sm text-slate-200">
+        <ul className="space-y-2 text-sm text-neutral-900">
           {ONBOARDING_STEPS.map((step, index) => (
             <li key={step} className="rounded-2xl border-2 border-neutral-200 bg-neutral-50 px-4 py-3">
               <span className="font-semibold text-neutral-900">Step {index + 1}.</span> {step}
@@ -117,8 +117,8 @@ export default function GymsPage() {
         </ul>
       </section>
 
-      <section className="space-y-3 rounded-3xl border-2 border-neutral-200 bg-neutral-50 px-6 py-5 text-slate-900">
-        <h2 className="text-lg font-semibold tracking-tight text-slate-900">Safety + community first</h2>
+      <section className="space-y-3 rounded-3xl border-2 border-neutral-200 bg-neutral-50 px-6 py-5 text-white">
+        <h2 className="text-lg font-semibold tracking-tight text-white">Safety + community first</h2>
         <p className="text-sm">
           Your culture stays the same. We simply ensure the visitors are verified, payouts run, and your community remains
           in control.

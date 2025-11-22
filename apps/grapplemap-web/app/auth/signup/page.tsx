@@ -87,7 +87,7 @@ export default function SignUpPage() {
           </Link>
         </div>
 
-        <div className="rounded-2xl border border-slate-800/70 bg-neutral-50/85 p-8 backdrop-blur shadow-2xl shadow-black/50">
+        <div className="rounded-2xl border border-neutral-800/70 bg-neutral-50/85 p-8 backdrop-blur shadow-2xl shadow-black/50">
           <h2 className="text-2xl font-semibold text-neutral-900 mb-2">Join the Network</h2>
           <p className="text-neutral-700 mb-6">
             Connect with gyms and grapplers across London
@@ -105,7 +105,7 @@ export default function SignUpPage() {
                   type="text"
                   value={formData.firstName}
                   onChange={handleChange}
-                  className="w-full rounded-lg border border-slate-700 bg-neutral-100/50 px-4 py-3 text-neutral-900 placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 transition"
+                  className="w-full rounded-lg border border-neutral-700 bg-neutral-100/50 px-4 py-3 text-neutral-900 placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 transition"
                   placeholder="John"
                 />
               </div>
@@ -119,7 +119,7 @@ export default function SignUpPage() {
                   type="text"
                   value={formData.lastName}
                   onChange={handleChange}
-                  className="w-full rounded-lg border border-slate-700 bg-neutral-100/50 px-4 py-3 text-neutral-900 placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 transition"
+                  className="w-full rounded-lg border border-neutral-700 bg-neutral-100/50 px-4 py-3 text-neutral-900 placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 transition"
                   placeholder="Doe"
                 />
               </div>
@@ -137,7 +137,7 @@ export default function SignUpPage() {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full rounded-lg border border-slate-700 bg-neutral-100/50 px-4 py-3 text-neutral-900 placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 transition"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-100/50 px-4 py-3 text-neutral-900 placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 transition"
                 placeholder="you@example.com"
               />
             </div>
@@ -154,7 +154,7 @@ export default function SignUpPage() {
                 required
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full rounded-lg border border-slate-700 bg-neutral-100/50 px-4 py-3 text-neutral-900 placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 transition"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-100/50 px-4 py-3 text-neutral-900 placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 transition"
                 placeholder="Min 8 characters"
               />
             </div>
@@ -171,7 +171,7 @@ export default function SignUpPage() {
                 required
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                className="w-full rounded-lg border border-slate-700 bg-neutral-100/50 px-4 py-3 text-neutral-900 placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 transition"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-100/50 px-4 py-3 text-neutral-900 placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 transition"
                 placeholder="Confirm your password"
               />
             </div>

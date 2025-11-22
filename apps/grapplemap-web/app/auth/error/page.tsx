@@ -67,7 +67,7 @@ function ErrorContent() {
         </p>
 
         {error && (
-          <div className="rounded-lg bg-neutral-100/50 border border-slate-700 p-3 mb-6">
+          <div className="rounded-lg bg-neutral-100/50 border border-neutral-700 p-3 mb-6">
             <p className="text-xs text-neutral-600 font-mono">
               Error code: {error}
             </p>
@@ -84,7 +84,7 @@ function ErrorContent() {
 
           <Link
             href="/"
-            className="block w-full rounded-lg border border-slate-700 bg-neutral-100/50 px-4 py-3 text-sm font-semibold uppercase tracking-wider text-neutral-800 transition hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-slate-400/60 focus:ring-offset-2 focus:ring-offset-slate-950"
+            className="block w-full rounded-lg border border-neutral-700 bg-neutral-100/50 px-4 py-3 text-sm font-semibold uppercase tracking-wider text-neutral-800 transition hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-slate-400/60 focus:ring-offset-2 focus:ring-offset-slate-950"
           >
             Back to Home
           </Link>
@@ -114,7 +114,7 @@ export default function AuthErrorPage() {
           </Link>
         </div>
 
-        <div className="rounded-2xl border border-slate-800/70 bg-neutral-50/85 p-8 backdrop-blur shadow-2xl shadow-black/50">
+        <div className="rounded-2xl border border-neutral-800/70 bg-neutral-50/85 p-8 backdrop-blur shadow-2xl shadow-black/50">
           <Suspense fallback={
             <div className="text-center">
               <h2 className="text-2xl font-semibold text-neutral-900 mb-2">

@@ -184,11 +184,11 @@ export function ClaimForm({ gymId, gymName, onClose, onSuccess }: ClaimFormProps
       aria-labelledby="claim-modal-title"
       onClick={handleBackdropClick}
     >
-      <div className="absolute inset-0 bg-slate-950/70 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-neutral-900/70 backdrop-blur-sm" />
 
       <div
         ref={dialogRef}
-        className="relative w-full max-w-md rounded-3xl border border-white/10 bg-slate-950/95 p-6 text-slate-100 shadow-2xl shadow-slate-950/60"
+        className="relative w-full max-w-md rounded-3xl border border-white/10 bg-neutral-900/95 p-6 text-neutral-950 shadow-2xl shadow-neutral-950/60"
       >
         <button
           type="button"
@@ -202,7 +202,7 @@ export function ClaimForm({ gymId, gymName, onClose, onSuccess }: ClaimFormProps
         <h3 id="claim-modal-title" className="text-lg font-semibold text-brand-600">
           Claim “{gymName}”
         </h3>
-        <p className="mt-2 text-sm text-slate-400">
+        <p className="mt-2 text-sm text-neutral-600">
           Submit your details to verify ownership. We’ll follow up by email within 1–2 working days.
         </p>
 
@@ -217,26 +217,26 @@ export function ClaimForm({ gymId, gymName, onClose, onSuccess }: ClaimFormProps
             autoComplete="off"
           />
 
-          <label className="block text-sm font-medium text-slate-200">
+          <label className="block text-sm font-medium text-neutral-900">
             Name
             <input
               type="text"
               value={name}
               onChange={(event) => setName(event.target.value)}
-              className="mt-1 w-full rounded-xl border border-neutral-300 bg-slate-900/70 px-3 py-2 text-sm text-white placeholder:text-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/40"
+              className="mt-1 w-full rounded-xl border border-neutral-300 bg-neutral-800/70 px-3 py-2 text-sm text-white placeholder:text-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/40"
               maxLength={120}
               required
             />
             {errors.name ? <span className="mt-1 block text-xs text-rose-600">{errors.name}</span> : null}
           </label>
 
-          <label className="block text-sm font-medium text-slate-200">
+          <label className="block text-sm font-medium text-neutral-900">
             Email
             <input
               type="email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className="mt-1 w-full rounded-xl border border-neutral-300 bg-slate-900/70 px-3 py-2 text-sm text-white placeholder:text-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/40"
+              className="mt-1 w-full rounded-xl border border-neutral-300 bg-neutral-800/70 px-3 py-2 text-sm text-white placeholder:text-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/40"
               required
             />
             {errors.email ? (
@@ -244,13 +244,13 @@ export function ClaimForm({ gymId, gymName, onClose, onSuccess }: ClaimFormProps
             ) : null}
           </label>
 
-          <label className="block text-sm font-medium text-slate-200">
+          <label className="block text-sm font-medium text-neutral-900">
             Proof link (optional)
             <input
               type="url"
               value={proof}
               onChange={(event) => setProof(event.target.value)}
-              className="mt-1 w-full rounded-xl border border-neutral-300 bg-slate-900/70 px-3 py-2 text-sm text-white placeholder:text-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/40"
+              className="mt-1 w-full rounded-xl border border-neutral-300 bg-neutral-800/70 px-3 py-2 text-sm text-white placeholder:text-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/40"
               placeholder="https://"
             />
             {errors.proof ? (
@@ -258,15 +258,15 @@ export function ClaimForm({ gymId, gymName, onClose, onSuccess }: ClaimFormProps
             ) : null}
           </label>
 
-          <label className="block text-sm font-medium text-slate-200">
+          <label className="block text-sm font-medium text-neutral-900">
             Message (optional)
             <textarea
               value={message}
               onChange={(event) => setMessage(event.target.value)}
-              className="mt-1 h-28 w-full rounded-xl border border-neutral-300 bg-slate-900/70 px-3 py-2 text-sm text-white placeholder:text-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/40"
+              className="mt-1 h-28 w-full rounded-xl border border-neutral-300 bg-neutral-800/70 px-3 py-2 text-sm text-white placeholder:text-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/40"
               maxLength={1000}
             />
-            <span className="mt-1 block text-xs text-slate-400">
+            <span className="mt-1 block text-xs text-neutral-600">
               {message.length} / 1000 characters
             </span>
             {errors.message ? (

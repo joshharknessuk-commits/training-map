@@ -6,7 +6,7 @@ export interface GrappleMapWordmarkProps {
   logoSrc?: string;
 }
 
-const baseTextClasses = 'flex items-center text-2xl font-bold uppercase tracking-[0.2em] text-neutral-950';
+const baseTextClasses = 'flex items-center text-2xl font-bold uppercase tracking-[0.2em] text-blue-600';
 const baseLogoWrapperClasses = 'ml-[0.2em] relative';
 const defaultLogoSizeClasses = 'h-[1.8em] w-[1.8em] sm:h-[2em] sm:w-[2em]';
 
@@ -42,7 +42,7 @@ export function GrappleMapWordmark({
           className="h-full w-full object-contain"
           style={{
             filter:
-              'brightness(0) saturate(100%) invert(5%) sepia(10%) saturate(896%) hue-rotate(185deg) brightness(97%) contrast(99%)',
+              'brightness(0) saturate(100%) invert(32%) sepia(88%) saturate(2277%) hue-rotate(213deg) brightness(99%) contrast(95%)',
           }}
           loading="eager"
         />

@@ -28,7 +28,7 @@ export default function SignOutPage() {
           </Link>
         </div>
 
-        <div className="rounded-2xl border border-slate-800/70 bg-neutral-50/85 p-8 backdrop-blur shadow-2xl shadow-black/50">
+        <div className="rounded-2xl border border-neutral-800/70 bg-neutral-50/85 p-8 backdrop-blur shadow-2xl shadow-black/50">
           <div className="text-center">
             <div className="mx-auto w-16 h-16 rounded-full bg-brand-500/10 border border-emerald-500/20 flex items-center justify-center mb-4">
               <svg
@@ -64,7 +64,7 @@ export default function SignOutPage() {
 
               <Link
                 href="/"
-                className="block w-full rounded-lg border border-slate-700 bg-neutral-100/50 px-4 py-3 text-sm font-semibold uppercase tracking-wider text-neutral-800 transition hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-slate-400/60 focus:ring-offset-2 focus:ring-offset-slate-950"
+                className="block w-full rounded-lg border border-neutral-700 bg-neutral-100/50 px-4 py-3 text-sm font-semibold uppercase tracking-wider text-neutral-800 transition hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-slate-400/60 focus:ring-offset-2 focus:ring-offset-slate-950"
               >
                 Back to Home
               </Link>

@@ -37,7 +37,7 @@ export function MobileActionBar({ onLocate, onError }: MobileActionBarProps) {
       style={{ minHeight: expanded ? EXPANDED_VAR : COLLAPSED_VAR }}
     >
       <div
-        className="pointer-events-auto bg-slate-950/85 px-4 shadow-[0_-16px_32px_rgba(2,6,23,0.8)] backdrop-blur-xl"
+        className="pointer-events-auto bg-neutral-900/85 px-4 shadow-[0_-16px_32px_rgba(2,6,23,0.8)] backdrop-blur-xl"
         style={{
           paddingTop: expanded ? '0.65rem' : '0.35rem',
           paddingBottom: expanded
@@ -65,10 +65,10 @@ export function MobileActionBar({ onLocate, onError }: MobileActionBarProps) {
             }`}
             aria-hidden={!expanded}
           >
-            <div className="mt-3 flex flex-col gap-3 rounded-3xl border border-white/10 bg-slate-950/80 p-4 shadow-inner shadow-black/30">
+            <div className="mt-3 flex flex-col gap-3 rounded-3xl border border-white/10 bg-neutral-900/80 p-4 shadow-inner shadow-black/30">
               <ContactButton
                 className="w-full items-stretch"
-                buttonClassName="w-full justify-center rounded-2xl bg-slate-900/95 text-sm font-semibold uppercase tracking-wide text-white min-h-[44px] px-4 py-2.5 shadow-lg shadow-black/40 focus-visible:ring-sky-400"
+                buttonClassName="w-full justify-center rounded-2xl bg-neutral-800/95 text-sm font-semibold uppercase tracking-wide text-white min-h-[44px] px-4 py-2.5 shadow-lg shadow-black/40 focus-visible:ring-sky-400"
               />
               <NearMeButton
                 onLocate={onLocate}

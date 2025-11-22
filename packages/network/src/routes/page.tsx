@@ -94,7 +94,7 @@ export default async function NetworkLandingPage() {
         <p className="mt-4 text-sm text-neutral-800">
           London&apos;s scene is huge, but fragmented. This network keeps identities intact while giving members freedom.
         </p>
-        <ul className="mt-5 space-y-2 text-sm text-slate-200">
+        <ul className="mt-5 space-y-2 text-sm text-neutral-900">
           <li>✔ Members train freely without awkward drop-ins</li>
           <li>✔ Gyms receive automatic payouts and verified visitors</li>
           <li>✔ Communities stay strong while people explore</li>
@@ -121,7 +121,7 @@ export default async function NetworkLandingPage() {
               <p className="text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-brand-700">
                 {step.title}
               </p>
-              <p className="mt-2 text-sm text-slate-200">{step.description}</p>
+              <p className="mt-2 text-sm text-neutral-900">{step.description}</p>
             </div>
           ))}
         </div>
@@ -136,7 +136,7 @@ export default async function NetworkLandingPage() {
           <p className="text-sm text-neutral-800">Member tiers ship ready-to-train access and perks.</p>
           <div className="rounded-2xl border-2 border-neutral-200 bg-neutral-50/60 p-6">
             <p className="text-xs uppercase tracking-[0.35em] text-brand-700">Member benefits</p>
-            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-200">
+            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-neutral-900">
               {MEMBER_BENEFITS.map((benefit) => (
                 <li key={benefit}>{benefit}</li>
               ))}
@@ -149,7 +149,7 @@ export default async function NetworkLandingPage() {
             <MembershipTierCard key={tier.id} tier={tier} featured={index === 1} />
           ))}
         </div>
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-neutral-300 bg-neutral-50/60 p-5 text-sm text-slate-200">
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-neutral-300 bg-neutral-50/60 p-5 text-sm text-neutral-900">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">
               Pricing
@@ -173,7 +173,7 @@ export default async function NetworkLandingPage() {
             </p>
             <h2 className="text-2xl font-semibold text-neutral-900">Academy plan</h2>
             <p className="text-sm text-neutral-800">Built for gyms that need payouts, not spreadsheets.</p>
-            <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-200">
+            <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-neutral-900">
               {GYM_BENEFITS.map((benefit) => (
                 <li key={benefit}>{benefit}</li>
               ))}
@@ -215,7 +215,7 @@ export default async function NetworkLandingPage() {
       <section className="fade-in-up rounded-3xl border-2 border-neutral-200 bg-gradient-to-br from-[#0c141b] via-emerald-900/30 to-slate-950 p-10 shadow-[0_25px_80px_rgba(6,78,59,0.45)]">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">QR verification</p>
         <h2 className="mt-3 text-2xl font-semibold text-neutral-900">How rotating QR keeps the network honest</h2>
-        <p className="mt-2 text-sm text-slate-200">Rotating QR → verified entry → auto payout. Simple.</p>
+        <p className="mt-2 text-sm text-neutral-900">Rotating QR → verified entry → auto payout. Simple.</p>
         <div className="mt-6 grid gap-3 sm:grid-cols-3">
           <div className="rounded-xl border-2 border-neutral-200 bg-neutral-50/70 p-3 text-left text-neutral-900">
             <p className="text-[0.6rem] font-semibold uppercase tracking-[0.5em] text-brand-700">Step 1</p>
@@ -252,7 +252,7 @@ export default async function NetworkLandingPage() {
               </div>
               <p className="mt-2 text-2xl font-semibold">J. Carvalho</p>
               <p className="text-xs text-neutral-700">Network Pro · expires in 27 days</p>
-              <ul className="mt-4 space-y-2 text-sm text-slate-200">
+              <ul className="mt-4 space-y-2 text-sm text-neutral-900">
                 <li>• Swipe down to mark guest list.</li>
                 <li>• Tap payout history for this gym.</li>
               </ul>

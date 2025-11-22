@@ -42,7 +42,7 @@ export default function MembersPage() {
 
       <section className="space-y-3">
         <h2 className="text-lg font-semibold tracking-tight text-neutral-900">Why members love it</h2>
-        <ul className="grid gap-3 text-sm text-slate-200 sm:grid-cols-2">
+        <ul className="grid gap-3 text-sm text-neutral-900 sm:grid-cols-2">
           {['No awkward drop-ins or cash chats', 'Priority guest list for high-demand nights', 'One pass covers every partner gym', 'SMS reminders so you never miss mats'].map(
             (benefit) => (
               <li key={benefit} className="rounded-2xl border-2 border-neutral-200 bg-neutral-50 px-4 py-3">
@@ -76,7 +76,7 @@ export default function MembersPage() {
 
       <section className="space-y-3">
         <h2 className="text-lg font-semibold tracking-tight text-neutral-900">How the QR works</h2>
-        <div className="grid gap-3 sm:grid-cols-3 text-sm text-slate-200">
+        <div className="grid gap-3 sm:grid-cols-3 text-sm text-neutral-900">
           {[
             { title: 'Show QR', detail: 'Code rotates hourly and lives on your device.' },
             { title: 'Staff scans', detail: 'Network verifies you’re active + logs attendance.' },
@@ -90,8 +90,8 @@ export default function MembersPage() {
         </div>
       </section>
 
-      <section className="space-y-3 rounded-3xl border-2 border-neutral-200 bg-neutral-50 px-6 py-5 text-slate-900">
-        <h2 className="text-lg font-semibold tracking-tight text-slate-900">Your city is one big gym now</h2>
+      <section className="space-y-3 rounded-3xl border-2 border-neutral-200 bg-neutral-50 px-6 py-5 text-white">
+        <h2 className="text-lg font-semibold tracking-tight text-white">Your city is one big gym now</h2>
         <p className="text-sm">
           Bounce between academies, meet training partners across boroughs, and bring that experience back to your own
           community. The QR removes friction; the mats stay local.
@@ -100,7 +100,7 @@ export default function MembersPage() {
 
       <section className="space-y-3">
         <h2 className="text-lg font-semibold tracking-tight text-neutral-900">FAQ</h2>
-        <div className="space-y-2 text-sm text-slate-200">
+        <div className="space-y-2 text-sm text-neutral-900">
           {MEMBER_FAQ.map((item) => (
             <details key={item.question} className="rounded-2xl border-2 border-neutral-200 bg-neutral-50 px-4 py-3">
               <summary className="cursor-pointer text-neutral-900">{item.question}</summary>

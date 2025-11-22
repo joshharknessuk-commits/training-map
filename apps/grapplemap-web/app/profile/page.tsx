@@ -812,7 +812,7 @@ export default function ProfilePage() {
                         <div className="text-center">
                           <div className="mb-4 text-6xl">📱</div>
                           <p className="text-xs text-neutral-700 font-mono break-all">{qrCode.token.substring(0, 20)}...</p>
-                          <p className="mt-2 text-xs text-slate-500">QR Code Display</p>
+                          <p className="mt-2 text-xs text-neutral-600">QR Code Display</p>
                           <p className="text-xs text-neutral-700">(Install QR library to render)</p>
                         </div>
                       </div>
@@ -824,7 +824,7 @@ export default function ProfilePage() {
                       </div>
                     </>
                   ) : (
-                    <div className="flex h-64 w-64 items-center justify-center rounded-2xl border-2 border-dashed border-slate-600">
+                    <div className="flex h-64 w-64 items-center justify-center rounded-2xl border-2 border-dashed border-neutral-600">
                       <p className="text-neutral-700">Loading QR code...</p>
                     </div>
                   )}
@@ -877,7 +877,7 @@ export default function ProfilePage() {
                       value={passwordData.currentPassword}
                       onChange={(e) => setPasswordData({ ...passwordData, currentPassword: e.target.value })}
                       required
-                      className="w-full rounded-lg border-2 border-neutral-200 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-slate-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+                      className="w-full rounded-lg border-2 border-neutral-200 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-neutral-600 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                     />
                   </div>
                   <div>
@@ -890,7 +890,7 @@ export default function ProfilePage() {
                       onChange={(e) => setPasswordData({ ...passwordData, newPassword: e.target.value })}
                       required
                       minLength={8}
-                      className="w-full rounded-lg border-2 border-neutral-200 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-slate-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+                      className="w-full rounded-lg border-2 border-neutral-200 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-neutral-600 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                     />
                   </div>
                   <div>
@@ -903,7 +903,7 @@ export default function ProfilePage() {
                       onChange={(e) => setPasswordData({ ...passwordData, confirmPassword: e.target.value })}
                       required
                       minLength={8}
-                      className="w-full rounded-lg border-2 border-neutral-200 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-slate-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+                      className="w-full rounded-lg border-2 border-neutral-200 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-neutral-600 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                     />
                   </div>
                   <div className="flex gap-2 pt-2">
@@ -955,7 +955,7 @@ export default function ProfilePage() {
                     value={deleteConfirmText}
                     onChange={(e) => setDeleteConfirmText(e.target.value)}
                     placeholder="delete my account"
-                    className="w-full rounded-lg border border-red-500/30 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-slate-500 focus:border-red-400/50 focus:outline-none focus:ring-1 focus:ring-red-400/50"
+                    className="w-full rounded-lg border border-red-500/30 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-neutral-600 focus:border-red-400/50 focus:outline-none focus:ring-1 focus:ring-red-400/50"
                   />
                 </div>
                 <div className="flex gap-2">

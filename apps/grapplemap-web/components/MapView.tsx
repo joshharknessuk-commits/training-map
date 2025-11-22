@@ -512,7 +512,7 @@ export function MapView({
             </a>
           ))}
           <a
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-500 via-brand-600 to-accent-500 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-slate-900 transition hover:scale-[1.01]"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-500 via-brand-600 to-accent-500 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white transition hover:scale-[1.01]"
             href={buildDirectionsUrl({ lat: gym.lat, lon: gym.lon }, userLocation)}
             target="_blank"
             rel="noopener noreferrer"
@@ -678,8 +678,8 @@ export function MapView({
                   <Popup>
                     <div className="space-y-2 text-sm">
                       <div className="font-semibold text-brand-600">Gyms in this area</div>
-                      <div className="text-xs text-slate-600">{pointCount} gyms grouped here</div>
-                      <ul className="max-h-40 space-y-1 overflow-y-auto pr-1 text-xs text-slate-600">
+                      <div className="text-xs text-neutral-700">{pointCount} gyms grouped here</div>
+                      <ul className="max-h-40 space-y-1 overflow-y-auto pr-1 text-xs text-neutral-700">
                         {previewGyms.map((gym) => (
                           <li key={gym.id} className="truncate">
                             {gym.name}

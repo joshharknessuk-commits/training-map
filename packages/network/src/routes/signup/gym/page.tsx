@@ -87,7 +87,7 @@ export default function GymSignupPage() {
               <span className="text-sm text-neutral-700">/month</span>
             </div>
           </div>
-          <ul className="mt-4 grid gap-2 text-sm text-slate-200 sm:grid-cols-2">
+          <ul className="mt-4 grid gap-2 text-sm text-neutral-900 sm:grid-cols-2">
             {academyTier.perks.map((perk) => (
               <li key={perk} className="flex items-center gap-2">
                 <span className="text-brand-600">✔</span>
@@ -101,7 +101,7 @@ export default function GymSignupPage() {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
-            <label htmlFor="gymName" className="block text-sm font-medium text-slate-200">
+            <label htmlFor="gymName" className="block text-sm font-medium text-neutral-900">
               Gym Name *
             </label>
             <input
@@ -116,7 +116,7 @@ export default function GymSignupPage() {
             />
           </div>
           <div>
-            <label htmlFor="contactName" className="block text-sm font-medium text-slate-200">
+            <label htmlFor="contactName" className="block text-sm font-medium text-neutral-900">
               Contact Name *
             </label>
             <input
@@ -134,7 +134,7 @@ export default function GymSignupPage() {
 
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-slate-200">
+            <label htmlFor="email" className="block text-sm font-medium text-neutral-900">
               Email *
             </label>
             <input
@@ -149,7 +149,7 @@ export default function GymSignupPage() {
             />
           </div>
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-slate-200">
+            <label htmlFor="phone" className="block text-sm font-medium text-neutral-900">
               Phone
             </label>
             <input
@@ -165,7 +165,7 @@ export default function GymSignupPage() {
         </div>
 
         <div>
-          <label htmlFor="location" className="block text-sm font-medium text-slate-200">
+          <label htmlFor="location" className="block text-sm font-medium text-neutral-900">
             Location / Area *
           </label>
           <input
@@ -181,7 +181,7 @@ export default function GymSignupPage() {
         </div>
 
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-slate-200">
+          <label htmlFor="message" className="block text-sm font-medium text-neutral-900">
             Tell us about your gym
           </label>
           <textarea

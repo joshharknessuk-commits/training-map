@@ -7,6 +7,11 @@ export * from './select';
 export * from './badge';
 export * from './page-header';
 
+// Modern UI Components (uilabs.dev style)
+export * from './app-header';
+export * from './glass-card';
+export * from './gradient-button';
+
 // Existing Components
 export * from './contact-button';
 export * from './feedback-modal';

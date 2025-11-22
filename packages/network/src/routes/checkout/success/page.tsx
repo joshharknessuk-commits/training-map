@@ -17,7 +17,7 @@ export default function CheckoutSuccessPage() {
         <div className="mt-8 space-y-4">
           <div className="rounded-2xl border-2 border-neutral-200 bg-neutral-50/60 p-4 text-left">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">Next steps</p>
-            <ul className="mt-3 space-y-2 text-sm text-slate-200">
+            <ul className="mt-3 space-y-2 text-sm text-neutral-900">
               <li className="flex items-start gap-2">
                 <span className="text-brand-600">1.</span>
                 <span>Check your email for a confirmation and welcome message</span>

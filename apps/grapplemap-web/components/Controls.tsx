@@ -95,7 +95,7 @@ export function Controls({
       }`}
       style={{ top: 'var(--header-offset, 3rem)' }}
     >
-      <aside className="flex h-full w-full flex-col border-r border-neutral-200 bg-white/90 text-neutral-900 shadow-2xl shadow-slate-950/50 backdrop-blur lg:h-full">
+      <aside className="flex h-full w-full flex-col border-r border-neutral-200 bg-white/90 text-neutral-900 shadow-2xl shadow-neutral-950/50 backdrop-blur lg:h-full">
         <div className="flex items-center justify-end px-4 pt-4">
           <button
             className="flex items-center justify-center text-lg text-neutral-900/70 transition hover:text-neutral-900 focus:outline-none focus:ring-2 focus:ring-white/40"

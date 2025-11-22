@@ -75,7 +75,7 @@ function CheckoutContent() {
             <span className="text-sm text-neutral-700">/month</span>
           </div>
         </div>
-        <ul className="mt-4 space-y-2 text-sm text-slate-200">
+        <ul className="mt-4 space-y-2 text-sm text-neutral-900">
           {tier.perks.map((perk) => (
             <li key={perk} className="flex items-center gap-2">
               <span className="text-brand-600">✔</span>
@@ -87,7 +87,7 @@ function CheckoutContent() {
 
       <form onSubmit={handleCheckout} className="space-y-4">
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-slate-200">
+          <label htmlFor="email" className="block text-sm font-medium text-neutral-900">
             Email address
           </label>
           <input
