@@ -22,58 +22,61 @@ export default function Navigation() {
               GrappleMap Network
             </Link>
 
-            {status === 'authenticated' && (
-              <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                <Link
-                  href="/discover"
-                  className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
-                    pathname === '/discover'
-                      ? 'border-blue-500 text-gray-900'
-                      : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                  }`}
-                >
-                  Discover
-                </Link>
-                <Link
-                  href="/classes"
-                  className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
-                    pathname === '/classes'
-                      ? 'border-blue-500 text-gray-900'
-                      : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                  }`}
-                >
-                  Classes
-                </Link>
-                <Link
-                  href="/bookings"
-                  className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
-                    pathname === '/bookings'
-                      ? 'border-blue-500 text-gray-900'
-                      : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                  }`}
-                >
-                  My Bookings
-                </Link>
-                <Link
-                  href="/feed"
-                  className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
-                    pathname === '/feed'
-                      ? 'border-blue-500 text-gray-900'
-                      : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                  }`}
-                >
-                  Feed
-                </Link>
-                <a
-                  href="http://localhost:3001"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium border-transparent text-emerald-600 hover:border-emerald-300 hover:text-emerald-700"
-                >
-                  Analytics 📊
-                </a>
-              </div>
-            )}
+            <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+              <a
+                href="http://localhost:3001"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium border-transparent text-emerald-600 hover:border-emerald-300 hover:text-emerald-700"
+              >
+                Analytics 📊
+              </a>
+
+              {status === 'authenticated' && (
+                <>
+                  <Link
+                    href="/discover"
+                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                      pathname === '/discover'
+                        ? 'border-blue-500 text-gray-900'
+                        : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                    }`}
+                  >
+                    Discover
+                  </Link>
+                  <Link
+                    href="/classes"
+                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                      pathname === '/classes'
+                        ? 'border-blue-500 text-gray-900'
+                        : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                    }`}
+                  >
+                    Classes
+                  </Link>
+                  <Link
+                    href="/bookings"
+                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                      pathname === '/bookings'
+                        ? 'border-blue-500 text-gray-900'
+                        : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                    }`}
+                  >
+                    My Bookings
+                  </Link>
+                  <Link
+                    href="/feed"
+                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                      pathname === '/feed'
+                        ? 'border-blue-500 text-gray-900'
+                        : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                    }`}
+                  >
+                    Feed
+                  </Link>
+                </>
+              )}
+            </div>
           </div>
 
           <div className="flex items-center">
