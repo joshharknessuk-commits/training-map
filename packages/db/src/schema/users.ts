@@ -8,7 +8,7 @@ export const membershipStatusEnum = pgEnum('membership_status', [
   'canceled',
 ]);
 
-export const membershipTierEnum = pgEnum('membership_tier', ['standard', 'pro', 'academy']);
+export const membershipTierEnum = pgEnum('membership_tier', ['free', 'standard', 'pro', 'academy']);
 
 export const userRoleEnum = pgEnum('user_role', ['user', 'gym_admin', 'super_admin']);
 
@@ -16,13 +16,14 @@ export const users = pgTable('users', {
   id: uuid('id').primaryKey().defaultRandom(),
   email: text('email').notNull().unique(),
   passwordHash: text('password_hash'), // hashed password
+  passwordChangedAt: timestamp('password_changed_at', { withTimezone: true }), // for session invalidation
   firstName: text('first_name'),
   lastName: text('last_name'),
   role: userRoleEnum('role').notNull().default('user'),
   emailVerified: timestamp('email_verified', { withTimezone: true }),
   stripeCustomerId: text('stripe_customer_id'),
   membershipStatus: membershipStatusEnum('membership_status').notNull().default('grace'),
-  membershipTier: membershipTierEnum('membership_tier').notNull().default('standard'),
+  membershipTier: membershipTierEnum('membership_tier').notNull().default('free'),
   activeUntil: timestamp('active_until', { withTimezone: true }),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp('updated_at', { withTimezone: true })

@@ -41,11 +41,32 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   callbacks: {
-    jwt({ token, user }) {
+    async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
         token.role = user.role;
       }
+
+      // Check if password was changed after this token was issued
+      // This invalidates sessions when password is changed
+      if (token.id && token.iat) {
+        const [dbUser] = await db
+          .select({
+            passwordChangedAt: users.passwordChangedAt,
+          })
+          .from(users)
+          .where(eq(users.id, token.id as string))
+          .limit(1);
+
+        if (dbUser?.passwordChangedAt) {
+          const passwordChangedTimestamp = Math.floor(dbUser.passwordChangedAt.getTime() / 1000);
+          // If token was issued before password change, invalidate it
+          if (token.iat < passwordChangedTimestamp) {
+            return null as any; // Invalidate token
+          }
+        }
+      }
+
       return token;
     },
     session({ session, token }) {

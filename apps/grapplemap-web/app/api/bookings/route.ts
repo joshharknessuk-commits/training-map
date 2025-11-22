@@ -1,15 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { auth } from '@/lib/auth';
+import { withAuthOnly, withApiProtection } from '@/lib/api-middleware';
 import { db, bookings, classes, activityFeed } from '@grapplemap/db';
-import { eq, and } from 'drizzle-orm';
+import { eq, and, sql } from 'drizzle-orm';
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await auth();
-
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const { error, userId } = await withAuthOnly(request);
+    if (error) return error;
 
     const { searchParams } = new URL(request.url);
     const status = searchParams.get('status');
@@ -17,12 +14,12 @@ export async function GET(request: NextRequest) {
     let query = db
       .select()
       .from(bookings)
-      .where(eq(bookings.userId, session.user.id))
+      .where(eq(bookings.userId, userId))
       .$dynamic();
 
     if (status) {
       query = query.where(
-        and(eq(bookings.userId, session.user.id), eq(bookings.bookingStatus, status as any))
+        and(eq(bookings.userId, userId), eq(bookings.bookingStatus, status as any))
       );
     }
 
@@ -37,11 +34,8 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await auth();
-
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const { error, userId } = await withApiProtection(request);
+    if (error) return error;
 
     const body = await request.json();
     const { classId, bookingDate, userNotes } = body;
@@ -50,82 +44,103 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    // Check if class exists and has capacity
-    const [classData] = await db.select().from(classes).where(eq(classes.id, classId)).limit(1);
+    // Use transaction to prevent race condition when booking classes
+    // This ensures atomic read-modify-write of currentBookings
+    const result = await db.transaction(async (tx) => {
+      // Check if class exists and has capacity
+      // Use SELECT FOR UPDATE to lock the row until transaction completes
+      const [classData] = await tx
+        .select()
+        .from(classes)
+        .where(eq(classes.id, classId))
+        .for('update')
+        .limit(1);
 
-    if (!classData) {
-      return NextResponse.json({ error: 'Class not found' }, { status: 404 });
-    }
+      if (!classData) {
+        throw new Error('Class not found');
+      }
 
-    if (classData.currentBookings >= classData.capacity) {
-      return NextResponse.json({ error: 'Class is full' }, { status: 400 });
-    }
+      if (classData.currentBookings >= classData.capacity) {
+        throw new Error('Class is full');
+      }
 
-    // Check if user already has a booking for this class on this date
-    const existingBooking = await db
-      .select()
-      .from(bookings)
-      .where(
-        and(
-          eq(bookings.userId, session.user.id),
-          eq(bookings.classId, classId),
-          eq(bookings.bookingDate, new Date(bookingDate))
+      // Check if user already has a booking for this class on this date
+      const existingBooking = await tx
+        .select()
+        .from(bookings)
+        .where(
+          and(
+            eq(bookings.userId, userId),
+            eq(bookings.classId, classId),
+            eq(bookings.bookingDate, new Date(bookingDate))
+          )
         )
-      )
-      .limit(1);
+        .limit(1);
 
-    if (existingBooking.length > 0) {
-      return NextResponse.json({ error: 'You already have a booking for this class' }, { status: 400 });
-    }
+      if (existingBooking.length > 0) {
+        throw new Error('You already have a booking for this class');
+      }
 
-    // Create booking
-    const [newBooking] = await db
-      .insert(bookings)
-      .values({
-        userId: session.user.id,
+      // Create booking
+      const [newBooking] = await tx
+        .insert(bookings)
+        .values({
+          userId,
+          classId,
+          bookingDate: new Date(bookingDate),
+          bookingStatus: 'confirmed',
+          paymentStatus: classData.isFreeForMembers ? 'free' : 'pending',
+          amountPaid: classData.isFreeForMembers ? 0 : classData.pricePerSession,
+          userNotes,
+        })
+        .returning();
+
+      // Atomically increment class booking count
+      // This is now safe because we hold a lock on the class row
+      await tx
+        .update(classes)
+        .set({
+          currentBookings: sql`${classes.currentBookings} + 1`,
+        })
+        .where(eq(classes.id, classId));
+
+      // Create activity feed entry
+      await tx.insert(activityFeed).values({
+        userId,
+        activityType: 'booking_created',
+        gymId: classData.gymId,
         classId,
-        bookingDate: new Date(bookingDate),
-        bookingStatus: 'confirmed',
-        paymentStatus: classData.isFreeForMembers ? 'free' : 'pending',
-        amountPaid: classData.isFreeForMembers ? 0 : classData.pricePerSession,
-        userNotes,
-      })
-      .returning();
+        bookingId: newBooking.id,
+        title: 'Booked a class',
+        description: `Booked ${classData.name} at ${classData.startTime}`,
+        isPublic: 1,
+      });
 
-    // Update class booking count
-    await db
-      .update(classes)
-      .set({
-        currentBookings: classData.currentBookings + 1,
-      })
-      .where(eq(classes.id, classId));
-
-    // Create activity feed entry
-    await db.insert(activityFeed).values({
-      userId: session.user.id,
-      activityType: 'booking_created',
-      gymId: classData.gymId,
-      classId,
-      bookingId: newBooking.id,
-      title: 'Booked a class',
-      description: `Booked ${classData.name} at ${classData.startTime}`,
-      isPublic: 1,
+      return newBooking;
     });
 
-    return NextResponse.json({ booking: newBooking }, { status: 201 });
+    return NextResponse.json({ booking: result }, { status: 201 });
   } catch (error) {
     console.error('Create booking error:', error);
+
+    // Handle business logic errors from transaction
+    if (error instanceof Error) {
+      if (error.message === 'Class not found') {
+        return NextResponse.json({ error: error.message }, { status: 404 });
+      }
+      if (error.message === 'Class is full' || error.message === 'You already have a booking for this class') {
+        return NextResponse.json({ error: error.message }, { status: 400 });
+      }
+    }
+
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
 export async function DELETE(request: NextRequest) {
   try {
-    const session = await auth();
-
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const { error, userId } = await withApiProtection(request);
+    if (error) return error;
 
     const { searchParams } = new URL(request.url);
     const bookingId = searchParams.get('id');
@@ -134,44 +149,45 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: 'Booking ID required' }, { status: 400 });
     }
 
-    // Get booking
-    const [booking] = await db
-      .select()
-      .from(bookings)
-      .where(and(eq(bookings.id, bookingId), eq(bookings.userId, session.user.id)))
-      .limit(1);
+    // Use transaction to prevent race condition when cancelling
+    await db.transaction(async (tx) => {
+      // Get booking
+      const [booking] = await tx
+        .select()
+        .from(bookings)
+        .where(and(eq(bookings.id, bookingId), eq(bookings.userId, userId)))
+        .limit(1);
 
-    if (!booking) {
-      return NextResponse.json({ error: 'Booking not found' }, { status: 404 });
-    }
+      if (!booking) {
+        throw new Error('Booking not found');
+      }
 
-    // Update booking status
-    await db
-      .update(bookings)
-      .set({
-        bookingStatus: 'cancelled',
-      })
-      .where(eq(bookings.id, bookingId));
+      // Update booking status
+      await tx
+        .update(bookings)
+        .set({
+          bookingStatus: 'cancelled',
+        })
+        .where(eq(bookings.id, bookingId));
 
-    // Decrease class booking count
-    const [classData] = await db
-      .select()
-      .from(classes)
-      .where(eq(classes.id, booking.classId))
-      .limit(1);
-
-    if (classData) {
-      await db
+      // Atomically decrement class booking count
+      await tx
         .update(classes)
         .set({
-          currentBookings: Math.max(0, classData.currentBookings - 1),
+          currentBookings: sql`GREATEST(0, ${classes.currentBookings} - 1)`,
         })
         .where(eq(classes.id, booking.classId));
-    }
+    });
 
     return NextResponse.json({ message: 'Booking cancelled successfully' });
   } catch (error) {
     console.error('Cancel booking error:', error);
+
+    // Handle business logic errors from transaction
+    if (error instanceof Error && error.message === 'Booking not found') {
+      return NextResponse.json({ error: error.message }, { status: 404 });
+    }
+
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

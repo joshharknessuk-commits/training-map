@@ -14,3 +14,7 @@ tsconfig.tsbuildinfo
 .env
 .env.local
 .env.*.local
+
+# Uploaded avatars
+public/uploads/avatars/*
+!public/uploads/avatars/.gitkeep
