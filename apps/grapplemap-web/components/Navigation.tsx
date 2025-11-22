@@ -64,6 +64,14 @@ export default function Navigation() {
                 >
                   Feed
                 </Link>
+                <a
+                  href="http://localhost:3001"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium border-transparent text-emerald-600 hover:border-emerald-300 hover:text-emerald-700"
+                >
+                  Analytics 📊
+                </a>
               </div>
             )}
           </div>
