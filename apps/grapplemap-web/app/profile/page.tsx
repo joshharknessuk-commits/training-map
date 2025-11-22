@@ -948,7 +948,7 @@ export default function ProfilePage() {
                 </p>
                 <div className="mb-3">
                   <label className="block text-xs font-medium text-slate-300 mb-2">
-                    Type "delete my account" to confirm:
+                    Type &ldquo;delete my account&rdquo; to confirm:
                   </label>
                   <input
                     type="text"
