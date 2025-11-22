@@ -68,7 +68,7 @@ export default function FeedPage() {
   if (loading && activities.length === 0) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-lg text-white">Loading feed...</div>
+        <div className="text-lg text-neutral-900">Loading feed...</div>
       </div>
     );
   }
@@ -77,18 +77,18 @@ export default function FeedPage() {
     <div className="min-h-screen py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">
             Feed
           </p>
-          <h1 className="text-3xl font-semibold text-white mt-2">Activity Feed</h1>
+          <h1 className="text-3xl font-semibold text-neutral-900 mt-2">Activity Feed</h1>
 
           <div className="flex space-x-3 mt-6">
             <button
               onClick={() => setFeedType('all')}
               className={`px-4 py-2 rounded-full text-sm font-medium transition ${
                 feedType === 'all'
-                  ? 'bg-emerald-500 text-white'
-                  : 'border border-white/20 text-slate-300 hover:bg-white/5'
+                  ? 'bg-brand-500 text-neutral-900'
+                  : 'border border-neutral-300 text-neutral-800 hover:bg-neutral-50'
               }`}
             >
               All Activity
@@ -97,8 +97,8 @@ export default function FeedPage() {
               onClick={() => setFeedType('connections')}
               className={`px-4 py-2 rounded-full text-sm font-medium transition ${
                 feedType === 'connections'
-                  ? 'bg-emerald-500 text-white'
-                  : 'border border-white/20 text-slate-300 hover:bg-white/5'
+                  ? 'bg-brand-500 text-neutral-900'
+                  : 'border border-neutral-300 text-neutral-800 hover:bg-neutral-50'
               }`}
             >
               Connections
@@ -107,8 +107,8 @@ export default function FeedPage() {
               onClick={() => setFeedType('my')}
               className={`px-4 py-2 rounded-full text-sm font-medium transition ${
                 feedType === 'my'
-                  ? 'bg-emerald-500 text-white'
-                  : 'border border-white/20 text-slate-300 hover:bg-white/5'
+                  ? 'bg-brand-500 text-neutral-900'
+                  : 'border border-neutral-300 text-neutral-800 hover:bg-neutral-50'
               }`}
             >
               My Activity
@@ -117,8 +117,8 @@ export default function FeedPage() {
         </div>
 
         {activities.length === 0 ? (
-          <div className="rounded-3xl border border-white/10 bg-slate-950/70 p-8 text-center shadow-glow">
-            <p className="text-slate-400">
+          <div className="rounded-3xl border-2 border-neutral-200 bg-white p-8 text-center shadow-card">
+            <p className="text-neutral-700">
               {feedType === 'connections'
                 ? "No activity from your connections yet. Start connecting with other grapplers!"
                 : 'No activity to show yet. Start training and booking classes!'}
@@ -127,19 +127,19 @@ export default function FeedPage() {
         ) : (
           <div className="space-y-4">
             {activities.map((activity) => (
-              <div key={activity.id} className="rounded-3xl border border-white/10 bg-slate-950/70 p-6 shadow-glow">
+              <div key={activity.id} className="rounded-3xl border-2 border-neutral-200 bg-white p-6 shadow-card">
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">
-                    <div className="h-12 w-12 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-300 font-semibold">
+                    <div className="h-12 w-12 rounded-full bg-brand-500/20 border border-brand-400 flex items-center justify-center text-brand-600 font-semibold">
                       {activity.activityType.charAt(0).toUpperCase()}
                     </div>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-white">{activity.title}</h3>
+                    <h3 className="text-lg font-semibold text-neutral-900">{activity.title}</h3>
                     {activity.description && (
-                      <p className="text-slate-400 mt-1">{activity.description}</p>
+                      <p className="text-neutral-700 mt-1">{activity.description}</p>
                     )}
-                    <p className="text-sm text-slate-500 mt-2">{formatDate(activity.createdAt)}</p>
+                    <p className="text-sm text-neutral-600 mt-2">{formatDate(activity.createdAt)}</p>
                   </div>
                 </div>
               </div>

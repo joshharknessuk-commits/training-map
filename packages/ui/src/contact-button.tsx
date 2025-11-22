@@ -29,7 +29,7 @@ export function ContactButton({ className, buttonClassName }: ContactButtonProps
 
   const wrapperClasses = ['flex flex-col items-end gap-2', className].filter(Boolean).join(' ');
   const baseButtonClasses =
-    'inline-flex items-center gap-2 rounded-full bg-slate-900/90 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-slate-950/70 ring-1 ring-white/10 transition hover:bg-slate-800 hover:ring-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 disabled:opacity-75';
+    'inline-flex items-center gap-2 rounded-full bg-neutral-100 px-4 py-2 text-sm font-semibold text-neutral-900 shadow-soft ring-1 ring-neutral-200 transition hover:bg-neutral-200 hover:ring-neutral-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 disabled:opacity-75';
   const buttonClasses = [baseButtonClasses, buttonClassName].filter(Boolean).join(' ');
 
   return (
@@ -37,7 +37,7 @@ export function ContactButton({ className, buttonClassName }: ContactButtonProps
       <div className={wrapperClasses}>
         {showSuccess ? (
           <div
-            className="rounded-full bg-emerald-500/90 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white shadow-lg shadow-emerald-900/40"
+            className="rounded-full bg-accent-500 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white shadow-soft"
             role="status"
           >
             Thanks for reaching out!

@@ -170,7 +170,7 @@ export function FeedbackModal({ open, onClose, onSuccess }: FeedbackModalProps) 
 
   const dialogClasses = useMemo(
     () =>
-      'pointer-events-auto w-full max-w-md rounded-3xl border border-white/10 bg-slate-950/95 p-6 text-slate-100 shadow-2xl shadow-slate-900/80 backdrop-blur',
+      'pointer-events-auto w-full max-w-md rounded-3xl border-2 border-neutral-200 bg-white p-6 text-neutral-900 shadow-elevated backdrop-blur',
     [],
   );
 
@@ -180,7 +180,7 @@ export function FeedbackModal({ open, onClose, onSuccess }: FeedbackModalProps) 
 
   return (
     <div
-      className="fixed inset-0 z-[1100] flex items-center justify-center bg-slate-950/70 px-4 py-8"
+      className="fixed inset-0 z-[1100] flex items-center justify-center bg-neutral-900/30 px-4 py-8"
       onClick={handleOverlayClick}
     >
       <div
@@ -195,44 +195,44 @@ export function FeedbackModal({ open, onClose, onSuccess }: FeedbackModalProps) 
         <div className="space-y-2">
           <p
             id="feedback-dialog-title"
-            className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-300"
+            className="text-sm font-semibold uppercase tracking-[0.3em] text-brand-700"
           >
             Contact
           </p>
-          <h2 className="text-xl font-semibold text-white">Share feedback</h2>
-          <p id="feedback-dialog-description" className="text-sm text-slate-400">
+          <h2 className="text-xl font-semibold text-neutral-900">Share feedback</h2>
+          <p id="feedback-dialog-description" className="text-sm text-neutral-700">
             Send ideas, corrections, or quick notes to help improve the map.
           </p>
         </div>
 
         <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
-          <label className="block text-sm font-medium text-slate-200">
+          <label className="block text-sm font-medium text-neutral-800">
             Name (optional)
             <input
               ref={nameInputRef}
               type="text"
-              className="mt-1 w-full rounded-xl border border-white/10 bg-slate-900/70 px-3 py-2 text-sm text-white placeholder:text-slate-500 focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-400/40"
+              className="mt-1 w-full rounded-xl border border-neutral-300 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-neutral-600 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40"
               value={name}
               maxLength={80}
               onChange={(event) => setName(event.target.value)}
             />
           </label>
 
-          <label className="block text-sm font-medium text-slate-200">
+          <label className="block text-sm font-medium text-neutral-800">
             Email (optional)
             <input
               type="email"
-              className="mt-1 w-full rounded-xl border border-white/10 bg-slate-900/70 px-3 py-2 text-sm text-white placeholder:text-slate-500 focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-400/40"
+              className="mt-1 w-full rounded-xl border border-neutral-300 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-neutral-600 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40"
               value={email}
               maxLength={120}
               onChange={(event) => setEmail(event.target.value)}
             />
           </label>
 
-          <label className="block text-sm font-medium text-slate-200">
+          <label className="block text-sm font-medium text-neutral-800">
             Message
             <textarea
-              className="mt-1 h-32 w-full resize-none rounded-2xl border border-white/10 bg-slate-900/70 px-3 py-2 text-sm text-white placeholder:text-slate-500 focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-400/40"
+              className="mt-1 h-32 w-full resize-none rounded-2xl border border-neutral-300 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-neutral-600 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40"
               value={message}
               onChange={(event) => setMessage(event.target.value)}
               minLength={10}
@@ -253,7 +253,7 @@ export function FeedbackModal({ open, onClose, onSuccess }: FeedbackModalProps) 
           </label>
 
           {error ? (
-            <p className="rounded-xl border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-200">
+            <p className="rounded-xl border border-error-DEFAULT bg-error-light px-3 py-2 text-sm text-error-dark">
               {error}
             </p>
           ) : null}
@@ -261,7 +261,7 @@ export function FeedbackModal({ open, onClose, onSuccess }: FeedbackModalProps) 
           <div className="flex items-center justify-end gap-3 pt-2">
             <button
               type="button"
-              className="rounded-full px-4 py-2 text-sm font-semibold text-slate-300 transition hover:text-white focus:outline-none focus:ring-2 focus:ring-slate-500/60"
+              className="rounded-full px-4 py-2 text-sm font-semibold text-neutral-700 transition hover:text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-400"
               onClick={handleCancel}
               disabled={disableActions}
             >
@@ -269,7 +269,7 @@ export function FeedbackModal({ open, onClose, onSuccess }: FeedbackModalProps) 
             </button>
             <button
               type="submit"
-              className="inline-flex items-center gap-2 rounded-full bg-sky-500 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-sky-900/40 transition hover:bg-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-400/70 disabled:cursor-not-allowed disabled:opacity-80"
+              className="inline-flex items-center gap-2 rounded-full bg-brand-500 px-5 py-2 text-sm font-semibold text-white shadow-soft transition hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-400 disabled:cursor-not-allowed disabled:opacity-80"
               disabled={disableActions}
             >
               {submitting ? 'Sending…' : 'Submit'}

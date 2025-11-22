@@ -28,31 +28,31 @@ export function CheckInForm() {
   return (
     <form
       action={formAction}
-      className="rounded-3xl border border-white/10 bg-slate-950/70 p-6 shadow-glow backdrop-blur"
+      className="rounded-3xl border border-white/10 bg-neutral-900/70 p-6 shadow-glow backdrop-blur"
     >
       <h2 className="text-lg font-semibold text-white">Manual QR Check-in</h2>
-      <p className="mt-1 text-sm text-slate-300">
+      <p className="mt-1 text-sm text-neutral-800">
         Scan the rotating QR marker at the gym or enter the alphanumeric code manually.
       </p>
 
-      <label className="mt-6 block text-sm font-medium text-slate-200">
+      <label className="mt-6 block text-sm font-medium text-neutral-900">
         Member email
         <input
           type="email"
           name="email"
           required
-          className="mt-2 w-full rounded-2xl border border-white/10 bg-slate-900/80 px-3 py-2 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-300/70"
+          className="mt-2 w-full rounded-2xl border border-white/10 bg-neutral-800/80 px-3 py-2 text-sm text-white placeholder:text-neutral-600 focus:outline-none focus:ring-2 focus:ring-emerald-300/70"
           placeholder="you@grapplemap.uk"
         />
       </label>
 
-      <label className="mt-4 block text-sm font-medium text-slate-200">
+      <label className="mt-4 block text-sm font-medium text-neutral-900">
         QR code / short code
         <input
           type="text"
           name="code"
           required
-          className="mt-2 w-full rounded-2xl border border-white/10 bg-slate-900/80 px-3 py-2 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-300/70"
+          className="mt-2 w-full rounded-2xl border border-white/10 bg-neutral-800/80 px-3 py-2 text-sm text-white placeholder:text-neutral-600 focus:outline-none focus:ring-2 focus:ring-emerald-300/70"
           placeholder="peckham-sunday"
         />
       </label>

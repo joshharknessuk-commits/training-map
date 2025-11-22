@@ -53,7 +53,7 @@ export function ClaimButton({ gymId, gymName }: ClaimButtonProps) {
     <>
       <button
         type="button"
-        className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-sky-500 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-slate-900 shadow-lg shadow-emerald-900/40 transition hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-emerald-400/60 focus:ring-offset-2 focus:ring-offset-white"
+        className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-500 via-brand-600 to-accent-500 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-lg shadow-glow transition hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500/60 focus:ring-offset-2 focus:ring-offset-white"
         onClick={() => setOpen(true)}
       >
         <span aria-hidden="true">🏛️</span>
@@ -61,7 +61,7 @@ export function ClaimButton({ gymId, gymName }: ClaimButtonProps) {
       </button>
 
       {showSuccess ? (
-        <div className="mt-2 rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-300 shadow-sm shadow-emerald-900/30">
+        <div className="mt-2 rounded-full bg-brand-500/10 px-3 py-1 text-xs font-semibold text-brand-600 shadow-sm shadow-soft">
           OSSS 🤙
         </div>
       ) : null}

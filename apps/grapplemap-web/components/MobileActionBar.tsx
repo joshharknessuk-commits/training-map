@@ -37,7 +37,7 @@ export function MobileActionBar({ onLocate, onError }: MobileActionBarProps) {
       style={{ minHeight: expanded ? EXPANDED_VAR : COLLAPSED_VAR }}
     >
       <div
-        className="pointer-events-auto bg-slate-950/85 px-4 shadow-[0_-16px_32px_rgba(2,6,23,0.8)] backdrop-blur-xl"
+        className="pointer-events-auto bg-neutral-900/85 px-4 shadow-[0_-16px_32px_rgba(2,6,23,0.8)] backdrop-blur-xl"
         style={{
           paddingTop: expanded ? '0.65rem' : '0.35rem',
           paddingBottom: expanded
@@ -51,7 +51,7 @@ export function MobileActionBar({ onLocate, onError }: MobileActionBarProps) {
             type="button"
             onClick={handleToggle}
             aria-expanded={expanded}
-            className="flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/80 backdrop-blur-md transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30"
+            className="flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/80 backdrop-blur-md transition hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-white/30"
           >
             <span className="text-xs">{expanded ? 'Close actions' : 'Touch for more actions'}</span>
             <span aria-hidden="true" className="text-base leading-none">
@@ -65,15 +65,15 @@ export function MobileActionBar({ onLocate, onError }: MobileActionBarProps) {
             }`}
             aria-hidden={!expanded}
           >
-            <div className="mt-3 flex flex-col gap-3 rounded-3xl border border-white/10 bg-slate-950/80 p-4 shadow-inner shadow-black/30">
+            <div className="mt-3 flex flex-col gap-3 rounded-3xl border border-white/10 bg-neutral-900/80 p-4 shadow-inner shadow-black/30">
               <ContactButton
                 className="w-full items-stretch"
-                buttonClassName="w-full justify-center rounded-2xl bg-slate-900/95 text-sm font-semibold uppercase tracking-wide text-white min-h-[44px] px-4 py-2.5 shadow-lg shadow-black/40 focus-visible:ring-sky-400"
+                buttonClassName="w-full justify-center rounded-2xl bg-neutral-800/95 text-sm font-semibold uppercase tracking-wide text-white min-h-[44px] px-4 py-2.5 shadow-lg shadow-black/40 focus-visible:ring-sky-400"
               />
               <NearMeButton
                 onLocate={onLocate}
                 onError={onError}
-                className="min-h-[44px] w-full justify-center rounded-2xl bg-gradient-to-r from-emerald-400 via-emerald-500 to-sky-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-wide text-slate-900 shadow-lg shadow-emerald-900/40 transition hover:scale-[1.01]"
+                className="min-h-[44px] w-full justify-center rounded-2xl bg-gradient-to-r from-emerald-400 via-emerald-500 to-sky-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-wide text-white shadow-lg shadow-glow transition hover:scale-[1.01]"
               >
                 Gyms near me
               </NearMeButton>

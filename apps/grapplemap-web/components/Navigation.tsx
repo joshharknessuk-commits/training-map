@@ -96,7 +96,7 @@ export default function Navigation() {
                 </Link>
                 <Link
                   href="/auth/signup"
-                  className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
+                  className="px-4 py-2 text-sm font-medium text-neutral-900 bg-blue-600 rounded-md hover:bg-blue-700"
                 >
                   Sign Up
                 </Link>

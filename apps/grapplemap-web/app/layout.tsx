@@ -3,7 +3,7 @@ import 'leaflet/dist/leaflet.css';
 import './globals.css';
 import { Analytics } from '@vercel/analytics/next';
 import { Providers } from './providers';
-import Navigation from '@/components/Navigation';
+import AppHeaderWrapper from '@/components/AppHeaderWrapper';
 
 export const metadata: Metadata = {
   title: 'GrappleMap Network - BJJ London',
@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="min-h-screen antialiased">
         <Providers>
-          <Navigation />
+          <AppHeaderWrapper />
           {children}
           <Analytics />
         </Providers>

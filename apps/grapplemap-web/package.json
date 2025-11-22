@@ -48,6 +48,7 @@
   "devDependencies": {
     "@grapplemap/config": "workspace:*",
     "@grapplemap/db": "workspace:*",
+    "@grapplemap/ui": "workspace:*",
     "@types/bcryptjs": "^3.0.0",
     "@types/geojson": "^7946.0.16",
     "@types/leaflet": "^1.9.8",

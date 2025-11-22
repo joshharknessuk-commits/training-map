@@ -197,7 +197,7 @@ export default function ProfilePage() {
   const getMembershipStatusColor = (status: string) => {
     switch (status) {
       case 'active':
-        return 'text-emerald-400';
+        return 'text-brand-600';
       case 'grace':
         return 'text-blue-400';
       case 'past_due':
@@ -205,9 +205,9 @@ export default function ProfilePage() {
       case 'canceled':
         return 'text-red-400';
       case 'paused':
-        return 'text-slate-400';
+        return 'text-neutral-700';
       default:
-        return 'text-slate-400';
+        return 'text-neutral-700';
     }
   };
 
@@ -368,7 +368,7 @@ export default function ProfilePage() {
   if (loading && !profile) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-lg text-white">Loading profile...</div>
+        <div className="text-lg text-neutral-900">Loading profile...</div>
       </div>
     );
   }
@@ -376,17 +376,17 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl border border-white/10 bg-slate-950/70 p-6 shadow-glow">
+        <div className="rounded-3xl border-2 border-neutral-200 bg-white p-6 shadow-card">
           <div className="flex justify-between items-center mb-6">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">
                 Profile
               </p>
-              <h1 className="text-2xl font-semibold text-white mt-2">My Profile</h1>
+              <h1 className="text-2xl font-semibold text-neutral-900 mt-2">My Profile</h1>
             </div>
             <button
               onClick={() => setEditing(!editing)}
-              className="px-4 py-2 bg-emerald-500 text-white rounded-full hover:bg-emerald-600 transition font-medium"
+              className="px-4 py-2 bg-brand-500 text-neutral-900 rounded-full hover:bg-brand-600 transition font-medium"
             >
               {editing ? 'Cancel' : 'Edit Profile'}
             </button>
@@ -397,7 +397,7 @@ export default function ProfilePage() {
               {/* Avatar Upload */}
               <div className="flex flex-col items-center gap-4">
                 <div className="relative">
-                  <div className="h-32 w-32 rounded-full border-4 border-white/10 bg-slate-900 overflow-hidden">
+                  <div className="h-32 w-32 rounded-full border-4 border-neutral-200 bg-neutral-100 overflow-hidden">
                     {formData.avatarUrl ? (
                       <img
                         src={formData.avatarUrl}
@@ -405,20 +405,20 @@ export default function ProfilePage() {
                         className="h-full w-full object-cover"
                       />
                     ) : (
-                      <div className="flex h-full w-full items-center justify-center text-4xl text-slate-600">
+                      <div className="flex h-full w-full items-center justify-center text-4xl text-neutral-700">
                         👤
                       </div>
                     )}
                   </div>
                   {avatarUploading && (
                     <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black/50">
-                      <span className="text-white text-sm">Uploading...</span>
+                      <span className="text-neutral-900 text-sm">Uploading...</span>
                     </div>
                   )}
                 </div>
                 <div className="flex flex-col items-center gap-2">
                   <div className="flex gap-2">
-                    <label className="cursor-pointer rounded-full bg-emerald-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-600">
+                    <label className="cursor-pointer rounded-full bg-brand-500 px-4 py-2 text-sm font-medium text-neutral-900 transition hover:bg-brand-600">
                       <input
                         type="file"
                         accept="image/*"
@@ -438,52 +438,52 @@ export default function ProfilePage() {
                       </button>
                     )}
                   </div>
-                  <p className="text-xs text-slate-400">Max 5MB, JPG/PNG</p>
+                  <p className="text-xs text-neutral-700">Max 5MB, JPG/PNG</p>
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">Display Name</label>
+                <label className="block text-sm font-medium text-neutral-800 mb-1">Display Name</label>
                 <input
                   type="text"
                   name="displayName"
                   value={formData.displayName || ''}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
+                  className="w-full rounded-xl border border-neutral-300 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">Bio</label>
+                <label className="block text-sm font-medium text-neutral-800 mb-1">Bio</label>
                 <textarea
                   name="bio"
                   value={formData.bio || ''}
                   onChange={handleChange}
                   rows={4}
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
+                  className="w-full rounded-xl border border-neutral-300 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1">Belt Rank</label>
+                  <label className="block text-sm font-medium text-neutral-800 mb-1">Belt Rank</label>
                   <select
                     name="beltRank"
                     value={formData.beltRank || ''}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
+                    className="w-full rounded-xl border-2 border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                   >
-                    <option value="" className="bg-slate-900">Select belt</option>
-                    <option value="white" className="bg-slate-900">White</option>
-                    <option value="blue" className="bg-slate-900">Blue</option>
-                    <option value="purple" className="bg-slate-900">Purple</option>
-                    <option value="brown" className="bg-slate-900">Brown</option>
-                    <option value="black" className="bg-slate-900">Black</option>
+                    <option value="" className="bg-neutral-100">Select belt</option>
+                    <option value="white" className="bg-neutral-100">White</option>
+                    <option value="blue" className="bg-neutral-100">Blue</option>
+                    <option value="purple" className="bg-neutral-100">Purple</option>
+                    <option value="brown" className="bg-neutral-100">Brown</option>
+                    <option value="black" className="bg-neutral-100">Black</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1">Stripes</label>
+                  <label className="block text-sm font-medium text-neutral-800 mb-1">Stripes</label>
                   <input
                     type="number"
                     name="stripes"
@@ -491,55 +491,55 @@ export default function ProfilePage() {
                     max="4"
                     value={formData.stripes || 0}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
+                    className="w-full rounded-xl border-2 border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1">Weight (kg)</label>
+                  <label className="block text-sm font-medium text-neutral-800 mb-1">Weight (kg)</label>
                   <input
                     type="number"
                     name="weightKg"
                     value={formData.weightKg || ''}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
+                    className="w-full rounded-xl border-2 border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1">Years Training</label>
+                  <label className="block text-sm font-medium text-neutral-800 mb-1">Years Training</label>
                   <input
                     type="number"
                     name="yearsTraining"
                     value={formData.yearsTraining || ''}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
+                    className="w-full rounded-xl border-2 border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">Instagram Handle</label>
+                <label className="block text-sm font-medium text-neutral-800 mb-1">Instagram Handle</label>
                 <input
                   type="text"
                   name="instagramHandle"
                   value={formData.instagramHandle || ''}
                   onChange={handleChange}
                   placeholder="@username"
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
+                  className="w-full rounded-xl border-2 border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">City</label>
+                <label className="block text-sm font-medium text-neutral-800 mb-1">City</label>
                 <input
                   type="text"
                   name="city"
                   value={formData.city || ''}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
+                  className="w-full rounded-xl border-2 border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                 />
               </div>
 
@@ -551,9 +551,9 @@ export default function ProfilePage() {
                   onChange={(e) =>
                     setFormData({ ...formData, isPublic: e.target.checked })
                   }
-                  className="h-4 w-4 rounded border-white/10 bg-white/5 text-emerald-500 focus:ring-emerald-500/50"
+                  className="h-4 w-4 rounded border-neutral-200 bg-neutral-50 text-emerald-500 focus:ring-brand-500"
                 />
-                <label className="ml-2 block text-sm text-slate-300">
+                <label className="ml-2 block text-sm text-neutral-800">
                   Make profile public
                 </label>
               </div>
@@ -562,14 +562,14 @@ export default function ProfilePage() {
                 <button
                   type="button"
                   onClick={() => setEditing(false)}
-                  className="px-4 py-2 border border-white/20 rounded-full text-slate-300 hover:bg-white/5 transition"
+                  className="px-4 py-2 border border-neutral-300 rounded-full text-neutral-800 hover:bg-neutral-50 transition"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={loading}
-                  className="px-4 py-2 bg-emerald-500 text-white rounded-full hover:bg-emerald-600 disabled:opacity-50 transition font-medium"
+                  className="px-4 py-2 bg-brand-500 text-neutral-900 rounded-full hover:bg-brand-600 disabled:opacity-50 transition font-medium"
                 >
                   {loading ? 'Saving...' : 'Save Profile'}
                 </button>
@@ -578,8 +578,8 @@ export default function ProfilePage() {
           ) : (
             <div className="space-y-6">
               {/* Avatar Display */}
-              <div className="flex items-center gap-4 rounded-2xl border border-white/5 bg-white/5 p-4">
-                <div className="h-20 w-20 flex-shrink-0 rounded-full border-4 border-white/10 bg-slate-900 overflow-hidden">
+              <div className="flex items-center gap-4 rounded-2xl border-2 border-neutral-200 bg-neutral-50 p-4">
+                <div className="h-20 w-20 flex-shrink-0 rounded-full border-4 border-neutral-200 bg-neutral-100 overflow-hidden">
                   {profile?.avatarUrl ? (
                     <img
                       src={profile.avatarUrl}
@@ -587,31 +587,31 @@ export default function ProfilePage() {
                       className="h-full w-full object-cover"
                     />
                   ) : (
-                    <div className="flex h-full w-full items-center justify-center text-3xl text-slate-600">
+                    <div className="flex h-full w-full items-center justify-center text-3xl text-neutral-700">
                       👤
                     </div>
                   )}
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-white">
+                  <h3 className="text-lg font-semibold text-neutral-900">
                     {profile?.displayName || 'No name set'}
                   </h3>
-                  <p className="text-slate-400">{session?.user?.email}</p>
+                  <p className="text-neutral-700">{session?.user?.email}</p>
                 </div>
               </div>
 
               {profile?.bio && (
-                <div className="rounded-2xl border border-white/5 bg-white/5 p-4">
-                  <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200 mb-2">Bio</h4>
-                  <p className="text-slate-300">{profile.bio}</p>
+                <div className="rounded-2xl border-2 border-neutral-200 bg-neutral-50 p-4">
+                  <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700 mb-2">Bio</h4>
+                  <p className="text-neutral-800">{profile.bio}</p>
                 </div>
               )}
 
               <div className="grid grid-cols-2 gap-4">
                 {profile?.beltRank && (
-                  <div className="rounded-2xl border border-white/5 bg-white/5 p-4">
-                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200 mb-2">Belt Rank</h4>
-                    <p className="text-white capitalize">
+                  <div className="rounded-2xl border-2 border-neutral-200 bg-neutral-50 p-4">
+                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700 mb-2">Belt Rank</h4>
+                    <p className="text-neutral-900 capitalize">
                       {profile.beltRank}{' '}
                       {profile.stripes ? `(${profile.stripes} stripes)` : ''}
                     </p>
@@ -619,23 +619,23 @@ export default function ProfilePage() {
                 )}
 
                 {profile?.yearsTraining !== undefined && (
-                  <div className="rounded-2xl border border-white/5 bg-white/5 p-4">
-                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200 mb-2">Experience</h4>
-                    <p className="text-white">{profile.yearsTraining} years</p>
+                  <div className="rounded-2xl border-2 border-neutral-200 bg-neutral-50 p-4">
+                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700 mb-2">Experience</h4>
+                    <p className="text-neutral-900">{profile.yearsTraining} years</p>
                   </div>
                 )}
 
                 {profile?.weightKg && (
-                  <div className="rounded-2xl border border-white/5 bg-white/5 p-4">
-                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200 mb-2">Weight</h4>
-                    <p className="text-white">{profile.weightKg} kg</p>
+                  <div className="rounded-2xl border-2 border-neutral-200 bg-neutral-50 p-4">
+                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700 mb-2">Weight</h4>
+                    <p className="text-neutral-900">{profile.weightKg} kg</p>
                   </div>
                 )}
 
                 {profile?.city && (
-                  <div className="rounded-2xl border border-white/5 bg-white/5 p-4">
-                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200 mb-2">Location</h4>
-                    <p className="text-white">{profile.city}</p>
+                  <div className="rounded-2xl border-2 border-neutral-200 bg-neutral-50 p-4">
+                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700 mb-2">Location</h4>
+                    <p className="text-neutral-900">{profile.city}</p>
                   </div>
                 )}
               </div>
@@ -645,20 +645,20 @@ export default function ProfilePage() {
 
         {/* Account Management Section */}
         {account && (
-          <div className="mt-8 rounded-3xl border border-white/10 bg-slate-950/70 p-6 shadow-glow">
+          <div className="mt-8 rounded-3xl border-2 border-neutral-200 bg-white p-6 shadow-card">
             <div className="mb-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">
                 Account Management
               </p>
-              <h2 className="text-2xl font-semibold text-white mt-2">Membership & Billing</h2>
+              <h2 className="text-2xl font-semibold text-neutral-900 mt-2">Membership & Billing</h2>
             </div>
 
             <div className="space-y-4">
               {/* Membership Status */}
-              <div className="rounded-2xl border border-white/5 bg-white/5 p-4">
+              <div className="rounded-2xl border-2 border-neutral-200 bg-neutral-50 p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200 mb-2">
+                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700 mb-2">
                       Membership Status
                     </h4>
                     <p className={`text-lg font-semibold ${getMembershipStatusColor(account.membershipStatus)}`}>
@@ -666,17 +666,17 @@ export default function ProfilePage() {
                     </p>
                   </div>
                   <div className="text-right">
-                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200 mb-2">
+                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700 mb-2">
                       Tier
                     </h4>
-                    <p className="text-lg font-semibold text-white capitalize">
+                    <p className="text-lg font-semibold text-neutral-900 capitalize">
                       {account.membershipTier === 'pro' ? 'Network Pro' : account.membershipTier === 'standard' ? 'Network' : account.membershipTier === 'free' ? 'Network Free' : account.membershipTier}
                     </p>
                   </div>
                 </div>
                 {account.activeUntil && (
-                  <div className="mt-3 pt-3 border-t border-white/10">
-                    <p className="text-xs text-slate-400">
+                  <div className="mt-3 pt-3 border-t border-neutral-200">
+                    <p className="text-xs text-neutral-700">
                       {account.membershipStatus === 'canceled'
                         ? `Access until: ${new Date(account.activeUntil).toLocaleDateString()}`
                         : `Next billing: ${new Date(account.activeUntil).toLocaleDateString()}`
@@ -691,7 +691,7 @@ export default function ProfilePage() {
                 {/* Change Tier */}
                 <Link
                   href="/network#membership"
-                  className="flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm font-medium text-white transition hover:bg-white/10"
+                  className="flex items-center justify-center gap-2 rounded-xl border border-neutral-300 bg-neutral-50 px-4 py-3 text-sm font-medium text-neutral-900 transition hover:bg-white/10"
                 >
                   <span>Change Tier</span>
                   <span>→</span>
@@ -701,7 +701,7 @@ export default function ProfilePage() {
                 {account.stripeCustomerId && account.membershipStatus !== 'canceled' && (
                   <button
                     onClick={handleManageBilling}
-                    className="flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm font-medium text-white transition hover:bg-white/10"
+                    className="flex items-center justify-center gap-2 rounded-xl border border-neutral-300 bg-neutral-50 px-4 py-3 text-sm font-medium text-neutral-900 transition hover:bg-white/10"
                   >
                     <span>Manage Billing</span>
                   </button>
@@ -721,10 +721,10 @@ export default function ProfilePage() {
               {/* Cancel Confirmation */}
               {showCancelConfirm && (
                 <div className="rounded-2xl border border-red-500/30 bg-red-950/30 p-4">
-                  <h4 className="text-sm font-semibold text-white mb-2">
+                  <h4 className="text-sm font-semibold text-neutral-900 mb-2">
                     Are you sure you want to cancel?
                   </h4>
-                  <p className="text-xs text-slate-300 mb-4">
+                  <p className="text-xs text-neutral-800 mb-4">
                     Your membership will remain active until{' '}
                     {account.activeUntil ? new Date(account.activeUntil).toLocaleDateString() : 'the end of your billing period'}.
                     You can resubscribe anytime.
@@ -733,13 +733,13 @@ export default function ProfilePage() {
                     <button
                       onClick={handleCancelMembership}
                       disabled={cancelLoading}
-                      className="flex-1 rounded-lg bg-red-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-600 disabled:opacity-50"
+                      className="flex-1 rounded-lg bg-red-500 px-4 py-2 text-sm font-medium text-neutral-900 transition hover:bg-red-600 disabled:opacity-50"
                     >
                       {cancelLoading ? 'Cancelling...' : 'Yes, Cancel'}
                     </button>
                     <button
                       onClick={() => setShowCancelConfirm(false)}
-                      className="flex-1 rounded-lg border border-white/20 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/5"
+                      className="flex-1 rounded-lg border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-900 transition hover:bg-neutral-50"
                     >
                       Keep Membership
                     </button>
@@ -748,11 +748,11 @@ export default function ProfilePage() {
               )}
 
               {/* Info Box */}
-              <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-4">
-                <p className="text-xs uppercase tracking-[0.35em] text-emerald-200 mb-2">Need Help?</p>
-                <p className="text-sm text-slate-300">
+              <div className="rounded-2xl border-2 border-neutral-200 bg-neutral-100/60 p-4">
+                <p className="text-xs uppercase tracking-[0.35em] text-brand-700 mb-2">Need Help?</p>
+                <p className="text-sm text-neutral-800">
                   Contact us at{' '}
-                  <a href="mailto:support@grapplemap.uk" className="text-emerald-300 hover:text-emerald-200">
+                  <a href="mailto:support@grapplemap.uk" className="text-brand-600 hover:text-brand-700">
                     support@grapplemap.uk
                   </a>{' '}
                   for billing questions or membership changes.
@@ -764,25 +764,25 @@ export default function ProfilePage() {
 
         {/* Free Tier Upgrade Prompt */}
         {account && account.membershipTier === 'free' && (
-          <div className="mt-8 rounded-3xl border border-emerald-400/20 bg-gradient-to-br from-emerald-950/30 to-slate-950/70 p-6 shadow-glow">
+          <div className="mt-8 rounded-3xl border border-brand-400 bg-gradient-to-br from-emerald-950/30 to-slate-950/70 p-6 shadow-card">
             <div className="mb-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">
                 Upgrade to Access
               </p>
-              <h2 className="text-2xl font-semibold text-white mt-2">Unlock Gym Check-ins</h2>
-              <p className="text-sm text-slate-300 mt-1">Upgrade to a paid tier for QR check-in access at partner gyms</p>
+              <h2 className="text-2xl font-semibold text-neutral-900 mt-2">Unlock Gym Check-ins</h2>
+              <p className="text-sm text-neutral-800 mt-1">Upgrade to a paid tier for QR check-in access at partner gyms</p>
             </div>
 
-            <div className="rounded-2xl border border-emerald-400/30 bg-slate-900/60 p-6">
+            <div className="rounded-2xl border border-emerald-400/30 bg-neutral-100/60 p-6">
               <div className="flex flex-col items-center justify-center text-center">
                 <div className="mb-4 text-6xl">🔒</div>
-                <p className="text-lg font-semibold text-white mb-2">Check-in Access Locked</p>
-                <p className="text-sm text-slate-300 mb-6 max-w-md">
+                <p className="text-lg font-semibold text-neutral-900 mb-2">Check-in Access Locked</p>
+                <p className="text-sm text-neutral-800 mb-6 max-w-md">
                   Free tier members can browse and discover gyms. Upgrade to Network or Network Pro to check in at partner gyms, book classes, and get SMS reminders.
                 </p>
                 <Link
                   href="/network#membership"
-                  className="inline-flex items-center justify-center rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-400"
+                  className="inline-flex items-center justify-center rounded-full bg-brand-500 px-6 py-3 text-sm font-semibold text-neutral-900 transition hover:bg-brand-400"
                 >
                   View Membership Options
                 </Link>
@@ -793,17 +793,17 @@ export default function ProfilePage() {
 
         {/* QR Code Section */}
         {account && (account.membershipStatus === 'active' || account.membershipStatus === 'grace') && account.membershipTier !== 'free' && (
-          <div className="mt-8 rounded-3xl border border-emerald-400/20 bg-gradient-to-br from-emerald-950/30 to-slate-950/70 p-6 shadow-glow">
+          <div className="mt-8 rounded-3xl border border-brand-400 bg-gradient-to-br from-emerald-950/30 to-slate-950/70 p-6 shadow-card">
             <div className="mb-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">
                 Member Access
               </p>
-              <h2 className="text-2xl font-semibold text-white mt-2">Your QR Code</h2>
-              <p className="text-sm text-slate-300 mt-1">Show this at partner gyms to check in</p>
+              <h2 className="text-2xl font-semibold text-neutral-900 mt-2">Your QR Code</h2>
+              <p className="text-sm text-neutral-800 mt-1">Show this at partner gyms to check in</p>
             </div>
 
             <div className="space-y-4">
-              <div className="rounded-2xl border border-emerald-400/30 bg-slate-900/60 p-6">
+              <div className="rounded-2xl border border-emerald-400/30 bg-neutral-100/60 p-6">
                 <div className="flex flex-col items-center justify-center">
                   {qrCode ? (
                     <>
@@ -811,29 +811,29 @@ export default function ProfilePage() {
                         {/* QR Code Placeholder - Will be replaced with actual QR code */}
                         <div className="text-center">
                           <div className="mb-4 text-6xl">📱</div>
-                          <p className="text-xs text-slate-600 font-mono break-all">{qrCode.token.substring(0, 20)}...</p>
-                          <p className="mt-2 text-xs text-slate-500">QR Code Display</p>
-                          <p className="text-xs text-slate-400">(Install QR library to render)</p>
+                          <p className="text-xs text-neutral-700 font-mono break-all">{qrCode.token.substring(0, 20)}...</p>
+                          <p className="mt-2 text-xs text-neutral-600">QR Code Display</p>
+                          <p className="text-xs text-neutral-700">(Install QR library to render)</p>
                         </div>
                       </div>
                       <div className="mt-4 text-center">
-                        <p className="text-xs text-emerald-300">
+                        <p className="text-xs text-brand-600">
                           Code refreshes: {new Date(qrCode.expiresAt).toLocaleTimeString()}
                         </p>
-                        <p className="text-xs text-slate-400 mt-1">Valid for 1 hour</p>
+                        <p className="text-xs text-neutral-700 mt-1">Valid for 1 hour</p>
                       </div>
                     </>
                   ) : (
-                    <div className="flex h-64 w-64 items-center justify-center rounded-2xl border-2 border-dashed border-slate-600">
-                      <p className="text-slate-400">Loading QR code...</p>
+                    <div className="flex h-64 w-64 items-center justify-center rounded-2xl border-2 border-dashed border-neutral-600">
+                      <p className="text-neutral-700">Loading QR code...</p>
                     </div>
                   )}
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-4">
-                <p className="text-xs uppercase tracking-[0.35em] text-emerald-200 mb-2">How to use</p>
-                <ul className="space-y-1 text-sm text-slate-300">
+              <div className="rounded-2xl border-2 border-neutral-200 bg-neutral-100/60 p-4">
+                <p className="text-xs uppercase tracking-[0.35em] text-brand-700 mb-2">How to use</p>
+                <ul className="space-y-1 text-sm text-neutral-800">
                   <li>• Open this page on your phone before arriving at the gym</li>
                   <li>• Show the QR code to staff at check-in</li>
                   <li>• Code refreshes every hour for security</li>
@@ -844,12 +844,12 @@ export default function ProfilePage() {
         )}
 
         {/* Security Section */}
-        <div className="mt-8 rounded-3xl border border-white/10 bg-slate-950/70 p-6 shadow-glow">
+        <div className="mt-8 rounded-3xl border-2 border-neutral-200 bg-white p-6 shadow-card">
           <div className="mb-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">
               Security & Privacy
             </p>
-            <h2 className="text-2xl font-semibold text-white mt-2">Account Security</h2>
+            <h2 className="text-2xl font-semibold text-neutral-900 mt-2">Account Security</h2>
           </div>
 
           <div className="space-y-4">
@@ -857,7 +857,7 @@ export default function ProfilePage() {
             {!showPasswordChange ? (
               <button
                 onClick={() => setShowPasswordChange(true)}
-                className="w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-left text-sm font-medium text-white transition hover:bg-white/10"
+                className="w-full rounded-xl border border-neutral-300 bg-neutral-50 px-4 py-3 text-left text-sm font-medium text-neutral-900 transition hover:bg-white/10"
               >
                 <div className="flex items-center justify-between">
                   <span>Change Password</span>
@@ -865,11 +865,11 @@ export default function ProfilePage() {
                 </div>
               </button>
             ) : (
-              <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-4">
-                <h4 className="text-sm font-semibold text-white mb-4">Change Password</h4>
+              <div className="rounded-2xl border-2 border-neutral-200 bg-neutral-100/60 p-4">
+                <h4 className="text-sm font-semibold text-neutral-900 mb-4">Change Password</h4>
                 <form onSubmit={handlePasswordChange} className="space-y-3">
                   <div>
-                    <label className="block text-xs font-medium text-slate-300 mb-1">
+                    <label className="block text-xs font-medium text-neutral-800 mb-1">
                       Current Password
                     </label>
                     <input
@@ -877,11 +877,11 @@ export default function ProfilePage() {
                       value={passwordData.currentPassword}
                       onChange={(e) => setPasswordData({ ...passwordData, currentPassword: e.target.value })}
                       required
-                      className="w-full rounded-lg border border-white/10 bg-slate-950/60 px-3 py-2 text-sm text-white placeholder:text-slate-500 focus:border-emerald-400/50 focus:outline-none focus:ring-1 focus:ring-emerald-400/50"
+                      className="w-full rounded-lg border-2 border-neutral-200 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-neutral-600 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-medium text-slate-300 mb-1">
+                    <label className="block text-xs font-medium text-neutral-800 mb-1">
                       New Password
                     </label>
                     <input
@@ -890,11 +890,11 @@ export default function ProfilePage() {
                       onChange={(e) => setPasswordData({ ...passwordData, newPassword: e.target.value })}
                       required
                       minLength={8}
-                      className="w-full rounded-lg border border-white/10 bg-slate-950/60 px-3 py-2 text-sm text-white placeholder:text-slate-500 focus:border-emerald-400/50 focus:outline-none focus:ring-1 focus:ring-emerald-400/50"
+                      className="w-full rounded-lg border-2 border-neutral-200 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-neutral-600 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-medium text-slate-300 mb-1">
+                    <label className="block text-xs font-medium text-neutral-800 mb-1">
                       Confirm New Password
                     </label>
                     <input
@@ -903,14 +903,14 @@ export default function ProfilePage() {
                       onChange={(e) => setPasswordData({ ...passwordData, confirmPassword: e.target.value })}
                       required
                       minLength={8}
-                      className="w-full rounded-lg border border-white/10 bg-slate-950/60 px-3 py-2 text-sm text-white placeholder:text-slate-500 focus:border-emerald-400/50 focus:outline-none focus:ring-1 focus:ring-emerald-400/50"
+                      className="w-full rounded-lg border-2 border-neutral-200 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-neutral-600 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                     />
                   </div>
                   <div className="flex gap-2 pt-2">
                     <button
                       type="submit"
                       disabled={passwordLoading}
-                      className="flex-1 rounded-lg bg-emerald-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-600 disabled:opacity-50"
+                      className="flex-1 rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-neutral-900 transition hover:bg-brand-600 disabled:opacity-50"
                     >
                       {passwordLoading ? 'Changing...' : 'Change Password'}
                     </button>
@@ -920,7 +920,7 @@ export default function ProfilePage() {
                         setShowPasswordChange(false);
                         setPasswordData({ currentPassword: '', newPassword: '', confirmPassword: '' });
                       }}
-                      className="flex-1 rounded-lg border border-white/20 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/5"
+                      className="flex-1 rounded-lg border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-900 transition hover:bg-neutral-50"
                     >
                       Cancel
                     </button>
@@ -942,12 +942,12 @@ export default function ProfilePage() {
               </button>
             ) : (
               <div className="rounded-2xl border border-red-500/30 bg-red-950/30 p-4">
-                <h4 className="text-sm font-semibold text-white mb-2">Delete Your Account</h4>
-                <p className="text-xs text-slate-300 mb-4">
+                <h4 className="text-sm font-semibold text-neutral-900 mb-2">Delete Your Account</h4>
+                <p className="text-xs text-neutral-800 mb-4">
                   This action cannot be undone. All your data, including profile, check-in history, and membership will be permanently deleted.
                 </p>
                 <div className="mb-3">
-                  <label className="block text-xs font-medium text-slate-300 mb-2">
+                  <label className="block text-xs font-medium text-neutral-800 mb-2">
                     Type &ldquo;delete my account&rdquo; to confirm:
                   </label>
                   <input
@@ -955,14 +955,14 @@ export default function ProfilePage() {
                     value={deleteConfirmText}
                     onChange={(e) => setDeleteConfirmText(e.target.value)}
                     placeholder="delete my account"
-                    className="w-full rounded-lg border border-red-500/30 bg-slate-950/60 px-3 py-2 text-sm text-white placeholder:text-slate-500 focus:border-red-400/50 focus:outline-none focus:ring-1 focus:ring-red-400/50"
+                    className="w-full rounded-lg border border-red-500/30 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-neutral-600 focus:border-red-400/50 focus:outline-none focus:ring-1 focus:ring-red-400/50"
                   />
                 </div>
                 <div className="flex gap-2">
                   <button
                     onClick={handleDeleteAccount}
                     disabled={deleteLoading || deleteConfirmText.toLowerCase() !== 'delete my account'}
-                    className="flex-1 rounded-lg bg-red-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 rounded-lg bg-red-500 px-4 py-2 text-sm font-medium text-neutral-900 transition hover:bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {deleteLoading ? 'Deleting...' : 'Delete Forever'}
                   </button>
@@ -971,7 +971,7 @@ export default function ProfilePage() {
                       setShowDeleteConfirm(false);
                       setDeleteConfirmText('');
                     }}
-                    className="flex-1 rounded-lg border border-white/20 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/5"
+                    className="flex-1 rounded-lg border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-900 transition hover:bg-neutral-50"
                   >
                     Cancel
                   </button>
