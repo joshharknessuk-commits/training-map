@@ -1,0 +1,31 @@
+match_id;winner_id;winner_name;loser_id;loser_name;win_type;submission;winner_points;loser_points;adv_pen;weight_class;sex;stage;year
+1;101;Gordon Ryan;102;Marcus Almeida;SUBMISSION;Rear Naked Choke;0;0;N/A;+99KG;M;Final;2022
+2;103;Felipe Pena;104;Nicholas Meregali;POINTS;N/A;7;2;N/A;-99KG;M;Final;2022
+3;105;Tainan Dalpra;106;Levi Jones-Leary;SUBMISSION;Triangle;0;0;N/A;-77KG;M;Final;2022
+4;107;Gabriel Sousa;108;Matheus Luna;SUBMISSION;Armbar;0;0;N/A;-77KG;M;Semi-Final;2022
+5;101;Gordon Ryan;109;Pedro Marinho;SUBMISSION;Heel Hook;0;0;N/A;+99KG;M;Semi-Final;2022
+6;110;Kaynan Duarte;111;Victor Hugo;POINTS;N/A;4;0;ADV;-99KG;M;Quarter-Final;2022
+7;112;Fabricio Andrey;113;Diogo Reis;SUBMISSION;RNC;0;0;N/A;-77KG;M;Quarter-Final;2022
+8;114;Mica Galvao;115;Cole Abate;POINTS;N/A;6;2;N/A;-77KG;M;Round 1;2022
+9;101;Gordon Ryan;116;Max Gimenis;SUBMISSION;Heel Hook;0;0;N/A;+99KG;M;Quarter-Final;2019
+10;117;Marcus Buchecha;118;Joao Gabriel Rocha;SUBMISSION;Armbar;0;0;N/A;+99KG;M;Final;2019
+11;119;Andre Galvao;120;Kaynan Duarte;POINTS;N/A;5;0;N/A;-88KG;M;Final;2019
+12;121;Lucas Barbosa;122;AJ Agazarm;SUBMISSION;Guillotine;0;0;N/A;-88KG;M;Semi-Final;2019
+13;123;Garry Tonon;124;Davi Ramos;SUBMISSION;Heel Hook;0;0;N/A;-77KG;M;Semi-Final;2019
+14;125;Craig Jones;126;Leandro Lo;SUBMISSION;Heel Hook;0;0;N/A;-77KG;M;Final;2019
+15;127;Nicky Rodriguez;128;Patrick Gaudio;POINTS;N/A;8;0;N/A;-99KG;M;Round 1;2019
+16;129;Dante Leon;130;Vagner Rocha;SUBMISSION;Rear Naked Choke;0;0;N/A;-66KG;M;Quarter-Final;2019
+17;131;Paulo Miyao;132;Geo Martinez;DECISION;N/A;0;0;N/A;-66KG;M;Semi-Final;2019
+18;133;Lachlan Giles;134;Mahamed Aly;SUBMISSION;Heel Hook;0;0;N/A;-77KG;M;Round 1;2019
+19;135;Beatriz Mesquita;136;Ffion Davies;SUBMISSION;Armbar;0;0;N/A;-60KG;F;Final;2019
+20;137;Bianca Basilio;138;Nathalie Ribeiro;POINTS;N/A;4;2;N/A;+60KG;F;Final;2019
+21;101;Gordon Ryan;139;Keenan Cornelius;SUBMISSION;RNC;0;0;N/A;+99KG;M;Round 1;2017
+22;140;Joao Assis;141;Tim Spriggs;SUBMISSION;Armbar;0;0;N/A;-99KG;M;Round 1;2017
+23;142;Rousimar Palhares;143;Jake Shields;SUBMISSION;Heel Hook;0;0;N/A;-88KG;M;Round 1;2017
+24;144;Yuri Simoes;145;Dillon Danis;POINTS;N/A;3;0;ADV;-88KG;M;Quarter-Final;2017
+25;146;Cobrinha;147;Rubens Charles;SUBMISSION;Triangle;0;0;N/A;-66KG;M;Final;2017
+26;148;DJ Jackson;149;Enrico Coccioletti;SUBMISSION;Guillotine;0;0;N/A;-77KG;M;Round 1;2017
+27;150;Keenan Cornelius;151;Bernardo Faria;POINTS;N/A;2;0;N/A;-99KG;M;Semi-Final;2015
+28;152;Rafael Lovato Jr;153;Yuri Simoes;SUBMISSION;Kimura;0;0;N/A;-99KG;M;Round 1;2015
+29;154;Lucas Lepri;155;JT Torres;POINTS;N/A;4;2;N/A;-77KG;M;Final;2015
+30;156;Garry Tonon;157;Kit Dale;SUBMISSION;Heel Hook;0;0;N/A;-77KG;M;Quarter-Final;2015

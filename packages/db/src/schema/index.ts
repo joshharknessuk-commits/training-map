@@ -11,3 +11,9 @@ export * from './user-connections';
 export * from './activity-feed';
 export * from './gym-admins';
 export * from './gym-profiles';
+
+// Analytics/Tournament schemas
+export * from './athletes';
+export * from './tournaments';
+export * from './matches';
+export * from './techniques';
