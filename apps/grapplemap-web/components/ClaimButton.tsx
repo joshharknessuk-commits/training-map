@@ -61,7 +61,7 @@ export function ClaimButton({ gymId, gymName }: ClaimButtonProps) {
       </button>
 
       {showSuccess ? (
-        <div className="mt-2 rounded-full bg-brand-500/10 px-3 py-1 text-xs font-semibold text-brand-500 shadow-sm shadow-soft">
+        <div className="mt-2 rounded-full bg-brand-500/10 px-3 py-1 text-xs font-semibold text-brand-600 shadow-sm shadow-soft">
           OSSS 🤙
         </div>
       ) : null}

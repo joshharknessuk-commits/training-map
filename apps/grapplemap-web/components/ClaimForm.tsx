@@ -193,13 +193,13 @@ export function ClaimForm({ gymId, gymName, onClose, onSuccess }: ClaimFormProps
         <button
           type="button"
           onClick={closeAndReset}
-          className="absolute right-4 top-4 rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-neutral-600 transition hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-brand-500/50"
+          className="absolute right-4 top-4 rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-neutral-700 transition hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-brand-500/50"
           aria-label="Close claim form"
         >
           Close
         </button>
 
-        <h3 id="claim-modal-title" className="text-lg font-semibold text-brand-500">
+        <h3 id="claim-modal-title" className="text-lg font-semibold text-brand-600">
           Claim “{gymName}”
         </h3>
         <p className="mt-2 text-sm text-slate-400">
@@ -223,7 +223,7 @@ export function ClaimForm({ gymId, gymName, onClose, onSuccess }: ClaimFormProps
               type="text"
               value={name}
               onChange={(event) => setName(event.target.value)}
-              className="mt-1 w-full rounded-xl border border-neutral-300 bg-slate-900/70 px-3 py-2 text-sm text-white placeholder:text-neutral-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/40"
+              className="mt-1 w-full rounded-xl border border-neutral-300 bg-slate-900/70 px-3 py-2 text-sm text-white placeholder:text-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/40"
               maxLength={120}
               required
             />
@@ -236,7 +236,7 @@ export function ClaimForm({ gymId, gymName, onClose, onSuccess }: ClaimFormProps
               type="email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className="mt-1 w-full rounded-xl border border-neutral-300 bg-slate-900/70 px-3 py-2 text-sm text-white placeholder:text-neutral-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/40"
+              className="mt-1 w-full rounded-xl border border-neutral-300 bg-slate-900/70 px-3 py-2 text-sm text-white placeholder:text-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/40"
               required
             />
             {errors.email ? (
@@ -250,7 +250,7 @@ export function ClaimForm({ gymId, gymName, onClose, onSuccess }: ClaimFormProps
               type="url"
               value={proof}
               onChange={(event) => setProof(event.target.value)}
-              className="mt-1 w-full rounded-xl border border-neutral-300 bg-slate-900/70 px-3 py-2 text-sm text-white placeholder:text-neutral-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/40"
+              className="mt-1 w-full rounded-xl border border-neutral-300 bg-slate-900/70 px-3 py-2 text-sm text-white placeholder:text-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/40"
               placeholder="https://"
             />
             {errors.proof ? (
@@ -263,7 +263,7 @@ export function ClaimForm({ gymId, gymName, onClose, onSuccess }: ClaimFormProps
             <textarea
               value={message}
               onChange={(event) => setMessage(event.target.value)}
-              className="mt-1 h-28 w-full rounded-xl border border-neutral-300 bg-slate-900/70 px-3 py-2 text-sm text-white placeholder:text-neutral-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/40"
+              className="mt-1 h-28 w-full rounded-xl border border-neutral-300 bg-slate-900/70 px-3 py-2 text-sm text-white placeholder:text-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/40"
               maxLength={1000}
             />
             <span className="mt-1 block text-xs text-slate-400">

@@ -112,8 +112,8 @@ export function Controls({
           style={{ WebkitOverflowScrolling: 'touch', overscrollBehaviorY: 'contain', touchAction: 'pan-y' }}
         >
           <div className="flex flex-col gap-5 pb-16">
-            <section className="rounded-3xl border border-neutral-200 bg-neutral-100 px-4 py-4 shadow-sm shadow-black/20">
-              <header className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-brand-500">
+            <section className="rounded-3xl border-2 border-neutral-200 bg-neutral-100 px-4 py-4 shadow-sm shadow-black/20">
+              <header className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-brand-600">
                 <span aria-hidden="true" className="text-base leading-none">
                   🔍
                 </span>
@@ -121,7 +121,7 @@ export function Controls({
               </header>
               <div className="mt-3">
                 <input
-                  className="w-full rounded-xl border border-neutral-200 bg-white/80 px-3 py-2 text-sm text-neutral-900 placeholder:text-neutral-900/40 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500/30"
+                  className="w-full rounded-xl border-2 border-neutral-200 bg-white/80 px-3 py-2 text-sm text-neutral-900 placeholder:text-neutral-900/40 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500/30"
                   type="search"
                   placeholder="Name, station, borough..."
                   value={searchTerm}
@@ -130,10 +130,10 @@ export function Controls({
               </div>
             </section>
 
-            <section className="rounded-3xl border border-neutral-200 bg-neutral-50/70 px-4 py-4 shadow-sm shadow-black/20">
+            <section className="rounded-3xl border-2 border-neutral-200 bg-neutral-50/70 px-4 py-4 shadow-sm shadow-black/20">
               <button
                 type="button"
-                className="flex w-full items-center justify-between gap-2 text-xs font-semibold uppercase tracking-wide text-brand-500"
+                className="flex w-full items-center justify-between gap-2 text-xs font-semibold uppercase tracking-wide text-brand-600"
                 onClick={() => setViewsOpen((prev) => !prev)}
                 aria-expanded={viewsOpen}
                 aria-controls="views-panel"
@@ -150,7 +150,7 @@ export function Controls({
               </button>
               {viewsOpen ? (
                 <div id="views-panel" className="mt-4 space-y-3 text-sm">
-                  <label className="flex items-center justify-between gap-3 rounded-2xl border border-neutral-200 bg-neutral-50 px-3 py-3 text-[13px] font-medium text-neutral-900/90">
+                  <label className="flex items-center justify-between gap-3 rounded-2xl border-2 border-neutral-200 bg-neutral-50 px-3 py-3 text-[13px] font-medium text-neutral-900/90">
                     <span>Show gym markers</span>
                     <input
                       className="h-4 w-4 accent-brand-500"
@@ -163,7 +163,7 @@ export function Controls({
                     Toggle individual gym dots and clusters. Switch off when you only want density overlays.
                   </p>
 
-                  <label className="flex items-center justify-between gap-3 rounded-2xl border border-neutral-200 bg-neutral-50 px-3 py-3 text-[13px] font-medium text-neutral-900/90">
+                  <label className="flex items-center justify-between gap-3 rounded-2xl border-2 border-neutral-200 bg-neutral-50 px-3 py-3 text-[13px] font-medium text-neutral-900/90">
                     <span>Heatmap overlay</span>
                     <input
                       className="h-4 w-4 accent-brand-500"
@@ -176,7 +176,7 @@ export function Controls({
                     Visualise overall gym density. Works best when combined with a wider zoom level.
                   </p>
 
-                  <label className="flex items-center justify-between gap-3 rounded-2xl border border-neutral-200 bg-neutral-50 px-3 py-3 text-[13px] font-medium text-neutral-900/90">
+                  <label className="flex items-center justify-between gap-3 rounded-2xl border-2 border-neutral-200 bg-neutral-50 px-3 py-3 text-[13px] font-medium text-neutral-900/90">
                     <span>Borough highlights</span>
                     <input
                       className="h-4 w-4 accent-brand-500"
@@ -192,9 +192,9 @@ export function Controls({
               ) : null}
             </section>
 
-            <section className="rounded-3xl border border-neutral-200 bg-neutral-50/70 px-4 py-4 shadow-sm shadow-black/20">
+            <section className="rounded-3xl border-2 border-neutral-200 bg-neutral-50/70 px-4 py-4 shadow-sm shadow-black/20">
               <header className="flex items-center justify-between gap-4">
-                <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-brand-500">
+                <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-brand-600">
                   <span aria-hidden="true" className="text-base leading-none">
                     🏷️
                   </span>
@@ -240,8 +240,8 @@ export function Controls({
               </div>
             </section>
 
-            <section className="rounded-3xl border border-neutral-200 bg-neutral-50/70 px-4 py-4 text-sm shadow-sm shadow-black/20">
-              <header className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-brand-500">
+            <section className="rounded-3xl border-2 border-neutral-200 bg-neutral-50/70 px-4 py-4 text-sm shadow-sm shadow-black/20">
+              <header className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-brand-600">
                 <span aria-hidden="true" className="text-base leading-none">
                   📍
                 </span>
@@ -279,7 +279,7 @@ export function Controls({
                   />
                 </label>
 
-                  <label className="flex items-center justify-between gap-3 rounded-2xl border border-neutral-200 bg-neutral-50 px-3 py-3 text-[13px] font-medium text-neutral-900/90">
+                  <label className="flex items-center justify-between gap-3 rounded-2xl border-2 border-neutral-200 bg-neutral-50 px-3 py-3 text-[13px] font-medium text-neutral-900/90">
                   <span>Show coverage rings</span>
                     <input
                       className="h-4 w-4 accent-brand-500"
@@ -292,8 +292,8 @@ export function Controls({
             </section>
 
             <section className="border-t border-neutral-200 pt-5">
-              <div className="rounded-3xl border border-neutral-200 bg-neutral-50/70 px-4 py-3 text-xs text-neutral-900/60 shadow-sm shadow-black/20">
-                <header className="mb-2 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wide text-brand-500">
+              <div className="rounded-3xl border-2 border-neutral-200 bg-neutral-50/70 px-4 py-3 text-xs text-neutral-900/60 shadow-sm shadow-black/20">
+                <header className="mb-2 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wide text-brand-600">
                   <span aria-hidden="true" className="text-base leading-none">
                     🧭
                   </span>

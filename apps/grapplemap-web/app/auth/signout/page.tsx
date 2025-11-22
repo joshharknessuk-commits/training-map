@@ -21,10 +21,10 @@ export default function SignOutPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-block">
-            <h1 className="text-3xl font-semibold uppercase tracking-[0.2em] text-brand-600">
+            <h1 className="text-3xl font-semibold uppercase tracking-[0.2em] text-brand-700">
               GrappleMap
             </h1>
-            <p className="text-sm text-neutral-600 tracking-wider mt-1">Network</p>
+            <p className="text-sm text-neutral-700 tracking-wider mt-1">Network</p>
           </Link>
         </div>
 
@@ -32,7 +32,7 @@ export default function SignOutPage() {
           <div className="text-center">
             <div className="mx-auto w-16 h-16 rounded-full bg-brand-500/10 border border-emerald-500/20 flex items-center justify-center mb-4">
               <svg
-                className="w-8 h-8 text-brand-500"
+                className="w-8 h-8 text-brand-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -50,7 +50,7 @@ export default function SignOutPage() {
               Signed Out
             </h2>
 
-            <p className="text-neutral-600 mb-6">
+            <p className="text-neutral-700 mb-6">
               You have been successfully signed out.
             </p>
 
@@ -64,7 +64,7 @@ export default function SignOutPage() {
 
               <Link
                 href="/"
-                className="block w-full rounded-lg border border-slate-700 bg-neutral-100/50 px-4 py-3 text-sm font-semibold uppercase tracking-wider text-neutral-700 transition hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-slate-400/60 focus:ring-offset-2 focus:ring-offset-slate-950"
+                className="block w-full rounded-lg border border-slate-700 bg-neutral-100/50 px-4 py-3 text-sm font-semibold uppercase tracking-wider text-neutral-800 transition hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-slate-400/60 focus:ring-offset-2 focus:ring-offset-slate-950"
               >
                 Back to Home
               </Link>

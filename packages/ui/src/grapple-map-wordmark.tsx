@@ -6,7 +6,7 @@ export interface GrappleMapWordmarkProps {
   logoSrc?: string;
 }
 
-const baseTextClasses = 'flex items-center text-2xl font-semibold uppercase tracking-[0.2em] text-brand-600';
+const baseTextClasses = 'flex items-center text-2xl font-semibold uppercase tracking-[0.2em] text-brand-700';
 const baseLogoWrapperClasses = 'ml-[0.2em] relative';
 const defaultLogoSizeClasses = 'h-[1.8em] w-[1.8em] sm:h-[2em] sm:w-[2em]';
 

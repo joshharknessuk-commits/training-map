@@ -123,7 +123,7 @@ export default function GymDashboardPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">
               Management
             </p>
             <h1 className="text-3xl font-semibold text-neutral-900 mt-2">Gym Dashboard</h1>
@@ -137,51 +137,51 @@ export default function GymDashboardPage() {
         </div>
 
         {showAddForm && (
-          <div className="rounded-3xl border border-neutral-200 bg-white/70 p-6 mb-8 shadow-glow">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600 mb-4">
+          <div className="rounded-3xl border-2 border-neutral-200 bg-white/70 p-6 mb-8 shadow-glow">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700 mb-4">
               Add New Class
             </p>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-neutral-700 mb-1">Class Name</label>
+                  <label className="block text-sm font-medium text-neutral-800 mb-1">Class Name</label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
+                    className="w-full rounded-xl border-2 border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-neutral-700 mb-1">Instructor</label>
+                  <label className="block text-sm font-medium text-neutral-800 mb-1">Instructor</label>
                   <input
                     type="text"
                     value={formData.instructorName}
                     onChange={(e) => setFormData({ ...formData, instructorName: e.target.value })}
-                    className="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
+                    className="w-full rounded-xl border-2 border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-1">Description</label>
+                <label className="block text-sm font-medium text-neutral-800 mb-1">Description</label>
                 <textarea
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   rows={3}
-                  className="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
+                  className="w-full rounded-xl border-2 border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
                 />
               </div>
 
               <div className="grid grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-neutral-700 mb-1">Class Type</label>
+                  <label className="block text-sm font-medium text-neutral-800 mb-1">Class Type</label>
                   <select
                     value={formData.classType}
                     onChange={(e) => setFormData({ ...formData, classType: e.target.value })}
-                    className="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
+                    className="w-full rounded-xl border-2 border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
                   >
                     <option value="gi" className="bg-neutral-50">Gi</option>
                     <option value="nogi" className="bg-neutral-50">No-Gi</option>
@@ -193,11 +193,11 @@ export default function GymDashboardPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-neutral-700 mb-1">Day of Week</label>
+                  <label className="block text-sm font-medium text-neutral-800 mb-1">Day of Week</label>
                   <select
                     value={formData.dayOfWeek}
                     onChange={(e) => setFormData({ ...formData, dayOfWeek: e.target.value })}
-                    className="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
+                    className="w-full rounded-xl border-2 border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
                   >
                     <option value="monday" className="bg-neutral-50">Monday</option>
                     <option value="tuesday" className="bg-neutral-50">Tuesday</option>
@@ -210,51 +210,51 @@ export default function GymDashboardPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-neutral-700 mb-1">Capacity</label>
+                  <label className="block text-sm font-medium text-neutral-800 mb-1">Capacity</label>
                   <input
                     type="number"
                     required
                     min="1"
                     value={formData.capacity}
                     onChange={(e) => setFormData({ ...formData, capacity: parseInt(e.target.value) })}
-                    className="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
+                    className="w-full rounded-xl border-2 border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-neutral-700 mb-1">Start Time</label>
+                  <label className="block text-sm font-medium text-neutral-800 mb-1">Start Time</label>
                   <input
                     type="time"
                     required
                     value={formData.startTime}
                     onChange={(e) => setFormData({ ...formData, startTime: e.target.value })}
-                    className="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
+                    className="w-full rounded-xl border-2 border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-neutral-700 mb-1">End Time</label>
+                  <label className="block text-sm font-medium text-neutral-800 mb-1">End Time</label>
                   <input
                     type="time"
                     required
                     value={formData.endTime}
                     onChange={(e) => setFormData({ ...formData, endTime: e.target.value })}
-                    className="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
+                    className="w-full rounded-xl border-2 border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-1">Price per Session (£)</label>
+                <label className="block text-sm font-medium text-neutral-800 mb-1">Price per Session (£)</label>
                 <input
                   type="number"
                   min="0"
                   step="0.01"
                   value={formData.pricePerSession}
                   onChange={(e) => setFormData({ ...formData, pricePerSession: parseFloat(e.target.value) })}
-                  className="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
+                  className="w-full rounded-xl border-2 border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/50"
                 />
               </div>
 
@@ -265,7 +265,7 @@ export default function GymDashboardPage() {
                   onChange={(e) => setFormData({ ...formData, isFreeForMembers: e.target.checked })}
                   className="h-4 w-4 rounded border-neutral-200 bg-neutral-50 text-emerald-500 focus:ring-emerald-500/50"
                 />
-                <label className="ml-2 block text-sm text-neutral-700">
+                <label className="ml-2 block text-sm text-neutral-800">
                   Free for network members
                 </label>
               </div>
@@ -281,35 +281,35 @@ export default function GymDashboardPage() {
           </div>
         )}
 
-        <div className="rounded-3xl border border-neutral-200 bg-white/70 shadow-glow overflow-hidden">
+        <div className="rounded-3xl border-2 border-neutral-200 bg-white/70 shadow-glow overflow-hidden">
           <div className="px-6 py-4 border-b border-neutral-200">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">
               Your Classes
             </p>
           </div>
 
           {classes.length === 0 ? (
             <div className="p-8 text-center">
-              <p className="text-neutral-600">No classes yet. Add your first class to get started!</p>
+              <p className="text-neutral-700">No classes yet. Add your first class to get started!</p>
             </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="min-w-full">
                 <thead className="border-b border-white/5">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-[0.2em] text-neutral-600">
+                    <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-[0.2em] text-neutral-700">
                       Class
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-[0.2em] text-neutral-600">
+                    <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-[0.2em] text-neutral-700">
                       Day & Time
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-[0.2em] text-neutral-600">
+                    <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-[0.2em] text-neutral-700">
                       Bookings
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-[0.2em] text-neutral-600">
+                    <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-[0.2em] text-neutral-700">
                       Price
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-[0.2em] text-neutral-600">
+                    <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-[0.2em] text-neutral-700">
                       Status
                     </th>
                   </tr>
@@ -319,11 +319,11 @@ export default function GymDashboardPage() {
                     <tr key={cls.id} className="hover:bg-neutral-50 transition">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm font-medium text-neutral-900">{cls.name}</div>
-                        <div className="text-sm text-neutral-600 capitalize">{cls.classType.replace(/_/g, ' ')}</div>
+                        <div className="text-sm text-neutral-700 capitalize">{cls.classType.replace(/_/g, ' ')}</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-neutral-900 capitalize">{cls.dayOfWeek}</div>
-                        <div className="text-sm text-neutral-600">{cls.startTime} - {cls.endTime}</div>
+                        <div className="text-sm text-neutral-700">{cls.startTime} - {cls.endTime}</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-neutral-900">
@@ -336,7 +336,7 @@ export default function GymDashboardPage() {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
                           cls.isActive
-                            ? 'bg-brand-500/20 text-brand-500 border border-emerald-500/30'
+                            ? 'bg-brand-500/20 text-brand-600 border border-emerald-500/30'
                             : 'bg-red-500/20 text-red-300 border border-red-500/30'
                         }`}>
                           {cls.isActive ? 'Active' : 'Inactive'}

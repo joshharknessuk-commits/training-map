@@ -170,7 +170,7 @@ export function FeedbackModal({ open, onClose, onSuccess }: FeedbackModalProps) 
 
   const dialogClasses = useMemo(
     () =>
-      'pointer-events-auto w-full max-w-md rounded-3xl border border-neutral-200 bg-white p-6 text-neutral-900 shadow-elevated backdrop-blur',
+      'pointer-events-auto w-full max-w-md rounded-3xl border-2 border-neutral-200 bg-white p-6 text-neutral-900 shadow-elevated backdrop-blur',
     [],
   );
 
@@ -195,12 +195,12 @@ export function FeedbackModal({ open, onClose, onSuccess }: FeedbackModalProps) 
         <div className="space-y-2">
           <p
             id="feedback-dialog-title"
-            className="text-sm font-semibold uppercase tracking-[0.3em] text-brand-600"
+            className="text-sm font-semibold uppercase tracking-[0.3em] text-brand-700"
           >
             Contact
           </p>
           <h2 className="text-xl font-semibold text-neutral-900">Share feedback</h2>
-          <p id="feedback-dialog-description" className="text-sm text-neutral-600">
+          <p id="feedback-dialog-description" className="text-sm text-neutral-700">
             Send ideas, corrections, or quick notes to help improve the map.
           </p>
         </div>
@@ -211,7 +211,7 @@ export function FeedbackModal({ open, onClose, onSuccess }: FeedbackModalProps) 
             <input
               ref={nameInputRef}
               type="text"
-              className="mt-1 w-full rounded-xl border border-neutral-300 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-neutral-500 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40"
+              className="mt-1 w-full rounded-xl border border-neutral-300 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-neutral-600 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40"
               value={name}
               maxLength={80}
               onChange={(event) => setName(event.target.value)}
@@ -222,7 +222,7 @@ export function FeedbackModal({ open, onClose, onSuccess }: FeedbackModalProps) 
             Email (optional)
             <input
               type="email"
-              className="mt-1 w-full rounded-xl border border-neutral-300 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-neutral-500 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40"
+              className="mt-1 w-full rounded-xl border border-neutral-300 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-neutral-600 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40"
               value={email}
               maxLength={120}
               onChange={(event) => setEmail(event.target.value)}
@@ -232,7 +232,7 @@ export function FeedbackModal({ open, onClose, onSuccess }: FeedbackModalProps) 
           <label className="block text-sm font-medium text-neutral-800">
             Message
             <textarea
-              className="mt-1 h-32 w-full resize-none rounded-2xl border border-neutral-300 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-neutral-500 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40"
+              className="mt-1 h-32 w-full resize-none rounded-2xl border border-neutral-300 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-neutral-600 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40"
               value={message}
               onChange={(event) => setMessage(event.target.value)}
               minLength={10}
@@ -261,7 +261,7 @@ export function FeedbackModal({ open, onClose, onSuccess }: FeedbackModalProps) 
           <div className="flex items-center justify-end gap-3 pt-2">
             <button
               type="button"
-              className="rounded-full px-4 py-2 text-sm font-semibold text-neutral-600 transition hover:text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-400"
+              className="rounded-full px-4 py-2 text-sm font-semibold text-neutral-700 transition hover:text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-400"
               onClick={handleCancel}
               disabled={disableActions}
             >

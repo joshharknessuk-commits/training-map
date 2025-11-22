@@ -6,15 +6,15 @@ interface NetworkFeatureCardProps {
 
 export function NetworkFeatureCard({ feature }: NetworkFeatureCardProps) {
   return (
-    <div className="rounded-3xl border border-neutral-200 bg-gradient-to-br from-white via-neutral-50 to-brand-50/30 p-6 shadow-card backdrop-blur transition duration-200 hover:-translate-y-1 hover:border-brand-300 hover:bg-gradient-to-tl hover:shadow-elevated">
+    <div className="rounded-3xl border-2 border-neutral-200 bg-white p-6 shadow-card transition duration-200 hover:-translate-y-1 hover:border-brand-400 hover:shadow-elevated">
       {feature.badge ? (
-        <span className="inline-flex items-center gap-2 rounded-full border border-brand-300 bg-brand-50 px-3 py-1 text-[0.55rem] font-semibold uppercase tracking-[0.4em] text-brand-700">
-          <span className="h-2 w-2 rounded-full bg-accent-500 shadow-[0_0_8px_rgba(20,184,166,0.5)]" aria-hidden="true" />
+        <span className="inline-flex items-center gap-2 rounded-full border border-brand-400 bg-brand-50 px-3 py-1 text-[0.55rem] font-semibold uppercase tracking-[0.4em] text-brand-800">
+          <span className="h-2 w-2 rounded-full bg-accent-600 shadow-[0_0_8px_rgba(20,184,166,0.5)]" aria-hidden="true" />
           {feature.badge}
         </span>
       ) : null}
       <h3 className="mt-4 text-xl font-semibold text-neutral-900">{feature.title}</h3>
-      <p className="mt-2 text-base text-neutral-700">{feature.description}</p>
+      <p className="mt-2 text-base font-medium text-neutral-800">{feature.description}</p>
     </div>
   );
 }

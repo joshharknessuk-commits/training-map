@@ -42,10 +42,10 @@ export function NetworkShell({
             >
               <GrappleMapWordmark
                 logoWrapperClassName="ml-[0.05em] h-28 w-28 shrink-0 sm:h-20 sm:w-20"
-                textClassName="flex items-center text-2xl font-semibold uppercase tracking-[0.2em] text-brand-600"
+                textClassName="flex items-center text-2xl font-semibold uppercase tracking-[0.2em] text-brand-700"
               />
             </Link>
-            <div className="flex flex-wrap items-center justify-center gap-3 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-neutral-600 sm:justify-end">
+            <div className="flex flex-wrap items-center justify-center gap-3 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-neutral-700 sm:justify-end">
               <Link
                 href="/"
                 className="inline-flex items-center gap-2 rounded-full border border-neutral-300 px-3 py-1 transition hover:-translate-y-0.5 hover:border-neutral-400 hover:text-neutral-900"
@@ -72,15 +72,15 @@ export function NetworkShell({
         </header>
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 pb-16 pt-24 text-center sm:px-10">
           <h1 className="text-6xl font-semibold tracking-tight text-neutral-900 sm:text-7xl">{title}</h1>
-          <p className="text-xl font-light text-neutral-700">{subtitle}</p>
-          <p className="text-sm font-light text-neutral-600">
+          <p className="text-xl font-light text-neutral-800">{subtitle}</p>
+          <p className="text-sm font-light text-neutral-700">
             Built to strengthen grappling communities, not centralise them.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-8">
-            <p className="text-sm text-neutral-700">
+            <p className="text-sm text-neutral-800">
               <span className="font-semibold text-neutral-900">For members:</span> Train anywhere without drop-in hassles.
             </p>
-            <p className="text-sm text-neutral-700">
+            <p className="text-sm text-neutral-800">
               <span className="font-semibold text-neutral-900">For gyms:</span> Automated payouts, verified attendance.
             </p>
           </div>
@@ -93,13 +93,13 @@ export function NetworkShell({
             </Link>
             <Link
               href="/network/gyms"
-              className="inline-flex min-w-[220px] items-center justify-center rounded-full border border-neutral-300 bg-neutral-50 px-5 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-neutral-700 transition duration-200 hover:bg-neutral-100 hover:text-neutral-900"
+              className="inline-flex min-w-[220px] items-center justify-center rounded-full border border-neutral-300 bg-neutral-50 px-5 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-neutral-800 transition duration-200 hover:bg-neutral-100 hover:text-neutral-900"
             >
               Join as gym
             </Link>
             <ContactButton
               className="!flex-row !items-center !gap-2"
-              buttonClassName="justify-center rounded-full border border-neutral-300 bg-neutral-50 px-4 py-2 text-sm font-semibold text-neutral-700 transition duration-200 hover:border-neutral-400"
+              buttonClassName="justify-center rounded-full border border-neutral-300 bg-neutral-50 px-4 py-2 text-sm font-semibold text-neutral-800 transition duration-200 hover:border-neutral-400"
             />
           </div>
         </div>

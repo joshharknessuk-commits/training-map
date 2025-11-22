@@ -80,23 +80,23 @@ export default function SignUpPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-block">
-            <h1 className="text-3xl font-semibold uppercase tracking-[0.2em] text-brand-600">
+            <h1 className="text-3xl font-semibold uppercase tracking-[0.2em] text-brand-700">
               GrappleMap
             </h1>
-            <p className="text-sm text-neutral-600 tracking-wider mt-1">Network</p>
+            <p className="text-sm text-neutral-700 tracking-wider mt-1">Network</p>
           </Link>
         </div>
 
         <div className="rounded-2xl border border-slate-800/70 bg-neutral-50/85 p-8 backdrop-blur shadow-2xl shadow-black/50">
           <h2 className="text-2xl font-semibold text-neutral-900 mb-2">Join the Network</h2>
-          <p className="text-neutral-600 mb-6">
+          <p className="text-neutral-700 mb-6">
             Connect with gyms and grapplers across London
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label htmlFor="firstName" className="block text-sm font-medium text-neutral-700 mb-2">
+                <label htmlFor="firstName" className="block text-sm font-medium text-neutral-800 mb-2">
                   First name
                 </label>
                 <input
@@ -110,7 +110,7 @@ export default function SignUpPage() {
                 />
               </div>
               <div>
-                <label htmlFor="lastName" className="block text-sm font-medium text-neutral-700 mb-2">
+                <label htmlFor="lastName" className="block text-sm font-medium text-neutral-800 mb-2">
                   Last name
                 </label>
                 <input
@@ -126,7 +126,7 @@ export default function SignUpPage() {
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-2">
+              <label htmlFor="email" className="block text-sm font-medium text-neutral-800 mb-2">
                 Email address
               </label>
               <input
@@ -143,7 +143,7 @@ export default function SignUpPage() {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-neutral-700 mb-2">
+              <label htmlFor="password" className="block text-sm font-medium text-neutral-800 mb-2">
                 Password
               </label>
               <input
@@ -160,7 +160,7 @@ export default function SignUpPage() {
             </div>
 
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-neutral-700 mb-2">
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-neutral-800 mb-2">
                 Confirm password
               </label>
               <input
@@ -192,11 +192,11 @@ export default function SignUpPage() {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-sm text-neutral-600">
+            <p className="text-sm text-neutral-700">
               Already have an account?{' '}
               <Link
                 href="/auth/signin"
-                className="font-medium text-brand-500 hover:text-brand-500 transition"
+                className="font-medium text-brand-600 hover:text-brand-600 transition"
               >
                 Sign in
               </Link>
@@ -207,7 +207,7 @@ export default function SignUpPage() {
         <div className="mt-6 text-center">
           <Link
             href="/"
-            className="text-sm text-neutral-500 hover:text-neutral-700 transition"
+            className="text-sm text-neutral-600 hover:text-neutral-800 transition"
           >
             ← Back to map
           </Link>

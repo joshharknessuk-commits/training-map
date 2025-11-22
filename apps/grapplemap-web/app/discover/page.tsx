@@ -81,27 +81,27 @@ export default function DiscoverPage() {
     <div className="min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">
             Dashboard
           </p>
           <h1 className="text-3xl font-semibold text-neutral-900 mt-2">Discover GrappleMap Network</h1>
-          <p className="mt-2 text-neutral-700">
+          <p className="mt-2 text-neutral-800">
             Connect with gyms and grapplers across London
           </p>
         </div>
 
         {/* Quick Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="rounded-3xl border border-neutral-200 bg-white/70 p-6 shadow-glow">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">Available Classes</p>
+          <div className="rounded-3xl border-2 border-neutral-200 bg-white/70 p-6 shadow-glow">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">Available Classes</p>
             <p className="text-3xl font-semibold text-neutral-900 mt-2">{stats.totalClasses}</p>
           </div>
-          <div className="rounded-3xl border border-neutral-200 bg-white/70 p-6 shadow-glow">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">Upcoming Bookings</p>
+          <div className="rounded-3xl border-2 border-neutral-200 bg-white/70 p-6 shadow-glow">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">Upcoming Bookings</p>
             <p className="text-3xl font-semibold text-neutral-900 mt-2">{stats.upcomingBookings}</p>
           </div>
-          <div className="rounded-3xl border border-neutral-200 bg-white/70 p-6 shadow-glow">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">Connections</p>
+          <div className="rounded-3xl border-2 border-neutral-200 bg-white/70 p-6 shadow-glow">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">Connections</p>
             <p className="text-3xl font-semibold text-neutral-900 mt-2">{stats.connections}</p>
           </div>
         </div>
@@ -139,27 +139,27 @@ export default function DiscoverPage() {
         </div>
 
         {/* Nearby Gyms */}
-        <div className="rounded-3xl border border-neutral-200 bg-white/70 p-6 shadow-glow">
+        <div className="rounded-3xl border-2 border-neutral-200 bg-white/70 p-6 shadow-glow">
           <div className="flex justify-between items-center mb-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">Gyms in London</p>
-            <Link href="/" className="text-brand-500 hover:text-brand-500 font-medium text-sm">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">Gyms in London</p>
+            <Link href="/" className="text-brand-600 hover:text-brand-600 font-medium text-sm">
               View Map →
             </Link>
           </div>
 
           {gyms.length === 0 ? (
-            <p className="text-neutral-600">No gyms available</p>
+            <p className="text-neutral-700">No gyms available</p>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {gyms.slice(0, 6).map((gym) => (
                 <div key={gym.id} className="rounded-2xl border border-white/5 bg-neutral-50 p-4 hover:border-emerald-500/30 transition">
                   <h3 className="font-semibold text-neutral-900">{gym.name}</h3>
                   {gym.borough && (
-                    <p className="text-sm text-neutral-600 mt-1">{gym.borough}</p>
+                    <p className="text-sm text-neutral-700 mt-1">{gym.borough}</p>
                   )}
                   <Link
                     href={`/gyms/${gym.id}`}
-                    className="text-brand-500 hover:text-brand-500 text-sm mt-2 inline-block"
+                    className="text-brand-600 hover:text-brand-600 text-sm mt-2 inline-block"
                   >
                     View Details →
                   </Link>

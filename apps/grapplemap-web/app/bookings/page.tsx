@@ -89,20 +89,20 @@ export default function BookingsPage() {
     <div className="min-h-screen py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">
             Bookings
           </p>
           <h1 className="text-3xl font-semibold text-neutral-900 mt-2">My Bookings</h1>
         </div>
 
         <div className="space-y-8">
-          <div className="rounded-3xl border border-neutral-200 bg-white/70 p-6 shadow-glow">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600 mb-4">
+          <div className="rounded-3xl border-2 border-neutral-200 bg-white/70 p-6 shadow-glow">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700 mb-4">
               Upcoming
             </p>
             {upcomingBookings.length === 0 ? (
               <div className="rounded-2xl border border-white/5 bg-neutral-50 p-6 text-center">
-                <p className="text-neutral-600">No upcoming bookings</p>
+                <p className="text-neutral-700">No upcoming bookings</p>
               </div>
             ) : (
               <div className="space-y-4">
@@ -118,11 +118,11 @@ export default function BookingsPage() {
                             day: 'numeric',
                           })}
                         </p>
-                        <p className="text-sm text-neutral-600 mt-1">
+                        <p className="text-sm text-neutral-700 mt-1">
                           Payment: {booking.paymentStatus}
                         </p>
                         {booking.amountPaid > 0 && (
-                          <p className="text-sm text-neutral-600">
+                          <p className="text-sm text-neutral-700">
                             Amount: £{booking.amountPaid.toFixed(2)}
                           </p>
                         )}
@@ -140,13 +140,13 @@ export default function BookingsPage() {
             )}
           </div>
 
-          <div className="rounded-3xl border border-neutral-200 bg-white/70 p-6 shadow-glow">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600 mb-4">
+          <div className="rounded-3xl border-2 border-neutral-200 bg-white/70 p-6 shadow-glow">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700 mb-4">
               Past Bookings
             </p>
             {pastBookings.length === 0 ? (
               <div className="rounded-2xl border border-white/5 bg-neutral-50 p-6 text-center">
-                <p className="text-neutral-600">No past bookings</p>
+                <p className="text-neutral-700">No past bookings</p>
               </div>
             ) : (
               <div className="space-y-4">
@@ -162,7 +162,7 @@ export default function BookingsPage() {
                             day: 'numeric',
                           })}
                         </p>
-                        <p className="text-sm text-neutral-600 mt-1 capitalize">
+                        <p className="text-sm text-neutral-700 mt-1 capitalize">
                           Status: {booking.bookingStatus.replace(/_/g, ' ')}
                         </p>
                       </div>

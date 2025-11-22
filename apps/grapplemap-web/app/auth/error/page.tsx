@@ -62,13 +62,13 @@ function ErrorContent() {
           Authentication Error
         </h2>
 
-        <p className="text-neutral-600 mb-6">
+        <p className="text-neutral-700 mb-6">
           {getErrorMessage(error)}
         </p>
 
         {error && (
           <div className="rounded-lg bg-neutral-100/50 border border-slate-700 p-3 mb-6">
-            <p className="text-xs text-neutral-500 font-mono">
+            <p className="text-xs text-neutral-600 font-mono">
               Error code: {error}
             </p>
           </div>
@@ -84,7 +84,7 @@ function ErrorContent() {
 
           <Link
             href="/"
-            className="block w-full rounded-lg border border-slate-700 bg-neutral-100/50 px-4 py-3 text-sm font-semibold uppercase tracking-wider text-neutral-700 transition hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-slate-400/60 focus:ring-offset-2 focus:ring-offset-slate-950"
+            className="block w-full rounded-lg border border-slate-700 bg-neutral-100/50 px-4 py-3 text-sm font-semibold uppercase tracking-wider text-neutral-800 transition hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-slate-400/60 focus:ring-offset-2 focus:ring-offset-slate-950"
           >
             Back to Home
           </Link>
@@ -107,10 +107,10 @@ export default function AuthErrorPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-block">
-            <h1 className="text-3xl font-semibold uppercase tracking-[0.2em] text-brand-600">
+            <h1 className="text-3xl font-semibold uppercase tracking-[0.2em] text-brand-700">
               GrappleMap
             </h1>
-            <p className="text-sm text-neutral-600 tracking-wider mt-1">Network</p>
+            <p className="text-sm text-neutral-700 tracking-wider mt-1">Network</p>
           </Link>
         </div>
 

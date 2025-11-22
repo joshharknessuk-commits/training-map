@@ -197,7 +197,7 @@ export default function ProfilePage() {
   const getMembershipStatusColor = (status: string) => {
     switch (status) {
       case 'active':
-        return 'text-brand-500';
+        return 'text-brand-600';
       case 'grace':
         return 'text-blue-400';
       case 'past_due':
@@ -205,9 +205,9 @@ export default function ProfilePage() {
       case 'canceled':
         return 'text-red-400';
       case 'paused':
-        return 'text-neutral-600';
+        return 'text-neutral-700';
       default:
-        return 'text-neutral-600';
+        return 'text-neutral-700';
     }
   };
 
@@ -376,10 +376,10 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-card">
+        <div className="rounded-3xl border-2 border-neutral-200 bg-white p-6 shadow-card">
           <div className="flex justify-between items-center mb-6">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">
                 Profile
               </p>
               <h1 className="text-2xl font-semibold text-neutral-900 mt-2">My Profile</h1>
@@ -405,7 +405,7 @@ export default function ProfilePage() {
                         className="h-full w-full object-cover"
                       />
                     ) : (
-                      <div className="flex h-full w-full items-center justify-center text-4xl text-neutral-600">
+                      <div className="flex h-full w-full items-center justify-center text-4xl text-neutral-700">
                         👤
                       </div>
                     )}
@@ -438,12 +438,12 @@ export default function ProfilePage() {
                       </button>
                     )}
                   </div>
-                  <p className="text-xs text-neutral-600">Max 5MB, JPG/PNG</p>
+                  <p className="text-xs text-neutral-700">Max 5MB, JPG/PNG</p>
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-1">Display Name</label>
+                <label className="block text-sm font-medium text-neutral-800 mb-1">Display Name</label>
                 <input
                   type="text"
                   name="displayName"
@@ -454,7 +454,7 @@ export default function ProfilePage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-1">Bio</label>
+                <label className="block text-sm font-medium text-neutral-800 mb-1">Bio</label>
                 <textarea
                   name="bio"
                   value={formData.bio || ''}
@@ -466,12 +466,12 @@ export default function ProfilePage() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-neutral-700 mb-1">Belt Rank</label>
+                  <label className="block text-sm font-medium text-neutral-800 mb-1">Belt Rank</label>
                   <select
                     name="beltRank"
                     value={formData.beltRank || ''}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+                    className="w-full rounded-xl border-2 border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                   >
                     <option value="" className="bg-neutral-100">Select belt</option>
                     <option value="white" className="bg-neutral-100">White</option>
@@ -483,7 +483,7 @@ export default function ProfilePage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-neutral-700 mb-1">Stripes</label>
+                  <label className="block text-sm font-medium text-neutral-800 mb-1">Stripes</label>
                   <input
                     type="number"
                     name="stripes"
@@ -491,55 +491,55 @@ export default function ProfilePage() {
                     max="4"
                     value={formData.stripes || 0}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+                    className="w-full rounded-xl border-2 border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-neutral-700 mb-1">Weight (kg)</label>
+                  <label className="block text-sm font-medium text-neutral-800 mb-1">Weight (kg)</label>
                   <input
                     type="number"
                     name="weightKg"
                     value={formData.weightKg || ''}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+                    className="w-full rounded-xl border-2 border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-neutral-700 mb-1">Years Training</label>
+                  <label className="block text-sm font-medium text-neutral-800 mb-1">Years Training</label>
                   <input
                     type="number"
                     name="yearsTraining"
                     value={formData.yearsTraining || ''}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+                    className="w-full rounded-xl border-2 border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-1">Instagram Handle</label>
+                <label className="block text-sm font-medium text-neutral-800 mb-1">Instagram Handle</label>
                 <input
                   type="text"
                   name="instagramHandle"
                   value={formData.instagramHandle || ''}
                   onChange={handleChange}
                   placeholder="@username"
-                  className="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+                  className="w-full rounded-xl border-2 border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-1">City</label>
+                <label className="block text-sm font-medium text-neutral-800 mb-1">City</label>
                 <input
                   type="text"
                   name="city"
                   value={formData.city || ''}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+                  className="w-full rounded-xl border-2 border-neutral-200 bg-neutral-50 px-4 py-2.5 text-neutral-900 placeholder-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                 />
               </div>
 
@@ -553,7 +553,7 @@ export default function ProfilePage() {
                   }
                   className="h-4 w-4 rounded border-neutral-200 bg-neutral-50 text-emerald-500 focus:ring-brand-500"
                 />
-                <label className="ml-2 block text-sm text-neutral-700">
+                <label className="ml-2 block text-sm text-neutral-800">
                   Make profile public
                 </label>
               </div>
@@ -562,7 +562,7 @@ export default function ProfilePage() {
                 <button
                   type="button"
                   onClick={() => setEditing(false)}
-                  className="px-4 py-2 border border-neutral-300 rounded-full text-neutral-700 hover:bg-neutral-50 transition"
+                  className="px-4 py-2 border border-neutral-300 rounded-full text-neutral-800 hover:bg-neutral-50 transition"
                 >
                   Cancel
                 </button>
@@ -578,7 +578,7 @@ export default function ProfilePage() {
           ) : (
             <div className="space-y-6">
               {/* Avatar Display */}
-              <div className="flex items-center gap-4 rounded-2xl border border-neutral-200 bg-neutral-50 p-4">
+              <div className="flex items-center gap-4 rounded-2xl border-2 border-neutral-200 bg-neutral-50 p-4">
                 <div className="h-20 w-20 flex-shrink-0 rounded-full border-4 border-neutral-200 bg-neutral-100 overflow-hidden">
                   {profile?.avatarUrl ? (
                     <img
@@ -587,7 +587,7 @@ export default function ProfilePage() {
                       className="h-full w-full object-cover"
                     />
                   ) : (
-                    <div className="flex h-full w-full items-center justify-center text-3xl text-neutral-600">
+                    <div className="flex h-full w-full items-center justify-center text-3xl text-neutral-700">
                       👤
                     </div>
                   )}
@@ -596,21 +596,21 @@ export default function ProfilePage() {
                   <h3 className="text-lg font-semibold text-neutral-900">
                     {profile?.displayName || 'No name set'}
                   </h3>
-                  <p className="text-neutral-600">{session?.user?.email}</p>
+                  <p className="text-neutral-700">{session?.user?.email}</p>
                 </div>
               </div>
 
               {profile?.bio && (
-                <div className="rounded-2xl border border-neutral-200 bg-neutral-50 p-4">
-                  <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600 mb-2">Bio</h4>
-                  <p className="text-neutral-700">{profile.bio}</p>
+                <div className="rounded-2xl border-2 border-neutral-200 bg-neutral-50 p-4">
+                  <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700 mb-2">Bio</h4>
+                  <p className="text-neutral-800">{profile.bio}</p>
                 </div>
               )}
 
               <div className="grid grid-cols-2 gap-4">
                 {profile?.beltRank && (
-                  <div className="rounded-2xl border border-neutral-200 bg-neutral-50 p-4">
-                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600 mb-2">Belt Rank</h4>
+                  <div className="rounded-2xl border-2 border-neutral-200 bg-neutral-50 p-4">
+                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700 mb-2">Belt Rank</h4>
                     <p className="text-neutral-900 capitalize">
                       {profile.beltRank}{' '}
                       {profile.stripes ? `(${profile.stripes} stripes)` : ''}
@@ -619,22 +619,22 @@ export default function ProfilePage() {
                 )}
 
                 {profile?.yearsTraining !== undefined && (
-                  <div className="rounded-2xl border border-neutral-200 bg-neutral-50 p-4">
-                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600 mb-2">Experience</h4>
+                  <div className="rounded-2xl border-2 border-neutral-200 bg-neutral-50 p-4">
+                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700 mb-2">Experience</h4>
                     <p className="text-neutral-900">{profile.yearsTraining} years</p>
                   </div>
                 )}
 
                 {profile?.weightKg && (
-                  <div className="rounded-2xl border border-neutral-200 bg-neutral-50 p-4">
-                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600 mb-2">Weight</h4>
+                  <div className="rounded-2xl border-2 border-neutral-200 bg-neutral-50 p-4">
+                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700 mb-2">Weight</h4>
                     <p className="text-neutral-900">{profile.weightKg} kg</p>
                   </div>
                 )}
 
                 {profile?.city && (
-                  <div className="rounded-2xl border border-neutral-200 bg-neutral-50 p-4">
-                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600 mb-2">Location</h4>
+                  <div className="rounded-2xl border-2 border-neutral-200 bg-neutral-50 p-4">
+                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700 mb-2">Location</h4>
                     <p className="text-neutral-900">{profile.city}</p>
                   </div>
                 )}
@@ -645,9 +645,9 @@ export default function ProfilePage() {
 
         {/* Account Management Section */}
         {account && (
-          <div className="mt-8 rounded-3xl border border-neutral-200 bg-white p-6 shadow-card">
+          <div className="mt-8 rounded-3xl border-2 border-neutral-200 bg-white p-6 shadow-card">
             <div className="mb-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">
                 Account Management
               </p>
               <h2 className="text-2xl font-semibold text-neutral-900 mt-2">Membership & Billing</h2>
@@ -655,10 +655,10 @@ export default function ProfilePage() {
 
             <div className="space-y-4">
               {/* Membership Status */}
-              <div className="rounded-2xl border border-neutral-200 bg-neutral-50 p-4">
+              <div className="rounded-2xl border-2 border-neutral-200 bg-neutral-50 p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600 mb-2">
+                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700 mb-2">
                       Membership Status
                     </h4>
                     <p className={`text-lg font-semibold ${getMembershipStatusColor(account.membershipStatus)}`}>
@@ -666,7 +666,7 @@ export default function ProfilePage() {
                     </p>
                   </div>
                   <div className="text-right">
-                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600 mb-2">
+                    <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700 mb-2">
                       Tier
                     </h4>
                     <p className="text-lg font-semibold text-neutral-900 capitalize">
@@ -676,7 +676,7 @@ export default function ProfilePage() {
                 </div>
                 {account.activeUntil && (
                   <div className="mt-3 pt-3 border-t border-neutral-200">
-                    <p className="text-xs text-neutral-600">
+                    <p className="text-xs text-neutral-700">
                       {account.membershipStatus === 'canceled'
                         ? `Access until: ${new Date(account.activeUntil).toLocaleDateString()}`
                         : `Next billing: ${new Date(account.activeUntil).toLocaleDateString()}`
@@ -724,7 +724,7 @@ export default function ProfilePage() {
                   <h4 className="text-sm font-semibold text-neutral-900 mb-2">
                     Are you sure you want to cancel?
                   </h4>
-                  <p className="text-xs text-neutral-700 mb-4">
+                  <p className="text-xs text-neutral-800 mb-4">
                     Your membership will remain active until{' '}
                     {account.activeUntil ? new Date(account.activeUntil).toLocaleDateString() : 'the end of your billing period'}.
                     You can resubscribe anytime.
@@ -748,11 +748,11 @@ export default function ProfilePage() {
               )}
 
               {/* Info Box */}
-              <div className="rounded-2xl border border-neutral-200 bg-neutral-100/60 p-4">
-                <p className="text-xs uppercase tracking-[0.35em] text-brand-600 mb-2">Need Help?</p>
-                <p className="text-sm text-neutral-700">
+              <div className="rounded-2xl border-2 border-neutral-200 bg-neutral-100/60 p-4">
+                <p className="text-xs uppercase tracking-[0.35em] text-brand-700 mb-2">Need Help?</p>
+                <p className="text-sm text-neutral-800">
                   Contact us at{' '}
-                  <a href="mailto:support@grapplemap.uk" className="text-brand-500 hover:text-brand-600">
+                  <a href="mailto:support@grapplemap.uk" className="text-brand-600 hover:text-brand-700">
                     support@grapplemap.uk
                   </a>{' '}
                   for billing questions or membership changes.
@@ -766,18 +766,18 @@ export default function ProfilePage() {
         {account && account.membershipTier === 'free' && (
           <div className="mt-8 rounded-3xl border border-brand-400 bg-gradient-to-br from-emerald-950/30 to-slate-950/70 p-6 shadow-card">
             <div className="mb-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">
                 Upgrade to Access
               </p>
               <h2 className="text-2xl font-semibold text-neutral-900 mt-2">Unlock Gym Check-ins</h2>
-              <p className="text-sm text-neutral-700 mt-1">Upgrade to a paid tier for QR check-in access at partner gyms</p>
+              <p className="text-sm text-neutral-800 mt-1">Upgrade to a paid tier for QR check-in access at partner gyms</p>
             </div>
 
             <div className="rounded-2xl border border-emerald-400/30 bg-neutral-100/60 p-6">
               <div className="flex flex-col items-center justify-center text-center">
                 <div className="mb-4 text-6xl">🔒</div>
                 <p className="text-lg font-semibold text-neutral-900 mb-2">Check-in Access Locked</p>
-                <p className="text-sm text-neutral-700 mb-6 max-w-md">
+                <p className="text-sm text-neutral-800 mb-6 max-w-md">
                   Free tier members can browse and discover gyms. Upgrade to Network or Network Pro to check in at partner gyms, book classes, and get SMS reminders.
                 </p>
                 <Link
@@ -795,11 +795,11 @@ export default function ProfilePage() {
         {account && (account.membershipStatus === 'active' || account.membershipStatus === 'grace') && account.membershipTier !== 'free' && (
           <div className="mt-8 rounded-3xl border border-brand-400 bg-gradient-to-br from-emerald-950/30 to-slate-950/70 p-6 shadow-card">
             <div className="mb-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">
                 Member Access
               </p>
               <h2 className="text-2xl font-semibold text-neutral-900 mt-2">Your QR Code</h2>
-              <p className="text-sm text-neutral-700 mt-1">Show this at partner gyms to check in</p>
+              <p className="text-sm text-neutral-800 mt-1">Show this at partner gyms to check in</p>
             </div>
 
             <div className="space-y-4">
@@ -811,29 +811,29 @@ export default function ProfilePage() {
                         {/* QR Code Placeholder - Will be replaced with actual QR code */}
                         <div className="text-center">
                           <div className="mb-4 text-6xl">📱</div>
-                          <p className="text-xs text-neutral-600 font-mono break-all">{qrCode.token.substring(0, 20)}...</p>
+                          <p className="text-xs text-neutral-700 font-mono break-all">{qrCode.token.substring(0, 20)}...</p>
                           <p className="mt-2 text-xs text-slate-500">QR Code Display</p>
-                          <p className="text-xs text-neutral-600">(Install QR library to render)</p>
+                          <p className="text-xs text-neutral-700">(Install QR library to render)</p>
                         </div>
                       </div>
                       <div className="mt-4 text-center">
-                        <p className="text-xs text-brand-500">
+                        <p className="text-xs text-brand-600">
                           Code refreshes: {new Date(qrCode.expiresAt).toLocaleTimeString()}
                         </p>
-                        <p className="text-xs text-neutral-600 mt-1">Valid for 1 hour</p>
+                        <p className="text-xs text-neutral-700 mt-1">Valid for 1 hour</p>
                       </div>
                     </>
                   ) : (
                     <div className="flex h-64 w-64 items-center justify-center rounded-2xl border-2 border-dashed border-slate-600">
-                      <p className="text-neutral-600">Loading QR code...</p>
+                      <p className="text-neutral-700">Loading QR code...</p>
                     </div>
                   )}
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-neutral-200 bg-neutral-100/60 p-4">
-                <p className="text-xs uppercase tracking-[0.35em] text-brand-600 mb-2">How to use</p>
-                <ul className="space-y-1 text-sm text-neutral-700">
+              <div className="rounded-2xl border-2 border-neutral-200 bg-neutral-100/60 p-4">
+                <p className="text-xs uppercase tracking-[0.35em] text-brand-700 mb-2">How to use</p>
+                <ul className="space-y-1 text-sm text-neutral-800">
                   <li>• Open this page on your phone before arriving at the gym</li>
                   <li>• Show the QR code to staff at check-in</li>
                   <li>• Code refreshes every hour for security</li>
@@ -844,9 +844,9 @@ export default function ProfilePage() {
         )}
 
         {/* Security Section */}
-        <div className="mt-8 rounded-3xl border border-neutral-200 bg-white p-6 shadow-card">
+        <div className="mt-8 rounded-3xl border-2 border-neutral-200 bg-white p-6 shadow-card">
           <div className="mb-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">
               Security & Privacy
             </p>
             <h2 className="text-2xl font-semibold text-neutral-900 mt-2">Account Security</h2>
@@ -865,11 +865,11 @@ export default function ProfilePage() {
                 </div>
               </button>
             ) : (
-              <div className="rounded-2xl border border-neutral-200 bg-neutral-100/60 p-4">
+              <div className="rounded-2xl border-2 border-neutral-200 bg-neutral-100/60 p-4">
                 <h4 className="text-sm font-semibold text-neutral-900 mb-4">Change Password</h4>
                 <form onSubmit={handlePasswordChange} className="space-y-3">
                   <div>
-                    <label className="block text-xs font-medium text-neutral-700 mb-1">
+                    <label className="block text-xs font-medium text-neutral-800 mb-1">
                       Current Password
                     </label>
                     <input
@@ -877,11 +877,11 @@ export default function ProfilePage() {
                       value={passwordData.currentPassword}
                       onChange={(e) => setPasswordData({ ...passwordData, currentPassword: e.target.value })}
                       required
-                      className="w-full rounded-lg border border-neutral-200 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-slate-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+                      className="w-full rounded-lg border-2 border-neutral-200 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-slate-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-medium text-neutral-700 mb-1">
+                    <label className="block text-xs font-medium text-neutral-800 mb-1">
                       New Password
                     </label>
                     <input
@@ -890,11 +890,11 @@ export default function ProfilePage() {
                       onChange={(e) => setPasswordData({ ...passwordData, newPassword: e.target.value })}
                       required
                       minLength={8}
-                      className="w-full rounded-lg border border-neutral-200 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-slate-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+                      className="w-full rounded-lg border-2 border-neutral-200 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-slate-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-medium text-neutral-700 mb-1">
+                    <label className="block text-xs font-medium text-neutral-800 mb-1">
                       Confirm New Password
                     </label>
                     <input
@@ -903,7 +903,7 @@ export default function ProfilePage() {
                       onChange={(e) => setPasswordData({ ...passwordData, confirmPassword: e.target.value })}
                       required
                       minLength={8}
-                      className="w-full rounded-lg border border-neutral-200 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-slate-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+                      className="w-full rounded-lg border-2 border-neutral-200 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 placeholder:text-slate-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                     />
                   </div>
                   <div className="flex gap-2 pt-2">
@@ -943,11 +943,11 @@ export default function ProfilePage() {
             ) : (
               <div className="rounded-2xl border border-red-500/30 bg-red-950/30 p-4">
                 <h4 className="text-sm font-semibold text-neutral-900 mb-2">Delete Your Account</h4>
-                <p className="text-xs text-neutral-700 mb-4">
+                <p className="text-xs text-neutral-800 mb-4">
                   This action cannot be undone. All your data, including profile, check-in history, and membership will be permanently deleted.
                 </p>
                 <div className="mb-3">
-                  <label className="block text-xs font-medium text-neutral-700 mb-2">
+                  <label className="block text-xs font-medium text-neutral-800 mb-2">
                     Type &ldquo;delete my account&rdquo; to confirm:
                   </label>
                   <input

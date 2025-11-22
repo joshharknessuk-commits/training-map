@@ -10,8 +10,8 @@ interface MembershipTierCardProps {
 
 export function MembershipTierCard({ tier, featured = false, variant = 'member' }: MembershipTierCardProps) {
   const cardClasses = cn(
-    'flex flex-col rounded-3xl border bg-gradient-to-b from-white via-neutral-50 to-brand-50/40 p-7 shadow-card backdrop-blur transition duration-200 hover:-translate-y-1 hover:border-brand-400 hover:shadow-elevated',
-    featured ? 'border-brand-400 ring-2 ring-brand-200' : 'border-neutral-200',
+    'flex flex-col rounded-3xl border-2 bg-white p-7 shadow-card transition duration-200 hover:-translate-y-1 hover:shadow-elevated',
+    featured ? 'border-brand-500 ring-2 ring-brand-200 hover:border-brand-600' : 'border-neutral-200 hover:border-brand-400',
   );
 
   const isGymTier = tier.id === 'academy';
@@ -28,9 +28,9 @@ export function MembershipTierCard({ tier, featured = false, variant = 'member' 
   return (
     <div className={cardClasses}>
       <div className="flex flex-col gap-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-600">Tier</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-700">Tier</p>
         <h3 className="text-3xl font-semibold text-neutral-900">{tier.name}</h3>
-        <p className="text-base text-neutral-700">{tier.description}</p>
+        <p className="text-base font-medium text-neutral-800">{tier.description}</p>
       </div>
       <div className="mt-6 flex items-baseline gap-2">
         {isFreeTier ? (
@@ -38,14 +38,14 @@ export function MembershipTierCard({ tier, featured = false, variant = 'member' 
         ) : (
           <>
             <span className="text-4xl font-bold text-neutral-900">£{tier.price}</span>
-            <span className="text-sm text-neutral-600">per month</span>
+            <span className="text-sm font-medium text-neutral-800">per month</span>
           </>
         )}
       </div>
-      <ul className="mt-6 space-y-2 text-sm text-neutral-800">
+      <ul className="mt-6 space-y-2 text-sm font-medium text-neutral-900">
         {tier.perks.map((perk) => (
           <li key={perk} className="flex items-center gap-2">
-            <span aria-hidden="true" className="text-accent-500">✔</span>
+            <span aria-hidden="true" className="text-accent-600">✔</span>
             <span>{perk}</span>
           </li>
         ))}
@@ -57,7 +57,7 @@ export function MembershipTierCard({ tier, featured = false, variant = 'member' 
             'inline-flex w-full items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition',
             featured
               ? 'bg-gradient-to-r from-brand-500 to-accent-500 text-white shadow-glow hover:from-brand-600 hover:to-accent-600'
-              : 'bg-neutral-100 text-neutral-900 hover:bg-neutral-200',
+              : 'bg-neutral-900 text-white hover:bg-neutral-800',
           )}
         >
           {buttonLabel}

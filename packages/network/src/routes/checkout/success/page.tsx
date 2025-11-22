@@ -5,29 +5,29 @@ export default function CheckoutSuccessPage() {
     <div className="mx-auto max-w-lg space-y-8 text-center">
       <div className="rounded-3xl border border-brand-300 bg-emerald-950/30 p-8">
         <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand-500/20">
-          <span className="text-3xl text-brand-500">✓</span>
+          <span className="text-3xl text-brand-600">✓</span>
         </div>
 
         <h1 className="mt-6 text-3xl font-semibold text-neutral-900">Welcome to the Network!</h1>
 
-        <p className="mt-3 text-neutral-700">
+        <p className="mt-3 text-neutral-800">
           Your membership is now active. You have full access to partner gyms across London.
         </p>
 
         <div className="mt-8 space-y-4">
-          <div className="rounded-2xl border border-neutral-200 bg-neutral-50/60 p-4 text-left">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">Next steps</p>
+          <div className="rounded-2xl border-2 border-neutral-200 bg-neutral-50/60 p-4 text-left">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">Next steps</p>
             <ul className="mt-3 space-y-2 text-sm text-slate-200">
               <li className="flex items-start gap-2">
-                <span className="text-brand-500">1.</span>
+                <span className="text-brand-600">1.</span>
                 <span>Check your email for a confirmation and welcome message</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-brand-500">2.</span>
+                <span className="text-brand-600">2.</span>
                 <span>Set up your member profile in the dashboard</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-brand-500">3.</span>
+                <span className="text-brand-600">3.</span>
                 <span>Get your QR code ready for check-ins at partner gyms</span>
               </li>
             </ul>
@@ -50,9 +50,9 @@ export default function CheckoutSuccessPage() {
         </div>
       </div>
 
-      <p className="text-xs text-neutral-600">
+      <p className="text-xs text-neutral-700">
         Questions? Contact us at{' '}
-        <a href="mailto:support@grapplemap.uk" className="text-brand-500 hover:text-brand-600">
+        <a href="mailto:support@grapplemap.uk" className="text-brand-600 hover:text-brand-700">
           support@grapplemap.uk
         </a>
       </p>

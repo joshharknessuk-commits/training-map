@@ -137,15 +137,15 @@ export default function HomePage() {
     }
 
     if (loading) {
-      return <span className="text-neutral-700">Loading gym data…</span>;
+      return <span className="text-neutral-800">Loading gym data…</span>;
     }
 
     if (totalCount === 0) {
-      return <span className="text-neutral-600">No gyms available right now.</span>;
+      return <span className="text-neutral-700">No gyms available right now.</span>;
     }
 
     return (
-      <span className="text-neutral-700">
+      <span className="text-neutral-800">
         {shownCount} of {totalCount} gyms displayed
       </span>
     );
@@ -189,11 +189,11 @@ export default function HomePage() {
         >
           <GrappleMapWordmark
             logoWrapperClassName="ml-[0.05em] h-28 w-28 shrink-0 sm:h-20 sm:w-20"
-            textClassName="flex items-center text-2xl font-semibold uppercase tracking-[0.2em] text-brand-600"
+            textClassName="flex items-center text-2xl font-semibold uppercase tracking-[0.2em] text-brand-700"
           />
         </Link>
         <div className="flex flex-col items-end gap-2">
-          <div className="min-w-0 text-xs leading-tight text-neutral-700 sm:text-right">
+          <div className="min-w-0 text-xs leading-tight text-neutral-800 sm:text-right">
             {headerStatus}
           </div>
           <Link
@@ -246,7 +246,7 @@ export default function HomePage() {
                   filtersOpen ? 'opacity-95' : 'opacity-80'
                 }`}
               >
-                <span aria-hidden="true" className="text-sm leading-none text-neutral-600 group-hover:text-neutral-900">
+                <span aria-hidden="true" className="text-sm leading-none text-neutral-700 group-hover:text-neutral-900">
                   {filtersOpen ? '–' : '☰'}
                 </span>
                 <span>Filters</span>
@@ -315,12 +315,12 @@ export default function HomePage() {
       {loading || geodataLoading ? (
         <div className="pointer-events-none fixed top-24 right-6 z-[900] space-y-2">
           {loading ? (
-            <div className="rounded-xl bg-neutral-50/85 px-3 py-2 text-sm font-semibold text-brand-600 shadow-card backdrop-blur">
+            <div className="rounded-xl bg-neutral-50/85 px-3 py-2 text-sm font-semibold text-brand-700 shadow-card backdrop-blur">
               Loading gyms…
             </div>
           ) : null}
           {geodataLoading ? (
-            <div className="rounded-xl bg-neutral-50/85 px-3 py-2 text-sm font-semibold text-brand-600 shadow-card backdrop-blur">
+            <div className="rounded-xl bg-neutral-50/85 px-3 py-2 text-sm font-semibold text-brand-700 shadow-card backdrop-blur">
               Loading map overlays…
             </div>
           ) : null}
