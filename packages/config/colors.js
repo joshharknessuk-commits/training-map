@@ -1,24 +1,24 @@
 /**
- * GrappleMap Color Scheme - Light Theme
- * Centralized color definitions for consistent theming across all pages
+ * GrappleMap Design System - Professional SaaS Colors
+ * Clean white backgrounds with blue accents and strong black text for readability
  */
 
 const colors = {
-  // Primary brand color - soft blue/teal palette
+  // Primary brand color - Professional blue (#2563EB)
   brand: {
-    50: '#F0F9FF',   // Very light blue
-    100: '#E0F2FE',  // Light blue
-    200: '#BAE6FD',  // Soft blue
-    300: '#7DD3FC',  // Medium blue
-    400: '#38BDF8',  // Bright blue
-    500: '#0EA5E9',  // Primary brand blue
-    600: '#0284C7',  // Deep blue
-    700: '#0369A1',  // Darker blue
-    800: '#075985',  // Very dark blue
-    900: '#0C4A6E'   // Deepest blue
+    50: '#EFF6FF',   // Very light blue
+    100: '#DBEAFE',  // Light blue
+    200: '#BFDBFE',  // Soft blue
+    300: '#93C5FD',  // Medium light blue
+    400: '#60A5FA',  // Medium blue
+    500: '#3B82F6',  // Primary blue
+    600: '#2563EB',  // Primary brand blue - main accent
+    700: '#1D4ED8',  // Secondary brand blue
+    800: '#1E40AF',  // Dark blue
+    900: '#1E3A8A'   // Darkest blue
   },
 
-  // Accent color - complementary teal
+  // Accent color - complementary teal (used sparingly)
   accent: {
     50: '#F0FDFA',
     100: '#CCFBF1',
@@ -32,18 +32,20 @@ const colors = {
     900: '#134E4A'
   },
 
-  // Neutral palette for text and backgrounds
+  // Neutral palette - Strong blacks for text, white for backgrounds
   neutral: {
-    50: '#F8FAFC',   // Almost white
-    100: '#F1F5F9',  // Very light gray
-    200: '#E2E8F0',  // Light gray
-    300: '#CBD5E1',  // Medium-light gray
-    400: '#94A3B8',  // Medium gray
-    500: '#64748B',  // Gray
-    600: '#475569',  // Dark gray
-    700: '#334155',  // Darker gray
-    800: '#1E293B',  // Very dark gray
-    900: '#0F172A'   // Almost black
+    0: '#FFFFFF',    // Pure white
+    50: '#F9FAFB',   // Off-white
+    100: '#F3F4F6',  // Very light gray
+    200: '#E5E7EB',  // Light gray (borders)
+    300: '#D1D5DB',  // Medium-light gray
+    400: '#9CA3AF',  // Medium gray
+    500: '#6B7280',  // Gray
+    600: '#4B5563',  // Dark gray
+    700: '#374151',  // Darker gray
+    800: '#1F2937',  // Very dark gray
+    900: '#111827',  // Almost black (body text)
+    950: '#030712'   // Pure black (headlines)
   },
 
   // Semantic colors
@@ -80,14 +82,16 @@ const theme = {
     hover: colors.neutral[100]     // Hover state
   },
 
-  // Text colors
+  // Text colors - Strong contrast for readability
   text: {
-    primary: colors.neutral[900],   // Almost black
-    secondary: colors.neutral[700], // Dark gray
-    tertiary: colors.neutral[600],  // Medium-dark gray
-    disabled: colors.neutral[400],  // Medium-light gray
-    accent: colors.brand[600],      // Brand blue
-    link: colors.brand[500]         // Link blue
+    primary: colors.neutral[950],   // Pure black (hero, headlines)
+    secondary: colors.neutral[900], // Almost black (body text)
+    tertiary: colors.neutral[700],  // Dark gray (labels, captions)
+    quaternary: colors.neutral[600],// Medium gray (helper text)
+    disabled: colors.neutral[400],  // Medium-light gray (disabled)
+    accent: colors.brand[600],      // Brand blue (#2563EB)
+    link: colors.brand[600],        // Link blue
+    inverse: colors.neutral[0]      // White (on dark backgrounds)
   },
 
   // Border colors
