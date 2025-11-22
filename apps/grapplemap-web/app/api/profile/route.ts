@@ -1,20 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { auth } from '@/lib/auth';
+import { withAuthOnly, withApiProtection } from '@/lib/api-middleware';
 import { db, userProfiles, users } from '@grapplemap/db';
 import { eq } from 'drizzle-orm';
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await auth();
-
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const { error, userId } = await withAuthOnly(request);
+    if (error) return error;
 
     const [profile] = await db
       .select()
       .from(userProfiles)
-      .where(eq(userProfiles.userId, session.user.id))
+      .where(eq(userProfiles.userId, userId))
       .limit(1);
 
     if (!profile) {
@@ -37,11 +34,8 @@ function sanitizeText(text: string | null | undefined): string | null {
 
 export async function PUT(request: NextRequest) {
   try {
-    const session = await auth();
-
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const { error, userId } = await withApiProtection(request);
+    if (error) return error;
 
     const body = await request.json();
     let {
@@ -145,7 +139,7 @@ export async function PUT(request: NextRequest) {
     const [existingProfile] = await db
       .select()
       .from(userProfiles)
-      .where(eq(userProfiles.userId, session.user.id))
+      .where(eq(userProfiles.userId, userId))
       .limit(1);
 
     if (!existingProfile) {
@@ -153,7 +147,7 @@ export async function PUT(request: NextRequest) {
       const [newProfile] = await db
         .insert(userProfiles)
         .values({
-          userId: session.user.id,
+          userId,
           displayName,
           bio,
           beltRank,
@@ -196,7 +190,7 @@ export async function PUT(request: NextRequest) {
         postcode,
         updatedAt: new Date(),
       })
-      .where(eq(userProfiles.userId, session.user.id))
+      .where(eq(userProfiles.userId, userId))
       .returning();
 
     return NextResponse.json({ profile: updatedProfile });

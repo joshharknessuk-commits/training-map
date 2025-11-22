@@ -16,6 +16,7 @@ export const users = pgTable('users', {
   id: uuid('id').primaryKey().defaultRandom(),
   email: text('email').notNull().unique(),
   passwordHash: text('password_hash'), // hashed password
+  passwordChangedAt: timestamp('password_changed_at', { withTimezone: true }), // for session invalidation
   firstName: text('first_name'),
   lastName: text('last_name'),
   role: userRoleEnum('role').notNull().default('user'),

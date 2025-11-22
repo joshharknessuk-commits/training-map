@@ -1,16 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { auth } from '@/lib/auth';
+import { withApiProtection } from '@/lib/api-middleware';
 import { db, users } from '@grapplemap/db';
 import { eq } from 'drizzle-orm';
 import bcrypt from 'bcryptjs';
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await auth();
-
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const { error, userId } = await withApiProtection(request);
+    if (error) return error;
 
     const body = await request.json();
     const { currentPassword, newPassword } = body;
@@ -36,7 +33,7 @@ export async function POST(request: NextRequest) {
         passwordHash: users.passwordHash,
       })
       .from(users)
-      .where(eq(users.id, session.user.id))
+      .where(eq(users.id, userId))
       .limit(1);
 
     if (!user) {
@@ -60,27 +57,20 @@ export async function POST(request: NextRequest) {
     // Hash new password
     const newPasswordHash = await bcrypt.hash(newPassword, 10);
 
-    // Update password
+    // Update password and passwordChangedAt
+    // This invalidates all existing sessions (checked in auth config)
     await db
       .update(users)
       .set({
         passwordHash: newPasswordHash,
+        passwordChangedAt: new Date(),
         updatedAt: new Date(),
-        // TODO: Add passwordChangedAt field to invalidate old sessions
-        // This requires:
-        // 1. Database migration to add passwordChangedAt timestamp field
-        // 2. Update this line to: passwordChangedAt: new Date()
-        // 3. Update auth config (lib/auth.ts) JWT callback to check:
-        //    if (token.iat < user.passwordChangedAt) { return null; }
-        // Without this, old sessions remain valid after password change (security risk)
       })
-      .where(eq(users.id, session.user.id));
+      .where(eq(users.id, userId));
 
-    // TODO: Once passwordChangedAt is implemented, this will automatically
-    // invalidate all existing sessions for this user
     return NextResponse.json({
       success: true,
-      message: 'Password changed successfully',
+      message: 'Password changed successfully. All other sessions have been invalidated.',
     });
   } catch (error) {
     console.error('Change password error:', error);

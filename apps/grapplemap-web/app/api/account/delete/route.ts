@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { auth } from '@/lib/auth';
+import { withApiProtection } from '@/lib/api-middleware';
 import { db, users, userProfiles, checkIns } from '@grapplemap/db';
 import { eq } from 'drizzle-orm';
 import Stripe from 'stripe';
@@ -10,11 +10,8 @@ const stripe = process.env.STRIPE_SECRET_KEY
 
 export async function DELETE(request: NextRequest) {
   try {
-    const session = await auth();
-
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const { error, userId } = await withApiProtection(request);
+    if (error) return error;
 
     // Get user data
     const [user] = await db
@@ -24,7 +21,7 @@ export async function DELETE(request: NextRequest) {
         stripeCustomerId: users.stripeCustomerId,
       })
       .from(users)
-      .where(eq(users.id, session.user.id))
+      .where(eq(users.id, userId))
       .limit(1);
 
     if (!user) {
