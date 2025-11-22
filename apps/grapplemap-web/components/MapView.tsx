@@ -601,7 +601,7 @@ export function MapView({
             permanent
             direction="top"
             offset={[0, -10]}
-            className="!bg-blue-600 !text-neutral-900 !border-none !rounded-full !px-3 !py-1 !text-xs !font-semibold !shadow-lg"
+            className="!bg-blue-600 !text-white !border-none !rounded-full !px-3 !py-1 !text-xs !font-semibold !shadow-lg"
           >
             You are here
           </Tooltip>
@@ -671,7 +671,7 @@ export function MapView({
                   <Tooltip
                     permanent
                     direction="center"
-                    className="!bg-brand-500 !text-neutral-900 !border-none !shadow-lg !rounded-full !px-3 !py-1 !font-semibold !tracking-wide !text-xs"
+                    className="!bg-brand-500 !text-white !border-none !shadow-lg !rounded-full !px-3 !py-1 !font-semibold !tracking-wide !text-xs"
                   >
                     {abbreviated}
                   </Tooltip>
