@@ -4,6 +4,14 @@ import { checkCsrf } from '@/lib/csrf';
 import { checkRateLimit, RateLimits, type RateLimitConfig } from '@/lib/rate-limit';
 
 /**
+ * Result type for API protection middleware
+ * Uses discriminated union for proper type narrowing
+ */
+export type ApiProtectionResult =
+  | { error: NextResponse; userId: null }
+  | { error: null; userId: string };
+
+/**
  * Standard API middleware for protected routes
  *
  * This provides a deep module that encapsulates:
@@ -32,7 +40,7 @@ import { checkRateLimit, RateLimits, type RateLimitConfig } from '@/lib/rate-lim
 export async function withApiProtection(
   request: NextRequest,
   rateLimitConfig: RateLimitConfig = RateLimits.MUTATION
-): Promise<{ error: NextResponse | null; userId: string | null }> {
+): Promise<ApiProtectionResult> {
   // Check rate limit first (cheapest check, prevents DoS)
   const rateLimitError = checkRateLimit(request, rateLimitConfig);
   if (rateLimitError) {
@@ -66,7 +74,7 @@ export async function withApiProtection(
 export async function withAuthOnly(
   request: NextRequest,
   rateLimitConfig: RateLimitConfig = RateLimits.READ
-): Promise<{ error: NextResponse | null; userId: string | null }> {
+): Promise<ApiProtectionResult> {
   // Check rate limit
   const rateLimitError = checkRateLimit(request, rateLimitConfig);
   if (rateLimitError) {
