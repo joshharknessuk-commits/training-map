@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import 'dotenv/config';
-import { db } from '@grapplemap/db';
-import { athletes, teams, tournaments, rulesets, weightClasses, matches, techniques, techniqueCategories } from '@grapplemap/db/schema';
+import { db, athletes, teams, tournaments, rulesets, weightClasses, matches, techniques, techniqueCategories } from '@grapplemap/db';
 import { normalizeName, getSubmissionCategory } from '../utils/normalize';
 
 /**

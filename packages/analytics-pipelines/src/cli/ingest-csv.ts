@@ -2,8 +2,8 @@
 import 'dotenv/config';
 import { parse } from 'csv-parse/sync';
 import { readFileSync } from 'fs';
-import { db } from '@grapplemap/db';
 import {
+  db,
   athletes,
   teams,
   tournaments,
@@ -13,7 +13,7 @@ import {
   techniques,
   techniqueCategories,
   athleteTeamHistory,
-} from '@grapplemap/db/schema';
+} from '@grapplemap/db';
 import { normalizeName, normalizeCountryCode, getSubmissionCategory } from '../utils/normalize';
 import { eq, and } from 'drizzle-orm';
 
