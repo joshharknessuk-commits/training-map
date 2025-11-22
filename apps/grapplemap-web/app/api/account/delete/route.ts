@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { withApiProtection } from '@/lib/api-middleware';
+import { RateLimits } from '@/lib/rate-limit';
 import { db, users, userProfiles, checkIns } from '@grapplemap/db';
 import { eq } from 'drizzle-orm';
 import Stripe from 'stripe';
@@ -10,7 +11,8 @@ const stripe = process.env.STRIPE_SECRET_KEY
 
 export async function DELETE(request: NextRequest) {
   try {
-    const { error, userId } = await withApiProtection(request);
+    // Use strict rate limit for account deletion (3 per minute)
+    const { error, userId } = await withApiProtection(request, RateLimits.SENSITIVE);
     if (error) return error;
 
     // Get user data

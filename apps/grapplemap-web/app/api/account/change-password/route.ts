@@ -1,12 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { withApiProtection } from '@/lib/api-middleware';
+import { RateLimits } from '@/lib/rate-limit';
 import { db, users } from '@grapplemap/db';
 import { eq } from 'drizzle-orm';
 import bcrypt from 'bcryptjs';
 
 export async function POST(request: NextRequest) {
   try {
-    const { error, userId } = await withApiProtection(request);
+    // Use strict rate limit for password changes (3 per minute)
+    const { error, userId } = await withApiProtection(request, RateLimits.SENSITIVE);
     if (error) return error;
 
     const body = await request.json();

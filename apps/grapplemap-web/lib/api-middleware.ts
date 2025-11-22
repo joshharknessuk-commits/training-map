@@ -1,18 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { checkCsrf } from '@/lib/csrf';
+import { checkRateLimit, RateLimits, type RateLimitConfig } from '@/lib/rate-limit';
 
 /**
  * Standard API middleware for protected routes
  *
  * This provides a deep module that encapsulates:
+ * - Rate limiting (DoS protection)
  * - Authentication checking
  * - CSRF protection
  * - Standard error responses
  *
  * Following Ousterhout's principles:
- * - Deep module: Complex functionality (auth + CSRF) with simple interface
- * - Information hiding: Caller doesn't need to know about CSRF/auth details
+ * - Deep module: Complex functionality (rate limit + auth + CSRF) with simple interface
+ * - Information hiding: Caller doesn't need to know about security details
  * - Reduces duplication: Single source of truth for API security
  *
  * @example
@@ -28,8 +30,15 @@ import { checkCsrf } from '@/lib/csrf';
  * }
  */
 export async function withApiProtection(
-  request: NextRequest
+  request: NextRequest,
+  rateLimitConfig: RateLimitConfig = RateLimits.MUTATION
 ): Promise<{ error: NextResponse | null; userId: string | null }> {
+  // Check rate limit first (cheapest check, prevents DoS)
+  const rateLimitError = checkRateLimit(request, rateLimitConfig);
+  if (rateLimitError) {
+    return { error: rateLimitError, userId: null };
+  }
+
   // Check CSRF token for state-changing requests
   const csrfError = checkCsrf(request);
   if (csrfError) {
@@ -49,12 +58,22 @@ export async function withApiProtection(
 }
 
 /**
- * Optional: Protection for routes that need authentication but not CSRF
+ * Protection for routes that need authentication but not CSRF
  * (e.g., GET requests)
+ *
+ * Includes rate limiting to prevent abuse of read endpoints.
  */
 export async function withAuthOnly(
-  request: NextRequest
+  request: NextRequest,
+  rateLimitConfig: RateLimitConfig = RateLimits.READ
 ): Promise<{ error: NextResponse | null; userId: string | null }> {
+  // Check rate limit
+  const rateLimitError = checkRateLimit(request, rateLimitConfig);
+  if (rateLimitError) {
+    return { error: rateLimitError, userId: null };
+  }
+
+  // Check authentication
   const session = await auth();
   if (!session?.user?.id) {
     return {
