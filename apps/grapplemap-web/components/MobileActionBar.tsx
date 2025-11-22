@@ -51,7 +51,7 @@ export function MobileActionBar({ onLocate, onError }: MobileActionBarProps) {
             type="button"
             onClick={handleToggle}
             aria-expanded={expanded}
-            className="flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/80 backdrop-blur-md transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30"
+            className="flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/80 backdrop-blur-md transition hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-white/30"
           >
             <span className="text-xs">{expanded ? 'Close actions' : 'Touch for more actions'}</span>
             <span aria-hidden="true" className="text-base leading-none">
@@ -73,7 +73,7 @@ export function MobileActionBar({ onLocate, onError }: MobileActionBarProps) {
               <NearMeButton
                 onLocate={onLocate}
                 onError={onError}
-                className="min-h-[44px] w-full justify-center rounded-2xl bg-gradient-to-r from-emerald-400 via-emerald-500 to-sky-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-wide text-slate-900 shadow-lg shadow-emerald-900/40 transition hover:scale-[1.01]"
+                className="min-h-[44px] w-full justify-center rounded-2xl bg-gradient-to-r from-emerald-400 via-emerald-500 to-sky-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-wide text-white shadow-lg shadow-glow transition hover:scale-[1.01]"
               >
                 Gyms near me
               </NearMeButton>

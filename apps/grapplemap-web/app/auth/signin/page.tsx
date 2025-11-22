@@ -39,32 +39,32 @@ export default function SignInPage() {
 
   return (
     <div
-      className="min-h-screen w-full bg-slate-950 text-slate-100 flex items-center justify-center px-4"
+      className="min-h-screen w-full bg-white text-neutral-900 flex items-center justify-center px-4"
       style={{
         backgroundImage:
-          'radial-gradient(circle at top, rgba(16,185,129,0.08), transparent 55%), linear-gradient(to bottom, #020b08, #030712 60%, #010409)',
-        backgroundColor: '#010307',
+          'radial-gradient(circle at top, rgba(16,185,129,0.05), transparent 55%), linear-gradient(to bottom, #ffffff, #fafafa 60%, #f5f5f5)',
+        backgroundColor: '#ffffff',
       }}
     >
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-block">
-            <h1 className="text-3xl font-semibold uppercase tracking-[0.2em] text-emerald-200">
+            <h1 className="text-3xl font-semibold uppercase tracking-[0.2em] text-brand-600">
               GrappleMap
             </h1>
-            <p className="text-sm text-slate-400 tracking-wider mt-1">Network</p>
+            <p className="text-sm text-neutral-600 tracking-wider mt-1">Network</p>
           </Link>
         </div>
 
-        <div className="rounded-2xl border border-slate-800/70 bg-slate-900/85 p-8 backdrop-blur shadow-2xl shadow-black/50">
-          <h2 className="text-2xl font-semibold text-white mb-2">Welcome back</h2>
-          <p className="text-slate-400 mb-6">
+        <div className="rounded-2xl border border-neutral-200 bg-neutral-50/85 p-8 backdrop-blur shadow-2xl shadow-black/50">
+          <h2 className="text-2xl font-semibold text-neutral-900 mb-2">Welcome back</h2>
+          <p className="text-neutral-600 mb-6">
             Sign in to access your account
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
+              <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-2">
                 Email address
               </label>
               <input
@@ -75,13 +75,13 @@ export default function SignInPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800/50 px-4 py-3 text-white placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 transition"
+                className="w-full rounded-lg border border-neutral-300 bg-neutral-100 px-4 py-3 text-neutral-900 placeholder-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20 transition"
                 placeholder="you@example.com"
               />
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-slate-300 mb-2">
+              <label htmlFor="password" className="block text-sm font-medium text-neutral-700 mb-2">
                 Password
               </label>
               <input
@@ -92,7 +92,7 @@ export default function SignInPage() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800/50 px-4 py-3 text-white placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 transition"
+                className="w-full rounded-lg border border-neutral-300 bg-neutral-100 px-4 py-3 text-neutral-900 placeholder-neutral-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20 transition"
                 placeholder="Enter your password"
               />
             </div>
@@ -106,18 +106,18 @@ export default function SignInPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-lg bg-gradient-to-r from-emerald-500 via-emerald-600 to-sky-500 px-4 py-3 text-sm font-semibold uppercase tracking-wider text-white shadow-lg shadow-emerald-900/40 transition hover:scale-[1.01] hover:shadow-emerald-900/60 focus:outline-none focus:ring-2 focus:ring-emerald-400/60 focus:ring-offset-2 focus:ring-offset-slate-950 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+              className="w-full rounded-lg bg-gradient-to-r from-brand-500 via-brand-600 to-accent-500 px-4 py-3 text-sm font-semibold uppercase tracking-wider text-neutral-900 shadow-lg shadow-glow transition hover:scale-[1.01] hover:shadow-glow focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
               {loading ? 'Signing in...' : 'Sign in'}
             </button>
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-neutral-600">
               Don&apos;t have an account?{' '}
               <Link
                 href="/auth/signup"
-                className="font-medium text-emerald-400 hover:text-emerald-300 transition"
+                className="font-medium text-brand-500 hover:text-brand-500 transition"
               >
                 Create one
               </Link>
@@ -128,7 +128,7 @@ export default function SignInPage() {
         <div className="mt-6 text-center">
           <Link
             href="/"
-            className="text-sm text-slate-500 hover:text-slate-300 transition"
+            className="text-sm text-neutral-500 hover:text-neutral-700 transition"
           >
             ← Back to map
           </Link>

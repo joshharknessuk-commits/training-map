@@ -72,7 +72,7 @@ export default function DiscoverPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-lg text-white">Loading...</div>
+        <div className="text-lg text-neutral-900">Loading...</div>
       </div>
     );
   }
@@ -81,28 +81,28 @@ export default function DiscoverPage() {
     <div className="min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">
             Dashboard
           </p>
-          <h1 className="text-3xl font-semibold text-white mt-2">Discover GrappleMap Network</h1>
-          <p className="mt-2 text-slate-300">
+          <h1 className="text-3xl font-semibold text-neutral-900 mt-2">Discover GrappleMap Network</h1>
+          <p className="mt-2 text-neutral-700">
             Connect with gyms and grapplers across London
           </p>
         </div>
 
         {/* Quick Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="rounded-3xl border border-white/10 bg-slate-950/70 p-6 shadow-glow">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200">Available Classes</p>
-            <p className="text-3xl font-semibold text-white mt-2">{stats.totalClasses}</p>
+          <div className="rounded-3xl border border-neutral-200 bg-white/70 p-6 shadow-glow">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">Available Classes</p>
+            <p className="text-3xl font-semibold text-neutral-900 mt-2">{stats.totalClasses}</p>
           </div>
-          <div className="rounded-3xl border border-white/10 bg-slate-950/70 p-6 shadow-glow">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200">Upcoming Bookings</p>
-            <p className="text-3xl font-semibold text-white mt-2">{stats.upcomingBookings}</p>
+          <div className="rounded-3xl border border-neutral-200 bg-white/70 p-6 shadow-glow">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">Upcoming Bookings</p>
+            <p className="text-3xl font-semibold text-neutral-900 mt-2">{stats.upcomingBookings}</p>
           </div>
-          <div className="rounded-3xl border border-white/10 bg-slate-950/70 p-6 shadow-glow">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200">Connections</p>
-            <p className="text-3xl font-semibold text-white mt-2">{stats.connections}</p>
+          <div className="rounded-3xl border border-neutral-200 bg-white/70 p-6 shadow-glow">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">Connections</p>
+            <p className="text-3xl font-semibold text-neutral-900 mt-2">{stats.connections}</p>
           </div>
         </div>
 
@@ -110,56 +110,56 @@ export default function DiscoverPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <Link
             href="/classes"
-            className="rounded-3xl border border-emerald-500/30 bg-emerald-500/10 p-6 hover:bg-emerald-500/20 transition"
+            className="rounded-3xl border border-emerald-500/30 bg-brand-500/10 p-6 hover:bg-brand-500/20 transition"
           >
-            <h3 className="text-lg font-semibold text-white">Browse Classes</h3>
+            <h3 className="text-lg font-semibold text-neutral-900">Browse Classes</h3>
             <p className="text-sm mt-2 text-emerald-100">Find and book BJJ classes</p>
           </Link>
           <Link
             href="/profile"
             className="rounded-3xl border border-sky-500/30 bg-sky-500/10 p-6 hover:bg-sky-500/20 transition"
           >
-            <h3 className="text-lg font-semibold text-white">My Profile</h3>
+            <h3 className="text-lg font-semibold text-neutral-900">My Profile</h3>
             <p className="text-sm mt-2 text-sky-100">Update your info and preferences</p>
           </Link>
           <Link
             href="/feed"
             className="rounded-3xl border border-violet-500/30 bg-violet-500/10 p-6 hover:bg-violet-500/20 transition"
           >
-            <h3 className="text-lg font-semibold text-white">Activity Feed</h3>
+            <h3 className="text-lg font-semibold text-neutral-900">Activity Feed</h3>
             <p className="text-sm mt-2 text-violet-100">See who&apos;s training</p>
           </Link>
           <Link
             href="/bookings"
             className="rounded-3xl border border-amber-500/30 bg-amber-500/10 p-6 hover:bg-amber-500/20 transition"
           >
-            <h3 className="text-lg font-semibold text-white">My Bookings</h3>
+            <h3 className="text-lg font-semibold text-neutral-900">My Bookings</h3>
             <p className="text-sm mt-2 text-amber-100">View your upcoming classes</p>
           </Link>
         </div>
 
         {/* Nearby Gyms */}
-        <div className="rounded-3xl border border-white/10 bg-slate-950/70 p-6 shadow-glow">
+        <div className="rounded-3xl border border-neutral-200 bg-white/70 p-6 shadow-glow">
           <div className="flex justify-between items-center mb-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200">Gyms in London</p>
-            <Link href="/" className="text-emerald-400 hover:text-emerald-300 font-medium text-sm">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">Gyms in London</p>
+            <Link href="/" className="text-brand-500 hover:text-brand-500 font-medium text-sm">
               View Map →
             </Link>
           </div>
 
           {gyms.length === 0 ? (
-            <p className="text-slate-400">No gyms available</p>
+            <p className="text-neutral-600">No gyms available</p>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {gyms.slice(0, 6).map((gym) => (
-                <div key={gym.id} className="rounded-2xl border border-white/5 bg-white/5 p-4 hover:border-emerald-500/30 transition">
-                  <h3 className="font-semibold text-white">{gym.name}</h3>
+                <div key={gym.id} className="rounded-2xl border border-white/5 bg-neutral-50 p-4 hover:border-emerald-500/30 transition">
+                  <h3 className="font-semibold text-neutral-900">{gym.name}</h3>
                   {gym.borough && (
-                    <p className="text-sm text-slate-400 mt-1">{gym.borough}</p>
+                    <p className="text-sm text-neutral-600 mt-1">{gym.borough}</p>
                   )}
                   <Link
                     href={`/gyms/${gym.id}`}
-                    className="text-emerald-400 hover:text-emerald-300 text-sm mt-2 inline-block"
+                    className="text-brand-500 hover:text-brand-500 text-sm mt-2 inline-block"
                   >
                     View Details →
                   </Link>

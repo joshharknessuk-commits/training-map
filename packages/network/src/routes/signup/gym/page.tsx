@@ -51,15 +51,15 @@ export default function GymSignupPage() {
   if (submitted) {
     return (
       <div className="mx-auto max-w-lg space-y-8 text-center">
-        <div className="rounded-3xl border border-emerald-400/30 bg-emerald-950/30 p-8">
+        <div className="rounded-3xl border border-brand-300 bg-emerald-950/30 p-8">
           <p className="text-4xl">✓</p>
-          <h1 className="mt-4 text-2xl font-semibold text-white">Inquiry Received</h1>
-          <p className="mt-2 text-slate-300">
+          <h1 className="mt-4 text-2xl font-semibold text-neutral-900">Inquiry Received</h1>
+          <p className="mt-2 text-neutral-700">
             Thanks for your interest in the Academy Plan! Our team will be in touch within 1-2 business days.
           </p>
           <Link
             href="/network"
-            className="mt-6 inline-flex items-center rounded-full bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20"
+            className="mt-6 inline-flex items-center rounded-full bg-neutral-100 px-6 py-3 text-sm font-semibold text-neutral-900 transition hover:bg-neutral-200"
           >
             Back to Network
           </Link>
@@ -71,26 +71,26 @@ export default function GymSignupPage() {
   return (
     <div className="mx-auto max-w-2xl space-y-8">
       <div className="text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200">For Gyms</p>
-        <h1 className="mt-3 text-3xl font-semibold text-white">Join as a Partner Gym</h1>
-        <p className="mt-2 text-slate-300">
+        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">For Gyms</p>
+        <h1 className="mt-3 text-3xl font-semibold text-neutral-900">Join as a Partner Gym</h1>
+        <p className="mt-2 text-neutral-700">
           Get automated payouts, QR verification, and access to the Network member base.
         </p>
       </div>
 
       {academyTier && (
-        <div className="rounded-3xl border border-white/10 bg-slate-900/60 p-6">
+        <div className="rounded-3xl border border-neutral-200 bg-neutral-50/60 p-6">
           <div className="flex items-baseline justify-between">
-            <span className="text-lg font-semibold text-white">{academyTier.name}</span>
+            <span className="text-lg font-semibold text-neutral-900">{academyTier.name}</span>
             <div className="text-right">
-              <span className="text-3xl font-bold text-white">£{academyTier.price}</span>
-              <span className="text-sm text-slate-400">/month</span>
+              <span className="text-3xl font-bold text-neutral-900">£{academyTier.price}</span>
+              <span className="text-sm text-neutral-600">/month</span>
             </div>
           </div>
           <ul className="mt-4 grid gap-2 text-sm text-slate-200 sm:grid-cols-2">
             {academyTier.perks.map((perk) => (
               <li key={perk} className="flex items-center gap-2">
-                <span className="text-emerald-400">✔</span>
+                <span className="text-brand-500">✔</span>
                 <span>{perk}</span>
               </li>
             ))}
@@ -112,7 +112,7 @@ export default function GymSignupPage() {
               onChange={handleChange}
               required
               placeholder="Your Gym Name"
-              className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white placeholder:text-slate-500 focus:border-emerald-400/50 focus:outline-none focus:ring-1 focus:ring-emerald-400/50"
+              className="mt-2 w-full rounded-xl border border-neutral-200 bg-white/60 px-4 py-3 text-neutral-900 placeholder:text-neutral-500 focus:border-brand-500/50 focus:outline-none focus:ring-1 focus:ring-brand-500/50"
             />
           </div>
           <div>
@@ -127,7 +127,7 @@ export default function GymSignupPage() {
               onChange={handleChange}
               required
               placeholder="Your Name"
-              className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white placeholder:text-slate-500 focus:border-emerald-400/50 focus:outline-none focus:ring-1 focus:ring-emerald-400/50"
+              className="mt-2 w-full rounded-xl border border-neutral-200 bg-white/60 px-4 py-3 text-neutral-900 placeholder:text-neutral-500 focus:border-brand-500/50 focus:outline-none focus:ring-1 focus:ring-brand-500/50"
             />
           </div>
         </div>
@@ -145,7 +145,7 @@ export default function GymSignupPage() {
               onChange={handleChange}
               required
               placeholder="gym@example.com"
-              className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white placeholder:text-slate-500 focus:border-emerald-400/50 focus:outline-none focus:ring-1 focus:ring-emerald-400/50"
+              className="mt-2 w-full rounded-xl border border-neutral-200 bg-white/60 px-4 py-3 text-neutral-900 placeholder:text-neutral-500 focus:border-brand-500/50 focus:outline-none focus:ring-1 focus:ring-brand-500/50"
             />
           </div>
           <div>
@@ -159,7 +159,7 @@ export default function GymSignupPage() {
               value={formData.phone}
               onChange={handleChange}
               placeholder="+44 7XXX XXXXXX"
-              className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white placeholder:text-slate-500 focus:border-emerald-400/50 focus:outline-none focus:ring-1 focus:ring-emerald-400/50"
+              className="mt-2 w-full rounded-xl border border-neutral-200 bg-white/60 px-4 py-3 text-neutral-900 placeholder:text-neutral-500 focus:border-brand-500/50 focus:outline-none focus:ring-1 focus:ring-brand-500/50"
             />
           </div>
         </div>
@@ -176,7 +176,7 @@ export default function GymSignupPage() {
             onChange={handleChange}
             required
             placeholder="e.g., East London, Shoreditch"
-            className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white placeholder:text-slate-500 focus:border-emerald-400/50 focus:outline-none focus:ring-1 focus:ring-emerald-400/50"
+            className="mt-2 w-full rounded-xl border border-neutral-200 bg-white/60 px-4 py-3 text-neutral-900 placeholder:text-neutral-500 focus:border-brand-500/50 focus:outline-none focus:ring-1 focus:ring-brand-500/50"
           />
         </div>
 
@@ -191,7 +191,7 @@ export default function GymSignupPage() {
             onChange={handleChange}
             rows={4}
             placeholder="How many members do you have? What open mats do you run? Any questions?"
-            className="mt-2 w-full resize-none rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white placeholder:text-slate-500 focus:border-emerald-400/50 focus:outline-none focus:ring-1 focus:ring-emerald-400/50"
+            className="mt-2 w-full resize-none rounded-xl border border-neutral-200 bg-white/60 px-4 py-3 text-neutral-900 placeholder:text-neutral-500 focus:border-brand-500/50 focus:outline-none focus:ring-1 focus:ring-brand-500/50"
           />
         </div>
 
@@ -204,18 +204,18 @@ export default function GymSignupPage() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-50"
+          className="w-full rounded-full bg-brand-500 px-6 py-3 text-sm font-semibold text-neutral-900 transition hover:bg-brand-400 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {loading ? 'Submitting...' : 'Submit Inquiry'}
         </button>
 
-        <p className="text-center text-xs text-slate-400">
+        <p className="text-center text-xs text-neutral-600">
           We&apos;ll get back to you within 1-2 business days.
         </p>
       </form>
 
       <div className="text-center">
-        <Link href="/network#academy" className="text-sm text-emerald-300 hover:text-emerald-200">
+        <Link href="/network#academy" className="text-sm text-brand-500 hover:text-brand-600">
           ← Back to Network
         </Link>
       </div>

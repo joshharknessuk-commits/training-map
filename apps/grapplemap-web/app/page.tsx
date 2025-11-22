@@ -133,19 +133,19 @@ export default function HomePage() {
 
   const headerStatus = useMemo(() => {
     if (error) {
-      return <span className="font-medium text-rose-300">{error}</span>;
+      return <span className="font-medium text-rose-600">{error}</span>;
     }
 
     if (loading) {
-      return <span className="text-slate-300">Loading gym data…</span>;
+      return <span className="text-neutral-700">Loading gym data…</span>;
     }
 
     if (totalCount === 0) {
-      return <span className="text-slate-400">No gyms available right now.</span>;
+      return <span className="text-neutral-600">No gyms available right now.</span>;
     }
 
     return (
-      <span className="text-slate-300">
+      <span className="text-neutral-700">
         {shownCount} of {totalCount} gyms displayed
       </span>
     );
@@ -158,20 +158,20 @@ export default function HomePage() {
 
   return (
     <div
-      className="min-h-screen w-full bg-slate-950 text-slate-100"
+      className="min-h-screen w-full bg-white text-neutral-900"
       style={{
         ...headerVariables,
         backgroundImage:
-          'radial-gradient(circle at top, rgba(16,185,129,0.08), transparent 55%), linear-gradient(to bottom, #020b08, #030712 60%, #010409), url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'none\' stroke=\'rgba(255,255,255,0.025)\' stroke-width=\'0.5\'/%3E%3C/svg%3E")',
+          'radial-gradient(circle at top, rgba(16,185,129,0.05), transparent 55%), linear-gradient(to bottom, #ffffff, #fafafa 60%, #f5f5f5), url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'none\' stroke=\'rgba(0,0,0,0.025)\' stroke-width=\'0.5\'/%3E%3C/svg%3E")',
         backgroundBlendMode: 'screen, normal',
-        backgroundColor: '#010307',
+        backgroundColor: '#ffffff',
       }}
     >
       <div className="intro-overlay" aria-hidden="true">
         <div className="intro-logo-wrapper">
           <GrappleMapWordmark
             className="intro-logo-wordmark"
-            textClassName="intro-logo-text flex items-center text-4xl font-semibold uppercase tracking-[0.35em] text-white sm:text-5xl"
+            textClassName="intro-logo-text flex items-center text-4xl font-semibold uppercase tracking-[0.35em] text-neutral-900 sm:text-5xl"
             logoWrapperClassName="intro-logo-mark relative ml-4 h-32 w-32 sm:h-36 sm:w-36"
           />
           <span className="intro-logo-trace" />
@@ -179,26 +179,26 @@ export default function HomePage() {
       </div>
       <header
         ref={headerRef}
-        className="box-border fixed top-0 left-0 right-0 z-[980] flex flex-col gap-2 border-b border-slate-800/70 bg-slate-900/85 pl-2 pr-4 py-2 backdrop-blur sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:pl-4 sm:pr-5"
+        className="box-border fixed top-0 left-0 right-0 z-[980] flex flex-col gap-2 border-b border-neutral-200 bg-neutral-50/85 pl-2 pr-4 py-2 backdrop-blur sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:pl-4 sm:pr-5"
         style={{ paddingTop: 'env(safe-area-inset-top)' }}
       >
         <Link
           href="/network"
-          className="group inline-flex items-center rounded-r-full bg-transparent pl-1 pr-2 text-left transition hover:bg-emerald-500/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400"
+          className="group inline-flex items-center rounded-r-full bg-transparent pl-1 pr-2 text-left transition hover:bg-brand-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
           aria-label="Return to network home"
         >
           <GrappleMapWordmark
             logoWrapperClassName="ml-[0.05em] h-28 w-28 shrink-0 sm:h-20 sm:w-20"
-            textClassName="flex items-center text-2xl font-semibold uppercase tracking-[0.2em] text-emerald-200"
+            textClassName="flex items-center text-2xl font-semibold uppercase tracking-[0.2em] text-brand-600"
           />
         </Link>
         <div className="flex flex-col items-end gap-2">
-          <div className="min-w-0 text-xs leading-tight text-slate-300 sm:text-right">
+          <div className="min-w-0 text-xs leading-tight text-neutral-700 sm:text-right">
             {headerStatus}
           </div>
           <Link
             href="/network"
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 via-sky-500 to-indigo-500 px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-white shadow-lg shadow-emerald-900/40 transition hover:scale-[1.01] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400"
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-500 via-brand-600 to-accent-500 px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-white shadow-lg shadow-glow transition hover:scale-[1.01] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
           >
             <span aria-hidden="true">⊕</span>
             Network
@@ -242,16 +242,16 @@ export default function HomePage() {
                 onClick={() => setFiltersOpen((prev) => !prev)}
                 aria-pressed={filtersOpen}
                 aria-label={filtersOpen ? 'Hide filters' : 'Show filters'}
-                className={`group inline-flex items-center gap-2 rounded-full border border-white/15 bg-emerald-950/80 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-white shadow-[0_10px_20px_rgba(0,0,0,0.45)] transition hover:bg-emerald-900/80 focus:outline-none focus:ring-2 focus:ring-white/30 ${
+                className={`group inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-neutral-100 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-neutral-900 shadow-card transition hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-brand-500/30 ${
                   filtersOpen ? 'opacity-95' : 'opacity-80'
                 }`}
               >
-                <span aria-hidden="true" className="text-sm leading-none text-white/75 group-hover:text-white">
+                <span aria-hidden="true" className="text-sm leading-none text-neutral-600 group-hover:text-neutral-900">
                   {filtersOpen ? '–' : '☰'}
                 </span>
                 <span>Filters</span>
                 {filtersActive ? (
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-300" aria-hidden="true" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-brand-600" aria-hidden="true" />
                 ) : null}
               </button>
             </div>
@@ -272,12 +272,12 @@ export default function HomePage() {
                   <button
                     type="button"
                     onClick={() => setFiltersOpen(true)}
-                    className="hidden w-full items-center justify-center gap-2 rounded-full bg-emerald-950 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white shadow-lg shadow-slate-950/70 transition hover:bg-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-400/60 focus:ring-offset-2 focus:ring-offset-slate-950 sm:inline-flex sm:w-auto"
+                    className="hidden w-full items-center justify-center gap-2 rounded-full bg-neutral-100 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-neutral-900 shadow-card transition hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white sm:inline-flex sm:w-auto"
                   >
                     <span aria-hidden="true">☰</span>
                     Filters
                     {filtersActive ? (
-                      <span className="ml-1 inline-flex h-2 w-2 rounded-full bg-emerald-300" aria-hidden="true" />
+                      <span className="ml-1 inline-flex h-2 w-2 rounded-full bg-brand-600" aria-hidden="true" />
                     ) : null}
                   </button>
                 ) : null}
@@ -289,7 +289,7 @@ export default function HomePage() {
                   <NearMeButton
                     onLocate={handleNearMeLocate}
                     onError={handleNearMeError}
-                    className="w-full rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-sky-500 px-5 py-2 text-sm font-semibold uppercase tracking-wide text-slate-900 shadow-lg shadow-emerald-900/40 transition hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-emerald-400/60 focus:ring-offset-2 focus:ring-offset-slate-950 sm:w-auto"
+                    className="w-full rounded-full bg-gradient-to-r from-brand-500 via-brand-600 to-accent-500 px-5 py-2 text-sm font-semibold uppercase tracking-wide text-white shadow-glow transition hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white sm:w-auto"
                   >
                     Gyms near me
                   </NearMeButton>
@@ -307,7 +307,7 @@ export default function HomePage() {
           type="button"
           aria-label="Close filters"
           onClick={() => setFiltersOpen(false)}
-          className="fixed inset-0 z-[920] bg-slate-950/60 backdrop-blur-sm transition-opacity lg:hidden"
+          className="fixed inset-0 z-[920] bg-neutral-900/20 backdrop-blur-sm transition-opacity lg:hidden"
           style={{ top: 'var(--header-offset, 3rem)' }}
         />
       ) : null}
@@ -315,12 +315,12 @@ export default function HomePage() {
       {loading || geodataLoading ? (
         <div className="pointer-events-none fixed top-24 right-6 z-[900] space-y-2">
           {loading ? (
-            <div className="rounded-xl bg-slate-900/85 px-3 py-2 text-sm font-semibold text-emerald-300 shadow-lg shadow-black/40 backdrop-blur">
+            <div className="rounded-xl bg-neutral-50/85 px-3 py-2 text-sm font-semibold text-brand-600 shadow-card backdrop-blur">
               Loading gyms…
             </div>
           ) : null}
           {geodataLoading ? (
-            <div className="rounded-xl bg-slate-900/85 px-3 py-2 text-sm font-semibold text-emerald-300 shadow-lg shadow-black/40 backdrop-blur">
+            <div className="rounded-xl bg-neutral-50/85 px-3 py-2 text-sm font-semibold text-brand-600 shadow-card backdrop-blur">
               Loading map overlays…
             </div>
           ) : null}
@@ -328,13 +328,13 @@ export default function HomePage() {
       ) : null}
 
       {error ? (
-        <div className="fixed top-28 left-1/2 z-[900] -translate-x-1/2 rounded-xl bg-[#B43A3A]/90 px-4 py-2 text-sm text-white shadow-lg">
+        <div className="fixed top-28 left-1/2 z-[900] -translate-x-1/2 rounded-xl bg-rose-50 border border-rose-300 px-4 py-2 text-sm text-rose-700 shadow-card">
           {error}
         </div>
       ) : null}
 
       {geodataError ? (
-        <div className="fixed top-36 left-1/2 z-[900] -translate-x-1/2 rounded-xl bg-[#B43A3A]/90 px-4 py-2 text-sm text-white shadow-lg">
+        <div className="fixed top-36 left-1/2 z-[900] -translate-x-1/2 rounded-xl bg-rose-50 border border-rose-300 px-4 py-2 text-sm text-rose-700 shadow-card">
           {geodataError}
         </div>
       ) : null}

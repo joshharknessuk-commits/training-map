@@ -92,13 +92,13 @@ const escapeHtml = (value: string): string =>
 const renderBoroughPopup = (name: string, count: number): string => {
   const safeName = escapeHtml(name);
   return `
-    <div class="min-w-[200px] max-w-[240px] space-y-2 rounded-2xl bg-slate-900/95 px-4 py-3 text-slate-100 shadow-lg">
-      <div class="flex items-center gap-2 text-sm font-semibold text-white">
+    <div class="min-w-[200px] max-w-[240px] space-y-2 rounded-2xl bg-neutral-50/95 px-4 py-3 text-neutral-900 shadow-lg">
+      <div class="flex items-center gap-2 text-sm font-semibold text-neutral-900">
         <span aria-hidden="true">🏙️</span>
         <span>${safeName}</span>
       </div>
-      <div class="text-xs text-slate-300">Active gyms in this borough: <span class="font-semibold text-white">${count}</span></div>
-      <div class="text-[10px] uppercase tracking-wide text-slate-400">Based on current filter results.</div>
+      <div class="text-xs text-neutral-700">Active gyms in this borough: <span class="font-semibold text-neutral-900">${count}</span></div>
+      <div class="text-[10px] uppercase tracking-wide text-neutral-600">Based on current filter results.</div>
     </div>
   `;
 };
@@ -447,19 +447,19 @@ export function MapView({
 
   const renderGymPopupContent = (gym: Gym, distanceKm: number | null) => {
     return (
-      <div className="min-w-[260px] max-w-[280px] rounded-3xl bg-slate-950/95 p-4 text-slate-100 shadow-[0_12px_32px_-12px_rgba(15,23,42,0.95)] backdrop-blur">
+      <div className="min-w-[260px] max-w-[280px] rounded-3xl bg-white/95 p-4 text-neutral-900 shadow-[0_12px_32px_-12px_rgba(15,23,42,0.95)] backdrop-blur">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-emerald-300">
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-brand-500">
               Gym details
             </p>
-            <h3 className="mt-1 text-base font-semibold leading-tight text-white">{gym.name}</h3>
+            <h3 className="mt-1 text-base font-semibold leading-tight text-neutral-900">{gym.name}</h3>
           </div>
         </div>
 
         <dl className="mt-3 space-y-2 text-sm">
           {distanceKm !== null ? (
-            <div className="flex items-center justify-between rounded-2xl border border-emerald-400/40 bg-emerald-500/10 px-3 py-2 text-emerald-200">
+            <div className="flex items-center justify-between rounded-2xl border border-brand-400/40 bg-brand-500/10 px-3 py-2 text-brand-600">
               <dt className="flex items-center gap-2 font-semibold">
                 <span aria-hidden="true">📏</span>
                 Distance
@@ -468,21 +468,21 @@ export function MapView({
             </div>
           ) : null}
           {gym.nearestTransport ? (
-            <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-3 py-2">
-              <dt className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-white/70">
+            <div className="flex items-center justify-between rounded-2xl border border-neutral-200 bg-neutral-50 px-3 py-2">
+              <dt className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-neutral-900/70">
                 <span aria-hidden="true">🚇</span>
                 Nearest
               </dt>
-              <dd className="text-sm text-white/80">{gym.nearestTransport}</dd>
+              <dd className="text-sm text-neutral-900/80">{gym.nearestTransport}</dd>
             </div>
           ) : null}
           {gym.borough ? (
-            <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-3 py-2">
-              <dt className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-white/70">
+            <div className="flex items-center justify-between rounded-2xl border border-neutral-200 bg-neutral-50 px-3 py-2">
+              <dt className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-neutral-900/70">
                 <span aria-hidden="true">🏷️</span>
                 Borough
               </dt>
-              <dd className="text-sm text-white/80">{gym.borough}</dd>
+              <dd className="text-sm text-neutral-900/80">{gym.borough}</dd>
             </div>
           ) : null}
         </dl>
@@ -490,7 +490,7 @@ export function MapView({
         <div className="mt-4 space-y-2 text-sm">
           {gym.website ? (
             <a
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white/10 px-4 py-2 font-semibold text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-emerald-400/60"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-neutral-100 px-4 py-2 font-semibold text-neutral-900 transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-brand-500/60"
               href={gym.website}
               target="_blank"
               rel="noopener noreferrer"
@@ -502,7 +502,7 @@ export function MapView({
           {gym.extraWebsites?.map((url) => (
             <a
               key={url}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white/5 px-4 py-2 text-sm font-medium text-white/80 transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-emerald-400/40"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-neutral-50 px-4 py-2 text-sm font-medium text-neutral-900/80 transition hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-brand-500/40"
               href={url}
               target="_blank"
               rel="noopener noreferrer"
@@ -512,7 +512,7 @@ export function MapView({
             </a>
           ))}
           <a
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-sky-500 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-slate-900 transition hover:scale-[1.01]"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-500 via-brand-600 to-accent-500 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-slate-900 transition hover:scale-[1.01]"
             href={buildDirectionsUrl({ lat: gym.lat, lon: gym.lon }, userLocation)}
             target="_blank"
             rel="noopener noreferrer"
@@ -522,7 +522,7 @@ export function MapView({
           </a>
           <ClaimButton gymId={gym.id} gymName={gym.name} />
           <a
-            className="block text-center text-xs text-white/50 underline underline-offset-2 transition hover:text-white/80"
+            className="block text-center text-xs text-neutral-900/50 underline underline-offset-2 transition hover:text-neutral-900/80"
             href={gym.osmUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -601,7 +601,7 @@ export function MapView({
             permanent
             direction="top"
             offset={[0, -10]}
-            className="!bg-blue-600 !text-white !border-none !rounded-full !px-3 !py-1 !text-xs !font-semibold !shadow-lg"
+            className="!bg-blue-600 !text-neutral-900 !border-none !rounded-full !px-3 !py-1 !text-xs !font-semibold !shadow-lg"
           >
             You are here
           </Tooltip>
@@ -671,13 +671,13 @@ export function MapView({
                   <Tooltip
                     permanent
                     direction="center"
-                    className="!bg-emerald-950 !text-white !border-none !shadow-lg !rounded-full !px-3 !py-1 !font-semibold !tracking-wide !text-xs"
+                    className="!bg-brand-500 !text-neutral-900 !border-none !shadow-lg !rounded-full !px-3 !py-1 !font-semibold !tracking-wide !text-xs"
                   >
                     {abbreviated}
                   </Tooltip>
                   <Popup>
                     <div className="space-y-2 text-sm">
-                      <div className="font-semibold text-emerald-300">Gyms in this area</div>
+                      <div className="font-semibold text-brand-500">Gyms in this area</div>
                       <div className="text-xs text-slate-600">{pointCount} gyms grouped here</div>
                       <ul className="max-h-40 space-y-1 overflow-y-auto pr-1 text-xs text-slate-600">
                         {previewGyms.map((gym) => (
@@ -686,10 +686,10 @@ export function MapView({
                           </li>
                         ))}
                         {remaining > 0 ? (
-                          <li className="truncate text-slate-500">+ {remaining} more…</li>
+                          <li className="truncate text-neutral-500">+ {remaining} more…</li>
                         ) : null}
                       </ul>
-                      <p className="text-xs text-slate-500">Zoom in to view individual gym details.</p>
+                      <p className="text-xs text-neutral-500">Zoom in to view individual gym details.</p>
                     </div>
                   </Popup>
                 </CircleMarker>
