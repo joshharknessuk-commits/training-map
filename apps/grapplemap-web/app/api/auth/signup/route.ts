@@ -50,6 +50,56 @@ export async function POST(request: NextRequest) {
       displayName: `${firstName || ''} ${lastName || ''}`.trim() || undefined,
     });
 
+    // Send Discord webhook notification
+    if (process.env.DISCORD_SIGNUP_WEBHOOK_URL) {
+      try {
+        const displayName = `${firstName || ''} ${lastName || ''}`.trim() || 'Unknown';
+        await fetch(process.env.DISCORD_SIGNUP_WEBHOOK_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            embeds: [
+              {
+                title: '🎉 New User Signup',
+                color: 0x10b981, // emerald-500
+                fields: [
+                  {
+                    name: 'Name',
+                    value: displayName,
+                    inline: true,
+                  },
+                  {
+                    name: 'Email',
+                    value: email,
+                    inline: true,
+                  },
+                  {
+                    name: 'User ID',
+                    value: newUser.id,
+                    inline: false,
+                  },
+                  {
+                    name: 'Membership',
+                    value: `**Tier:** ${newUser.membershipTier}\n**Status:** ${newUser.membershipStatus}`,
+                    inline: true,
+                  },
+                ],
+                timestamp: new Date().toISOString(),
+                footer: {
+                  text: 'GrappleMap Network',
+                },
+              },
+            ],
+          }),
+        });
+      } catch (webhookError) {
+        // Don't fail signup if webhook fails
+        console.error('Discord webhook error:', webhookError);
+      }
+    }
+
     return NextResponse.json(
       {
         message: 'User created successfully',
