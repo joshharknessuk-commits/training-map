@@ -61,10 +61,26 @@ Once running, you can access:
 - **Countries**: http://localhost:3001/countries
 - **Rulesets**: http://localhost:3001/rulesets
 
+### Environment Configuration
+
+The Analytics link URL is configured via environment variable:
+
+**Development** (.env.local):
+```bash
+NEXT_PUBLIC_ANALYTICS_URL=http://localhost:3001
+```
+
+**Production** (.env.production):
+```bash
+NEXT_PUBLIC_ANALYTICS_URL=https://analytics.yourdomain.com
+```
+
 ### Production Deployment
 
 For production, you can deploy both apps separately:
 - Main app on your primary domain (e.g., `grapplemapnetwork.com`)
 - Analytics on a subdomain (e.g., `analytics.grapplemapnetwork.com`)
+
+Then set `NEXT_PUBLIC_ANALYTICS_URL` to your analytics domain.
 
 Or configure the analytics app to run under a path like `/analytics` using Next.js basePath.

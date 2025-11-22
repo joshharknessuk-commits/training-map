@@ -24,7 +24,7 @@ export default function Navigation() {
 
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
               <a
-                href="http://localhost:3001"
+                href={process.env.NEXT_PUBLIC_ANALYTICS_URL || 'http://localhost:3001'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium border-transparent text-emerald-600 hover:border-emerald-300 hover:text-emerald-700"
