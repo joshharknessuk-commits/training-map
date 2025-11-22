@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import { matches, tournaments } from '@grapplemap/db';
+import { matches, tournaments, rulesets } from '@grapplemap/db';
 import { sql, eq, isNotNull, and } from 'drizzle-orm';
 
 export async function GET(request: Request) {
@@ -9,11 +9,30 @@ export async function GET(request: Request) {
     const year = searchParams.get('year');
     const gi = searchParams.get('gi'); // 'gi', 'nogi', or 'all'
 
-    // Build WHERE clause
-    let whereClause = and(
+    // Build WHERE clause with filters
+    const conditions = [
       isNotNull(matches.submissionType),
       eq(matches.result, 'submission')
-    );
+    ];
+
+    // Add year filter if provided
+    if (year && year !== 'all') {
+      const yearNum = parseInt(year);
+      if (!isNaN(yearNum)) {
+        conditions.push(eq(tournaments.year, yearNum));
+      }
+    }
+
+    // Add gi/nogi filter if provided
+    if (gi && gi !== 'all') {
+      if (gi === 'gi') {
+        conditions.push(eq(rulesets.gi, 1));
+      } else if (gi === 'nogi') {
+        conditions.push(eq(rulesets.gi, 0));
+      }
+    }
+
+    const whereClause = and(...conditions);
 
     // Query submission frequency by type
     const results = await db
@@ -25,6 +44,7 @@ export async function GET(request: Request) {
       })
       .from(matches)
       .innerJoin(tournaments, eq(matches.tournamentId, tournaments.id))
+      .innerJoin(rulesets, eq(tournaments.rulesetId, rulesets.id))
       .where(whereClause)
       .groupBy(matches.submissionType, matches.submissionCategory, tournaments.year)
       .orderBy(sql`count(*) DESC`);
